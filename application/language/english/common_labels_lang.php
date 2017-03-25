@@ -7,8 +7,8 @@ Description		: Page contains common label  for adminpanel and client panel
 ***************************/
 
 /* ##### COMMON LABELS  ###### */
-$lang ['site_title'] = "Affiliate System";
-$lang ['admin_title'] = "Welcome To Affiliate System | Adminpanel";
+$lang ['site_title'] = "Jeevanacharya";
+$lang ['admin_title'] = "Welcome To Jeevanacharya | Adminpanel";
 $lang ['username'] = "Username";
 $lang ['password'] = "Password";
 $lang ['confirm_password'] = "Confirm Password";
