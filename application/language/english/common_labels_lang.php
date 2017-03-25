@@ -45,7 +45,13 @@ $lang ['remove_image_title'] = "Click to Remove Image";
 
 /* Compnay module common label and  image folder name */
 $lang['user_folder_name'] = "user-image";
-
+/* Block Module */
+$lang['blocks_module_label'] = "Block";
+$lang['block_types']       = "Block Types";
+$lang['type']       = "Type";
+$lang['order']       = "Order";
+$lang['page']      = "Page";
+$lang['position']  = "Position";
 
 
 
