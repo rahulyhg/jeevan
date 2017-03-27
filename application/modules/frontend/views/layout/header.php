@@ -1,253 +1,62 @@
- <title><?php  echo get_label('site_title'); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Fonts -->
-    <link href='<?php echo  load_font('google_lato.css')?>' rel='stylesheet' type='text/css'>
-    <link href='<?php echo  load_font('google_roboto_condensed.css')?>' rel='stylesheet' type='text/css'>
-    <!-- CSS Libs -->
-   <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/bootstrap-switch.min.css">
-   
-   <?php /*?>
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/dataTables.bootstrap.css"> <?php */?>
-      <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>font-awesome/font-awesome.min.css">
-       
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/checkbox3.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/select2.min.css">
-    
-    <!-- CSS App -->
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/flat-blue.css">
-     <link rel="stylesheet" type="text/css" href="<?php echo load_lib()?>theme/css/custom.css">
-   
-   <!--  load js  -->
-   
-    <script type="text/javascript" src="<?php echo load_lib()?>jquery/jquery-2.2.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo load_lib()?>jquery/jquery.form.min.js"></script>
-    <script type="text/javascript" src="<?php echo load_lib()?>jquery/jquery.validate.min.js"></script>
-
-<?php /* common javascript varibles ...*/ ?>
-<script>
- var admin_url ="<?php echo frontend_url(); ?>";
- var lod_lib = "<?php echo load_lib(); ?>";
- var module ="<?php echo $module; ?>";
- var module_label = "<?php echo $module_label; ?>";
- var module_labels = "<?php echo $module_labels; ?>";
- var module_action  = "<?php echo (isset($module_action)? $module_action : '' );?>"; 
- var secure_key = "<?php echo $this->security->get_csrf_hash(); ?>";
-</script>
-</script>
-
-<script type="text/javascript">
-
- <?php /* Change  status */ ?>  
-$(document).ready(function(){
-
-$('body').on('click', '.status,.delete_record', function() { 
-var id = this.id;
-var action = $(this).attr('data');
-
-  if ( (typeof (id) != 'undefined') && (typeof (action) != 'undefined') )
-  {
-	  var result= confirm_alert("Are you sure you want to " + action + " this "+ module_label + "?");	
-		 if(result)
-		  {
-		   $("#actionid").val(action);
-		   $("#changeId").val(id);  
-		   action_submit( {id:id, action: action });	
-	      }
-
-	      return false;
-  }
+ <div class="scroll-top-wrapper">
+	<span class="scroll-top-inner">
+		<i class="fa fa-2x fa-arrow-circle-up"></i>
+	</span>
+</div>
  
-});
-
-<?php /* check and uncheck all rdio buttons  */ ?>
-		$('body').on('click', '.multicheck_top, .multicheck_bottom', function() {     
-	 		if($(this).is(':checked')==true)
-	  		{  
-	    		  $('.multi_check,.multicheck_top, .multicheck_bottom').attr("checked", "checked");
-	    		   $('.multi_check,.multicheck_top, .multicheck_bottom').prop('checked', true);
-	  		}
-	 		else
-	  		{       
-	    		$(".multi_check,.multicheck_top, .multicheck_bottom").removeAttr("checked");  
-	    		 $('.multi_check,.multicheck_top, .multicheck_bottom').prop('checked', false);
-	   		}     
-	  	});
-
-<?php /*  if check all checkbox selct parent check box */  ?>
-	$('body').on('click', '.multi_check', function() { 
-	var multichecklength = $('.multi_check').length;
-	var multiunchecklength = $('.multi_check:checked').length; 
-		if(multichecklength == multiunchecklength)
-	{
-		 $(".multicheck_top, .multicheck_bottom").attr('checked','checked');
-		  $('.multicheck_top, .multicheck_bottom').prop('checked', true);
-	}
-	else
-	{
-		$(".multicheck_top, .multicheck_bottom").removeAttr('checked');
-		  $('.multicheck_top, .multicheck_bottom').prop('checked', false);
-	}
-});
-
-<?php /* Submit action form   */ ?>
-function action_submit(str)
-{
-	id = str.id;
-	show_content_loading();
-  $.ajax({
-        url: admin_url+module+"/action",
-        data :  $('#mainform').serialize(),
-        type :'POST', 
-        dataType:"json",
-        success:function(data){
-        hide_content_loading();
-	        
-        	if(data.status=="success") { 
-
-	        	 if(data.action=="Activate") {
-
-                      if(data.multiaction == "Yes")
-                       {
-                    	  $('input[type=checkbox]').each(function () {
-		                      if(this.checked)
-		                 		 {  
-		                             $(this).parents('tr').find('.status').removeClass('fa-lock').addClass('fa-unlock');
-		                             $(this).parents('tr').find('.status').attr('title', 'Active');
-		                             $(this).parents('tr').find('.status').attr('data', 'Deactivate');
-		                 		 }
-                    	  });
-
-                       }
-                      else
-                       {
-                    	  $('#'+ id ).removeClass('fa-lock').addClass('fa-unlock');
- 		        		  $('#'+ id  ).attr('title', 'Active');
- 		        		  $( '#'+ id ).attr('data', 'Deactivate');
-                       }
-		        	    	        		 
-	        		 }
-	
-	         	if(data.action=="Deactivate") { 
-			         		if(data.multiaction == "Yes")
-		                    {
-
-			         			$('input[type=checkbox]').each(function () {
-				                      if(this.checked)
-				                 		 {  
-				                             $(this).parents('tr').find('.status').removeClass('fa-unlock').addClass('fa-lock');
-				                             $(this).parents('tr').find('.status').attr('title', 'Inactive');
-				                             $(this).parents('tr').find('.status').attr('data', 'Activate');
-				                 		 }
-		                    	  });
-		                    	  
-		                    }
-			         		else
-				         	{
-			         			$('#'+ id ).removeClass('fa-unlock').addClass('fa-lock');
-				         		$('#'+ id  ).attr('title', 'Inactive');
-				         		$('#'+ id  ).attr('data', 'Activate');
-			         		}
-		         		
-	            	}
-
-	        	if(data.action=="Delete") { 
-                    var page_id = $("#page_id").val();
-	         		get_content({ page : page_id });
-	         	
-            	 }
-
-	        	 $(".multi_check, .multicheck_top, .multicheck_bottom").removeAttr("checked");  
-	    		 $('.multi_check, .multicheck_top, .multicheck_bottom').prop('checked', false);
-	    		 $("#multiaction").val('');
-	    		 $("#actionid").val();
-        	}
-        }
-    });
-}
-
-<?php /*  multiselct action */ ?>
-$('body').on('click', '.multi_action', function() { 
-
-	 var this_action  = $(this).attr('data');  
-	if($(".multi_check:checked").length < 1)
-    {
-    	alert("<?php echo $this->lang->line("alert_multibleaction");?>");
-    	$("#multiselect").val('');
-    	return false;
- 	} 
-	if ( typeof (this_action) != 'undefined' )
-	  {
-
-	 <?php /*   Activate action  */?>
-		if(this_action=="Activate")
-		{    
-			var result= confirm_alert("<?php echo sprintf($this->lang->line('confirm_activate'), ucfirst($module_labels)); ?>");	
-			if(result)
-			 {  
-	   			$("#actionid").val("Activate");
-	   			$("#multiaction").val("Yes");
-	   			action_submit('');
-
-			 }else{
-					$("#multiaction").val('');
-			 }
+ <div id="videoBlock" class="video_menu">
+	 <a id="menu-toggle" href="#" class="btn btn-primary toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
+			<div id="sidebar-wrapper">
+            	<?php echo $blocks['site_header']; ?>
+			</div>
+		 <video preload="preload" id="video" autoplay loop width="100%" height="650px"  >
+			 <source src="<?php echo skin_url(); ?>video/jeevanacharya_videos.webm" type="video/webm"></source>
+			 <source src="<?php echo skin_url(); ?>video/jeevanacharya_videos.mp4" type="video/mp4"></source>
+		 </video>
+		 
+		 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menubar" id="videoMessage">
+		 <h1>Jeevanacharya</h1>
+				
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 logo">
+						<a href="index.php"><img src="<?php echo skin_url(); ?>img/logo.png" alt="wayof life"></a>
+					</div>
+					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 guru_menu">
+						<nav class="navbar navbar-inverse">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+									<span class="sr-only">toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							<a class="navmenu" href="#">Menu</a>
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            	<?php echo $blocks['site_header_desktop']; ?>
+								
+							</div> 
+						</nav>
+					</div>
+				</div>
+ </div>
+ <style>
+	#videoBlock 
+	 	{ 
+		position: relative;
+		float: left;
+		margin: 0px;
+		padding: 0px;
+		max-width: 100%;
+		width: 100%;
+		height: auto;
+		overflow-x: hidden;
+		/*background:url(img/gurujeee.png) no-repeat;*/
 		}
-
-		<?php /*   deactivation action  */?>
-		if(this_action=="Deactivate")
-		{    
-			var result= confirm_alert("<?php echo sprintf($this->lang->line('confirm_deactivate'), ucfirst($module_label)); ?>");	
-			if(result)
-			 {  
-	   			$("#actionid").val("Deactivate");
-	   			$("#multiaction").val("Yes");
-	   			action_submit('');
-
-			 }else{
-					$("#multiaction").val('');
-			 }
-		}
-
-		<?php /*  Delete  action  */?>
-		if(this_action=="Delete")
-		{    
-			var result= confirm_alert("<?php echo sprintf($this->lang->line('confirm_delete'), ucfirst($module_labels)); ?>");	
-			if(result)
-			 {  
-	   			$("#actionid").val("Delete");
-	   			$("#multiaction").val("Yes");
-	   			action_submit('');
-
-			 }else{
-					$("#multiaction").val('');
-			 }
-		}
-		
-	 } 	
- 	
-});
-
-}); /* end of ready */
-
-<?php /*  alert for conformation in multible actions  */ ?>
-function confirm_alert(error)
-{
-	var x=window.confirm(error);
-	if (x) { 
-            return true;
-	} else {
-	        return false;
-	}
-}
-
-<?php /* cancel form to redirect parent module  */ ?>
-function cancelform(url)
-{ 
-    var url;
-	window.location=url; 
-}
-</script>
+	 #videoBlock video{width: 100%; height: 100%; }
+	 #videoMessage
+	 {
+		 position: absolute;
+		 bottom:15px;
+		 left: 0;
+	 }
+</style>
