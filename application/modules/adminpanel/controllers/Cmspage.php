@@ -193,7 +193,7 @@ class Cmspage extends CI_Controller {
 				
 				$update_array = array (
 						'page_title' => post_value ( 'page_title' ),
-						'page_slug' => $slug,
+						//'page_slug' => $slug,
 						'page_description' => $this->input->post('page_description', false),
 						'page_meta_title' => post_value('page_meta_title'),
 						'page_meta_keyword' => post_value('page_meta_keyword'),

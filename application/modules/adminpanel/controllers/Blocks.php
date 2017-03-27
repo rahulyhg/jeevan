@@ -145,7 +145,6 @@ class Blocks extends CI_Controller {
                 }
             }
 
-
             if ($this->form_validation->run() == TRUE) {
                 $page = post_value('page');
                 $display = 1;
@@ -383,11 +382,33 @@ class Blocks extends CI_Controller {
             include_once($file_path);
         }
 
-        $block_pages = array('' => 'Select Page');
+        //$block_pages = array('' => 'Select Page');
+		
+		$cms_query = $this->Mydb->custom_query("SELECT * FROM sramcms_cms_pages WHERE is_active=1 AND is_delete!=1");
+		if(!empty($cms_query))
+		{
+			
+			foreach($cms_query as $value)
+			{
+				$pageid[]='frontend/frontend/pages/'.$value['page_slug'];
+				$pagetitle[]=$value['page_title'];
+				$pagelug[]['title'] = $value['page_title'];
+				
+				$pageposition[]['positions'] = 'inner_top, inner_bottom, inner_left, inner_right';
+			}
+		}
+		$block_pages = array_combine($pageid, $pagetitle);
+		
+		
+		foreach ($pagelug as $key => $value) {
+            $page_total[] = array_merge($pagelug[$key], $pageposition[$key]);
+        }
+		$pagerecord = array_combine($pageid, $page_total);
+		$pages = array_merge($pagerecord, $pages);
         $page_postions = array();
         if (!empty($pages)) {
             foreach ($pages as $k => $page) {
-                $block_pages[$k] = $page["title"];
+               $block_pages[$k] = $page["title"];
                 $page_postions[$k] = array();
                 foreach (explode(",", $page["positions"]) as $position) {
                     $position = trim($position);
@@ -397,7 +418,7 @@ class Blocks extends CI_Controller {
                 }
             }
         }
-
+		
         $data["block_pages"] = $block_pages;
         $data["page_postions"] = $page_postions;
         $data["block_types"] = array_merge(array("" => "Select Type"), $block_types);
