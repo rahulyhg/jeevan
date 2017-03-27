@@ -6,7 +6,7 @@
     	<?php
 		foreach($menus_list as $desktop){
 		?>
-        <li><a class="animated zoomIn " href="javascript:void(0)"><?php echo $desktop['name']; ?><br><span class="jeevan">JEEVANACHARYA</span></a></li>
+        <li><a class="animated zoomIn " href="<?php echo $desktop['url']; ?>"><?php echo $desktop['name']; ?><br><span class="jeevan">JEEVANACHARYA</span></a></li>
         <?php
 		}
 		?>

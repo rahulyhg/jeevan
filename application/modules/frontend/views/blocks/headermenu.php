@@ -5,7 +5,7 @@
 	if(!empty($menus_list)){
 		foreach($menus_list as $header){
 	?>
-    <li><a href="javascript:void(0);"><?php echo $header['name'] ?></a></li>
+    <li><a href="<?php echo $header['url']; ?>"><?php echo $header['page_title']; ?></a></li>
     <?php
 		}
 	}

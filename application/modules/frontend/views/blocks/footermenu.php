@@ -8,7 +8,7 @@
     	<?php
 		foreach($menus_list as $footer){
 		?>
-        <li class="animated zoomIn"><a href="<?php  ?>"><?php echo $footer['name']; ?></a></li>
+        <li class="animated zoomIn"><a href="<?php echo $footer['url'];  ?>"><?php echo $footer['name']; ?></a></li>
         <?php
 		}
 		?>
