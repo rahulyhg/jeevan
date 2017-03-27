@@ -19,6 +19,8 @@ class Frontend extends MY_Controller {
 	
 	}
 	
+	
+	
 	/* this method used to show all dashboard all details... */
 	public function index() {
 	 
@@ -31,6 +33,10 @@ class Frontend extends MY_Controller {
 	
 	  $this->layout->display_frontend($this->folder . '/homepage', $data);
 	}
+	
+	
+	
+	
 	public function logout() {
 		
 		$this->session->sess_destroy();
