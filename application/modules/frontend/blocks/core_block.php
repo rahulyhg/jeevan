@@ -8,6 +8,7 @@ class Core_Block
 	public function __construct() {
 		if($this->CI === null) $this->CI = &get_instance();
 		$this->CI->load->helper('adminsite');
+		$this->CI->load->helper('url');
 	}
 	public function setView($view = "") {
 		$this->view = $view;

@@ -14,22 +14,23 @@ class Menus_Block extends Core_Block {
         $data = $this->getBlockData();
 		
 		$db = $this->CI->Mydb->db;
-		$db->select('name, link_type, page_id, url, menu_group_id, target, parent_id');
-		$db->where('is_active', '1');
-		$db->where('is_delete', '0');
+		$db->select('mg.name, mg.link_type, mg.page_id, CASE WHEN (mg.page_id != "0") THEN CONCAT("'.frontend_url('pages/').'",cms.page_slug) ELSE mg.url END AS url, mg.menu_group_id, mg.target, mg.parent_id, cms.page_title, cms.page_slug');
+		$db->join('sramcms_cms_pages cms', 'cms.id = page_id','left');
+		$db->where('mg.is_active', '1');
+		$db->where('mg.is_delete', '0');
 		switch ($data["params"]->menus_views) {
 			case self::TYPE_HEADER:
-				$db->where('menu_group_id', $data["params"]->menu_group);
+				$db->where('mg.menu_group_id', $data["params"]->menu_group);
 				break;
 			case self::TYPE_FOOTER:
-				$db->where('menu_group_id', $data["params"]->menu_group);
+				$db->where('mg.menu_group_id', $data["params"]->menu_group);
 				break;
 			case self::TYPE_LATESTMENU:
-				$db->where('menu_group_id', $data["params"]->menu_group);
+				$db->where('mg.menu_group_id', $data["params"]->menu_group);
 				break;
 		}
 		
-		$query = $db->get("sramcms_menus");
+		$query = $db->get("sramcms_menus mg");
 		//echo $db->last_query();
 		if($query->num_rows() > 0) {
 			$data["menus_list"] = $query->result_array();
@@ -38,8 +39,9 @@ class Menus_Block extends Core_Block {
 			$this->setView("blocks/" . $data["params"]->menus_templates);
 		}
 		
-        //echo '<pre>';
-		//print_r($data);
+       /// echo '<pre>';
+		///print_r($data);
+		//die;
        
         return $data;
     }
