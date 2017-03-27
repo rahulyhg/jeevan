@@ -5,7 +5,8 @@ $type_params['menus_views'] = array(
 	'header-additional-menus'=> 'Header Additional Menus ',
 	'footer' => 'Footer',
 	'leftmenu' => 'Left Menu',
-	'footer-right-menus' => 'Footer Right Menus'	
+	'footer-right-menus' => 'Footer Right Menus'	,
+	'latestupdate' => 'Latest Update'
 );
 
 $type_params['menus_templates'] = array(
@@ -13,5 +14,6 @@ $type_params['menus_templates'] = array(
 	'headermenu' => 'Header Menu',
 	'footermenu' => 'Footer Menu',
 	'leftmenusection' => 'Left Menu Section',
-	'footer_right_section' => 'Footer Right Menu Section'	
+	'footer_right_section' => 'Footer Right Menu Section',
+	'latestupdate' => 'Latest Update Menu'
 );
