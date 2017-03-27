@@ -292,18 +292,22 @@ if (! function_exists ( 'get_is_active_dropdown' )) {
 	}
 }
 
-
-/* this method used to create client logo check user folder nameexists**/
+/* this method used to create user images check user folder name exists**/
 if (!function_exists('create_folder')) {
 	function create_folder($folder_name) {
 
 		$src = FCPATH.'media/default/*';
 		$dst = FCPATH.'media/'.$folder_name.'/';
-		$command = exec( "cp -r $src $dst" );
+		if(!is_dir($dst)){
+			mkdir($dst, 0777, TRUE);
+			$command = exec( "cp -r $src $dst" );
+		}
+
 			
 	}
 
 }
+
 
 /*This function strip slash*/
 if(!function_exists('custom_strip_slashes')){
