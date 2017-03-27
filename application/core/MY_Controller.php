@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller {
 		Modules::$registry[strtolower($class)] = $this;	
 		
 		$this->load->block("core_block");	
+		
 	}
 	
 	function loadBlocks() {
