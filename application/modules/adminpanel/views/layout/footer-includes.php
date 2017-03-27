@@ -4,6 +4,8 @@
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/Chart.min.js"></script>
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/bootstrap-switch.min.js"></script>
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="<?php echo load_lib()?>bootstrap/js/moment-with-locales.js"></script>
+            <script type="text/javascript" src="<?php echo load_lib()?>bootstrap/js/bootstrap-datetimepicker.min.js"></script>
             <?php /* ?>
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/jquery.dataTables.min.js"></script>
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/dataTables.bootstrap.min.js"></script> 

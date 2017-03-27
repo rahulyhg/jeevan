@@ -6,6 +6,7 @@
     <!-- CSS Libs -->
    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/bootstrap-switch.min.css">
+   <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>bootstrap/css/bootstrap-datetimepicker.min.css">
    
    <?php /*?>
     <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/jquery.dataTables.min.css">
@@ -19,14 +20,14 @@
     <!-- CSS App -->
     <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/flat-blue.css">
-     <link rel="stylesheet" type="text/css" href="<?php echo load_lib()?>theme/css/custom.css">
-   
-   <!--  load js  -->
-   
+    <link rel="stylesheet" type="text/css" href="<?php echo load_lib()?>theme/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo load_lib() ?>theme/css/dropzone.css">
+    <!--  load js  -->
     <script type="text/javascript" src="<?php echo load_lib()?>jquery/jquery-2.2.0.min.js"></script>
     <script type="text/javascript" src="<?php echo load_lib()?>jquery/jquery.form.min.js"></script>
     <script type="text/javascript" src="<?php echo load_lib()?>jquery/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="<?php echo admin_skin(); ?>js/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/dropzone.js"></script>
 <?php /* common javascript varibles ...*/ ?>
 <script>
  var admin_url ="<?php echo admin_url(); ?>";
