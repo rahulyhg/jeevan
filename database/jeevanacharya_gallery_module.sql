@@ -57,7 +57,7 @@ INSERT INTO `sramcms_gallary_categories` (`id`, `created_on`, `created_by`, `cre
 --
 
 CREATE TABLE `sramcms_galleries` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT, 
   `title` varchar(255) NOT NULL,
   `description` mediumtext NOT NULL,
   `gallery_category_id` bigint(20) NOT NULL COMMENT 'Refer from gallery categories table',
