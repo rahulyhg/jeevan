@@ -38,7 +38,7 @@
                             </li>   
                               <li class="<?php echo ($module == "blocks") ? 'active' : ''; ?>">
                                 <a href="<?php echo admin_url()."blocks"?>">
-                                    <span class="icon fa fa-th"></span><span class="title">Widget Blocks</span>
+                                    <span class="icon fa fa-th-large"></span><span class="title">Widget Blocks</span>
                                 </a>
                             </li>       
                             </li>   
@@ -46,7 +46,13 @@
                                 <a href="<?php echo admin_url()."photooftheday"?>">
                                     <span class="icon fa fa-picture-o"></span><span class="title">Photo of the day</span>
                                 </a>
-                            </li>             
+                            </li>          
+                            </li>   
+                              <li class="<?php echo ($module == "gallerycategories") ? 'active' : ''; ?>">
+                                <a href="<?php echo admin_url()."gallerycategories"?>">
+                                    <span class="icon fa fa-th"></span><span class="title">Media Gallery</span>
+                                </a>
+                            </li>         
                              <?php /* ?>
                             <li class="panel panel-default dropdown">
                                 <a data-toggle="collapse" href="#dropdown-table">
