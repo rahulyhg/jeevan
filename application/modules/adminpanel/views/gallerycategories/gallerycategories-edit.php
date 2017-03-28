@@ -34,7 +34,7 @@
 							<div class="form-group">
 									<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('category thumbnail');?></label>
 									<div class="col-sm-<?php echo get_form_size();?>"><div class="dropzone" id="categoryThumbnail" name="categoryThumbnailFileUploader"></div>
-									<input id="categoryThumbnailHidden" type="hidden" name="thumbnail" value="" />
+									<input id="categoryThumbnailHidden" type="hidden" name="thumbnail" value="<?php echo $records['category_image']?>" />
 									</div>
 						</div>
                        <script type="text/javascript">					
