@@ -1216,11 +1216,9 @@ section {
 }
 .letter .form-control {
     border-radius: 0px;
-    margin-top: 25px;
 }
 .input-group-btn, .btn-danger {
-    margin-right: 20px;
-    margin-top: 25px;
+    margin-right: 0px;
 	padding: 0 0 20px 0;
 }
 .chakra
