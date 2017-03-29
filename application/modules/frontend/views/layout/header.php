@@ -86,6 +86,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 }
 ?>
 
+
 <?php if(!empty($scroll_position) && $scroll_position == '1'){ ?>
 
 <div class="scroll_top"></div>
