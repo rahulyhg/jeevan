@@ -1,3 +1,6 @@
+<?php
+if(!empty($page_breadcrums)){
+?>
 <div class="about_webcame">
 	<div class="container">
 		<div class="row">
@@ -7,3 +10,6 @@
 		</div>
 	</div>
 </div>
+<?php
+}
+?>
