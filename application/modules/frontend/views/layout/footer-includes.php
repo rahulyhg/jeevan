@@ -1,4 +1,3 @@
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/calendar.js"></script>
@@ -10,47 +9,6 @@
         pickerPosition: "bottom-left"
     });
 </script>   
-<script>
-	<script>
-	new WOW() .init();
-</script>
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-            $(this).toggleClass('open');       
-        }
-    );
-});
-	</script>
-
-<script>
-	$(function(){
- 
-	$(document).on( 'scroll', function(){
- 
-		if ($(window).scrollTop() > 110) {
-			$('.scroll-top-wrapper').addClass('show');
-		} else {
-			$('.scroll-top-wrapper').removeClass('show');
-		}
-	});
-		$('.scroll-top-wrapper').on('click', scrollToTop);
-});
-	function scrollToTop() {
-	verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-	element = $('body');
-	offset = element.offset();
-	offsetTop = offset.top;
-	$('html, body').animate({scrollTop: offsetTop}, 1000, 'linear');
-}
-</script>
-
 <script type="text/javascript">
 $(function () {
 
@@ -62,7 +20,6 @@ $(function () {
 });
            
 </script>
-
 <script>
 	$(function (){
 		$('.simple-marquee-container').SimpleMarquee();
@@ -77,72 +34,6 @@ $(function () {
     $("#sidebar-wrapper").toggleClass("active");
   });
 </script>
-
-<script> /* only to stop # links page jump on demo */
-	var noclick = document.getElementById('pie-menu').getElementsByTagName('a');
-	for (var i = 0; i < noclick.length; ++i){
-	noclick[i].onclick = function(){ return false }
-	}
-</script>
-
-<script>
-  $(document).ready(function(){
-    var divCount = document.getElementsByTagName('.pie').length;
-    for(var i = 0; i <= divCount; i++) {
-        $('.pie').eq(i).addClass('blackPos');
-        $('.pie').eq(i).animate({webkitTransform: 'rotate(45deg)', left: '+=5%'});
-    };
-);
-</script>
-
-
-
-
-
-
-<script>
-	$('.multi-item-carousel').carousel({
-  interval: false
-});
-
-// for every slide in carousel, copy the next slide's item in the slide.
-// Do the same for the next, next item.
-$('.multi-item-carousel .item').each(function(){
-  var next = $(this).next();
-  if (!next.length) {
-    next = $(this).siblings(':first');
-  }
-  next.children(':first-child').clone().appendTo($(this));
-  
-  if (next.next().length>0) {
-    next.next().children(':first-child').clone().appendTo($(this));
-  } else {
-  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-  }
-});
-</script>
-
-<script>
-	$(document).ready(function() {
-      $("#owl-demo").owlCarousel({
-          autoPlay: 3000, //Set AutoPlay to 3 seconds
-          items : 3,
- 	itemsDesktop : [1199,2],
-    itemsDesktopSmall : [980,2],
-    itemsTablet: [768,2],
-    itemsTabletSmall: false,
-    itemsMobile : [479,1],
-      });
-			carousel.owlCarousel({
-    navigation:true,
-    navigationText: [
-      "<i class='icon-chevron-left icon-white'><</i>",
-      "<i class='icon-chevron-right icon-white'>></i>"
-      ],
-  });
-    });
-</script>
-
 <script type="text/javascript">
 		$("#contact1_form").validate({
 		ignore: ".ignore",
@@ -211,8 +102,6 @@ $('.multi-item-carousel .item').each(function(){
       })
   };
 </script>
-
-
 <script>
 		jQuery(document).ready(function($) {
 			
@@ -220,122 +109,74 @@ $('.multi-item-carousel .item').each(function(){
         
 });
 	</script>
-	
-	<!--#####################   STRAT-->
-	
-	<script>
-	$(document).ready(function() {
-  $('#play-video').on('click', function(ev) {
- 
-    $("#video")[0].src += "&autoplay=1";
-    ev.preventDefault();
- 
-  });
-});
-</script>
-	<script>
-document.getElementById("myFrame").addEventListener("load", myFunction);
 
-function myFunction() {
-    document.getElementById("tvr").innerHTML = "Iframe is loaded.";
-}
-</script>
-
-
-
-
-
-<!--#####################   END-->
-
-
-<script>
-	$(document).ready(function(ev){
-    $('#custom_carousel').on('slide.bs.carousel', function (evt) {
-      $('#custom_carousel .controls li.active').removeClass('active');
-      $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').addClass('active');
-    })
-});
-	</script>
-
-
-<script>
-	$(document).ready(function() {
-    $('.pgwSlideshow').pgwSlideshow({
-      autoSlide: true,
-		transitionEffect:'fading',
-		adaptiveDuration:200,
-		transitionDuration:500
+<script type="text/javascript">
+	$("#contact_form").validate({
+	ignore: ".ignore",
+	rules: {
+		firstname:{required: true,lettersonly: true},
+		email:{required: true,email: true},
+		phonenumber:{required: true,number: true,minlength: 10},
+		dob:{required:true},
+		purpose1:{required:true},
+		message:{required: true,},
 		
-    });
-})
-</script>
-	<script type="text/javascript">
-		$("#contact_form").validate({
-		ignore: ".ignore",
-		rules: {
-			firstname:{required: true,lettersonly: true},
-			email:{required: true,email: true},
-			phonenumber:{required: true,number: true,minlength: 10},
-			dob:{required:true},
-			purpose1:{required:true},
-			message:{required: true,},
-			
-		},
-		messages: {
-			firstname:{required: "Enter your name",lettersonly: "Type only letter and white space"},
-			email:{required: "Enter your email id",email: "Invaild email id"},
-			phonenumber:{required: "Enter your phone number",number: "Invaild phone number",minlength: "Please enter at least {10} characters."},
-			dob:{required:"Enter the Appointment Date"},
-			purpose:{required:"purpose of Appointment"},
-			message:{required: "Enter your Message"},
-		},
-		submitHandler: function (form) {
-			//alert('a');
-			var request;
-			$('#contact_submit').attr("disabled", true);
-			var last = $('#contact_form').serialize();
-			request =  $.ajax({
-				type: 'POST',
-				url: 'gurujee_form.php',
-				data:last,
-				success: function(res) {
-					//alert(res);
-					//alert('b');
-					if (res == 'success') {
-						$('.contact_gurujee').addClass('text-success');
-						$('.contact_gurujee').html('Your message has been sent!').slideDown();
-						$("#firstname").val('');
-						$("#email").val('');
-						$("#phonenumber").val('');
-						$("#dob").val('');
-						$("#purpose").val('');
-						$("#message").val('');
-					}
-					else {
-						$('.contact_gurujee').addClass('text-warning');
-						$('.contact_gurujee').html('Mail not sent, try again!').slideDown();
-						$("#firstname").val('');
-						$("#email").val('');
-						$("#phonenumber").val('');
-						$("#dob").val('');
-						$("#purpose").val('');
-						$("#message").val('');
-						$('#contact_submit').attr("disabled", false);
-					} 
+	},
+	messages: {
+		firstname:{required: "Enter your name",lettersonly: "Type only letter and white space"},
+		email:{required: "Enter your email id",email: "Invaild email id"},
+		phonenumber:{required: "Enter your phone number",number: "Invaild phone number",minlength: "Please enter at least {10} characters."},
+		dob:{required:"Enter the Appointment Date"},
+		purpose:{required:"purpose of Appointment"},
+		message:{required: "Enter your Message"},
+	},
+	submitHandler: function (form) {
+		//alert('a');
+		var request;
+		$('#contact_submit').attr("disabled", true);
+		var last = $('#contact_form').serialize();
+		request =  $.ajax({
+			type: 'POST',
+			url: 'gurujee_form.php',
+			data:last,
+			success: function(res) {
+				//alert(res);
+				//alert('b');
+				if (res == 'success') {
+					$('.contact_gurujee').addClass('text-success');
+					$('.contact_gurujee').html('Your message has been sent!').slideDown();
+					$("#firstname").val('');
+					$("#email").val('');
+					$("#phonenumber").val('');
+					$("#dob").val('');
+					$("#purpose").val('');
+					$("#message").val('');
 				}
-			});
-		}
-	});
-	jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-zA-Z\s]*$/i.test(value);
-	}, "type only letter and white space");
-	
-	$("#phonenumber").keypress(function (e){
-	var charCode = (e.which) ? e.which : e.keyCode;
-	if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-		return false;
-		}
-	});
+				else {
+					$('.contact_gurujee').addClass('text-warning');
+					$('.contact_gurujee').html('Mail not sent, try again!').slideDown();
+					$("#firstname").val('');
+					$("#email").val('');
+					$("#phonenumber").val('');
+					$("#dob").val('');
+					$("#purpose").val('');
+					$("#message").val('');
+					$('#contact_submit').attr("disabled", false);
+				} 
+			}
+		});
+	}
+});
+jQuery.validator.addMethod("lettersonly", function(value, element) {
+return this.optional(element) || /^[a-zA-Z\s]*$/i.test(value);
+}, "type only letter and white space");
+
+$("#phonenumber").keypress(function (e){
+var charCode = (e.which) ? e.which : e.keyCode;
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+	return false;
+	}
+});
 </script>
 <script type="text/javascript">
 		$("#newsletter_form").validate({
@@ -374,12 +215,15 @@ function myFunction() {
 	});
 </script>
 
+
 <script>
-function Scrolldown() {
-     window.scroll(0,400); 
-}
-window.onload = Scrolldown;
+$('html, body').animate({
+     scrollTop: $(".scroll_top").offset().top - 20
+}, 800);
+
 </script>
+
+
 <script>
 	$(function() {
   $(".expand").on( "click", function() {
@@ -399,6 +243,19 @@ $(document).ready(function () {
 	var accordid = $('#according').val();
   $('#'+accordid + '.collapse').collapse('show');
 });	
+</script>
+<script>
+   $(document).ready(function(){
+	   $(window).bind('scroll', function() {
+	   var navHeight = $( window ).height() - 100;
+			 if ($(window).scrollTop() > navHeight) {
+				 $('nav').addClass('fixed');
+			 }
+			 else {
+				 $('nav').removeClass('fixed');
+			 }
+		});
+	});
 </script>
 
       
