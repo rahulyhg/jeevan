@@ -13,6 +13,8 @@ class Menus_Block extends Core_Block {
 	public function drawData() {
         $data = $this->getBlockData();
 		
+		$data['menuurlslug'] = $this->CI->uri->segment(1);
+		
 		$db = $this->CI->Mydb->db;
 		$db->select('mg.name, mg.link_type, mg.page_id, CASE WHEN (mg.page_id != "0") THEN CONCAT("'.frontend_url('pages/').'",cms.page_slug) ELSE mg.url END AS url, mg.menu_group_id, mg.target, mg.parent_id, cms.page_title, cms.page_slug');
 		$db->join('sramcms_cms_pages cms', 'cms.id = page_id','left');
@@ -38,11 +40,6 @@ class Menus_Block extends Core_Block {
 		if(isset($data["params"]->menus_templates)) {
 			$this->setView("blocks/" . $data["params"]->menus_templates);
 		}
-		
-       /// echo '<pre>';
-		///print_r($data);
-		//die;
-       
         return $data;
     }
 	  
