@@ -3,8 +3,10 @@
 <link rel="stylesheet" media="all" href="<?php echo load_lib(); ?>routelib/bootstrap-3.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" media="all" href="<?php echo load_lib(); ?>routelib/whhg-font/css/whhg.css">
 <link rel="stylesheet" media="all" href="<?php echo load_lib(); ?>theme/routecss/s.css">
+<link rel="stylesheet" media="all" href="<?php echo load_lib(); ?>theme/css/bootstrap-datepicker.min.css">
 <script type="text/javascript">
     var FRONTEND_URL = '<?php echo admin_url(); ?>';
+    var APIDATA_URL = 'routeplan/apidata';
 </script>
 
 <div class="ro-loading-container" data-bind="fade:!isReady()">
@@ -154,13 +156,13 @@
                     <div class="form-group">
                         <label for="inputStartDate" class="control-label col-sm-2">Startdate</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputStartDate" placeholder="Start Date" data-bind="value:startdate">
+                            <input type="text" data-bind='datepicker: startdate'  class="form-control" id="inputStartDate" placeholder="Start Date" data-bind="value:startdate">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEndDate" class="control-label col-sm-2">Enddate</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEndDate" placeholder="End Date" data-bind="value:enddate">
+                            <input type="text" data-bind='datepicker: enddate' class="form-control" id="inputEndDate" placeholder="End Date" data-bind="value:enddate">
                         </div>
                     </div>
                     <div class="form-group">
@@ -402,9 +404,5 @@
                                 </div>
                                 </div>
                             </script>
-
-                            <script type="text/javascript" src="<?php echo load_lib(); ?>/routelib/require-2.1.8.min.js" data-main="<?php echo load_lib(); ?>theme/routejs/init"></script>
-
-                            <script type="text/javascript">
-                                Jquery('#load_map').click();
-                            </script>
+                            <script type="text/javascript" src="<?php echo load_lib(); ?>routelib/require-2.1.8.min.js" data-main="<?php echo load_lib(); ?>theme/routejs/init"></script>
+                            <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/jquery.min.js" ></script>
