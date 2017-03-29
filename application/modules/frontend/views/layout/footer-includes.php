@@ -1,11 +1,4 @@
-<script src="<?php echo skin_url(); ?>js/jquery-3.1.1.min.js"></script>
-<script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
-<script src="<?php echo skin_url(); ?>js/marquee.js"></script>
-<script src="<?php echo skin_url(); ?>js/owl.carousel.min.js"></script>
-<script src="<?php echo skin_url(); ?>js/jquery.bxslider.min.js"></script>
-<script src="<?php echo skin_url(); ?>js/pgwslideshow.min.js"></script>
-<script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
-<script src="<?php echo skin_url(); ?>js/bootstrap-datetimepicker.js"></script>
+
 <script type="text/javascript">
     $("#datetimepicker").datetimepicker({
         autoclose: true,
@@ -382,6 +375,26 @@ function Scrolldown() {
      window.scroll(0,400); 
 }
 window.onload = Scrolldown;
+</script>
+<script>
+	$(function() {
+  $(".expand").on( "click", function() {
+    $(this).next().slideToggle(200);
+    $expand = $(this).find(">:first-child");
+    
+    if($expand.text() == "+") {
+      $expand.text("-");
+    } else {
+      $expand.text("+");
+    }
+  });
+});
+</script>
+<script>
+$(document).ready(function () {
+	var accordid = $('#according').val();
+  $('#'+accordid + '.collapse').collapse('show');
+});	
 </script>
 
       
