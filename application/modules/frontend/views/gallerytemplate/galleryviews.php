@@ -4,13 +4,27 @@
         	
         <h3 class="text-center"><?php echo $gallery[0]['gallery_category']; ?></h3>
         
-       
+      
+            <div class="col-xs-12 text-center">
+    			<button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="all">
+					All
+				</button>
+				<button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="media_image">
+					Images
+				</button>
+				<button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="media_video">
+					Videos
+				</button>
+				
+			</div>
+         <div class="clearfix"></div>
+         <br>
         
         <?php
 	   if(!empty($gallery)){
 		   foreach($gallery as $gallery_details){
 	   ?>
-       <div class="col-lg-3 col-sm-4 col-xs-6">
+       <div class="col-lg-3 col-sm-4 col-xs-6" data-tag=<?php if($gallery_details['media_type'] != '1'){ echo 'media_video';  }else{ echo 'media_image'; } ?>>
         <div class="panel panel-default">
         
             <div class="panel-body">
@@ -67,6 +81,7 @@
     </div>
 </div>
 
+<script src="<?php echo skin_url(); ?>js/bootstrap-portfilter.min.js"></script>
 <script>
 $(document).ready(function() {
 $('.gallery_box').click(function(){
