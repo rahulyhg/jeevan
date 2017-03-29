@@ -62,9 +62,9 @@ class Frontend extends MY_Controller {
 //            $response['startvalue'] = $plan_details[0];
 //            $response['endvalue'] = $plan_details[1];
 //            $destinations = $getplandetails[0]['destinations'];
-            $response['startvalue'] = "Karaikudi, Tamil Nadu, India";
-            $response['endvalue'] = "Chennai, Tamil Nadu, India";
-            $destinations = "Karaikudi, Tamil Nadu, India|*|Keeranur,Tamil Nadu, India|*|Tiruchirappalli, Tamil Nadu, India|*|Chennai, Tamil Nadu, India";
+ //           $response['startvalue'] = "Karaikudi, Tamil Nadu, India";
+//			$response['endvalue'] = "Chennai, Tamil Nadu, India";
+ //           $destinations = "Karaikudi, Tamil Nadu, India|*|Keeranur,Tamil Nadu, India|*|Tiruchirappalli, Tamil Nadu, India|*|Chennai, Tamil Nadu, India";
             $explodedestinations = explode('|*|', $destinations);
             $response['destinations'] = array();
             $rows = array();
