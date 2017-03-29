@@ -24,19 +24,19 @@
                 <?php echo form_open_multipart(admin_url().$module.'/edit',' class="form-horizontal" id="common_form" ' );?>
                          <div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('title').get_required();?></label>
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('title',stripslashes($records['title']),' class="form-control required"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('trip_name',stripslashes($records['trip_name']),' class="form-control required"  ');?></div></div>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('description').'&nbsp;'.get_required();?></label>
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('description',stripslashes($records['description']),' class="form-control required"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('description',stripslashes($records['description']),' class="form-control required"');?></div></div>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('start date').'&nbsp;'.get_required();?></label>
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('start_date',get_date_formart(($records['start_date']), 'Y-m-d H:m:s A'),' class="form-control required event_from_date_picker"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('start_date',get_date_formart(($records['start_date']), 'Y-m-d'),' class="form-control required event_from_date_picker"  ');?></div></div>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('end date').'&nbsp;'.get_required();?></label>							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('end_date',get_date_formart(($records['end_date']), 'Y-m-d H:m:s A'),' class="form-control required event_to_date_picker"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('end_date',get_date_formart(($records['end_date']), 'Y-m-d'),' class="form-control required event_to_date_picker"  ');?></div></div>
 						</div>
 							<div class="form-group" id="file_upload_box">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Upload Image');?></label>

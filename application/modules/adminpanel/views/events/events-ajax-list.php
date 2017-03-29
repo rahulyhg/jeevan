@@ -22,7 +22,7 @@
                     <?= form_checkbox('multicheck','Y',FALSE,' class="multicheck_top"  ');?>
             </th>
 			<th><?= get_label('title');?></th>
-			<th><?= get_label('image');?></th>
+			<th><?= get_label('plan details');?></th>
 			<th><?= get_label('Start date');?></th>
 			<th><?= get_label('End date');?></th>
 			<th><?= get_label('created_on');?></th>
@@ -41,15 +41,11 @@
 <tr>
 			<th scope="row"><?php echo form_checkbox('id[]',$val['id'],'',' class="multi_check" ');?>
   
-			<td><?php echo $val['title'];?></td>	
+			<td><?php echo $val['trip_name'];?></td>	
 			<?php $media_files = json_decode( $val['image']); ?>
-			<td>
-			<?php if(!empty($media_files->files[0])) {?>
-			<img src="<?php echo media_url($media_files->files[0]);?>" width="100px" height="100px" />
-			<?php } ?>
-			</td>
-			<td><?php echo get_date_formart(($val['start_date']), 'Y-m-d H:i:s A');?></td>
-			<td><?php echo get_date_formart(($val['end_date']), 'Y-m-d H:i:s A');?></td>
+			<td><?php echo $val['plan_details'];?>	</td>
+			<td><?php echo get_date_formart(($val['start_date']), 'Y-m-d');?></td>
+			<td><?php echo get_date_formart(($val['end_date']), 'Y-m-d');?></td>
 			<td><?php echo get_date_formart(($val['created_on']));?></td>
 			<td><a href="javascript:;"><?php echo show_status($val['is_active'],$val['id']);?></a></td>
 			<td><a href="javascript:;" class="delete_record btn btn-danger" id="<?php echo encode_value($val['id']);?>"
@@ -74,7 +70,7 @@
 		<tr>
 			<th><?= form_checkbox('multicheck','Y',FALSE,' class="multicheck_bottom" ');?></th>
 			<th><?= get_label('title');?></th>
-			<th><?= get_label('image');?></th>
+			<th><?= get_label('plan details');?></th>
 			<th><?= get_label('Start date');?></th>
 			<th><?= get_label('End date');?></th>
 			<th><?= get_label('created_on');?></th>

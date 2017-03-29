@@ -13,7 +13,7 @@
 					<div class="card-header">
 					<div class="pull-right card-action">
 		                     <div class="btn-group" role="group" aria-label="...">
-		                          <a  href="<?php echo admin_url().$module."/add";?>" class="btn btn-success"><?php echo get_label('add');?> </a>
+		                          <a  href="<?php echo admin_url()."routeplan";?>" class="btn btn-success"><?php echo get_label('add');?> </a>
 		                      </div>
 		              </div>
                         <div class="card-title"> 
