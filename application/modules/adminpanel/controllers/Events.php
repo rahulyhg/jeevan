@@ -16,7 +16,7 @@ class Events extends CI_Controller {
 		$this->module_label = "Events";
 		$this->module_labels = "Events";
 		$this->folder = "events/";
-		$this->table = "sramcms_events";
+		$this->table = "sramcms_routeplan";
 		$this->primary_key = 'id';
 		$this->load->library('common');
 			
@@ -78,7 +78,7 @@ class Events extends CI_Controller {
 			if ($this->form_validation->run () == TRUE) {
 				
 				//Create Category slug				
-				$slug= url_title($this->input->post('title'), '-',TRUE);						
+								
 				$image_files = (!empty($_REQUEST['mediaFiles']) )? json_encode(array('files' => $_REQUEST['mediaFiles'])) : '';
 				$insert_data = array("title" => $this->input->post('title'),
 									 "description" => $this->input->post('description'),	
@@ -194,7 +194,7 @@ class Events extends CI_Controller {
 		if ($this->input->post ( 'action' ) == "edit") {
 			check_ajax_request ();
 			//Create Category slug
-			$this->form_validation->set_rules ( 'title', 'lang:title', 'trim|required' );
+			$this->form_validation->set_rules ( 'trip_name', 'lang:trip_name', 'trim|required' );
 			$this->form_validation->set_rules ( 'description', 'lang:description', 'trim|required' );
 			$this->form_validation->set_rules ( 'start_date', 'lang:start_date', 'trim|required' );
 			$this->form_validation->set_rules ( 'end_date', 'lang:end_date', 'trim|required' );
@@ -202,7 +202,7 @@ class Events extends CI_Controller {
 			if ($this->form_validation->run () == TRUE) {
 				$slug= url_title($this->input->post('title'), '-',TRUE);
 				$image_files = (!empty($_REQUEST['mediaFiles']) )? json_encode(array('files' => $_REQUEST['mediaFiles'])) : '';
-				$update_data = array("title" => $this->input->post('title'),
+				$update_data = array("trip_name" => $this->input->post('trip_name'),
 						"description" => $this->input->post('description'),
 						"start_date" => $this->input->post('start_date'),
 						"end_date" => $this->input->post('end_date'),

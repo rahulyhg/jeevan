@@ -82,7 +82,7 @@ class Routeplan extends CI_Controller {
             
             $decodedata = json_decode($jsonData);
             $layers = $decodedata->layers;
-            
+           
             $id = $_REQUEST["id"] != '' ? preg_replace("/[^a-z0-9]/", "", $_REQUEST["id"]) : '';
             if (!$id)
                 $id = $this->generateUniqueId(20);
@@ -91,7 +91,8 @@ class Routeplan extends CI_Controller {
                 if (count($shapes) != 0):
                     for ($j = 0; $j < count($shapes); $j++):
                         $trip_name = $layers[$i]->name;
-                        $name = $shapes[$j]->name;
+                        $is_visible = $layers[$i]->isVisible ? $layers[$i]->isVisible : '0';
+                        $name = $shapes[$j]->name;                        
                         $getdetails = $this->Mydb->custom_query("select id from $this->routeplan_table where map_id='$id'");
                         if ($getdetails[0]['id'] == ''):
                             $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
@@ -106,7 +107,8 @@ class Routeplan extends CI_Controller {
                                 'avoidTolls' => $shapes[$j]->avoidTolls,
                             	'created_on' => current_date(),
                                 'created_ip' => get_ip(),         
-                            	'created_by' => get_admin_id(),     
+                            	'created_by' => get_admin_id(),   
+                            	'is_visible' => $is_visible,
                                 'is_active' => 1);
                             $insert_id = $this->Mydb->insert($this->routeplan_table, $insert_array);
                         else:
@@ -122,7 +124,8 @@ class Routeplan extends CI_Controller {
                                 'avoidTolls' => $shapes[$j]->avoidTolls,
                             	'created_on' => current_date(),
                             	'created_ip' => get_ip(),
-                            	'created_by' => get_admin_id(),     
+                            	'created_by' => get_admin_id(),  
+                            	'is_visible' => $is_visible,
                                 'is_active' => 1);
                             $insert_id = $this->Mydb->update($this->routeplan_table, array('map_id' => $id), $insert_array);
                         endif;
