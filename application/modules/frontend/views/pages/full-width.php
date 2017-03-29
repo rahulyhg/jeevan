@@ -7,7 +7,9 @@ if(!empty($blocks['inner_top'])){
 
 
 <?php
+if(!empty($cms['page_description'])){
 echo $cms['page_description'];
+}
 ?>
 
 <div class="clearfix"></div>
@@ -21,7 +23,11 @@ if(!empty($blocks['inner_bottom'])){
 <div class="news_letter">
 	<div class="container">
 		<div class="row" >
-            <?php echo $blocks['content_newsletter']; ?>
+            <?php 
+			if(!empty($blocks['content_newsletter'])){
+			echo $blocks['content_newsletter']; 
+			}
+			?>
             
 		</div>
 	</div>
