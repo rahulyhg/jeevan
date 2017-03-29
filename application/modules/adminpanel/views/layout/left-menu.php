@@ -63,7 +63,12 @@
                 <a href="<?php echo admin_url() . "events" ?>">
                     <span class="icon fa fa-calendar"></span><span class="title">Events</span>
                 </a>
-            </li>        
+            </li>    
+            <li class="<?php echo ($module == "emailtemplates") ? 'active' : ''; ?>">
+                <a href="<?php echo admin_url() . "emailtemplates" ?>">
+                    <span class="icon fa fa-envelope-o"></span><span class="title">Email Setting</span>
+                </a>
+            </li>      
             <?php /* ?>
               <li class="panel panel-default dropdown">
               <a data-toggle="collapse" href="#dropdown-table">
