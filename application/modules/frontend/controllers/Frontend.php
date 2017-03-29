@@ -36,7 +36,7 @@ class Frontend extends MY_Controller {
     }
 
     public function routeplan() {
-        $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where status=1");
+        $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where is_active=1");
         $data['records'] = $getplandetails;
         $this->load->view($this->folder . '/routeplan', $data);
     }
