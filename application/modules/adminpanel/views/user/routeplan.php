@@ -13,6 +13,7 @@
     <div class="ro-loading"></div>
 </div>
 <div id="container" class="ro-container">
+		              
     <div id="map" class="ro-map"></div>
 
     <!-- ko with: currentProject -->
@@ -275,6 +276,20 @@
     <div class="ro-overlay">
         <div class="ro-dialog ro-welcome-dialog">
             <div class="ro-dialog-inner">
+            <div class="row">
+			<div class="col-xs-12">
+				<div class="card ">
+					<div class="card-header">
+					<div class="pull-right card-action">
+						<div class="btn-group" role="group" aria-label="...">
+							<a  href="<?php echo admin_url()."events";?>" class="btn btn-danger"><i class="fa fa-reply" aria-hidden="true"></i> <i class="fa fa-bars" aria-hidden="true"></i> &nbsp;<?php echo get_label('Go Manage Trip ');?> </a>
+					    </div>
+		                
+		              </div>
+		              </div>
+		            </div>
+		      </div>
+			</div>
                 <h1>Route planning for jeevanachariya</h1>
                 <p class="lead">Simple free tool for planning routes.</p>
                 <p class="ro-off">It was written for a couple of weekends, and it uses <a href="http://requirejs.org/">require</a>, <a href="https://developers.google.com/maps/">google maps</a>, <a href="http://jquery.com/">jquery<a >, <a href="http://jqueryui.com/">jquery-ui</a>, <a href="http://knockoutjs.com/">knockout</a>, <a href="https://github.com/rniemeyer/knockout-sortable">knockout-sortable</a>, <a href="http://getbootstrap.com">bootstrap</a>. <strike>Front-end only, no own server required.</strike> It's not so convinient to copy/paste large json string every time, so I added a simple server side map storage. <a href="https://github.com/Kasheftin/RoutePlanner">[Source code]</a></p>
