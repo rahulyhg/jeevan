@@ -56,9 +56,14 @@
             </li>   
             <li class="<?php echo ($module == "routeplan") ? 'active' : ''; ?>">
                 <a href="<?php echo admin_url() . "routeplan" ?>">
-                    <span class="icon fa fa-th"></span><span class="title">Route Plan</span>
+                    <span class="icon fa fa-map"></span><span class="title">Route Plan</span>
                 </a>
-            </li>         
+            </li>   
+             <li class="<?php echo ($module == "events") ? 'active' : ''; ?>">
+                <a href="<?php echo admin_url() . "events" ?>">
+                    <span class="icon fa fa-calendar"></span><span class="title">Events</span>
+                </a>
+            </li>        
             <?php /* ?>
               <li class="panel panel-default dropdown">
               <a data-toggle="collapse" href="#dropdown-table">
