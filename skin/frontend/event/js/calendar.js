@@ -1035,10 +1035,12 @@ if(!String.prototype.formatNum) {
 			var view = $(this).data('cal-view');
 			self.options.day = $(this).data('cal-date');
 			self.view(view);
+			
 		});
 		$('.cal-cell').dblclick(function() {
 			var view = $('[data-cal-date]', this).data('cal-view');
 			self.options.day = $('[data-cal-date]', this).data('cal-date');
+			
 			self.view(view);
 		});
 
@@ -1075,8 +1077,10 @@ if(!String.prototype.formatNum) {
 		$('a[data-event-id]', this.context).on('click', function(event) {
 			event.preventDefault();
 			event.stopPropagation();
-
-			var url = $(this).attr('href');
+			var link = $(this).closest(":has(.cal-month-day )").find('span');
+			console.log(link.data("cal-date") );
+			var url = $(this).attr('href')+'/'+link.data("cal-date");
+			
 			var id = $(this).data("event-id");
 			var event = _.find(self.options.events, function(event) {
 				return event.id == id
