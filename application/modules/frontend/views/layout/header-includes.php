@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/jquery.bxslider.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/pgwslideshow.min.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/bootstrap-datetimepicker.css">  
+<link rel="stylesheet" href="<?php echo skin_url(); ?>event/css/calendar.css">  
 
 <script src="<?php echo skin_url(); ?>js/jquery-3.1.1.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
@@ -28,6 +29,7 @@
 <?php /* common javascript varibles ...*/ ?>
 <script>
  var admin_url ="<?php echo frontend_url(); ?>";
+ var skin_url ="<?php echo skin_url(); ?>";
  var lod_lib = "<?php echo load_lib(); ?>";
  var module ="<?php echo $module; ?>";
  var module_label = "<?php echo $module_label; ?>";
