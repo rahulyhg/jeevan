@@ -36,7 +36,7 @@ class Routeplan extends CI_Controller {
         }
 
         if ($action == "getProjectsList") {
-//    echo FCPATH;
+
             $d = dir(FCPATH . "/media/maps");
             while (($entry = $d->read()) !== false) {
                 if (preg_match("/\.json$/", $entry) && is_file($d->path . "/" . $entry)) {
@@ -79,8 +79,10 @@ class Routeplan extends CI_Controller {
             }
         } elseif ($action == "saveProject") {
             $jsonData = $_REQUEST["jsonData"];
+            
             $decodedata = json_decode($jsonData);
             $layers = $decodedata->layers;
+            
             $id = $_REQUEST["id"] != '' ? preg_replace("/[^a-z0-9]/", "", $_REQUEST["id"]) : '';
             if (!$id)
                 $id = $this->generateUniqueId(20);
@@ -88,34 +90,41 @@ class Routeplan extends CI_Controller {
                 $shapes = $layers[$i]->shapes;
                 if (count($shapes) != 0):
                     for ($j = 0; $j < count($shapes); $j++):
+                        $trip_name = $layers[$i]->name;
                         $name = $shapes[$j]->name;
-                        $getdetails = $this->Mydb->custom_query("select id from $this->routeplan_table where plan_details='$name'");
+                        $getdetails = $this->Mydb->custom_query("select id from $this->routeplan_table where map_id='$id'");
                         if ($getdetails[0]['id'] == ''):
                             $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
                                 'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
                                 'map_id' => $id,
+                            	'trip_name' => $trip_name,
                                 'plan_details' => $shapes[$j]->name,
                                 'description' => $shapes[$j]->description,
                                 'destinations' => implode('|*|', $shapes[$j]->destinations),
                                 'type' => $shapes[$j]->type,
                                 'avoidHighways' => $shapes[$j]->avoidHighways,
                                 'avoidTolls' => $shapes[$j]->avoidTolls,
-                                'created_ip' => ip2long(get_ip()),
-                                'status' => 1);
+                            	'created_on' => current_date(),
+                                'created_ip' => get_ip(),         
+                            	'created_by' => get_admin_id(),     
+                                'is_active' => 1);
                             $insert_id = $this->Mydb->insert($this->routeplan_table, $insert_array);
                         else:
                             $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
                                 'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
                                 'map_id' => $id,
+                            	'trip_name' => $trip_name,
                                 'plan_details' => $shapes[$j]->name,
                                 'description' => $shapes[$j]->description,
                                 'destinations' => implode('|*|', $shapes[$j]->destinations),
                                 'type' => $shapes[$j]->type,
                                 'avoidHighways' => $shapes[$j]->avoidHighways,
                                 'avoidTolls' => $shapes[$j]->avoidTolls,
-                                'created_ip' => ip2long(get_ip()),
-                                'status' => 1);
-                            $insert_id = $this->Mydb->update($this->routeplan_table, array('plan_details' => $name), $insert_array);
+                            	'created_on' => current_date(),
+                            	'created_ip' => get_ip(),
+                            	'created_by' => get_admin_id(),     
+                                'is_active' => 1);
+                            $insert_id = $this->Mydb->update($this->routeplan_table, array('map_id' => $id), $insert_array);
                         endif;
 
                     endfor;
