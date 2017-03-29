@@ -71,6 +71,8 @@ class Routeplan extends CI_Controller {
                 if (!file_exists(FCPATH . "/media/maps/" . $id . ".json"))
                     throw new Exception("Project not found");
                 unlink(FCPATH . "/media/maps/" . $id . ".json");
+                $update_array = array('status' => 3);
+                $deletemaps = $this->Mydb->update($this->routeplan_table, array('map_id' => $id), $update_array);
                 $result["success"] = "Project has been deleted";
             } catch (Exception $e) {
                 $result["error"] = $e->getMessage();
@@ -79,23 +81,18 @@ class Routeplan extends CI_Controller {
             $jsonData = $_REQUEST["jsonData"];
             $decodedata = json_decode($jsonData);
             $layers = $decodedata->layers;
-            $id = preg_replace("/[^a-z0-9]/", "", $_REQUEST["id"]);
-
+            $id = $_REQUEST["id"] != '' ? preg_replace("/[^a-z0-9]/", "", $_REQUEST["id"]) : '';
             if (!$id)
                 $id = $this->generateUniqueId(20);
-
-            $f = fopen(FCPATH . "/media/maps/" . $id . ".json", "w");
-            fwrite($f, $jsonData);
-            fclose($f);
-
             for ($i = 0; $i < count($decodedata->layers); $i++):
                 $shapes = $layers[$i]->shapes;
                 if (count($shapes) != 0):
                     for ($j = 0; $j < count($shapes); $j++):
-                        $getdetails = $this->Mydb->custom_query("select id from $this->routeplan_table where map_id='$id'");
+                        $name = $shapes[$j]->name;
+                        $getdetails = $this->Mydb->custom_query("select id from $this->routeplan_table where plan_details='$name'");
                         if ($getdetails[0]['id'] == ''):
-                            $insert_array = array('start_date' => $shapes[$j]->startdate,
-                                'end_date' => $shapes[$j]->enddate,
+                            $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
+                                'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
                                 'map_id' => $id,
                                 'plan_details' => $shapes[$j]->name,
                                 'description' => $shapes[$j]->description,
@@ -107,8 +104,8 @@ class Routeplan extends CI_Controller {
                                 'status' => 1);
                             $insert_id = $this->Mydb->insert($this->routeplan_table, $insert_array);
                         else:
-                            $insert_array = array('start_date' => $shapes[$j]->startdate,
-                                'end_date' => $shapes[$j]->enddate,
+                            $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
+                                'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
                                 'map_id' => $id,
                                 'plan_details' => $shapes[$j]->name,
                                 'description' => $shapes[$j]->description,
@@ -118,13 +115,15 @@ class Routeplan extends CI_Controller {
                                 'avoidTolls' => $shapes[$j]->avoidTolls,
                                 'created_ip' => ip2long(get_ip()),
                                 'status' => 1);
-                            $insert_id = $this->Mydb->update($this->routeplan_table, array('map_id' => $id), $insert_array);
+                            $insert_id = $this->Mydb->update($this->routeplan_table, array('plan_details' => $name), $insert_array);
                         endif;
+
                     endfor;
                 endif;
             endfor;
-//    $newlayers = $decodedata->layers;
-//    echo count($newlayers);
+            $f = fopen(FCPATH . "/media/maps/" . $id . ".json", "w");
+            fwrite($f, $jsonData);
+            fclose($f);
             $result["id"] = $id;
             $result["success"] = "New Map has been successfully saved";
         }
