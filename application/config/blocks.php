@@ -42,4 +42,6 @@ $block_types = array(
 	"newsletter" => "News Letter",	
 	"breadcrumbs" => "Breadcrumbs",
 	"contactforms" => "Contact Forms",
+	"chakra" => "Chakra",
+	"gallery" => "Gallery",
 );
