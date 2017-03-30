@@ -18,14 +18,18 @@
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap-datetimepicker.js"></script>  
-<div class="event-details">
 
-<h1><?php echo $records['title']; ?></h1>
+<div class="event-details">
+<h1><?php echo $records['trip_name']; ?></h1>
 <p> <?php echo $records['description']; ?></p>
 </div>
+ 
+<?php if(isset($show_booking_form) && $show_booking_form == "yes"): ?>
+<div class="event-booking-form" style="height: 600px !important;">
  <p>Take the simple yet life-changing step by filling up and submitting the appointment form given below. May the grace of Jeevanacharya fall upon you and help you stay connected with his glory.</p>
                     <h5>Appointment Form</h5>
-                    <form id="contact_form" class="form-horizontal" action="gurujee_form.php" name="contact_form" method="post">
+                    <div class="contact_gurujee"></div>
+                    <form id="contact_form" class="form-horizontal" action="<?php echo frontend_url().$module.'/user_booking_appointment'; ?>" name="contact_form" method="post">
                         <div class="form-group">
                             <label class="col-xs-4 control-label">First name </label>
                             <div class="col-xs-6">
@@ -45,15 +49,7 @@
                                 <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Phonenumber" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Appointment date</label>
-                            <div class="col-xs-6 dateContainer">
-                                <div class="input-group date" id="datetimepicker">
-                                    <input type="text" class="form-control" name="dob" placeholder="MM/DD/YYYY h:m A" />
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Purpose of Appointment</label>
                             <div class="col-xs-6">
@@ -81,19 +77,23 @@
                                 <textarea class="form-control" id="message" name="message" rows="3"></textarea>
                             </div>
                         </div>
+                        <input type="hidden" name="event_id" value="<?php echo $records['id']; ?>" /> 
+                        <input type="hidden" name="booked_date" value="<?php echo $booking_date; ?>" /> 
                         <div class="form-group">
                             <div class="col-xs-6 col-xs-offset-3">
                                 <button type="submit" class="btn btn-default" id="contact_submit" name="contact_submit" value="submit">Submit</button>
                             </div>
                         </div>
                     </form>
-                <div class="contact_gurujee"></div>
+               
                 <script type="text/javascript">
-                $("#datetimepicker").datetimepicker({
-                    autoclose: true,
-                    todayBtn: true,
-                    pickerPosition: "bottom-left"
-                });
+                var site_url ="<?php echo frontend_url(); ?>";
+                function scroll_error_content(varid){
+                	$('html, body').animate({scrollTop: $(varid).offset().top-200},1000,function(){
+                		
+                		$(varid+',.error-message').fadeIn();
+                	});
+                }
                 $("#contact_form").validate({
             		ignore: ".ignore",
             		rules: {
@@ -116,31 +116,33 @@
             		submitHandler: function (form) {
             			
             			var request;
-            			$('#contact_submit').attr("disabled", true);
+            			
             			var last = $('#contact_form').serialize();
             			request =  $.ajax({
             				type: 'POST',
-            				url: 'gurujee_form.php',
+            				url: site_url +'/events/user_booking_appointment',
             				data:last,
-            				success: function(res) {
-            					
-            					if (res == 'success') {
+            				dataType : "json",
+            				success: function(data) {
+            					alert(data.message);
+            					if (data.status == 'success') {
             						$('.contact_gurujee').addClass('text-success');
-            						$('.contact_gurujee').html('Your message has been sent!').slideDown();
+            						$('.contact_gurujee').html("<div class='alert alert-success'>"+ data.message + "</div>");
+            						scroll_error_content('.contact_gurujee');
             						$("#firstname").val('');
             						$("#email").val('');
             						$("#phonenumber").val('');
-            						$("#dob").val('');
             						$("#purpose").val('');
             						$("#message").val('');
             					}
             					else {
             						$('.contact_gurujee').addClass('text-warning');
-            						$('.contact_gurujee').html('Mail not sent, try again!').slideDown();
-            						$("#firstname").val('');
+            						$('.contact_gurujee').html("<div class='alert alert-warning'>"+data.message+"</div>");
+            						scroll_error_content('.contact_gurujee');
+            						
+            					    $("#firstname").val('');
             						$("#email").val('');
             						$("#phonenumber").val('');
-            						$("#dob").val('');
             						$("#purpose").val('');
             						$("#message").val('');
             						$('#contact_submit').attr("disabled", false);
@@ -160,3 +162,5 @@
             		}
             	});
 </script>
+</div>
+<?php endif; ?>
