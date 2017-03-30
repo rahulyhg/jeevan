@@ -53,6 +53,7 @@ class Galleryitems extends CI_Controller {
 	
 	  $this->layout->display_admin($this->folder.$this->module."-list" ,$data);
 	}
+	
 	function upload_thumbnail() {
 		$file_name = $_FILES['file']['name'];
 		$tmp_filename = $_FILES['file']['tmp_name'];
@@ -86,6 +87,8 @@ class Galleryitems extends CI_Controller {
 	
 		echo json_encode($json);
 	}
+	
+	
 	function upload_media() {
 	
 		$file_name = $_FILES['file']['name'];
@@ -103,7 +106,7 @@ class Galleryitems extends CI_Controller {
 			$file_name = $file_name_slug . "_" . time() . "." . $extension;
 	
 		    $media_type_id = post_value('media_type');
-			$type_array = array('image', 'video','audio');
+			$type_array = array('image', 'video','thumb');
 			$type = $type_array[$media_type_id-1];
 			
 			$media_folder = 'gallery/medias/' . $type . 's/';
@@ -131,14 +134,19 @@ class Galleryitems extends CI_Controller {
 			$this->form_validation->set_rules ( 'title', 'lang:title', 'trim|required' );
 			$this->form_validation->set_rules ( 'description', 'lang:description', 'trim|required' );
 			$this->form_validation->set_rules ( 'media_type', 'lang:media_type', 'trim|required' ); 
+			
+			
 			if(post_value('media_type') != 3){
 				$this->form_validation->set_rules ( 'mediaFiles', 'lang:mediaFiles', 'trim|required' ); 
 			}else{
 				$this->form_validation->set_rules ( 'video_url', 'lang:video_url', 'trim|required' ); 
 			}
 			
-			if ($this->form_validation->run () == TRUE) {				
+			if ($this->form_validation->run () == TRUE) {	
+						
 				$file_name = (post_value('media_type') != 3) ? post_value('mediaFiles') : post_value('video_url');
+				$video_thumb = post_value('video_thumb');
+				
 				$category_id = get_session_value ( $this->module . '_gallery_category_id' );		
 				$insert_data = array("title" => post_value('title'),
 									 "description" => post_value('description') ? post_value('description') :'',	
@@ -147,7 +155,9 @@ class Galleryitems extends CI_Controller {
 									 "created_ip" => get_ip(),
 									 "gallery_category_id" =>	$category_id ? $category_id : 0,
 									 "media_type" =>	post_value('media_type'),
-								     "file_name" =>	$file_name ? $file_name :'',						
+									 
+								     "file_name" =>	$file_name ? $file_name :'',	
+									 "video_thumb" => $video_thumb ? $video_thumb : '',					
 									 "is_active" => '1' );
 				$this->Mydb->insert($this->table,$insert_data);		
 				
