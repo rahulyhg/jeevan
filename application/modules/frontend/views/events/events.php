@@ -108,8 +108,20 @@
 		</div>
 	</div>
 </div>
-
-
+<div class="clearfix"></div>
+<div class="line_content"> <hr></div>
+<div class="clearfix"></div>
+<div class="news_letter">
+	<div class="container">
+		<div class="row" >
+        	
+            <?php echo $blocks['content_newsletter']; ?>
+            
+			
+            
+		</div>
+	</div>
+</div>
 	
 
 	<script type="text/javascript">
