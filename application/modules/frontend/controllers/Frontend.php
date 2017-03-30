@@ -22,6 +22,7 @@ class Frontend extends MY_Controller {
         $this->folder = "homepage/";
         $this->routeplan_table = "sramcms_routeplan";
 		$this->sramcms_newsletter_table = "sramcms_newsletter";
+		$this->sramcms_feedback_table = "sramcms_feedback";
 		$this->load->library ( 'common' );
 		
 		$config = Array(
@@ -232,6 +233,65 @@ class Frontend extends MY_Controller {
 		$this->layout->display_frontend($this->folder . 'subscribe', $data);
 	}
 	
+	
+	public function feedback(){
+		if($this->input->post('action') == 'feedback'){
+			
+			$this->form_validation->set_rules('firstname', 'First Name', 'required');
+			$this->form_validation->set_rules('lastname', 'Last Name', 'required');
+			$this->form_validation->set_rules('email', 'Email Address', 'required');
+			$this->form_validation->set_rules('message_text', 'Message', 'required');
+			
+			if ($this->form_validation->run($this) == TRUE) {
+				
+				$check = $this->Mydb->get_record('email', $this->sramcms_feedback_table, array('is_active' => '1', 'is_delete' => '0', 'email' => $this->input->post('email')));
+				
+				if(empty($check)){
+					$insert_array = array(
+						'firstname' => $this->input->post('firstname'),
+						'lastname' => $this->input->post('lastname'),
+						'email' => $this->input->post('email'),
+						'message_text' => $this->input->post('message_text'),
+						'is_active' => '1',
+						'is_delete' => '0',
+						'created' => current_date(),
+					);
+					$insert = $this->Mydb->insert($this->sramcms_feedback_table, $insert_array);
+					
+					$details = $this->Mydb->get_record('firstname, lastname, email, message_text', $this->sramcms_feedback_table, array('id' => $insert));
+
+					$name = 'Admin';
+					$to_email = 'info@jeevanachraya.com';
+					$firstname = $details['firstname'];
+					$lastname = $details['lastname'];
+					$email = $details['email'];
+					$content = $details['content'];
+					
+					$response_email = $this->send_feedback_email($name, $to_email, $firstname, $lastname, $email, $content);
+					if($insert){
+						$response_msg ['status'] = 'success';
+                		$response_msg ['message'] = 'Thank you for contacting us. We will be in touch with you very soon.';
+					}else{
+						$response_msg ['status'] = 'error';
+                		$response_msg ['message'] = 'Contact form is not added';
+					}
+					
+				}else{
+					$response_msg ['status'] = 'error';
+                	$response_msg ['message'] = 'Your email already exits. please change email';
+				}	
+							
+			}else{
+				$response_msg ['status'] = 'error';
+                $response_msg ['message'] = validation_errors();
+			}
+			echo json_encode($response_msg);
+			exit();
+			
+		}
+	}
+	
+	
 	public function send_newletter_email($name, $to_email, $activation_link) {
 
         $chk_arr = array('[NAME]', '[ACTIVATIONLINK]');
@@ -245,6 +305,14 @@ class Frontend extends MY_Controller {
         $chk_arr = array('[NAME]', '[ACTIVATIONLINK]');
         $rep_arr = array($name, $activation_link);
         $response_email = send_email($to_email, $template_slug = "newsletter-unsubscribe", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+        return $response_email;
+    }
+	
+	public function send_feedback_email($name, $to_email, $firstname, $lastname, $email, $content) {
+
+        $chk_arr = array('[NAME]', '[FIRSTNAME]', '[LASTNAME]', '[EMAIL]', '[CONTENT]');
+        $rep_arr = array($name, $firstname, $lastname, $email, $content);
+        $response_email = send_email($to_email, $template_slug = "feedback-admin", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
         return $response_email;
     }
 	
