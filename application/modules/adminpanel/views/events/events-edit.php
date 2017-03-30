@@ -31,12 +31,30 @@
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('description',stripslashes($records['description']),' class="form-control required"');?></div></div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('start date').'&nbsp;'.get_required();?></label>
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('start_date',get_date_formart(($records['start_date']), 'Y-m-d'),' class="form-control required event_from_date_picker"  ');?></div></div>
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('start date');?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('start_date',get_date_formart(($records['start_date']), 'Y-m-d'),' class="form-control required event_from_date_picker required"');?></div></div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('end date').'&nbsp;'.get_required();?></label>							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('end_date',get_date_formart(($records['end_date']), 'Y-m-d'),' class="form-control required event_to_date_picker"  ');?></div></div>
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('end date');?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('end_date',get_date_formart(($records['end_date']), 'Y-m-d'),' class="form-control event_to_date_picker required"');?></div></div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Trip Details');?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('destinations',stripslashes(str_replace('|*|',' >>> ',$records['destinations'])),' class="form-control"  readonly');?></div></div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Availalbe date').'&nbsp;'.get_required();?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date"><?php echo form_input('available_date',$records['available_date'],' class="form-control required availablelocation_datepicker"  ');?></div></div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Availalbe Location').'&nbsp;'.get_required();?></label>							
+							<?php 
+								$desitinations_value = explode('|*|', $records['destinations']);
+								$desitinations_key = $desitinations_value;
+								$desitinations = array_combine($desitinations_key, $desitinations_value);							
+							?>
+							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_dropdown('available_location', $desitinations,stripslashes($records['available_location']),' class="form-control required"  ');?></div></div>
 						</div>
 							<div class="form-group" id="file_upload_box">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Upload Image');?></label>
@@ -157,14 +175,17 @@
 /* Add Multi field   */
 $(document).ready(function(){
 	
-	/* Remove Image Yes or No*/
-    $(".delete_day_image").click(function() {
+    $(".available_date").mouseenter(function() {
   	  
-   	 if(confirm('Are you want delete this image?'))
-   	  {
-   		    $('.show_image_box').remove();
-   			$('input[name="remove_day_image"]').val('Yes');
-   	  }
+	    	$(function () {
+	    		
+			    $('.availablelocation_datepicker').datetimepicker({
+			        format: 'YYYY-MM-DD',	  		          
+			        minDate : '<?php echo $records['start_date']; ?>',
+			        maxDate : '<?php echo $records['end_date']; ?>',        
+			    });
+		
+		});
     });
   
 });
