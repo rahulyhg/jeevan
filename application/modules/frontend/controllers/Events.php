@@ -16,6 +16,7 @@ class Events extends MY_Controller {
 		$this->module_labels = "events";
 		$this->folder = "events/";
 		$this->table = "sramcms_routeplan";
+		$this->booking_table = "sramcms_event_users";
 	
 	}
 	
@@ -43,19 +44,71 @@ class Events extends MY_Controller {
  		
  		echo json_encode($response);
 	}	
+	/* Event booking popup modal window */
 	public function get_event_booking($event_id = null, $booking_date = null){
-		echo $booking_date;
+		
 		if(!empty($event_id)){
+			
 			$result = $this->Mydb->get_record('*', $this->table, array('id' => $event_id));
 			$data = array();
 			$data['module_label'] = $this->module_label;
 			$data['module_labels'] = $this->module_label;
 			$data['module'] = $this->module;
+			$now = get_date_formart(current_date(), 'Y-m-d');
+			if(($result['available_date'] < $booking_date || $result['available_date'] == $booking_date) && ($now < $booking_date)){
+				$data['show_booking_form'] = "yes";
+				
+			}
+			$data['booking_date'] = $booking_date;
 			$data['records'] = $result;
 			$this->load->view($this->folder.'/events-booking', $data);
 			
 		}
 		
+	}
+	/* Event booking form Register */
+	public function user_booking_appointment(){
+		form_check_ajax_request();
+		if(!empty($_POST)){
+			$response = array();
+			$event_id = $this->input->post('event_id');
+			$check_exist = $this->Mydb->get_record('*', $this->booking_table, array('event_id' => $event_id, 'email' => $this->input->post('email'),'booked_date' => $this->input->post('booked_date')));
+			
+			if(empty($check_exist)){
+			
+				$purpose_of_appoint = json_encode($this->input->post('purpose'));
+				$insert_data = array("name" => $this->input->post('firstname'),
+						"email" => $this->input->post('email'),
+						"phone_no" => $this->input->post('phonenumber'),
+						"event_id" => $event_id,
+						"booked_date" => $this->input->post('booked_date'),
+						"purpose_of_appointment" => $purpose_of_appoint ? $purpose_of_appoint :'',
+						"message" => $this->input->post('message'),
+						"created_on" => current_date(),
+						"created_ip" => get_ip(),
+						"created_by" => get_admin_id(),
+						"is_active" => '1',
+				);
+				
+				$result = $this->Mydb->insert($this->booking_table,$insert_data);	
+				if(!empty($result)){
+					
+					$response['status'] = "success";
+					$response['message'] = "Appointment has been booked successfully !";
+				}else{
+					$response['status'] = "failure";
+					$response['message'] = "Appointment has not been booked successfully !";
+				}
+				
+				
+			}else{
+				$response['status'] = "failure";
+				$response['message'] = "Appointment has been already booked!";
+			}
+		}
+		echo json_encode($response);
+		exit;
+			
 	}
 	
 	
