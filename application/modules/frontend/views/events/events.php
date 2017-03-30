@@ -20,8 +20,10 @@
 						<thead style="background-color: #390004;">
 							<tr>
 								<th>S.No</th>
+								<th>Start Date</th>
+								<th>End Date</th>
 								<th>Available Date</th>
-								<th>Location</th>
+								<th>Available Location</th>
 								<th>Program and Destination</th>
 								<th>View</th>
 							</tr>
@@ -32,9 +34,11 @@
 			                foreach ($records as $details): ?>
 			                    <tr>
 			                        <td><?php echo $i; ?></td>
-			                        <td><?php echo $details['available_date']; ?></td>
-			                        <td><?php echo $details['available_location']; ?></td>
-			                        <td><?php echo "<strong>".$details['trip_name'] ."</strong>"; ?><br /><?php echo $details['plan_details']; ?></td>
+			                        <td><?php echo $details['start_date']; ?></td>
+			                        <td><?php echo $details['end_date']; ?></td>
+			                        <td><?php echo $details['available_date'] ? $details['available_date'] : '--'; ?></td>
+			                        <td><?php echo $details['available_location'] ? $details['available_location'] :'--'; ?></td>
+			                        <td><?php echo "<strong>".$details['trip_name'] ."</strong>"; ?><br /><?php echo stripslashes(str_replace('|*|',' >>> ',$details['destinations'])); ?></td>
 			                        <td><a href="javascript:void(0)" onclick="loadmap(<?php echo $details['id']; ?>)">Route Map</a></td>
 			                    </tr>
 			                <?php 

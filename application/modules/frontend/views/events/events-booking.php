@@ -26,29 +26,13 @@
 </style>
 <div class="event-details">
 
-<div class="container">
   <h2><?php echo $records['trip_name']; ?></h2>
   <p><?php echo $records['description']; ?></p>
-  <div class="panel-group">
-    <div class="panel panel-success">
-      <div class="panel-heading"><h3>Trip Info</h3></div>
-      <div class="panel-body"><?php echo stripslashes(str_replace('|*|',' >>> ',$records['destinations'])); ?></div>
-    </div>
-    <div class="panel panel-info">
-      <div class="panel-heading"><h3>Location & Date</h3></div>
-      <div class="panel-body">
-      <h4>Location: <span class="label label-primary"><?php echo $records['available_location']; ?></span></h4>
-      <h4>Date: <span class="label label-primary"><?php echo $records['available_date']; ?></span></h4>
-      
-      </div>
-    </div>
-  
-  </div>
-</div>
+  <p><?php echo stripslashes(str_replace('|*|',' >>> ',$records['destinations'])); ?></p>  
 </div>
  
 <?php if(isset($show_booking_form) && $show_booking_form == "yes"): ?>
-<div class="event-booking-form" style="height: 600px !important;">
+<div class="event-booking-form">
  <p>Take the simple yet life-changing step by filling up and submitting the appointment form given below. May the grace of Jeevanacharya fall upon you and help you stay connected with his glory.</p>
                     <h5>Appointment Form</h5>
                     <div class="contact_gurujee"></div>
