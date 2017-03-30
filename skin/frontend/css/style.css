@@ -1054,7 +1054,7 @@ section {
 	padding: 0px 0px;
 	overflow: hidden;
 	background-color: #ea8118;
-	margin: 15px 0px;
+	margin: 0px 0px;
 }
 .content *{
 	-webkit-box-sizing:border-box;
@@ -2337,8 +2337,17 @@ span {
 		.letter img
 {
 	margin-left: 0px;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px !important;
 
+}
+.letter {
+    position: relative;
+    padding: 0px;
+    margin-top: 40px;
+    float: left !important;
+    border-left: 1px solid gray;
+    height: auto;
+    min-height: 300px !important;
 }
 	.menubar ul 
 	{
@@ -2575,9 +2584,10 @@ span {
 		.letter img
 {
 	margin-left: 0px;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px !important;
 
 }
+
 	.owl_img img {
     width: 335px !important;
     height: 250px;
@@ -2795,8 +2805,17 @@ span {
 		.letter img
 {
 	margin-left: 0px;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px !important;
 
+}
+.letter {
+    position: relative;
+    padding: 0px;
+    margin-top: 40px;
+    float: left !important;
+    border-left: 1px solid gray;
+    height: auto;
+    min-height: 300px !important;
 }
 	section
 	{
@@ -2884,12 +2903,24 @@ span {
 	}
 }
 @media (max-width: 767px) {
-	
+	.galleryviews h3
+{
+font-size: 18px;
+}
 	.letter img
 {
 	margin-left: 0px;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px !important;
 
+}
+.letter {
+    position: relative;
+    padding: 0px;
+    margin-top: 20px;
+    float: left !important;
+    border-left: 1px solid gray;
+    height: auto;
+    min-height: 300px !important;
 }
 
 	span
