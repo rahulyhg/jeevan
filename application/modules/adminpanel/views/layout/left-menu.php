@@ -68,6 +68,11 @@
                 <a href="<?php echo admin_url() . "emailtemplates" ?>">
                     <span class="icon fa fa-envelope-o"></span><span class="title">Email Setting</span>
                 </a>
+            </li> 
+            <li class="<?php echo ($module == "newsletter") ? 'active' : ''; ?>">
+                <a href="<?php echo admin_url() . "newsletter" ?>">
+                    <span class="icon fa fa-comments-o"></span><span class="title">Newsletter</span>
+                </a>
             </li>      
             <?php /* ?>
               <li class="panel panel-default dropdown">
