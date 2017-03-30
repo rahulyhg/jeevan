@@ -24,7 +24,7 @@
 	   if(!empty($gallery)){
 		   foreach($gallery as $gallery_details){
 	   ?>
-       <div class="col-lg-3 col-sm-4 col-xs-6" data-tag=<?php if($gallery_details['media_type'] != '1'){ echo 'media_video';  }else{ echo 'media_image'; } ?>>
+       <div class="col-lg-3 col-sm-6 col-xs-12" data-tag=<?php if($gallery_details['media_type'] != '1'){ echo 'media_video';  }else{ echo 'media_image'; } ?>>
         <div class="panel panel-default">
         
             <div class="panel-body">
@@ -40,7 +40,7 @@
 					?>
 					
 				 
-					 <video controls="false"  preload="metadata" class="video_2"  style="display:none; width:100%; height:250px;">
+					 <video controls  preload="metadata" class="video_2"  style="display:none; width:100%; height:250px;">
 						<source src="<?php echo media_url().$gallery_details['file_name']; ?>" type="video/webm"></source>
 						<source src="<?php echo media_url().$gallery_details['file_name']; ?>" type="video/mp4"></source>
 					</video>
