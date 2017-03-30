@@ -9,8 +9,7 @@ Description		: Page contains dashboard related functions.
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Events extends MY_Controller {
 	public function __construct() {
-		parent::__construct ();
-		
+		parent::__construct ();		
 		$this->module = "events";
 		$this->module_label = "events";
 		$this->module_labels = "events";
