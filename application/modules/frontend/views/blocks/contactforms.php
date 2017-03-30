@@ -1,7 +1,5 @@
 <div class="col-xs-12 contact_sectionform">
-    <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#myModal1">Book Appointment</button>
     
-    <p>Take the simple yet life-changing step by filling up and submitting the appointment form given below. May the grace of Jeevanacharya fall upon you and help you stay connected with his glory.</p>
     <h4>Get in Touch</h4>
     <form id="contact_form" class="contactus_form" name="contact_form" method="post" >
     		<input type="hidden" name="action" value="feedback">
@@ -24,11 +22,11 @@
                 <label for="message-text" class="form-control-label">Message</label>
                 <textarea class="form-control" name="message_text" id="message-text" placeholder="Message"></textarea>
             </div>
-            <!--<div class="form-group">
+            <div class="form-group">
                 <label class="control-label">Captcha Code</label>
                 <div class="g-recaptcha" id="g-recaptcha"></div>
                 <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha">
-            </div>-->
+            </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-default" name="contact_submit" id="contact_submit" value="Submit">
             </div>
@@ -36,14 +34,14 @@
     <div class="contact_status"></div>
 </div>
 
-<!--<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit&hl=en"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit&hl=en"></script>
 <script type="text/javascript">
   var CaptchaCallback = function(){        
       $('.g-recaptcha').each(function(){
         grecaptcha.render(this,{'sitekey' : '6Lc_ihcUAAAAAP3T8QWUefbcMAXfS1FWunXgOJgr'});
       })
   };
-</script>-->
+</script>
 
 <script type="text/javascript">
  $("#contact_form").validate({
@@ -53,7 +51,7 @@
 			lastname:{required: true,lettersonly: true},
 			email:{required: true,email: true},
 			message_text:{required: true,},
-			/*"hiddenRecaptcha": {
+			"hiddenRecaptcha": {
 				 required: function() {
 					 if(grecaptcha.getResponse() == '') {
 						 return true;
@@ -61,14 +59,14 @@
 						 return false;
 					 }
 				 }
-			}*/
+			}
 		},
 		messages: {
 			firstname:{required: "Enter your name",lettersonly: "Type only letter and white space"},
 			lastname:{required: "Enter your lastname",lettersonly: "Type only letter and white space"},
 			email:{required: "Enter your email id",email: "Invaild email id"},
 			message_text:{required: "Enter your Message",},
-			/*"hiddenRecaptcha" : {required: "Please click on the reCAPTCHA box",}*/
+			"hiddenRecaptcha" : {required: "Please click on the reCAPTCHA box",}
 		},
 		submitHandler: function (form) {
 			var request;
