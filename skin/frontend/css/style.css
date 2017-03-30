@@ -549,6 +549,7 @@ blockquote {
 .text-left {
     margin-top: 10px;
     float: left;
+	color:#fff;
 }
 .modal-body .form-control
 {
@@ -946,10 +947,7 @@ section {
     padding: 0px 0px 0px 0px;
     list-style-type: none;
 }
-	.menubar li
-	{
-		padding: 28px 14px !important;
-	}
+	
 	#screen1 h1
 	{
 		padding-top: 220px;
@@ -1038,13 +1036,13 @@ section {
 }
 	#screen1 h1
 	{
-		font-size: 33px;
+		font-size: 25px;
 		text-align: right;
-		padding-top:20px;
+		padding-top:34px;
 	}
 	#screen1 h3
 	{
-		font-size: 14px;
+		font-size: 13px;
 		text-align: right;
 		
 	}
@@ -2336,22 +2334,29 @@ span {
 
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-	.menubar ul {
-    margin: 26px 0px 0px 0;
+		.letter img
+{
+	margin-left: 0px;
     padding: 0px 0px 0px 0px;
-    list-style-type: none;
+
 }
+	.menubar ul 
+	{
+		margin: 20px 0px 0px;
+		padding: 0;
+		list-style-type: none;
+	}
 	.menubar li
 	{
-		padding: 28px 8px;
+		padding: 28px 16px;
 	}
 	.menubar li:hover
 	{
-		padding: 28px 8px;
+		padding: 28px 16px;
 	}
 	.menubar .active
 	{
-		padding: 28px 8px;
+		padding: 28px 16px;
 	}
 	#screen1 h1
 	{
@@ -2456,11 +2461,7 @@ span {
 		height: 400px;
 	}
 	
-	.menubar ul 
-	{
-    margin: 20px 8px 0px !important;
-    padding: 0;
-	}
+	
 	.menubar li a 
 	{
     color: #fff !important;
@@ -2571,6 +2572,12 @@ span {
 	}
 }
 @media (max-width: 991px) {
+		.letter img
+{
+	margin-left: 0px;
+    padding: 0px 0px 0px 0px;
+
+}
 	.owl_img img {
     width: 335px !important;
     height: 250px;
@@ -2785,6 +2792,12 @@ span {
 	}
 }
 @media (min-width: 768px) and (max-width: 991px) {
+		.letter img
+{
+	margin-left: 0px;
+    padding: 0px 0px 0px 0px;
+
+}
 	section
 	{
 		height: auto;
@@ -2871,6 +2884,14 @@ span {
 	}
 }
 @media (max-width: 767px) {
+	
+	.letter img
+{
+	margin-left: 0px;
+    padding: 0px 0px 0px 0px;
+
+}
+
 	span
 	{
 		display: none;
