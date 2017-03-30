@@ -262,11 +262,11 @@ class Events extends CI_Controller {
 		);
 		if(is_array($ids)) {
 			$implode_ids = '('.implode(",",$ids).')';
-			$concat_name = $this->db->query("select GROUP_CONCAT(title) as name from $this->table where id in $implode_ids")->row_array();
+			$concat_name = $this->db->query("select GROUP_CONCAT(trip_name) as name from $this->table where id in $implode_ids")->row_array();
 			$action_name = $concat_name['name'];
 		}
 		else {
-			$records = $this->Mydb->get_record('title as name',$this->table,array('id'=>$ids));
+			$records = $this->Mydb->get_record('trip_name as name',$this->table,array('id'=>$ids));
 			$action_name = $records['name'];
 		}
 		/* Delete */
