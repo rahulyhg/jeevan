@@ -29,7 +29,8 @@ class Events extends MY_Controller {
 	  $data['module'] = $this->module;
 	  $this->loadBlocks();
 	  $data = array_merge($data, $this->view_data);
-	
+	  $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active=1 AND is_visible = 1 ");
+	  $data['records'] = $getplandetails;
 	  $this->layout->display_frontend($this->folder . '/events', $data);
 	}
 	/* Get event data */
@@ -37,6 +38,7 @@ class Events extends MY_Controller {
 		$response = array();
 		$event_url= frontend_url().$this->module.'/get_event_booking/';
 		$result = $this->Mydb->get_all_records("id, trip_name AS title, CONCAT('" . $event_url. "',id) AS url,(UNIX_TIMESTAMP(start_date) * 1000) AS start, (UNIX_TIMESTAMP(end_date) * 1000) AS end", $this->table, array('is_active' => '1', 'is_delete' => '0'));
+		
 		if(!empty($result)){
 			$response['success'] = 1;
 			$response['result'] = $result;
@@ -110,6 +112,43 @@ class Events extends MY_Controller {
 		exit;
 			
 	}
+	/*Get group route table */
+	public function getroute_by_map_id() {
+		$map_id = $this->input->post('map_id');
+		if ($map_id != '') {
+			$getplandetails = $this->Mydb->custom_query("select * from $this->table where id=$map_id");
+			$plan_details = explode('-', $getplandetails[0]['plan_details']);
+			$response['startvalue'] = $plan_details[0];
+			$response['endvalue'] = $plan_details[1];
+			$destinations = $getplandetails[0]['destinations'];
+			$explodedestinations = explode('|*|', $destinations);
+			$response['destinations'] = array();
+			$rows = array();
+			foreach ($explodedestinations as $destination):
+			$rows['location'] = $destination;
+			array_push($response['destinations'], $rows);
+			endforeach;
+		} else {
+           $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND CURDATE() between start_date and end_date");
+           if(empty($getplandetails)){
+           	$getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 ORDER BY id ASC");
+           }
+           $plan_details = explode('-', $getplandetails[0]['plan_details']);
+           $response['startvalue'] = $plan_details[0];
+           $response['endvalue'] = $plan_details[1];
+           $destinations = $getplandetails[0]['destinations'];
+		   $explodedestinations = explode('|*|', $destinations);
+		   $response['destinations'] = array();
+		   $rows = array();
+		   foreach ($explodedestinations as $destination):
+		     $rows['location'] = $destination;
+			 array_push($response['destinations'], $rows);
+		  endforeach;
+		}
+		
+		echo json_encode($response);
+	}
+	
 	
 	
 }
