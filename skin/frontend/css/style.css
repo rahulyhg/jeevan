@@ -1895,7 +1895,7 @@ tbody
 {
 	margin-bottom: 70px;
 }
-.contactus_header .contact_section h1
+.contactus_header .contact_section h1, .contact_sectionform h4
 {
 	color:#ff3300;
 	font-size: 30px;
