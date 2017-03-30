@@ -1,0 +1,1 @@
+ALTER TABLE `sramcms_galleries` ADD `video_thumb` TEXT NOT NULL AFTER `file_name`;
