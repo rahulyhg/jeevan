@@ -29,11 +29,11 @@ if(!empty($params)){
         	
             
             <div class="input-group-btn">
-                <input class="btn btn-danger" id="news_submit" name="news_submit" value="<?php echo $params->newsletter_button; ?>" type="submit">
+                <input class="btn btn-danger" id="newsletter_submit" name="newsletter_submit" value="<?php echo $params->newsletter_button; ?>" type="submit">
             </div>
         </div>
     </form>
-    <div class="contact_emailid"></div>
+    <div class="newsletter_status"></div>
 </div>
 
 <script type="text/javascript">
@@ -47,41 +47,34 @@ messages: {
 	newsletter_name:{required: "Enter your name",lettersonly: "Type only letter and white space"},
 	newsletter_email:{required: "Enter your email id",email: "Invaild email id"},
 },
-/*submitHandler: function (form) {
+submitHandler: function (form) {
 	
 	var request;
-	$('#contact_submit').attr("disabled", true);
-	var last = $('#contact_form').serialize();
+	$('#newsletter_submit').attr("disabled", true);
+	var last = $('#newsletter_form').serialize();
 	request =  $.ajax({
 		type: 'POST',
-		url: 'gurujee_form.php',
+		url: '<?php echo frontend_url('newsletter'); ?>',
+		dataType:"json",
 		data:last,
-		success: function(res) {
+		success: function(data) {
 			
-			if (res == 'success') {
-				$('.contact_gurujee').addClass('text-success');
-				$('.contact_gurujee').html('Your message has been sent!').slideDown();
-				$("#firstname").val('');
-				$("#email").val('');
-				$("#phonenumber").val('');
-				$("#dob").val('');
-				$("#purpose").val('');
-				$("#message").val('');
+			if (data.status == 'success') {
+				$('.newsletter_status').addClass('text-success');
+				$('.newsletter_status').html(data.message).slideDown();
+				$("#newsletter_name").val('');
+				$("#newsletter_email").val('');
 			}
 			else {
-				$('.contact_gurujee').addClass('text-warning');
-				$('.contact_gurujee').html('Mail not sent, try again!').slideDown();
-				$("#firstname").val('');
-				$("#email").val('');
-				$("#phonenumber").val('');
-				$("#dob").val('');
-				$("#purpose").val('');
-				$("#message").val('');
-				$('#contact_submit').attr("disabled", false);
+				$('.newsletter_status').addClass('text-warning');
+				$('.newsletter_status').html(data.message).slideDown();
+				$("#newsletter_name").val('');
+				$("#newsletter_email").val('');
+				$('#newsletter_submit').attr("disabled", false);
 			} 
 		}
 	});
-}*/
+}
 });
 
 jQuery.validator.addMethod("lettersonly", function(value, element) {
