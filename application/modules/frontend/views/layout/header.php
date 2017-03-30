@@ -20,7 +20,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 	
 <nav>
 	<div class="header">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row">
 			
 				<a id="menu-toggle" href="#" class="btn btn-primary toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
@@ -29,10 +29,10 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 				</div>
 			
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menu_section">
-					<div class="col-lg-3 col-md-3 logo_img">
+					<div class="col-lg-2 col-md-3 logo_img">
 					<a href="<?php echo BASE_URL(); ?>"><img class="pull-right" src="<?php echo skin_url(); ?>img/logo.png" alt="jeevanacharya"></a>
 					</div>
-					<div class="col-lg-9 col-md-9 menubar">
+					<div class="col-lg-10 col-md-9 menubar">
 						<?php echo $blocks['site_header_desktop']; ?>
 					</div>
 				</div>
@@ -60,7 +60,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 	</div>
 <nav>
 	<div class="header">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row">
 			
 				<a id="menu-toggle" href="#" class="btn btn-primary toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
@@ -69,10 +69,10 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 				</div>
 			
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menu_section">
-					<div class="col-lg-3 col-md-3 logo_img">
+					<div class="col-lg-2 col-md-3 logo_img">
 					<a href="<?php echo BASE_URL(); ?>"><img class="pull-right" src="<?php echo skin_url(); ?>img/logo.png" alt="jeevanacharya"></a>
 					</div>
-					<div class="col-lg-9 col-md-9 menubar">
+					<div class="col-lg-10 col-md-9 menubar">
 						<?php echo $blocks['site_header_desktop']; ?>
 					</div>
 				</div>
