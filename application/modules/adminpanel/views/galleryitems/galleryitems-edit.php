@@ -150,6 +150,8 @@
 						};
 						var galleryMediaDropzone = new Dropzone("div#galleryMedia", galleryMediaDropzoneOptions);
 					</script>
+                    
+                    
 					  <div class="form-group" id="video_url"   style="<?php echo ($records['media_type'] == 3) ? '' :'display:none;';?>">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Video URL');?></label>
 							<?php $video_url = ($records['media_type'] == 3) ? $records['file_name'] :''; ?>

@@ -116,10 +116,48 @@
 						};
 						var galleryMediaDropzone = new Dropzone("div#galleryMedia", galleryMediaDropzoneOptions);
 					</script>
+                    
 					  <div class="form-group" id="video_url" style="display:none;">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Video URL');?></label>
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('video_url',set_value('video_url'),' class="form-control"  ');?></div></div>
 						</div>
+                        
+                        
+                         <div class="form-group" id="file_upload_box1" >
+									<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Video Thumbnail');?></label>
+									<div class="col-sm-<?php echo get_form_size();?>"><div class="dropzone" id="videoThumb" name="videoFileUploader"></div>
+									
+									</div>
+						</div>
+								
+						<script type="text/javascript">
+						var videoDropzoneOptions = {
+							url: "<?php echo admin_url().$module; ?>/upload_media",
+							maxFiles : 1,
+							addRemoveLinks: true,
+							success:function(file, response, e) {
+								response = JSON.parse(response);
+								if(response.success == 0) {
+									this.defaultOptions.error(file,response.message);
+								} else {
+									var input = document.createElement("input");
+									input.setAttribute("type", "hidden");
+									input.setAttribute("name", "video_thumb");
+									input.value = response.file;
+									file.name = response.file;
+									file.previewElement.appendChild(input);
+								}
+							},
+							init: function(){
+								this.on("sending", function(file, xhr, formData){
+									var media_type = '3';
+			                        formData.append("media_type", media_type);
+			             	   });
+							}
+						};
+						var videoDropzone = new Dropzone("div#videoThumb", videoDropzoneOptions);
+					</script>
+                        
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-<?php echo get_form_size();?>  btn_submit_div">
                                 <button type="submit" class="btn btn-primary " name="submit"
@@ -141,7 +179,7 @@
 </div>
 <script type="text/javascript" >
 $(document).ready(function(){
-   
+   $("#file_upload_box1").hide();
 	$("[name='media_type']").change(function(){
 		
 		galleryMediaDropzone.removeAllFiles();	
@@ -155,6 +193,13 @@ $(document).ready(function(){
 			$("#file_upload_box").hide();
 			$("#video_url").show();
 		}
+		var ids = $(this).val();
+		if(ids != 1) {
+			$("#file_upload_box1").show();
+		}else{
+			$("#file_upload_box1").hide();
+		}
+		
 	});
 });
 </script>
