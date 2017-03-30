@@ -34,9 +34,25 @@ class Gallery extends MY_Controller {
 		$this->loadBlocks();
 		$data = array_merge($data, $this->view_data);
 		$data['gallery'] = $this->Mydb->custom_query("SELECT gc.name AS gallery_category, g.title, g.description, g.gallery_category_id, g.media_type,
-		g.file_name, CASE WHEN (g.media_type = '1') THEN CONCAT('".$gallery_path."', g.file_name) ELSE '".$gallery_default."' END AS image_url FROM $this->sramcms_gallary_categories_table AS gc 
+		g.file_name, 
+		CASE 
+		WHEN (g.media_type = '1' AND g.video_thumb = '') THEN CONCAT('".$gallery_path."', g.file_name) 
+		WHEN (g.media_type = '1' AND g.video_thumb != '') THEN CONCAT('".$gallery_path."', g.file_name) 
+		
+		WHEN (g.media_type = '2' AND g.video_thumb = '') THEN '".$gallery_default."' 
+		WHEN (g.media_type = '2' AND g.video_thumb != '') THEN CONCAT('".$gallery_path."', g.video_thumb) 
+		
+		WHEN (g.media_type = '3' AND g.video_thumb = '') THEN '".$gallery_default."'
+		WHEN (g.media_type = '3' AND g.video_thumb != '') THEN CONCAT('".$gallery_path."', g.video_thumb) 
+		
+		ELSE '".$gallery_default."' END AS image_url 
+		
+		FROM $this->sramcms_gallary_categories_table AS gc 
 		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
-		WHERE gc.is_active='1' AND gc.is_delete='0' AND gc.slug = '".$method."'");		
+		WHERE gc.is_active='1' AND gc.is_delete='0' AND gc.slug = '".$method."'");	
+		
+		
+			
 		
 		$this->layout->display_frontend($this->folder . '/galleryviews', $data);
    }
