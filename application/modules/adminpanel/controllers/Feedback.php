@@ -9,16 +9,16 @@
  * ************************* */
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Newsletter extends CI_Controller {
+class Feedback extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         $this->authentication->admin_authentication();
-        $this->module = "newsletter";
-        $this->module_label = "Newsletter";
-        $this->module_labels = "Newsletter";
-        $this->folder = "newsletter/";
-        $this->table = "newsletter";
+        $this->module = "feedback";
+        $this->module_label = "Feedback";
+        $this->module_labels = "Feedback";
+        $this->folder = "feedback/";
+        $this->table = "feedback";
         $this->load->library('common');
 
         $this->primary_key = 'id';
@@ -62,14 +62,6 @@ class Newsletter extends CI_Controller {
         }
 
 		
-		
-        if (get_session_value($this->module . "_search_status") != "") {
-            $where = array_merge($where, array(
-                'status' => get_session_value($this->module . "_search_status")
-            ));
-        }
-
-	
         //print_r($where); exit;
 
         $totla_rows = $this->Mydb->get_num_rows($this->primary_key, $this->table, $where, null, null, null, $like);
@@ -92,9 +84,10 @@ class Newsletter extends CI_Controller {
          * * pagination part end **
          */
         $select_array = array(
-            'name',
+            'firstname',
+			'lastname',
             'email',
-            'status',
+            'message_text',
             'created',
         );
         $data ['records'] = $this->Mydb->get_all_records($select_array, $this->table, $where, $limit, $offset, $order_by, $like);
