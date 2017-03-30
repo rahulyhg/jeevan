@@ -312,9 +312,9 @@
 }
 .event {
   display: block;
-  background-color: #c3c3c3;
-  width: 12px;
-  height: 12px;
+  background-color: #d8812b;
+  width: 16px;
+  height: 16px;
   margin-right: 2px;
   margin-bottom: 2px;
   -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
@@ -477,9 +477,11 @@ span[data-cal-date]:hover {
   border-radius: 0 0 5px 5px;
   background-color: #ededed;
   text-align: center;
+  display:none !important;
 }
 #cal-slide-box {
   border-top: 0px solid #8c8c8c;
+  display:none !important;
 }
 #cal-slide-content {
   padding: 20px;
