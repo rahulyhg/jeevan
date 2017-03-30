@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	http://example.com/
 |
 | WARNING: You MUST set this value!
-|
+|	
 | If it is not set, then CodeIgniter will try guess the protocol and path
 | your installation, but due to security concerns the hostname will be set
 | to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
@@ -23,9 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-
-
-define('BASE_URL',($_SERVER['HTTP_HOST'] == "localhost"   ) ? 'http://localhost/sramcms/' : '');
+define('BASE_URL',($_SERVER['HTTP_HOST'] == "localhost"   ) ? 'http://localhost/jeevan/trunk/' : '');
 
 $config['base_url'] = BASE_URL;
 $config['frontend_url'] = BASE_URL."frontend/";
@@ -35,6 +33,7 @@ $config['admin_skin'] = BASE_URL.'skin/backend/';
 $config['load_lib'] = BASE_URL.'lib/';
 $config['load_font'] = BASE_URL.'fonts/';
 $config['media_url'] = BASE_URL.'media/';
+$config['Mailchimp_api_key'] = '223d63412ba752ff26313cd537e36bd5-us15';
 
 /*
 |--------------------------------------------------------------------------
@@ -449,7 +448,7 @@ $config['global_xss_filtering'] = TRUE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] = TRUE;
+$config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'secure_key';
 $config['csrf_cookie_name'] = 'secure_cookie_name';
 $config['csrf_expire'] = 7200;
