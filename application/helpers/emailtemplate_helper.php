@@ -47,7 +47,7 @@ if(!function_exists('send_email'))
            	   print_r($final_chk_arr);
            	   print_r($final_rep_arr);*/
 
-           	    $message1 = str_replace($final_chk_arr, $final_rep_arr, $email_content);
+           	   $message1 = str_replace($final_chk_arr, $final_rep_arr, $email_content);
 				
 			
 	           $datas = array('CONTENT' => $message1 );
@@ -67,7 +67,7 @@ if(!function_exists('send_email'))
 	                $config['protocol'] 	= 'smtp';
 	            }
 	            else{
-	               //	$config['protocol'] 	= 'sendmail';
+	               	$config['protocol'] 	= 'sendmail';
 	            }  
 	           
 	         

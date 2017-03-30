@@ -292,6 +292,21 @@ if (! function_exists ( 'get_is_active_dropdown' )) {
 	}
 }
 
+/* Get Admin Status dropdown */
+if (! function_exists ( 'get_is_subscribe_dropdown' )) {
+	function get_is_subscribe_dropdown($selected = null, $addStatus=array()) {
+
+		$status	=	array (
+				' ' => get_label('select_status'),
+				'1' => 'Subscribe',
+				'0' => 'Unsubscribe'
+		);
+		if(!empty($addStatus)){
+			$status	=	$status + $addStatus;
+		}
+		return form_dropdown ( 'status', $status, $selected, 'class="" id="status"' );
+	}
+}
 /* this method used to create user images check user folder name exists**/
 if (!function_exists('create_folder')) {
 	function create_folder($folder_name) {
