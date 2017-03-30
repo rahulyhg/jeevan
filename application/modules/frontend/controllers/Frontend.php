@@ -13,7 +13,9 @@ class Frontend extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
+		
+		
+		
         $this->module = "homepage";
         $this->module_label = "Home";
         $this->module_labels = "Home";
@@ -21,18 +23,22 @@ class Frontend extends MY_Controller {
         $this->routeplan_table = "sramcms_routeplan";
 		$this->sramcms_newsletter_table = "sramcms_newsletter";
 		$this->load->library ( 'common' );
+		
 		$config = Array(
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
         $this->load->helper('emailtemplate');
+		$this->load->library('MailChimp'); 
+
     }
 
     /* this method used to show all dashboard all details... */
 
     public function index() {
-
+		
+		
         $data = array();
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
@@ -113,53 +119,67 @@ class Frontend extends MY_Controller {
 					$name = $details['name'];
 					$activation_link = frontend_url('newsletterunsubscribe/'.$details['activation_code']);
 					$to_email = $details['email'];
+					
+					$list_id = 'e1de81f5be'; 
+			
+					$result = $this->mailchimp->post("lists/$list_id/members", [ 'email_address' => 'persons_email@gmail.com', 'merge_fields' => ['FNAME'=>'Ralph', 'LNAME'=>'Vugts'], 'status' => 'subscribed', ]); 
+					
 					$response_email = $this->send_newletter_email($name, $to_email, $activation_link);
-				
 					if($insert){
-						$response ['status'] = 'success';
-                		$response ['message'] = 'Your email is subscribe successfully';
+						$response_msg ['status'] = 'success';
+                		$response_msg ['message'] = 'Your email is subscribe successfully';
 					}else{
-						$response ['status'] = 'error';
-                		$response ['message'] = 'Your email is not subscribe';
+						$response_msg ['status'] = 'error';
+                		$response_msg ['message'] = 'Your email is not subscribe';
 					}
 					
 				}else{
-					$response ['status'] = 'error';
-                	$response ['message'] = 'Your email already exits. please change email';
+					$response_msg ['status'] = 'error';
+                	$response_msg ['message'] = 'Your email already exits. please change email';
 				}	
 							
 			}else{
-				$response ['status'] = 'error';
-                $response ['message'] = validation_errors();
+				$response_msg ['status'] = 'error';
+                $response_msg ['message'] = validation_errors();
 			}
-			echo json_encode($response);
+			echo json_encode($response_msg);
 			exit();
 			
 		}
 	}
 	
 	public function newsletterunsubscribe(){
-		
 		$data = array();
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
         $data['module'] = $this->module;
         $this->loadBlocks();
         $data = array_merge($data, $this->view_data);
-		
+
+        
 		$key = $this->uri->segment(3);
 		if (!empty($key)) {
-            $getsubscribe = $this->Mydb->custom_query("SELECT id FROM $this->sramcms_newsletter_table WHERE activation_code='$key'");
-            if (!empty($getuserid)) {
+            $getsubscribe = $this->Mydb->custom_query("SELECT * FROM $this->sramcms_newsletter_table WHERE activation_code='$key' AND status='1'");
+            if (!empty($getsubscribe)) {
 
                 $id = $getsubscribe[0]['id'];
                 $user_array = array(
                     'status' => 0,
-					'created' => date()
+					'created' => current_date(),
+					'activation_code' => md5(uniqid(rand()))
                 );
 
-                $updateuser = $this->Mydb->update(activation_code, array('id' => $id), $user_array);
+                $updateuser = $this->Mydb->update($this->sramcms_newsletter_table, array('id' => $id), $user_array);
+				
+				$details = $this->Mydb->get_record('name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
+				
+				$name = $getsubscribe[0]['name'];
+				$activation_link = frontend_url('newslettersubscribe/'.$getsubscribe[0]['activation_code']);
+				$to_email = $getsubscribe[0]['email'];
+				$response_email = $this->send_newletter_un_email($name, $to_email, $activation_link);
+				
                 $data['emailmsg'] = "Your Unsubscribe code is success";
+				
             } else {
                 $data['emailmsg'] = "Your Unsubscribe code is wrong . Please try again";
             }
@@ -167,7 +187,49 @@ class Frontend extends MY_Controller {
             $data['emailmsg'] = "Something Error. Please try again";
         }
 		
-        $this->layout->display_frontend($this->folder . '/homepage', $data);
+		$this->layout->display_frontend($this->folder . 'unsubscribe', $data);
+	}
+	
+	public function newslettersubscribe(){
+		$data = array();
+        $data['module_label'] = $this->module_label;
+        $data['module_labels'] = $this->module_label;
+        $data['module'] = $this->module;
+        $this->loadBlocks();
+        $data = array_merge($data, $this->view_data);
+
+        
+		$key = $this->uri->segment(3);
+		if (!empty($key)) {
+            $getsubscribe = $this->Mydb->custom_query("SELECT * FROM $this->sramcms_newsletter_table WHERE activation_code='$key' AND status='0'");
+            if (!empty($getsubscribe)) {
+
+                $id = $getsubscribe[0]['id'];
+                $user_array = array(
+                    'status' => 0,
+					'created' => current_date(),
+					'activation_code' => md5(uniqid(rand()))
+                );
+
+                $updateuser = $this->Mydb->update($this->sramcms_newsletter_table, array('id' => $id), $user_array);
+				
+				$details = $this->Mydb->get_record('name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
+				
+				$name = $getsubscribe[0]['name'];
+				$activation_link = frontend_url('newsletterunsubscribe/'.$getsubscribe[0]['activation_code']);
+				$to_email = $getsubscribe[0]['email'];
+				$response_email = $this->send_newletter_email($name, $to_email, $activation_link);
+				
+                $data['emailmsg'] = "Your Subscribe code is success";
+				
+            } else {
+                $data['emailmsg'] = "Your Subscribe code is wrong . Please try again";
+            }
+        } else {
+            $data['emailmsg'] = "Something Error. Please try again";
+        }
+		
+		$this->layout->display_frontend($this->folder . 'subscribe', $data);
 	}
 	
 	public function send_newletter_email($name, $to_email, $activation_link) {
@@ -175,6 +237,14 @@ class Frontend extends MY_Controller {
         $chk_arr = array('[NAME]', '[ACTIVATIONLINK]');
         $rep_arr = array($name, $activation_link);
         $response_email = send_email($to_email, $template_slug = "newsletter-subscribe", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+        return $response_email;
+    }
+	
+	public function send_newletter_un_email($name, $to_email, $activation_link) {
+
+        $chk_arr = array('[NAME]', '[ACTIVATIONLINK]');
+        $rep_arr = array($name, $activation_link);
+        $response_email = send_email($to_email, $template_slug = "newsletter-unsubscribe", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
         return $response_email;
     }
 	
