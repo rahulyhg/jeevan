@@ -2,26 +2,49 @@
 //pr($records);
 
 ?>
-<style>
 
-#myModal1 h3 {
-    font-size: 18px;
-    font-family: 'latolight';
-    color: #fff;
-    margin: 0px;
-}
-
-</style>
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/bootstrap-datetimepicker.css">
 <script src="<?php echo skin_url(); ?>js/jquery-3.1.1.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap-datetimepicker.js"></script>  
+<style>
 
+.modal-content .modal-header h3 {
+    font-size: 18px;
+    font-family: 'latolight';
+    color: #fff;
+    margin: 0px;
+}
+.modal-content .modal-body .btn-default {
+    color: #FFF;
+    background-color: #5c0104;
+    border-color: #ccc;
+}
+
+</style>
 <div class="event-details">
-<h1><?php echo $records['trip_name']; ?></h1>
-<p> <?php echo $records['description']; ?></p>
+
+<div class="container">
+  <h2><?php echo $records['trip_name']; ?></h2>
+  <p><?php echo $records['description']; ?></p>
+  <div class="panel-group">
+    <div class="panel panel-success">
+      <div class="panel-heading"><h3>Trip Info</h3></div>
+      <div class="panel-body"><?php echo stripslashes(str_replace('|*|',' >>> ',$records['destinations'])); ?></div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading"><h3>Location & Date</h3></div>
+      <div class="panel-body">
+      <h4>Location: <span class="label label-primary"><?php echo $records['available_location']; ?></span></h4>
+      <h4>Date: <span class="label label-primary"><?php echo $records['available_date']; ?></span></h4>
+      
+      </div>
+    </div>
+  
+  </div>
+</div>
 </div>
  
 <?php if(isset($show_booking_form) && $show_booking_form == "yes"): ?>
@@ -81,7 +104,7 @@
                         <input type="hidden" name="booked_date" value="<?php echo $booking_date; ?>" /> 
                         <div class="form-group">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <button type="submit" class="btn btn-default" id="contact_submit" name="contact_submit" value="submit">Submit</button>
+                                <button type="submit" class="btn btn-danger" id="contact_submit" name="contact_submit" value="submit">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -162,5 +185,9 @@
             		}
             	});
 </script>
+</div>
+<?php else: ?>
+<div class="alert alert-danger">
+  <strong>Booking Not available on this date!</strong> 
 </div>
 <?php endif; ?>
