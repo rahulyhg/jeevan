@@ -113,10 +113,10 @@ class Frontend extends MY_Controller {
 					$name = $details['name'];
 					$activation_link = frontend_url('newsletterunsubscribe/'.$details['activation_code']);
 					$to_email = $details['email'];
-					$response = $this->send_newletter_email($name, $to_email, $activation_link);
+					$response_email = $this->send_newletter_email($name, $to_email, $activation_link);
 				
 					if($insert){
-						$response ['status'] = 'status';
+						$response ['status'] = 'success';
                 		$response ['message'] = 'Your email is subscribe successfully';
 					}else{
 						$response ['status'] = 'error';
@@ -174,8 +174,8 @@ class Frontend extends MY_Controller {
 
         $chk_arr = array('[NAME]', '[ACTIVATIONLINK]');
         $rep_arr = array($name, $activation_link);
-        $response = send_email($to_email, $template_slug = "newsletter-subscribe", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
-        return $response;
+        $response_email = send_email($to_email, $template_slug = "newsletter-subscribe", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+        return $response_email;
     }
 	
     public function logout() {
