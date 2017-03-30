@@ -73,7 +73,12 @@
                 <a href="<?php echo admin_url() . "newsletter" ?>">
                     <span class="icon fa fa-comments-o"></span><span class="title">Newsletter</span>
                 </a>
-            </li>      
+            </li>   
+            <li class="<?php echo ($module == "feedback") ? 'active' : ''; ?>">
+                <a href="<?php echo admin_url() . "feedback" ?>">
+                    <span class="icon fa fa-envelope"></span><span class="title">Feedback</span>
+                </a>
+            </li>    
             <?php /* ?>
               <li class="panel panel-default dropdown">
               <a data-toggle="collapse" href="#dropdown-table">
