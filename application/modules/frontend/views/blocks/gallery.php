@@ -13,7 +13,7 @@
 				 $j = 2;
 				 foreach($gallery as $gallery_album){
 				?>
-                <div class="col-sm-4 grid">
+                <div class="col-sm-4 col-xs-12 grid">
                     <figure class="effect-apollo">
 						<img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>"/>
 						<figcaption>
