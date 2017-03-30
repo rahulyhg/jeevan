@@ -196,9 +196,7 @@ class Events extends CI_Controller {
 			//Create Category slug
 			$this->form_validation->set_rules ( 'trip_name', 'lang:trip_name', 'trim|required' );
 			$this->form_validation->set_rules ( 'description', 'lang:description', 'trim|required' );
-			$this->form_validation->set_rules ( 'start_date', 'lang:start_date', 'trim|required' );
-			$this->form_validation->set_rules ( 'end_date', 'lang:end_date', 'trim|required' );
-			
+				
 			if ($this->form_validation->run () == TRUE) {
 				$slug= url_title($this->input->post('title'), '-',TRUE);
 				$image_files = (!empty($_REQUEST['mediaFiles']) )? json_encode(array('files' => $_REQUEST['mediaFiles'])) : '';
@@ -206,6 +204,8 @@ class Events extends CI_Controller {
 						"description" => $this->input->post('description'),
 						"start_date" => $this->input->post('start_date'),
 						"end_date" => $this->input->post('end_date'),
+						"available_date" => $this->input->post('available_date'),
+						"available_location" => $this->input->post('available_location'),
 						"image" => $image_files ? $image_files :'',
 						"updated_on" => current_date(),
 						"updated_ip" => get_ip(),
