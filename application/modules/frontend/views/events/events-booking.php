@@ -172,6 +172,6 @@
 </div>
 <?php else: ?>
 <div class="alert alert-danger">
-  <strong>Booking Not available on this date!</strong> 
+  <strong>Booking not available on this date!</strong> 
 </div>
 <?php endif; ?>

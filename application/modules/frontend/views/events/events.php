@@ -11,7 +11,14 @@
 <div class="travel_program">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 travel_content">
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 travel_location" id="tvr">
+				<h3>Tour Plan</h3>
+				  <div id="map" style="height:300px">
+
+       			 </div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 travel_content">
 				<h3>Swamiji-Travel Program</h3>
 				<p>Tentative Tour Programme of Jeevanacharya, watch and get connected with his WAY OF LIFE</p>
 				<div class="wrapper scrollbar-dynamic">
@@ -52,19 +59,13 @@
 				</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 travel_location" id="tvr">
-				<h3>Location</h3>
-				  <div id="map" style="height:300px">
-
-       			 </div>
-			</div>
 		</div>
 	</div>
 </div>
 <div class="event_booking_section">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 prg_booking_event">
 				<h1>Program Booking</h1>
 
 					<div class="page-header">				
