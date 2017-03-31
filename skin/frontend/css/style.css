@@ -2802,21 +2802,26 @@ span {
 	}
 }
 @media (min-width: 768px) and (max-width: 991px) {
-		.letter img
-{
-	margin-left: 0px;
-    padding: 0px 0px 0px 0px !important;
+	.letter img
+	{
+		margin-left: 0px;
+		padding: 0px 0px 0px 0px !important;
 
-}
-.letter {
-    position: relative;
-    padding: 0px;
-    margin-top: 40px;
-    float: left !important;
-    border-left: 1px solid gray;
-    height: auto;
-    min-height: 300px !important;
-}
+	}
+	.footer_section3 
+	{
+		padding:0px !important;
+		margin:0px !important;
+	}
+	.letter {
+		position: relative;
+		padding: 0px;
+		margin-top: 40px;
+		float: left !important;
+		border-left: 1px solid gray;
+		height: auto;
+		min-height: 300px !important;
+	}
 	section
 	{
 		height: auto;
@@ -2903,25 +2908,41 @@ span {
 	}
 }
 @media (max-width: 767px) {
+	.aboutus p
+	{
+		text-align: center;
+	}
+	.para1 p, .para2 p
+	{
+		text-align: justify;
+	}
+	.contactus_header .contact_section h1
+	{
+		font-size: 23px;
+	}
+	.contactus_header .contact_section p
+	{
+		text-align: justify;
+	}
 	.galleryviews h3
-{
-font-size: 18px;
-}
+	{
+		font-size: 18px;
+	}
 	.letter img
-{
-	margin-left: 0px;
-    padding: 0px 0px 0px 0px !important;
+	{
+		margin-left: 0px;
+		padding: 0px 0px 0px 0px !important;
 
-}
-.letter {
-    position: relative;
-    padding: 0px;
-    margin-top: 20px;
-    float: left !important;
-    border-left: 1px solid gray;
-    height: auto;
-    min-height: 300px !important;
-}
+	}
+	.letter {
+		position: relative;
+		padding: 0px;
+		margin-top: 20px;
+		float: left !important;
+		border-left: 1px solid gray;
+		height: auto;
+		min-height: 300px !important;
+	}
 
 	span
 	{
@@ -3689,8 +3710,17 @@ figure.effect-apollo:hover p {
 	padding: 6px 20px;
 }
 .news_letter input
-	{
-		background-color: #eee;
-	}
+{
+	background-color: #eee;
+}
+.modal-content h3
+{
+	color:#fff;
+}
+
+.modal
+{
+	z-index: 999999999999 !important;
+}
 
  
