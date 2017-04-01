@@ -12,7 +12,7 @@
       </div>
       <div id="body" class="panel-collapse collapse">
         <div class="panel-body">
-        	<div class="col-xs-6">
+        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         		<p>he physical body houses the mind and the soul of a person and goes through various changes starting from birth till death. It is with the help of the body we see, hear, feel, move, taste and smell. In short, our body enables us to enjoy all the wonderful aspects of nature and our surroundings. Though we are able to notice the outward changes happening in our body, most of the time we become unaware of the changes happening inside the Prana-deha that offers the essential, life sustaining energies for doing physical and mental activities. In other words, you can call a human body an amazing unit that is pre-programmed with complex mechanisms that is not planned by us but by some unknown force. If we try to understand, we can notice that our body is closely related to the natural elements around us. A further insight might even reveal that our body possesses the traits of air, water, fire, ether and earth and even functions in the similar fashion. Very few have realized the similarities between breathing and air, body temperature and fire, blood flow and water, reproduction and earth, vacuum and ether because we tend to get carried away by mundane tasks and fail to recognize the need to tend to our bodies bestowed by the almighty. As a resultant, disturbances can occur in the functioning of the vital energies and can lead not only towards health related issues but also mental health. No wonder our enlightened ancestors treated our bodies like holy shrines and emphasized on holistic well-being. They knew very well that only a healthy body can nurture a healthy mind and soul and help them reach higher, spiritual goals.</p>
         		<p>According to our ancient scriptures of Ayurveda, a body can be classified into three major types that are either dominated by Vata, pitta or kapha. This is why Ayurveda treats each and every individual as a unique entity who requires specific approach than a generic approach. Having known the very many benefits of Ayurveda and other various age-old, widely accepted methods like Yoga and Mudras, Jeevanacharya with his profound knowledge prescribes the right advice to individuals and help them achieve optimum health.</p>
         		<p><b>Yoga</b></p>
@@ -20,7 +20,7 @@
         		<p><b>Mudras</b></p>
         		<p>Mudras otherwise known as gestures may involve the body as a whole or can be performed using simple hand positions. It revolves around the concept that our fingers have the traits of the nature’s five elements viz., air, water, fire, earth and ether. Though this principle is simple to perform, it has proven itself from time and again as one of the highly effective practices that can be done anywhere and everywhere. When combined with yogic breathing techniques, mudras improve the flow of prana in the body and in turn energize the body parts.</p>
         	</div>
-        	<div class="col-xs-6 acc_img">
+        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 acc_img">
         		<img src="<?php echo skin_url(); ?>img/001.png">
 			</div>
         </div>
@@ -62,7 +62,7 @@
       </div>
       <div id="marriageproblem" class="panel-collapse collapse">
         <div class="panel-body">
-        	<div class="col-xs-6">
+        	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <p>In recent years, divorce rates are on a steep increase irrespective of caste, creed and country. Once prevalent only in the west, divorce is now prevalent in all parts of the globe. A large number of marriages are either engulfed in crises or on the brink of collapse because the actual essence has been either forgotten or diluted over the passage of time. Wedlock or marriage can be viewed in different ways depending on the individual ideologies. Marriage is not the same as it was considered once as ‘bliss’.  Some consider it as a mere convenience of staying together providing emotional and financial security while some consider it as destiny’s choice and go with the flow of life irrespective of whether they enjoy the company of each other or not. There are also some who view it as a means to fill the void in their lives and hence can even end up marrying again and again, though not the same person as a means of replacement.</p>
         <p>So what makes marriages go sour?  Actually there are many factors that are believed to have an impact on the harmony of marriage. Few of the main reasons are given below.</p>
         <ul>
@@ -78,7 +78,7 @@
         </ul>
         <p>All marriages do not suffer the same fate as there are many successful marriages with strong and trustful relationships that have managed to sail through various difficulties, challenges and tests of time. Superficially it might seem as if it is because of compatible and loyal couples, but if deeply pondered it could point towards their zodiac sign, five boodhs or birth chart compatibilities because humans and their characteristics are highly influenced by cosmic energies and ‘karma’ or past life instances. Since jeevancharya deeply understands the relationships between benevolent and malevolent planets, birth chart positions and their effects on humans, he is able to show the right path and give idealistic solutions to couples. This way he has helped many to understand the sanctity of marriage and have made them realize marital bliss.</p>
 			</div>
-       <div class="col-xs-6 acc_img">
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 acc_img">
        		<img src="<?php echo skin_url(); ?>img/02.png" alt="">
 	   </div>
         </div>
@@ -194,7 +194,7 @@
       </div>
       <div id="twelve_nakhatras" class="panel-collapse collapse">
         <div class="panel-body">
-        <div class="col-xs-6">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <p><b>Zodiac signs – an effective tool of Vedic astrology</b></p>
         <p>We all know that Vedic astrology also referred to as divine science has always remained a subject of interest all over the globe for its ability to interpret the alleged mysterious influence of planets/stars on affairs related to humans. If approached properly by an expert, astrology can even enable one to get a sneak peep into the puzzling future. Though it branches out as palmistry, horoscope reading, prasna, annual chart, transit and so on, Zodiac signs have proved to be the simplest yet effective ways of interpreting a person’s life. It is like a map of the planetary positions and their influences on humans with its roots pointing towards their karma. Since humans are governed by the planetary positions during their time of birth, their weaknesses can lead to problems in humans that could be of physical, material, psychological or even spiritual nature.</p>
         <p>Zodiac signs are 12 in number; each and every sign is distinctive in its own way having specific desires, traits, strengths, weaknesses and attitude towards people and life. If studied intently we can find out that each of the 12 zodiac signs belongs to any one of the four elements viz., Fire, Air, Water and Earth that dominates our persona and actions. Only when we precisely know which zodiac sign we belong to, we would be able to focus the energies of the above mentioned four major natural elements to understand our potential, traits and positive side in order to tackle the negative aspects. Fortunately, Jeevanacharya is present amidst us and can guide us to overcome the physical diseases, mental afflictions, professional setbacks, personal relationship problems, addictions, loss in business and so on caused by the planetary positions through his insightful solutions.</p>
@@ -203,7 +203,7 @@
         <p>Air element dominated zodiac signs are Aquarius, Gemini and Libra. Air signs tend to be very friendly, communicative, intelligent and analytical. Humans born under the influence of these zodiac signs love to communicate, stay committed in relationships, think rationally and will have an active social life. We can often find them among good books, friends and discussions. Giving free advice is their forte but can also prefer to be superficial depending on whom they deal with.</p>
         <p>Earth element dominated zodiac signs are Capricorn, Taurus and Virgo. People born under the influence of these signs are often realistic, conservative and emotional. Though material comforts and possessions attract them, one can expect them to be stable, practical, loyal and by the side of their loved ones during their hardships and moments offering strong pillar like support.</p>
 			</div>
-			<div class="col-xs-6 acc_img">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 acc_img">
 				<img src="<?php echo skin_url(); ?>img/04.png" alt="">
 			</div>
         </div>
