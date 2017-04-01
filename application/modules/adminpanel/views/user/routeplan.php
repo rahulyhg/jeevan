@@ -13,7 +13,7 @@
     <div class="ro-loading"></div>
 </div>
 <div id="container" class="ro-container">
-		              
+
     <div id="map" class="ro-map"></div>
 
     <!-- ko with: currentProject -->
@@ -39,9 +39,9 @@
                         <span data-bind="text:name()||'-- Empty name --'"></span>
                     </a>
                     <div class="ro-controls ro-controls-aright">
-                        <a class="glyphicon glyphicon-cog" href="#" data-bind="visible:$parent.isLayerSelected($data),click:editSettings,clickBubble:false" title="Edit layer settings"></a>
-                        <a class="glyphicon glyphicon-check" href="#" data-bind="visible:isVisible,click:hide,clickBubble:false" title="Hide layer"></a>
-                        <a class="glyphicon glyphicon-unchecked" href="#" data-bind="visible:!isVisible(),click:show,clickBubble:false" title="Show layer"></a>
+                        <a class="glyphicon glyphicon-cog" href="#" data-bind="visible:$parent.isLayerSelected($data),click:editSettings,clickBubble:false" title="Enter Root Plan"></a>
+                        <a class="glyphicon glyphicon-check" href="#" data-bind="visible:isVisible,click:hide,clickBubble:false" title="Hide Plan"></a>
+                        <a class="glyphicon glyphicon-unchecked" href="#" data-bind="visible:!isVisible(),click:show,clickBubble:false" title="Show Plan"></a>
                     </div>
                 </div>
                 <!-- ko if: isExpanded -->
@@ -144,7 +144,7 @@
         <div class="ro-dialog ro-edit-layer-dialog">
             <div class="modal-header">
                 <button class="close" data-bind="click:$parent.close.bind($parent)">&times;</button>
-                <h4 class="modal-title">Layer settings</h4>
+                <h4 class="modal-title">Enter Root Plan</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
@@ -157,13 +157,13 @@
                     <div class="form-group">
                         <label for="inputStartDate" class="control-label col-sm-2">Startdate</label>
                         <div class="col-sm-10">
-                            <input type="text" data-bind='datepicker: startdate'  class="form-control" id="inputStartDate" placeholder="Start Date" data-bind="value:startdate">
+                            <input type="text"  class="form-control inputStartDate" data-bind="datepicker: startdate,datetimepickerOptions:{format:'yyyy-mm-dd',autoclose:true,startDate:new Date(),todayHighlight: true}" id="inputStartDate" placeholder="Start Date" data-bind="value:startdate" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEndDate" class="control-label col-sm-2">Enddate</label>
                         <div class="col-sm-10">
-                            <input type="text" data-bind='datepicker: enddate' class="form-control" id="inputEndDate" placeholder="End Date" data-bind="value:enddate">
+                            <input type="text" data-bind="datepicker: enddate,datetimepickerOptions:{format:'yyyy-mm-dd',autoclose:true,startDate:new Date(),todayHighlight: true}" class="form-control" id="inputEndDate" placeholder="End Date" data-bind="value:enddate">
                         </div>
                     </div>
                     <div class="form-group">
@@ -276,20 +276,20 @@
     <div class="ro-overlay">
         <div class="ro-dialog ro-welcome-dialog">
             <div class="ro-dialog-inner">
-            <div class="row">
-			<div class="col-xs-12">
-				<div class="card ">
-					<div class="card-header">
-					<div class="pull-right card-action">
-						<div class="btn-group" role="group" aria-label="...">
-							<a  href="<?php echo admin_url()."events";?>" class="btn btn-danger"><i class="fa fa-reply" aria-hidden="true"></i> <i class="fa fa-bars" aria-hidden="true"></i> &nbsp;<?php echo get_label('Go Manage Trip ');?> </a>
-					    </div>
-		                
-		              </div>
-		              </div>
-		            </div>
-		      </div>
-			</div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card ">
+                            <div class="card-header">
+                                <div class="pull-right card-action">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <a  href="<?php echo admin_url() . "events"; ?>" class="btn btn-danger"><i class="fa fa-reply" aria-hidden="true"></i> <i class="fa fa-bars" aria-hidden="true"></i> &nbsp;<?php echo get_label('Go Manage Trip '); ?> </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <h1>Route planning for jeevanachariya</h1>
                 <p class="lead">Simple free tool for planning routes.</p>
                 <p class="ro-off">It was written for a couple of weekends, and it uses <a href="http://requirejs.org/">require</a>, <a href="https://developers.google.com/maps/">google maps</a>, <a href="http://jquery.com/">jquery<a >, <a href="http://jqueryui.com/">jquery-ui</a>, <a href="http://knockoutjs.com/">knockout</a>, <a href="https://github.com/rniemeyer/knockout-sortable">knockout-sortable</a>, <a href="http://getbootstrap.com">bootstrap</a>. <strike>Front-end only, no own server required.</strike> It's not so convinient to copy/paste large json string every time, so I added a simple server side map storage. <a href="https://github.com/Kasheftin/RoutePlanner">[Source code]</a></p>
