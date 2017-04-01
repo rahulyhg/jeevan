@@ -1000,6 +1000,7 @@ section {
 		font-size: 28px;
 		text-align: center;
 	}
+	
 
 }
 
@@ -2818,7 +2819,7 @@ span {
 		padding: 0px;
 		margin-top: 40px;
 		float: left !important;
-		border-left: 1px solid gray;
+		border:none;
 		height: auto;
 		min-height: 300px !important;
 	}
