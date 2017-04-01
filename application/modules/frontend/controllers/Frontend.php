@@ -29,7 +29,7 @@ class Frontend extends MY_Controller {
             'wordwrap' => TRUE
         );
         $this->load->helper('emailtemplate');
-		$this->load->library('mailchimp'); 
+		$this->load->library('MailChimp'); 
 		$result = $this->mailchimp->get('lists');
 		$this->list_id = "e1de81f5be";
 		 
@@ -121,7 +121,7 @@ class Frontend extends MY_Controller {
 					$activation_link = frontend_url('newsletterunsubscribe/'.$details['activation_code']);
 					$to_email = $details['email'];
 								
-					$result = $this->mailchimp->post("lists/$this->list_id/members", [ 'email_address' => $to_email, 'merge_fields' => ['FNAME'=>$name], 'status' => 'subscribed', ]); 
+					$result = $this->MailChimp->post("lists/$this->list_id/members", [ 'email_address' => $to_email, 'merge_fields' => ['FNAME'=>$name], 'status' => 'subscribed', ]); 
 					
 					
 					$response_email = $this->send_newletter_email($name, $to_email, $activation_link);
@@ -149,6 +149,12 @@ class Frontend extends MY_Controller {
 	}
 	
 	public function newsletterunsubscribe(){
+		
+		$subscriber_hash = $this->mailchimp->subscriberHash('mdibramsha@srammram.com');
+
+		$result = $this->mailchimp->patch("lists/$this->list_id/members/$subscriber_hash", [
+				'merge_fields' => ['FNAME'=>'Mohamed'],
+				]);
 		$data = array();
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
