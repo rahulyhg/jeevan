@@ -14,8 +14,6 @@ class Frontend extends MY_Controller {
     public function __construct() {
         parent::__construct();
 		
-		
-		
         $this->module = "homepage";
         $this->module_label = "Home";
         $this->module_labels = "Home";
@@ -31,8 +29,10 @@ class Frontend extends MY_Controller {
             'wordwrap' => TRUE
         );
         $this->load->helper('emailtemplate');
-		$this->load->library('MailChimp'); 
-
+		$this->load->library('mailchimp'); 
+		$result = $this->mailchimp->get('lists');
+		$this->list_id = "e1de81f5be";
+		 
     }
 
     /* this method used to show all dashboard all details... */
@@ -72,12 +72,12 @@ class Frontend extends MY_Controller {
                 array_push($response['destinations'], $rows);
             endforeach;
         } else {
-//            $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where status=1 and CURDATE() between start_date and end_date");
-//            $plan_details = explode('-', $getplandetails[0]['plan_details']);
-//            $response['startvalue'] = $plan_details[0];
-//            $response['endvalue'] = $plan_details[1];
-//            $destinations = $getplandetails[0]['destinations'];
- //           $response['startvalue'] = "Karaikudi, Tamil Nadu, India";
+            $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where status=1 and CURDATE() between start_date and end_date");
+            $plan_details = explode('-', $getplandetails[0]['plan_details']);
+            $response['startvalue'] = $plan_details[0];
+            $response['endvalue'] = $plan_details[1];
+            $destinations = $getplandetails[0]['destinations'];
+ /// 		$response['startvalue'] = "Karaikudi, Tamil Nadu, India";
 //			$response['endvalue'] = "Chennai, Tamil Nadu, India";
  //           $destinations = "Karaikudi, Tamil Nadu, India|*|Keeranur,Tamil Nadu, India|*|Tiruchirappalli, Tamil Nadu, India|*|Chennai, Tamil Nadu, India";
             $explodedestinations = explode('|*|', $destinations);
@@ -120,10 +120,9 @@ class Frontend extends MY_Controller {
 					$name = $details['name'];
 					$activation_link = frontend_url('newsletterunsubscribe/'.$details['activation_code']);
 					$to_email = $details['email'];
+								
+					$result = $this->mailchimp->post("lists/$this->list_id/members", [ 'email_address' => $to_email, 'merge_fields' => ['FNAME'=>$name], 'status' => 'subscribed', ]); 
 					
-					$list_id = 'e1de81f5be'; 
-			
-					$result = $this->mailchimp->post("lists/$list_id/members", [ 'email_address' => 'persons_email@gmail.com', 'merge_fields' => ['FNAME'=>'Ralph', 'LNAME'=>'Vugts'], 'status' => 'subscribed', ]); 
 					
 					$response_email = $this->send_newletter_email($name, $to_email, $activation_link);
 					if($insert){
