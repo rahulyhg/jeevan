@@ -11,13 +11,13 @@
 class MailChimp
 {
     private $api_key;
-    private $api_endpoint  = 'https://us6.api.mailchimp.com/3.0';
+    private $api_endpoint  = 'https://us15.api.mailchimp.com/3.0';
     
     /*  SSL Verification
         Read before disabling: 
         http://snippets.webaware.com.au/howto/stop-turning-off-curlopt_ssl_verifypeer-and-fix-your-php-config/
     */
-    public  $verify_ssl    = true; 
+    public  $verify_ssl    = false; 
 
     private $last_error    = '';
     private $last_response = array();
@@ -157,15 +157,18 @@ class MailChimp
      */
     private function makeRequest($http_verb, $method, $args=array(), $timeout=10)
     {
+		
         if (!function_exists('curl_init') || !function_exists('curl_setopt')) {
+			
             throw new \Exception("cURL support is required, but can't be found.");
         }
 
         $url = $this->api_endpoint.'/'.$method;
-
+	
         $this->last_error    = '';
         $response            = array('headers'=>null, 'body'=>null);
         $this->last_response = $response;
+		
 
         $this->last_request  = array(
                                 'method' => $http_verb,
@@ -174,11 +177,12 @@ class MailChimp
                                 'body'   => '',
                                 'timeout'=> $timeout,
                                 );
+		
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/vnd.api+json',
-                                                    'Content-Type: application/vnd.api+json',
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json',
+                                                    'Content-Type: application/json',
                                                     'Authorization: apikey '.$this->api_key));
         curl_setopt($ch, CURLOPT_USERAGENT, 'DrewM/MailChimp-API/3.0 (github.com/drewm/mailchimp-api)');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
