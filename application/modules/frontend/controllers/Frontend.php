@@ -1,7 +1,7 @@
 <?php
 
 /* * ************************
-  Project Name	: POS
+  Project Name	        : POS
   Created on		: 19 Feb, 2016
   Last Modified 	: 19 Feb, 2016
   Description		: Page contains dashboard related functions.
@@ -23,7 +23,7 @@ class Frontend extends MY_Controller {
 		$this->sramcms_feedback_table = "sramcms_feedback";
 		$this->load->library ( 'common' );
 		
-		$config = Array(
+	$config = Array(
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'wordwrap' => TRUE
@@ -121,7 +121,7 @@ class Frontend extends MY_Controller {
 					$activation_link = frontend_url('newsletterunsubscribe/'.$details['activation_code']);
 					$to_email = $details['email'];
 								
-					$result = $this->MailChimp->post("lists/$this->list_id/members", [ 'email_address' => $to_email, 'merge_fields' => ['FNAME'=>$name], 'status' => 'subscribed', ]); 
+					$result = $this->mailchimp->post("lists/$this->list_id/members", [ 'email_address' => $to_email, 'merge_fields' => ['FNAME'=>$name], 'status' => 'subscribed', ]); 
 					
 					
 					$response_email = $this->send_newletter_email($name, $to_email, $activation_link);
@@ -134,8 +134,28 @@ class Frontend extends MY_Controller {
 					}
 					
 				}else{
-					$response_msg ['status'] = 'error';
-                	$response_msg ['message'] = 'Your email already exits. please change email';
+					
+					$update_array = array(
+						'name' => $this->input->post('newsletter_name'),
+						'email' => $this->input->post('newsletter_email'),
+						'status' => '1',
+						'is_active' => '1',
+						'is_delete' => '0',
+						'created' => current_date(),
+						'activation_code' => md5(uniqid(rand()))
+					);
+					
+					$updateuser = $this->Mydb->update($this->sramcms_newsletter_table, array('email' => $this->input->post('newsletter_email')), $update_array);
+					
+					if($updateuser){
+
+$update_result = $this->mailchimp->post("lists/$this->list_id/members", [ 'email_address' => $this->input->post('newsletter_email'), 'merge_fields' => ['FNAME'=>$this->input->post('newsletter_name')], 'status' => 'subscribed', ]); 
+						$response_msg ['status'] = 'success';
+                		$response_msg ['message'] = 'Your Subscription updated successfully';
+					}else{
+						$response_msg ['status'] = 'error';
+                		$response_msg ['message'] = 'your Subscription Not Updated';
+					}
 				}	
 							
 			}else{
@@ -150,12 +170,7 @@ class Frontend extends MY_Controller {
 	
 	public function newsletterunsubscribe(){
 		
-		$subscriber_hash = $this->mailchimp->subscriberHash('mdibramsha@srammram.com');
-
-		$result = $this->mailchimp->patch("lists/$this->list_id/members/$subscriber_hash", [
-				'merge_fields' => ['FNAME'=>'Mohamed'],
-				]);
-		$data = array();
+	$data = array();
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
         $data['module'] = $this->module;
@@ -181,9 +196,14 @@ class Frontend extends MY_Controller {
 				
 				$name = $getsubscribe[0]['name'];
 				$activation_link = frontend_url('newslettersubscribe/'.$getsubscribe[0]['activation_code']);
-				$to_email = $getsubscribe[0]['email'];
+				$to_emil = $getsubscribe[0]['email'];
 				$response_email = $this->send_newletter_un_email($name, $to_email, $activation_link);
-				
+
+
+$subscriber_hash = $this->mailchimp->subscriberHash($to_emil);
+
+$this->mailchimp->delete("lists/$this->list_id/members/$subscriber_hash");
+
                 $data['emailmsg'] = "Your Unsubscribe code is success";
 				
             } else {
