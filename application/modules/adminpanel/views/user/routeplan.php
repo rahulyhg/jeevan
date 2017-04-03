@@ -23,7 +23,7 @@
         <div class="ro-project-inner" data-bind="click:deselectLayer">
             <h4 data-bind="text:name()||'-- No name --'"></h4>
             <p data-bind="html:descriptionHTML"></p>
-            <div class="ro-project-add-layer"><a href="#" data-bind="click:addLayer,clickBubble:false" title="Add layer">Add layer</a></div>
+            <div class="ro-project-add-layer"><a href="#" data-bind="click:addLayer,clickBubble:false" title="Add Route Plan">Add Route Plan</a></div>
         </div>
         <div class="ro-controls ro-project-settings-controls">
             <a class="glyphicon glyphicon-floppy-disk" href="#" data-bind="click:saveProject" title="Save map"></a>
@@ -39,7 +39,7 @@
                         <span data-bind="text:name()||'-- Empty name --'"></span>
                     </a>
                     <div class="ro-controls ro-controls-aright">
-                        <a class="glyphicon glyphicon-cog" href="#" data-bind="visible:$parent.isLayerSelected($data),click:editSettings,clickBubble:false" title="Enter Root Plan"></a>
+                        <a class="glyphicon glyphicon-cog" href="#" data-bind="visible:$parent.isLayerSelected($data),click:editSettings,clickBubble:false" title="Enter Route Plan"></a>
                         <a class="glyphicon glyphicon-check" href="#" data-bind="visible:isVisible,click:hide,clickBubble:false" title="Hide Plan"></a>
                         <a class="glyphicon glyphicon-unchecked" href="#" data-bind="visible:!isVisible(),click:show,clickBubble:false" title="Show Plan"></a>
                     </div>
@@ -144,7 +144,7 @@
         <div class="ro-dialog ro-edit-layer-dialog">
             <div class="modal-header">
                 <button class="close" data-bind="click:$parent.close.bind($parent)">&times;</button>
-                <h4 class="modal-title">Enter Root Plan</h4>
+                <h4 class="modal-title">Enter Route Plan</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
@@ -184,7 +184,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button class="btn btn-danger" data-bind="click:$parent.destroyLayer.bind($parent)">Delete layer</button>
+                            <button class="btn btn-danger" data-bind="click:$parent.destroyLayer.bind($parent)">Delete Route Plan</button>
                         </div>
                     </div> 
                 </div>
@@ -291,133 +291,131 @@
                     </div>
                 </div>
                 <h1>Route planning for jeevanachariya</h1>
-                <p class="lead">Simple free tool for planning routes.</p>
-                <p class="ro-off">It was written for a couple of weekends, and it uses <a href="http://requirejs.org/">require</a>, <a href="https://developers.google.com/maps/">google maps</a>, <a href="http://jquery.com/">jquery<a >, <a href="http://jqueryui.com/">jquery-ui</a>, <a href="http://knockoutjs.com/">knockout</a>, <a href="https://github.com/rniemeyer/knockout-sortable">knockout-sortable</a>, <a href="http://getbootstrap.com">bootstrap</a>. <strike>Front-end only, no own server required.</strike> It's not so convinient to copy/paste large json string every time, so I added a simple server side map storage. <a href="https://github.com/Kasheftin/RoutePlanner">[Source code]</a></p>
-                            <!-- ko with: projectManager -->
-                            <!-- ko if: message -->
-                            <div class="alert alert-info ro-welcome-offset">
-                                <p data-bind="text:message"></p>
-                                <div class="clearfix">
-                                    <div class="btn-group pull-right">
-                                        <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Close</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /ko -->
-                            <!-- ko ifnot: message -->
-                            <!-- ko ifnot: page -->
-                            <div class="btn-group ro-welcome-offset btn-group-lg btn-group-justified">
-                                <a class="btn btn-default" role="button" data-bind="click:createProject">Create New Trip</a>
-                                <a class="btn btn-default" role="button" id="load_map" data-bind="click:getProjectsList">Load map</a>
-                                <!--<a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page','importProject')">Import map JSON</a>-->
-                            </div>
-                            <div class="ro-dialog-to-bottom">
-                                <p class="checkbox"><label><input type="checkbox" data-bind="checked:cookiesEnabled"> Enable cookies for storing editor's settings</label></p>
-                            </div>
-                            <!-- /ko -->
-                            <!-- ko if: page() == "importProject" -->
-                            <div class="ro-welcome-offset">
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="6" placeholder="Paste here the project's JSON data" data-bind="value:loadProjectData"></textarea>
-                                </div>
-                                <div class="form-group pull-right">
-                                    <a class="btn btn-primary" role="button" data-bind="click:loadProject.bind($data,null)">Load</a>
-                                    <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Cancel</a>
-                                </div>
-                            </div>
-                            <!-- /ko -->
-                            <!-- ko if: page() == "projectsList" -->
-                            <!-- ko if: projects().length > 0 -->
-                            <div class="ro-welcome-offset ro-projects-list">
-                                <table class="table table-bordered">
-                                    <tbody data-bind="foreach:projects">
-                                        <tr>
-                                            <td data-bind="text:name"></td>
-                                            <td data-bind="text:id"></td>
-                                            <td><a href="#" data-bind="click:$parent.getProject.bind($parent,id)">Load map</a></td>
-                                            <td><a href="#" data-bind="click:$parent.deleteProject.bind($parent,id)">Delete</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="form-group pull-right">
-                                <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Cancel</a>
-                            </div>
-                            <!-- /ko -->
-                            <!-- ko if: projects().length == 0 -->
-                            <div class="alert alert-info ro-welcome-offset">
-                                <p>Trip is not found</p>
-                                <div class="clearfix">
-                                    <div class="btn-group pull-right">
-                                        <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Close</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /ko -->
-                            <!-- /ko -->
-                            <!-- /ko -->
-                            <!-- /ko -->
-                            </div>
-                            </div>
-                            </div>
-                            <!-- /ko -->
-                            </div>
+                <!-- ko with: projectManager -->
+                <!-- ko if: message -->
+                <div class="alert alert-info ro-welcome-offset">
+                    <p data-bind="text:message"></p>
+                    <div class="clearfix">
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Close</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko ifnot: message -->
+                <!-- ko ifnot: page -->
+                <div class="btn-group ro-welcome-offset btn-group-lg btn-group-justified">
+                    <a class="btn btn-default" role="button" data-bind="click:createProject">Create New Trip</a>
+                    <a class="btn btn-default" role="button" id="load_map" data-bind="click:getProjectsList">Load map</a>
+                    <!--<a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page','importProject')">Import map JSON</a>-->
+                </div>
+                <div class="ro-dialog-to-bottom">
+                    <p class="checkbox"><label><input type="checkbox" data-bind="checked:cookiesEnabled"> Enable cookies for storing editor's settings</label></p>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: page() == "importProject" -->
+                <div class="ro-welcome-offset">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="6" placeholder="Paste here the project's JSON data" data-bind="value:loadProjectData"></textarea>
+                    </div>
+                    <div class="form-group pull-right">
+                        <a class="btn btn-primary" role="button" data-bind="click:loadProject.bind($data,null)">Load</a>
+                        <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Cancel</a>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: page() == "projectsList" -->
+                <!-- ko if: projects().length > 0 -->
+                <div class="ro-welcome-offset ro-projects-list">
+                    <table class="table table-bordered">
+                        <tbody data-bind="foreach:projects">
+                            <tr>
+                                <td data-bind="text:name"></td>
+                                <td data-bind="text:id"></td>
+                                <td><a href="#" data-bind="click:$parent.getProject.bind($parent,id)">Load map</a></td>
+                                <td><a href="#" data-bind="click:$parent.deleteProject.bind($parent,id)">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group pull-right">
+                    <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Cancel</a>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: projects().length == 0 -->
+                <div class="alert alert-info ro-welcome-offset">
+                    <p>Trip is not found</p>
+                    <div class="clearfix">
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-default" role="button" data-bind="click:setVar.bind($data,'page',null)">Close</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
 
-                            <!-- Search box -->
-                            <div class="ro-search" data-bind="visible:currentProject">
-                                <!--<input id="search" class="form-control" type="text" data-bind="value:q,valueUpdate:'afterkeydown'" placeholder="Enter a query">-->
-                                <a class="ro-search-clear ro-controls glyphicon glyphicon-remove" href="#" data-bind="visible:q().length>0,click:clearSearch"></a>
-                            </div>
+<!-- Search box -->
+<div class="ro-search" data-bind="visible:currentProject">
+    <!--<input id="search" class="form-control" type="text" data-bind="value:q,valueUpdate:'afterkeydown'" placeholder="Enter a query">-->
+    <a class="ro-search-clear ro-controls glyphicon glyphicon-remove" href="#" data-bind="visible:q().length>0,click:clearSearch"></a>
+</div>
 
-                            <!-- Notification bar -->
-                            <div class="ro-notification-bar alert" data-bind="fade:notificationBar.isVisible,css:notificationBar._style">
-                                <button type="button" class="close" data-bind="click:notificationBar.close.bind(notificationBar)">&times;</button>
-                                <p data-bind="text:notificationBar._text"></p>
-                            </div>
+<!-- Notification bar -->
+<div class="ro-notification-bar alert" data-bind="fade:notificationBar.isVisible,css:notificationBar._style">
+    <button type="button" class="close" data-bind="click:notificationBar.close.bind(notificationBar)">&times;</button>
+    <p data-bind="text:notificationBar._text"></p>
+</div>
 
-                            <script type="text/template" id="editMarkerShapeInfoWindowTemplate">
-                                <div id="editMarkerShapeInfoWindow" class="ro-iwnd">
-                                <h4>Edit marker</h4>
-                                <div class="modal-body form-horizontal">
-                                <div class="form-group">
-                                <label for="inputMarkerName" class="control-label col-sm-2">Name</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputMarkerName" placeholder="Marker name" data-bind="value:name">
-                                </div>
-                                </div>
-                                <div class="form-group">
-                                <label for="inputMarkerDescription" class="control-label col-sm-2">Description</label>
-                                <div class="col-sm-10">
-                                <textarea class="form-control" id="inputMarkerDescription" rows="5" placeholder="Marker description" data-bind="value:description"></textarea>
-                                </div>
-                                </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button class="btn btn-primary" data-bind="click:saveShape">Save</button>
-                                <button class="btn btn-default" data-bind="click:close">Cancel</button>
-                                <button class="btn btn-default" data-bind="click:deleteShape">Delete marker</button>
-                                </div>
-                                </div>
-                            </script>
-                            <script type="text/template" id="showMarkerShapeInfoWindowTemplate">
-                                <div id="showMarkerShapeInfoWindow" class="ro-iwnd">
-                                <h4 id="showMarkerShapeInfoWindow-name"></h4>
-                                <div class="ro-iwnd-search-result" id="showMarkerShapeInfoWindow-content"></div>
-                                <div class="ro-iwnd-add-to-map">
-                                <a href="#" id="showMarkerShapeInfoWindow-edit">Edit</a>
-                                &nbsp;|&nbsp;
-                                <a href="#" id="showMarkerShapeInfoWindow-delete">Delete</a>
-                                </div>
-                                </div>
-                            </script>
-                            <script type="text/template" id="searchResultInfoWindowTemplate">
-                                <div id="searchResultInfoWindow" class="ro-iwnd">
-                                <h4 id="searchResultInfoWindow-name"></h4>
-                                <div class="ro-iwnd-search-result" id="searchResultInfoWindow-content"></div>
-                                <div class="ro-iwnd-add-to-map">
-                                <a href="#"id="searchResultInfoWindow-add">Add to map</a>
-                                </div>
-                                </div>
-                            </script>
-                            <script type="text/javascript" src="<?php echo load_lib(); ?>routelib/require-2.1.8.min.js" data-main="<?php echo load_lib(); ?>theme/routejs/init"></script>
-                            <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/jquery.min.js" ></script>
+<script type="text/template" id="editMarkerShapeInfoWindowTemplate">
+    <div id="editMarkerShapeInfoWindow" class="ro-iwnd">
+    <h4>Edit marker</h4>
+    <div class="modal-body form-horizontal">
+    <div class="form-group">
+    <label for="inputMarkerName" class="control-label col-sm-2">Name</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="inputMarkerName" placeholder="Marker name" data-bind="value:name">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="inputMarkerDescription" class="control-label col-sm-2">Description</label>
+    <div class="col-sm-10">
+    <textarea class="form-control" id="inputMarkerDescription" rows="5" placeholder="Marker description" data-bind="value:description"></textarea>
+    </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-primary" data-bind="click:saveShape">Save</button>
+    <button class="btn btn-default" data-bind="click:close">Cancel</button>
+    <button class="btn btn-default" data-bind="click:deleteShape">Delete marker</button>
+    </div>
+    </div>
+</script>
+<script type="text/template" id="showMarkerShapeInfoWindowTemplate">
+    <div id="showMarkerShapeInfoWindow" class="ro-iwnd">
+    <h4 id="showMarkerShapeInfoWindow-name"></h4>
+    <div class="ro-iwnd-search-result" id="showMarkerShapeInfoWindow-content"></div>
+    <div class="ro-iwnd-add-to-map">
+    <a href="#" id="showMarkerShapeInfoWindow-edit">Edit</a>
+    &nbsp;|&nbsp;
+    <a href="#" id="showMarkerShapeInfoWindow-delete">Delete</a>
+    </div>
+    </div>
+</script>
+<script type="text/template" id="searchResultInfoWindowTemplate">
+    <div id="searchResultInfoWindow" class="ro-iwnd">
+    <h4 id="searchResultInfoWindow-name"></h4>
+    <div class="ro-iwnd-search-result" id="searchResultInfoWindow-content"></div>
+    <div class="ro-iwnd-add-to-map">
+    <a href="#"id="searchResultInfoWindow-add">Add to map</a>
+    </div>
+    </div>
+</script>
+<script type="text/javascript" src="<?php echo load_lib(); ?>routelib/require-2.1.8.min.js" data-main="<?php echo load_lib(); ?>theme/routejs/init"></script>
+<script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/jquery.min.js" ></script>
