@@ -67,8 +67,65 @@
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Booking date').'&nbsp;'.get_required();?></label>							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date"><?php echo form_input('booked_date', $event_data['available_date'],' class="form-control required availablelocation_datepicker"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date"><?php echo form_input('booked_date', set_value('booked_date'),' class="form-control required availablelocation_datepicker"  ');?></div></div>
 						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment date').'&nbsp;'.get_required();?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date">
+							<?php echo form_input('appointment_date', set_value('appointment_date'),' class="form-control required availablelocation_datepicker"');?></div></div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment Start Time').'&nbsp;'.get_required();?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date">
+							<?php echo form_input('appointment_start_time', set_value('appointment_start_time'),' class="form-control required appointment_start_time"');?></div></div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment End Time').'&nbsp;'.get_required();?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date">
+							<?php echo form_input('appointment_end_time', set_value('appointment_end_time'),' class="form-control required appointment_end_time"');?></div></div>
+						</div>
+						<div class="form-group appointment_booked_list" style="display: none">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment Scheduled Times');?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>">
+							<div class="input_box">
+							<div id="appointment_history">
+							
+							</div>
+						<?php /*?><div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment Time').'&nbsp;'.get_required();?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>">
+							<div class="input_box">
+								<?php	echo form_input(array('name' => 'appointment_time', 'type'=>'hidden', 'id' =>'appointment_time', 'value' => set_value('appointment_time'))); ?>
+								
+								<table class="table timebox">
+	                                   <thead>
+	                                     
+							  			 <?php 
+							  			 $j = 0;
+							  			 for($i = 0; $i < 24; $i++):
+							  			 if($j%12 == 0 || $j == 0):
+							  			 echo "<tr>";
+							  			 endif;
+								  			 $time_i = $i % 12 ? $i % 12 : 12; 
+								  			 $time_f = $i >= 12 ? 'pm' : 'am';
+								  			 $time_if = $time_i .':00 ' . $time_f;
+								  			
+							  			 ?>
+							                <td><button name="times-<?php echo $time_i; ?>" class="get_booking_time btn btn-primary" data-gettime='<?= $time_if ?>'> <?=  $time_if?></button> </td>
+							            <?php 
+							            $j++;
+							            if($j%12 == 0 && $j != 0):
+							            echo "</tr>";
+							            endif;
+							            
+							            endfor ?>
+										
+							    </table>
+							</div>
+							</div>
+							
+						</div>
+						<?php */ ?>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('message');?></label>
                             <div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('message',set_value('message'),'class="form-control" ' )?></div></div>
@@ -96,21 +153,51 @@
 <script>
 /* Add Multi field   */
 $(document).ready(function(){
+	$('.get_booking_time').click(function(e){
+		e.preventDefault();
+	    var gettime = $(this).data('gettime');
+	   
+	    $('#appointment_time').val(gettime);
+	    if ($('td').is('.activetime_colmn')){
+	    	$('td').removeClass('activetime_colmn');
+		}
+	    $(this).closest( "td" ).toggleClass('activetime_colmn');
+	    
+	});
 	
-    $(".available_date").mouseenter(function() {
-  	  
-	    	$(function () {
-	    		
+    $(".available_date").mouseenter(function() {  	  
+	    	$(function () {	    		
 			    $('.availablelocation_datepicker').datetimepicker({
 			        format: 'YYYY-MM-DD',	  		          
 			        minDate : '<?php echo $event_data['start_date']; ?>',
 			        maxDate : '<?php echo $event_data['end_date']; ?>',        
-			    });
-		
+			    });			    
 		});
+
     });
-  
+    $(function () {	    		
+	    $('.appointment_start_time').datetimepicker({
+	    	 format: 'LT',	 	    	
+	    	/* disabledTimeIntervals: [
+	    	      [moment().hour(00).minutes(00), moment().hour(13).minutes(30)],
+	    	      [moment().hour(20).minutes(00), moment().hour(21).minutes(00)]
+	    	   ]*/
+	    });
+	   
+	    $('.appointment_end_time').datetimepicker({
+	    	 format: 'LT',	 
+	    	 /*disabledTimeIntervals: [
+	    	      [moment().hour(00).minutes(00), moment().hour(13).minutes(30)],
+	    	      [moment().hour(20).minutes(00), moment().hour(21).minutes(00)]
+	    	   ]*/
+	    	
+	    });
+	   $(".appointment_start_time").on("dp.change", function (e) {
+	        $('.appointment_end_time').data("DateTimePicker").minDate(e.date);
+	    });
+	    $(".appointment_end_time").on("dp.change", function (e) {
+	        $('.appointment_start_time').data("DateTimePicker").maxDate(e.date);
+	    });
+    });
 });
-
-
 </script>
