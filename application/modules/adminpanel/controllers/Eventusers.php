@@ -75,6 +75,8 @@ class Eventusers extends CI_Controller {
 				
 				if(empty($check_exist)){
 					$purpose_of_appoint = json_encode($this->input->post('purpose_of_appointment'));				
+					$appointment_start_time =  date('H:i', strtotime($this->input->post('appointment_start_time')));
+					$appointment_end_time =  date('H:i', strtotime($this->input->post('appointment_end_time')));
 					$insert_data = array(
 							"name" => $this->input->post('name'),
 							"email" => $this->input->post('email'),
@@ -82,6 +84,8 @@ class Eventusers extends CI_Controller {
 							"event_id" => $event_id,
 							"booked_date" => $this->input->post('booked_date'),
 							"purpose_of_appointment" => $purpose_of_appoint ? $purpose_of_appoint :'',
+							"appointment_start_time" => $appointment_start_time? $appointment_start_time :'',
+							"appointment_end_time" => $appointment_end_time? $appointment_end_time :'',
 							"message" => $this->input->post('message'),
 							"created_on" => current_date(),
 							"created_ip" => get_ip(),
