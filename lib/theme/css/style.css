@@ -1251,3 +1251,16 @@ body.register-page  .register-box {
   .featurette-heading {
     margin-top: 100px;
     margin-bottom: 20px; } }
+    
+   
+table.table.timebox{
+	border-spacing: 3px;
+    border-collapse: inherit;
+}
+
+table.table.timebox td a{
+	color:#fff;
+}
+table.table.timebox td.activetime_colmn{
+	background: #676d75 !important;
+}
