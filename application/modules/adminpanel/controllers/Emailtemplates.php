@@ -177,7 +177,7 @@ class Emailtemplates extends CI_Controller {
 			$this->form_validation->set_rules ( 'email_variables', 'lang:email_variables', 'required' );
 		
 			if ($this->form_validation->run () == TRUE) {
-				
+				$slug = create_pageuri(post_value ( 'name' ), $this->table, 'slug',array('is_delete !=' => 1, 'id !=' => $id));
 				$update_array = array (
 						'from_email' 			=> $this->input->post('from_email', false),
 						'reply_to' 		=> post_value ( 'reply_to' ), 

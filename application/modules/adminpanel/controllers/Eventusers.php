@@ -19,6 +19,7 @@ class Eventusers extends CI_Controller {
 		$this->table = "sramcms_event_users";
 		$this->event_table = "sramcms_routeplan";
 		$this->primary_key = 'id';
+		$this->load->helper('emailtemplate');
 		$this->load->library('common');
 		
 			
@@ -188,6 +189,7 @@ class Eventusers extends CI_Controller {
 		$record = $this->Mydb->get_record ( '*', $this->table, array (
 				$this->primary_key => $id
 		) );
+	
 		(empty ( $record )) ? redirect ( admin_url() . $this->module ) : '';
 	
 		if ($this->input->post ( 'action' ) == "edit") {
@@ -208,12 +210,17 @@ class Eventusers extends CI_Controller {
 				
 				if(empty($check_exist)){
 					$purpose_of_appoint = json_encode($this->input->post('purpose_of_appointment'));
+					$appointment_start_time =  date('H:i', strtotime($this->input->post('appointment_start_time')));
+					$appointment_end_time =  date('H:i', strtotime($this->input->post('appointment_end_time')));
 					$update_data = array(
 							"name" => $this->input->post('name'),
 							"email" => $this->input->post('email'),
 							"phone_no" => $this->input->post('phone_no'),
 							"event_id" => $event_id,
 							"booked_date" => $this->input->post('booked_date'),
+							"appointment_date" => $this->input->post('appointment_date')? $this->input->post('appointment_date') :'',
+							"appointment_start_time" => $appointment_start_time? $appointment_start_time :'',
+							"appointment_end_time" => $appointment_end_time? $appointment_end_time :'',
 							"purpose_of_appointment" => $purpose_of_appoint ? $purpose_of_appoint :'',
 							"message" => $this->input->post('message'),
 							"updated_on" => current_date(),
@@ -222,7 +229,12 @@ class Eventusers extends CI_Controller {
 							"is_active" => $this->input->post('is_active'),
 					);
 					$this->Mydb->update ( $this->table, array ($this->primary_key => $record ['id'] ), $update_data );
-					
+					if($this->input->post('appointment_date') != "" && $this->input->post('appointment_time') !="" ){
+						$appointment_date = $this->input->post('appointment_date').' '.date('h:i a', strtotime($this->input->post('appointment_time')));
+						$event_page_link = frontend_url().'events';
+						
+						$this->send_appointment_confirmation_email($this->input->post('email'), $this->input->post('name'), $appointment_date, $event_page_link);
+					}
 					$msg = "A ".$this->module_label.' '.post_value('name').' has been edited';
 					create_log('edit',$this->module_label,$msg);
 					$this->session->set_flashdata ( 'action_success', sprintf ( $this->lang->line ( 'success_message_edit' ), $this->module_label ) );
@@ -378,21 +390,47 @@ class Eventusers extends CI_Controller {
 		redirect ( admin_url () . $this->module );
 	}
 	
-	public function category_check(){
-		$category_name = $this->input->post('category_name');
-		$categories_type = $this->input->post('category_type');
-		$record = $this->Mydb->custom_query("select * from categories where name = '".$category_name."'
-				   and parent_id = ".$categories_type." and is_delete != '1'");
-		if ($record)
-        {
-            $this->form_validation->set_message('category_name', "The %s field has an unique name.");
-            return FALSE;
-        }
-        else
-        {
-            return TRUE;
-        }
+	public function get_appointment_time(){
+		$appointment_date= $this->input->post('appointment_date');
+		if($appointment_date){
+			
+			$records = $this->Mydb->custom_query("SELECT t1.name AS user_name, t1.email, t2.trip_name, TIME_FORMAT(t1.appointment_start_time , '%H:%i') AS start_time , TIME_FORMAT(t1.appointment_end_time , '%H:%i') AS end_time
+												  FROM $this->table AS t1 LEFT JOIN $this->event_table AS t2 	ON t2.id = t1.event_id
+		   								        WHERE t1.appointment_date = '".$appointment_date."' AND t1.appointment_start_time != t1.appointment_end_time  AND t1.is_delete != '1'");
+			
+			$array_disableHours = array();
+			$html_data = "";
+			if(!empty($records)){
+				$html_data .= "<table class=''><tr>";
+				foreach ($records as $splitTimes){
+					$startTimeData =  strtotime($splitTimes['start_time']);
+					$endTimeData =  strtotime($splitTimes['end_time']);
+					$startTimeHours = date('H',$startTimeData);
+					$startTimeMinutes =  date('i',$startTimeData);
+					$endTimeHours = date('H',$endTimeData);
+					$endTimeMinutes =  date('i',$endTimeData);
+					$startTimeArray['start'] = array("hour" => $startTimeHours, "minutes" => $startTimeMinutes );
+					$startTimeArray['end'] = array("hour" => $endTimeHours, "minutes" => $endTimeMinutes);
+					//$endTimeArray =   "[moment({ hour:$endTimeHours, minute:$endTimeMinutes })]";
+					//$arrayMomentSet = $startTimeArray .','.$endTimeArray;
+					$array_disableHours['status'] = "success";
+					$html_data .= '<td><a class="get_booking_time btn btn-primary" title="'.$splitTimes['user_name'].'" href="">'.date('h:i a',$startTimeData).' - '.date('h:i a',$endTimeData).'</a></td>'; 
+					$array_disableHours['disabled_time_intervals'][] = $startTimeArray;
+				}
+				$html_data .= "</tr></table>";
+				$array_disableHours['userdata'] = $html_data;
+			}			
+			
+			echo json_encode($array_disableHours);
+			
+		}
 		
 	}
-	
+		
+	public function send_appointment_confirmation_email($to_email, $name, $appointment_date, $event_page_link){
+		$chk_arr = array('[NAME]', '[APPOINTMENT_DATE]', '[EVENT_PAGE_LINK]');
+		$rep_arr = array($name, $appointment_date, $event_page_link);
+		$response_email = send_email($to_email, $template_slug = "appointment-confirmation", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+		return $response_email;
+	}
 }
