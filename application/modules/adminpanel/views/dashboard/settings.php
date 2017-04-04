@@ -43,25 +43,6 @@
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('email_template').get_required();?></label>
                             <div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('email_template',stripslashes($this->config->item('email_template', 'siteSettings')),' class="form-control required" ');?></div></div>
 						</div>
-						<div class="form-group">
-						<h3>Points Settings</h3>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('login_points').get_required();?></label>
-                            <div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('login_points',stripslashes($this->config->item('login_points', 'siteSettings')),' class="form-control required" ');?></div></div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('new_user_points').get_required();?></label>
-                            <div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('new_user_points',stripslashes($this->config->item('new_user_points', 'siteSettings')),' class="form-control required" ');?></div></div>
-						</div>	
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('referral_points').get_required();?></label>
-                            <div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('referral_points',stripslashes($this->config->item('referral_points', 'siteSettings')),' class="form-control required" ');?></div></div>
-						</div>	
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('referred_user_register_points').get_required();?></label>
-                            <div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('referred_user_register_points',stripslashes($this->config->item('referred_user_register_points', 'siteSettings')),' class="form-control required" ');?></div></div>
-						</div>		
 						
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-<?php echo get_form_size();?>  btn_submit_div">
@@ -74,7 +55,7 @@
 
 					<?php
 					echo form_hidden ( 'action', 'settings' );
-					//echo form_close ();
+					echo form_close ();
 					?>
 			
 				</div>
