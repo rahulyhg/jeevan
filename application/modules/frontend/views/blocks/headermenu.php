@@ -3,9 +3,10 @@
     <li class="sidebar-brand"><a href="index.php"><img src="<?php echo skin_url(); ?>img/logo.png" alt=""></a></li>
     <?php
 	if(!empty($menus_list)){
+		
 		foreach($menus_list as $header){
 	?>
-    <li><a href="<?php echo $header['url']; ?>"><?php echo $header['page_title']; ?></a></li>
+    <li><a href="<?php echo $header['url']; ?>"><?php echo $header['name']; ?></a></li>
     <?php
 		}
 	}
