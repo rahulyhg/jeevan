@@ -127,8 +127,23 @@ class Routeplan extends CI_Controller {
                                 'is_active' => 1);
                             $insert_id = $this->Mydb->insert($this->routeplan_table, $insert_array);
                         else:
-                            $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
-                                'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
+                            $startdate = date('d', strtotime($shapes[$j]->startdate));
+                            $end_date = date('d', strtotime($shapes[$j]->enddate));
+                            if ($startdate == '31') {
+                                $start_date = date('Y-m-01', strtotime($shapes[$j]->startdate));
+                            } else {
+                                $start_date = date('Y-m-d', strtotime($shapes[$j]->startdate));
+                                $start_date = date('Y-m-d', strtotime($start_date . ' +1 days'));
+                            }
+                            if ($end_date == '31') {
+                                $enddate = date('Y-m-01', strtotime($shapes[$j]->enddate));
+                            } else {
+                                $enddate = date('Y-m-d', strtotime($shapes[$j]->enddate));
+                                $enddate = date('Y-m-d', strtotime($enddate . ' +1 days'));
+                            }
+
+                            $insert_array = array('start_date' => $start_date,
+                                'end_date' => $enddate,
                                 'map_id' => $id,
                                 'trip_name' => $trip_name,
                                 'plan_details' => $shapes[$j]->name,
