@@ -131,7 +131,6 @@
             				data:last,
             				dataType : "json",
             				success: function(data) {
-            					alert(data.message);
             					if (data.status == 'success') {
             						$('.contact_gurujee').addClass('text-success');
             						$('.contact_gurujee').html("<div class='alert alert-success'>"+ data.message + "</div>");
