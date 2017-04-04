@@ -130,7 +130,7 @@ class Events extends MY_Controller {
 		} else {
            $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND CURDATE() between start_date and end_date");
            if(empty($getplandetails)){
-           	$getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 ORDER BY id ASC");
+           	$getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 ORDER BY id DESC");
            }
            $plan_details = explode('-', $getplandetails[0]['plan_details']);
            $response['startvalue'] = $plan_details[0];
