@@ -119,7 +119,7 @@ class Events extends MY_Controller {
 	public function getroute_by_map_id() {
 		$map_id = $this->input->post('map_id');
 		if ($map_id != '') {
-			$getplandetails = $this->Mydb->custom_query("select * from $this->table where id=$map_id");
+			$getplandetails = $this->Mydb->custom_query("select * from $this->table where id=$map_id and is_active =1 and is_visible = 1");
 			$plan_details = explode('-', $getplandetails[0]['plan_details']);
 			$response['startvalue'] = $plan_details[0];
 			$response['endvalue'] = $plan_details[1];
@@ -132,9 +132,9 @@ class Events extends MY_Controller {
 			array_push($response['destinations'], $rows);
 			endforeach;
 		} else {
-           $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND CURDATE() between start_date and end_date");
+           $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND is_visible = 1 AND  CURDATE() between start_date and end_date");
            if(empty($getplandetails)){
-           	$getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 ORDER BY id DESC");
+           	$getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 AND is_visible = 1  ORDER BY id DESC");
            }
            $plan_details = explode('-', $getplandetails[0]['plan_details']);
            $response['startvalue'] = $plan_details[0];
