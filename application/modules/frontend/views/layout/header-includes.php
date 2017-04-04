@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/stylesheet.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>lato_fonts/stylesheet.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/bootstrap-datetimepicker.css">  
-<link rel="stylesheet" href="<?php echo skin_url(); ?>event/css/calendar.css">  
+<link rel="stylesheet" href="<?php echo skin_url(); ?>event/css/calendar.css">
+<link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/jquery.fancybox.css">
 
 <script src="<?php echo skin_url(); ?>js/jquery-3.1.1.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
