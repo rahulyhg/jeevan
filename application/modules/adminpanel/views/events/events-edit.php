@@ -43,18 +43,18 @@
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('destinations',stripslashes(str_replace('|*|',' >>> ',$records['destinations'])),' class="form-control"  readonly');?></div></div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Availalbe date').'&nbsp;'.get_required();?></label>							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date"><?php echo form_input('available_date',$records['available_date'],' class="form-control required availablelocation_datepicker"  ');?></div></div>
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Availalbe date');?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date"><?php echo form_input('available_date',$records['available_date'],' class="form-control availablelocation_datepicker"  ');?></div></div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Availalbe Location').'&nbsp;'.get_required();?></label>							
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Availalbe Location');?></label>							
 							<?php 
 								$desitinations_value = explode('|*|', $records['destinations']);
 								$desitinations_key = $desitinations_value;
 								$desitinations = array_combine($desitinations_key, $desitinations_value);							
 							?>
 							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_dropdown('available_location', $desitinations,stripslashes($records['available_location']),' class="form-control required"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_dropdown('available_location', $desitinations,stripslashes($records['available_location']),' class="form-control"  ');?></div></div>
 						</div>
 							<div class="form-group" id="file_upload_box">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Upload Image');?></label>
