@@ -19,7 +19,7 @@
             </div>
             <div class="clearfix"></div>
             <br>
-
+			
             <?php
             if (!empty($gallery)) {
                 foreach ($gallery as $gallery_details) {
@@ -34,13 +34,15 @@
 
                         <div class=" grid view view-tenth" >
                             <img src="<?php echo $gallery_details['image_url']; ?>" style="width:100%;height:200px" class="gallery_image img-responsive"/>
-                            <div class="mask">
+                           <div class="mask">
                                 <?php
                                 if ($gallery_details['media_type'] == '3') {
+                                	$file_url = $gallery_details['file_name'];
                                     ?>
                                     <iframe class="video_1" src="<?php echo $gallery_details['file_name']; ?>?rel=0" frameborder="0" allowfullscreen style="width:100%; height:250px; display:none;"></iframe>
                                     <?php
                                 } elseif ($gallery_details['media_type'] == '2') {
+                                	$file_url = media_url() . $gallery_details['file_name'];
                                     ?>
 
 
@@ -49,12 +51,14 @@
                                         <source src="<?php echo media_url() . $gallery_details['file_name']; ?>" type="video/mp4"></source>
                                     </video>
                                     <?php
+                                }else{
+                                	$file_url = $gallery_details['image_url'];
                                 }
                                 ?>
                                 <h2>Jeevanacharya</h2>
                                 <p><?php echo $gallery_details['title']; ?></p>
-                                <a title="<?php echo $gallery_details['title']; ?>" href="javascript:void(0);" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info gallery_box">View</a>
-                            </div>
+                                <a data-fancybox="gallery" data-width="2048" data-height="1365" data-caption="<?php echo $gallery_details['description'] ? $gallery_details['description'] :$gallery_details['title']; ?>"  title="<?php echo $gallery_details['title']; ?>" href="<?php echo $file_url; ?>" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info gallery_box">View</a>
+                            </div> 
                         </div>
         <!--                        <a  title="<?php echo $gallery_details['title']; ?>" href="javascript:void(0);" data-title="<?php echo $gallery_details['media_type']; ?>" class="zoom" >
                             <img class="gallery_image img-responsive" src="<?php echo $gallery_details['image_url']; ?>" />
@@ -111,7 +115,7 @@
 <script src="<?php echo skin_url(); ?>js/bootstrap-portfilter.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('.gallery_box').click(function () {
+       /* $('.gallery_box').click(function () {
 
             $('.modal-body').empty();
             var title = $(this).attr("title");
@@ -161,6 +165,6 @@
             $('.modal-body .video_2').hide();
 
             $('#myModal').modal('hide');
-        });
+        });*/
     });
 </script>
