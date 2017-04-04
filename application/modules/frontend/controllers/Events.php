@@ -16,6 +16,7 @@ class Events extends MY_Controller {
 		$this->folder = "events/";
 		$this->table = "sramcms_routeplan";
 		$this->booking_table = "sramcms_event_users";
+		$this->load->helper('emailtemplate');
 	
 	}
 	
@@ -91,9 +92,12 @@ class Events extends MY_Controller {
 						"is_active" => '1',
 				);
 				
-				$result = $this->Mydb->insert($this->booking_table,$insert_data);	
+				$result = $this->Mydb->insert($this->booking_table,$insert_data);
+				
 				if(!empty($result)){
-					
+					$this->send_notification_email_to_admin($insert_data);
+					$this->send_acknowledgement_email_to_user($insert_data);
+				
 					$response['status'] = "success";
 					$response['message'] = "Appointment has been booked successfully !";
 				}else{
@@ -147,7 +151,19 @@ class Events extends MY_Controller {
 		
 		echo json_encode($response);
 	}
-	
-	
+	public function send_acknowledgement_email_to_user($user_data){
+		$get_event_data = $this->Mydb->get_record("trip_name, destinations", $this->table, array("id"=>  $user_data['event_id']));
+		$chk_arr = array('[NAME]', '[EVENT_NAME]', '[EVENT_INFO]');
+		$rep_arr = array($user_data['name'], $get_event_data['trip_name'], stripslashes(str_replace('|*|', ' >>> ', $get_event_data['destinations'])));
+		$response_email = send_email( $user_data['email'], $template_slug = "appointment-user-acknowledgement", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+		return $response_email;
+	}
+	public function send_notification_email_to_admin($user_data){
+		$get_event_data = $this->Mydb->get_record("trip_name, destinations", $this->table, array("id"=>  $user_data['event_id']));		
+		$chk_arr = array('[NAME]', '[EMAIL]', '[PHONE_NO]','[PURPOSE_OF_APPOINTMENT]', '[MESSAGE]', '[EVENT_NAME]', '[EVENT_INFO]');
+		$rep_arr = array($user_data['name'], $user_data['email'], $user_data['phone_no'],  $user_data['purpose_of_appointment'], $user_data['message'], $get_event_data['trip_name'], stripslashes(str_replace('|*|', ' >>> ', $get_event_data['destinations'])));
+		$response_email = send_email($this->config->item('to_email', 'siteSettings'), $template_slug = "appointment-notification-to-admin", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+		return $response_email;
+	}
 	
 }
