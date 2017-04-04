@@ -54,7 +54,22 @@
 								$desitinations = array_combine($desitinations_key, $desitinations_value);							
 							?>
 							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_dropdown('available_location', $desitinations,stripslashes($records['available_location']),' class="form-control"  ');?></div></div>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box">
+							<select name="available_location" class="form-control">
+							<option value="">Select Location </option>
+							<?php 
+								foreach ($desitinations as $routes) : 
+								if($records['available_location'] == $routes){
+								 $selected = "selected";	
+								}else{
+									$selected = "";	
+								}
+								echo '<option value="'.$routes.'" '.$selected.'>'.stripslashes($routes)."</option>";
+								endforeach;
+							?>
+						
+							</select>
+							<?php  //echo form_dropdown('available_location', $desitinations,stripslashes($records['available_location']),' class="form-control"  ');?></div></div>
 						</div>
 							<div class="form-group" id="file_upload_box">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Upload Image');?></label>
