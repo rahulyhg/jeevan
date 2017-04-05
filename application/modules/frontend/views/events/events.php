@@ -192,9 +192,19 @@
                             streetViewControl: false,
                             zoomControl: false,
                             center: myLatLng,
+                            draggable: true,
                             mapTypeId: google.maps.MapTypeId.TERRAIN
                         };
                         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                        var directionsDisplay = new google.maps.DirectionsRenderer({
+                            draggable: true,
+                            map: map,
+                            panel: document.getElementById('right-panel')
+                        });
+
+                        directionsDisplay.addListener('directions_changed', function () {
+                            computeTotalDistance(directionsDisplay.getDirections());
+                        });
                         var flightPlanCoordinates = [
                             {lat: output.start_lattitude, lng: output.start_longtitude},
                             {lat: output.end_lattitude, lng: output.end_longtitude},
@@ -202,13 +212,23 @@
                         var lineSymbol = {
                             path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
                         };
+                        var marker1 = new google.maps.Marker({
+                            position: {lat: output.start_lattitude, lng: output.start_longtitude},
+                            map: map,
+                            animation: google.maps.Animation.BOUNCE,
+                            title: 'EXPRESS LIVE!'
+                        });
+                        var marker2 = new google.maps.Marker({
+                            position: {lat: output.end_lattitude, lng: output.end_longtitude},
+                            map: map,
+                            animation: google.maps.Animation.BOUNCE,
+                            title: 'EXPRESS LIVE!'
+                        });
+                        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                         var flightPath = new google.maps.Polyline({
                             path: flightPlanCoordinates,
                             geodesic: true,
-                            icons: [{
-                                    icon: lineSymbol,
-                                    offset: '100%'
-                                }],
+                            draggable: true,
                             strokeColor: '#3399ff',
                             strokeOpacity: 3.0,
                             strokeWeight: 6
