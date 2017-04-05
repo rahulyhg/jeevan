@@ -319,3 +319,67 @@
 .ro-sub-checkboxes a:hover {
 	text-decoration: none;
 }
+
+@media (max-width: 1199px){}
+
+@media (min-width: 992px) and (max-width: 1199px){}
+
+@media (max-width: 991px){}
+
+@media (min-width: 768px) and (max-width: 991px){}
+
+@media (max-width: 767px){
+	.ro-dialog h1
+	{
+		font-size: 12px;
+		text-align: center;
+	}
+	.ro-dialog {
+    width: 230px;
+    height:230px;
+	}
+	.ro-welcome-offset .btn-default
+	{
+		padding: 10px 10px;
+		font-size: 12px;
+	}
+	.ro-dialog-inner .btn-group .btn-danger
+	{
+		padding: 6px 3px;
+		font-size: 12px;
+	}
+	.ro-project 
+	{
+		width: 300px;
+		left: 8px;
+		top: 55px;
+	}
+	.ro-edit-project-dialog
+	{
+		width: 304px;
+		height: 411px
+	}
+	.ro-edit-layer-dialog
+	{
+		width: 310px;
+		height: 450px;
+	}
+	.ro-edit-layer-dialog .form-group
+	{
+		margin: 0px;
+		padding: 0px;
+	}
+	.ro-edit-layer-dialog .modal-body
+	{
+		padding: 0px;
+	}
+	.ro-edit-layer-dialog .modal-header
+	{
+		padding: 5px;
+	}
+	.ro-edit-layer-dialog .modal-footer
+	{
+		padding: 5px;
+		border: none;
+	}
+}
