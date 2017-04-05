@@ -26,7 +26,7 @@
                 <div class="login-form row">
                     <div class="col-sm-12 text-center login-header">
                       <?php /*?>  <i class="login-logo fa fa-connectdevelop fa-5x"></i> <?pph */?>
-                       <h2>Admin Login</h2>
+                       <h2>Admin Forgot</h2>
                     </div>
                     
                     <div class="col-sm-12">
@@ -36,26 +36,23 @@
                             <div class="login-body">
                                 <div class="progress " id="login-progress" style="display:none;;">
                                     <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                        Log In...
+                                        Forgot Password...
                                     </div>
                                 </div>
 
-                                    <h2 class="login_title">Login</h2>
+                                    <h2 class="login_title">Forgot Password</h2>
 
-                                   <?php echo form_open(admin_url(),'id="login_form" autocomplete= "'.form_autocomplte().'" ');?>
+                                   <?php echo form_open(admin_url('forgotpassword'),'id="forgot_form" autocomplete= "'.form_autocomplte().'" ');?>
 
                                         <div class="control"> 
 
-                                            <?php echo  form_input('username','','class="form-control required" placeholder="Username"');?>
+                                            <?php echo  form_input('email','','class="form-control required" placeholder="Email Address"');?>
                                         </div>
 
-                                        <div class="control">
-                                         <?php echo  form_password('password','','class="form-control required" placeholder="Password" minlength="'.PASSWORD_LENGHT.'" ');?>
-
-                                        </div>
+                                        
                                         <div class="login-button text-center">
-                                        <?php echo form_submit('submit','Login',' class="btn btn-info" id="log_submit" ' )?>
-                                            <a class="text-link color-white" href="<?php echo admin_url('forgotpassword'); ?>" title="Forgot password?">Forgot password?</a>
+                                        <?php echo form_submit('submit','Forgot',' class="btn btn-info" id="forgot_submit" ' )?>
+                                            <a class="text-link color-white" href="<?php echo admin_url(); ?>" title="Login">Login</a>
 
                                         </div>
                                   <?php echo form_close();?>
