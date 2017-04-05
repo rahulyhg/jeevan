@@ -157,14 +157,16 @@
                     <div class="form-group">
                         <label for="inputStartDate" class="control-label col-sm-2">Startdate</label>
                         <div class="col-sm-10">
-                            <input type="text"  class="form-control inputStartDate"  id="inputStartDate" data-bind="datepicker: startdate,datetimepickerOptions:{format:'mm-dd-yyyy',autoclose:true,startDate:new Date()}" placeholder="Start Date" data-bind="value:startdate" >
+                            <input type="text"  class="form-control inputStartDate"  id="inputStartDate"  placeholder="Start Date" data-bind="datepicker:startdate,value:startdate,datepickerOptions:{format:'yyyy-mm-dd',autoclose:true,startDate:new Date()}">
+                            <!--data-bind="datepicker: startdate,datetimepickerOptions:{format: 'yyyy/mm/dd',autoclose:true}"-->
                             <!--data-bind="datepicker: startdate,datetimepickerOptions:{format:'yyyy-mm-dd',autoclose:true,startDate:new Date(),todayHighlight: true}"-->
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEndDate" class="control-label col-sm-2">Enddate</label>
                         <div class="col-sm-10">
-                            <input type="text" data-bind="datepicker: enddate,datetimepickerOptions:{format:'mm-dd-yyyy',autoclose:true,startDate:new Date()}" class="form-control" id="inputEndDate" placeholder="End Date" data-bind="value:enddate">
+                            <input type="text"  class="form-control" id="inputEndDate" placeholder="End Date" data-bind="datepicker:enddate,value:enddate,datepickerOptions:{format:'yyyy-mm-dd',autoclose:true,startDate:new Date()}">
+                            <!--data-bind="datepicker: enddate,datetimepickerOptions:{format: 'yyyy/mm/dd',autoclose:true}"-->
                             <!--data-bind="datepicker: enddate,datetimepickerOptions:{format:'yyyy-mm-dd',autoclose:true,startDate:new Date(),todayHighlight: true}"-->
                         </div>
                     </div>
