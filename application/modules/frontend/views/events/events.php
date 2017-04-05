@@ -114,10 +114,10 @@
         </div>
     </div>
 </div>
-<input type="text" name="start_lat" id="start_lat"/>
-<input type="text" name="end_lat" id="end_lat"/>
-<input type="text" name="start_long" id="start_long"/>
-<input type="text" name="end_long" id="end_long"/>
+<input type="hidden" name="start_lat" id="start_lat"/>
+<input type="hidden" name="end_lat" id="end_lat"/>
+<input type="hidden" name="start_long" id="start_long"/>
+<input type="hidden" name="end_long" id="end_long"/>
 <div class="clearfix"></div>
 <div class="line_content"> <hr></div>
 <div class="clearfix"></div>
