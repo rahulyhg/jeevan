@@ -334,7 +334,7 @@
                         <tbody data-bind="foreach:projects">
                             <tr>
                                 <td data-bind="text:name"></td>
-                                <td data-bind="text:id"></td>
+                                <td data-bind="text:layers_name"></td>
                                 <td><a href="#" data-bind="click:$parent.getProject.bind($parent,id)">Load map</a></td>
                                 <td><a href="#" data-bind="click:$parent.deleteProject.bind($parent,id)">Delete</a></td>
                             </tr>
