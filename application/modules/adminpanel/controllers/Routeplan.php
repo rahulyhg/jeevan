@@ -14,13 +14,26 @@ class Routeplan extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->module = "homepage";
+        $this->module = "routeplan";
         $this->module_label = "Home";
         $this->module_labels = "Home";
         $this->folder = "user/";
         $this->routeplan_table = 'sramcms_routeplan';
         $this->menus_table = 'menus';
         $this->note_table = 'note';
+    }
+
+    function _remap($method, $args) {
+
+        if (method_exists($this, $method)) {
+            $this->$method($args);
+        } else {
+            if ($method !== 'download_files') {
+                $this->index($method, $args);
+            } else if ($method == 'loadmap') {
+                $this->loadmap($method, $args);
+            }
+        }
     }
 
     public function index() {
@@ -169,6 +182,68 @@ class Routeplan extends CI_Controller {
             $result["success"] = "New Map has been successfully saved";
         }
 
+        echo json_encode($result);
+    }
+
+    function loadmap($method) {
+        $map_id = $method[0];
+
+        $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where map_id='$map_id' and is_active=1 and is_visible=1");
+        $plan_details = explode('-', $getplandetails[0]['plan_details']);
+        $response['startvalue'] = $plan_details[0];
+        $response['endvalue'] = $plan_details[1];
+        $destinations = $getplandetails[0]['destinations'];
+        $explodedestinations = explode('|*|', $destinations);
+        $response['destinations'] = array();
+        $rows = array();
+        foreach ($explodedestinations as $destination):
+            $rows['location'] = $destination;
+            array_push($response['destinations'], $rows);
+        endforeach;
+        $data['records'] = json_encode($response);
+        $data['module'] = $this->module;
+        $data['map_id'] = $map_id;
+        $this->load->view($this->folder . 'loadmap', $data);
+    }
+
+    function getroute_by_map_id() {
+        $map_id = $this->input->post('map_id');
+//        echo "select * from $this->routeplan_table where map_id='$map_id' and is_active =1 and is_visible = 1";
+        $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where map_id='$map_id' and is_active =1 and is_visible = 1");
+        $plan_details = explode('-', $getplandetails[0]['plan_details']);
+        $response['startvalue'] = $plan_details[0];
+        $response['endvalue'] = $plan_details[1];
+        $destinations = $getplandetails[0]['destinations'];
+        $explodedestinations = explode('|*|', $destinations);
+        $response['destinations'] = array();
+        $rows = array();
+        foreach ($explodedestinations as $destination):
+            $rows['location'] = $destination;
+            array_push($response['destinations'], $rows);
+        endforeach;
+        echo json_encode($response);
+    }
+
+    function getlattitude_longtitude() {
+        $startvalue = $this->input->post('start_date');
+        $endvalue = $this->input->post('end_date');
+
+        $prepAddr = str_replace(' ', '+', $startvalue);
+        $geocode = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $prepAddr . '&sensor=false');
+        $output = json_decode($geocode);
+        $start_latitude = $output->results[0]->geometry->location->lat;
+        $start_longitude = $output->results[0]->geometry->location->lng;
+
+        $prep_Addr = str_replace(' ', '+', $endvalue);
+        $geo_code = file_get_contents('https://maps.google.com/maps/api/geocode/json?address=' . $prep_Addr . '&sensor=false');
+        $out_put = json_decode($geo_code);
+        $end_latitude = $out_put->results[0]->geometry->location->lat;
+        $end_longitude = $out_put->results[0]->geometry->location->lng;
+
+        $result['start_lattitude'] = $start_latitude;
+        $result['start_longtitude'] = $start_longitude;
+        $result['end_lattitude'] = $end_latitude;
+        $result['end_longtitude'] = $end_longitude;
         echo json_encode($result);
     }
 
