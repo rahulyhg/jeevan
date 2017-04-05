@@ -2,7 +2,7 @@
 	<div class="side-body">
 	   <?php echo get_template('layout/notifications','')?>
 		
-			<div class="col-xs-12">
+			<div class="col-xs-12 space_link">
 				<div class="card ">
 					<div class="card-header">
 					<div class="page-title">

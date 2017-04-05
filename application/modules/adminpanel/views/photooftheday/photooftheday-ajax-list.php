@@ -15,6 +15,7 @@
     </div>
     <div class="clear"></div>
 </div>
+<div class="table-responsive">
 <table class="table ">
 	<thead class="first">
 		<tr>
@@ -80,6 +81,7 @@
 	</thead>
 
 </table>
+</div>
     
 				<div class="pagination_bar">
                     <div class="btn-toolbar pull-left">

@@ -1,130 +1,203 @@
-<div class="container-fluid">
-				<div class="side-body padding-top">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <a href="#">
-                                <div class="card red summary-inline">
-                                    <div class="card-body">
-                                        <i class="icon fa fa-inbox fa-4x"></i>
-                                        <div class="content">
-                                            <div class="title">50</div>
-                                            <div class="sub-title">New Mails</div>
-                                        </div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <a href="#">
-                                <div class="card yellow summary-inline">
-                                    <div class="card-body">
-                                        <i class="icon fa fa-comments fa-4x"></i>
-                                        <div class="content">
-                                            <div class="title">23</div>
-                                            <div class="sub-title">New Message</div>
-                                        </div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <a href="#">
-                                <div class="card green summary-inline">
-                                    <div class="card-body">
-                                        <i class="icon fa fa-tags fa-4x"></i>
-                                        <div class="content">
-                                            <div class="title">280</div>
-                                            <div class="sub-title">Product View</div>
-                                        </div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <a href="#">
-                                <div class="card blue summary-inline">
-                                    <div class="card-body">
-                                        <i class="icon fa fa-share-alt fa-4x"></i>
-                                        <div class="content">
-                                            <div class="title">16</div>
-                                            <div class="sub-title">Share</div>
-                                        </div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+<div class="side-body padding-top">
+<div class="container">
+	<div class="row">
+    	<div class="col_3">
+        	<div class="col-md-3 widget widget1">
+            	<a href="<?php echo admin_url('events'); ?>">
+        		<div class="r3_counter_box">
+                    <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><?php echo $event[0]['event_count']; ?></strong></h5>
+                      <span>Events</span>
                     </div>
-                    <div class="row  no-margin-bottom">
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="card primary">
-                                        <div class="card-jumbotron no-padding">
-                                            <canvas id="jumbotron-line-chart" class="chart no-padding"></canvas>
-                                        </div>
-                                        <div class="card-body half-padding">
-                                            <h4 class="float-left no-margin font-weight-300">Profits</h4>
-                                            <h2 class="float-right no-margin font-weight-300">$3200</h2>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                               
-                               
-                            </div>
+                </div></a>
+        	</div>
+        	<div class="col-md-3 widget widget1">
+            	<a href="<?php echo admin_url('feedback'); ?>">
+        		<div class="r3_counter_box">
+                    <i class="pull-left fa fa-users user1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><?php echo $feedback[0]['feedback_count']; ?></strong></h5>
+                      <span>Feedback</span>
+                    </div>
+                </div></a>
+        	</div>
+        	<div class="col-md-3 widget widget1">
+            	<a href="<?php echo admin_url('photooftheday'); ?>">
+        		<div class="r3_counter_box">
+                    <i class="pull-left fa fa-comment user2 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><?php echo $photo_oftheday[0]['photo_oftheday_count']; ?></strong></h5>
+                      <span>Photo Of the Day</span>
+                    </div>
+                </div></a>
+        	</div>
+        	<div class="col-md-3 widget">
+            	<a href="<?php echo admin_url('cmspage'); ?>">
+        		<div class="r3_counter_box">
+                    <i class="pull-left fa fa-book dollar1 icon-rounded"></i>
+                    <div class="stats">
+                      <h5><strong><?php echo $cms_pages[0]['cms_pages_count']; ?></strong></h5>
+                      <span>Pages</span>
+                    </div>
+                </div></a>
+        	 </div>
+        	<div class="clearfix"> </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6">
+    
+    	<div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-bookmark"></span> Quick Shortcuts</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                          <a href="<?php echo admin_url('emailtemplates'); ?>" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>Email</a>
+                          <a href="<?php echo admin_url('feedback'); ?>" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-bookmark"></span> <br/>Feedback</a>
+                          <a href="<?php echo admin_url('newsletter'); ?>" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-signal"></span> <br/>Newsletter</a>
+                          <a href="<?php echo admin_url('gallerycategories'); ?>" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-comment"></span> <br/>Media Gallery</a>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="card primary">
-                                        <div class="card-jumbotron no-padding">
-                                            <canvas id="jumbotron-bar-chart" class="chart no-padding"></canvas>
-                                        </div>
-                                        <div class="card-body half-padding">
-                                            <h4 class="float-left no-margin font-weight-300">Orders</h4>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="card primary">
-                                        <div class="card-jumbotron no-padding">
-                                            <canvas id="jumbotron-line-2-chart" class="chart no-padding"></canvas>
-                                        </div>
-                                        <div class="card-body half-padding">
-                                            <h4 class="float-left no-margin font-weight-300">Pages view</h4>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                    </div>
-                                </div>
-								
-								
-                            </div>
-                           
+                        <div class="col-xs-6 col-md-6">
+                          <a href="<?php echo admin_url('menugroups'); ?>" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br/>Menus</a>
+                          <a href="<?php echo admin_url('cmspage'); ?>" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-file"></span> <br/>Pages</a>
+                          <a href="<?php echo admin_url('blocks'); ?>" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-picture"></span> <br/>Blocks</a>
+                          <a href="<?php echo admin_url('routeplan'); ?>" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br/>Route Plan</a>
                         </div>
-						<div class="col-sm-12 col-xs-12">
-						 <div class="card card-success">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <div class="title"><i class="fa fa-comments-o"></i> Highest Referral Points Users</div>
-                                    </div>
-                                    <div class="clear-both"></div>
-                                </div>
-                                <div class="card-body no-padding">
-                                    <ul class="message-list">
-                                   
-                                      
-                                    </ul>
-                                </div>
-                            </div>
-						</div>	
                     </div>
                 </div>
+            </div>
+    
+    	<div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="fa fa-book"></span> Today Appointments</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="activity_box">
+		        <div class="scrollbar">
+                   
+                   
+                   <?php
+				   if(!empty($appointments)){
+					  
+				   ?>
+                   <div class="bs-example1 col-xs-12" data-example-id="contextual-table">
+		    <table class="table">
+		      <thead>
+		        <tr>
+		          <th>Event Name</th>
+		          <th>User Name</th>
+		          <th>Email</th>
+		          <th>Phone</th>
+                  <th>Appointment Date & Time</th>
+		        </tr>
+		      </thead>
+              <?php
+			   foreach($appointments as $appoint){
+			  ?>
+		      <tbody>
+		        <tr class="active">
+                  <td><?php echo $appoint['trip_name']; ?></td>
+		          <td><?php echo $appoint['name']; ?></td>
+		          <td><?php echo $appoint['email']; ?></td>
+		          <td><?php echo $appoint['phone_no']; ?></td>
+                  <td><?php echo $appoint['appointment_date'].' '.$appoint['appointment_start_time']; ?></td>
+		        </tr>
+		        
+		      </tbody>
+              <?php
+			  }
+			  ?>
+		    </table>
+		   </div>
+                    <?php
+					   
+					}else{
+						?>
+                        <div class="activity-row">
+                        <div class="col-xs-10 activity-desc">
+                        	<h5>No Appointments</h5>
+                        </div>
+                        </div>
+                        <?php
+					}
+					?>
+	  		        </div>
+		          </div>
+            
+                    </div>
+                </div>
+            </div>
+    		
+           
+        
+    </div>
+    <div class="col-md-6">
+  <?php $newsletter_chart = json_encode($newsletter); ?>
+    <!-- Styles -->
+	<style>
+	.panel {margin-top:30px; }
 
-			</div>
+#chartdiv {
+	width		: 100%;
+	height		: 400px;
+	font-size	: 14px;
+}							
+</style>
+
+<!-- Resources -->
+<script src="<?php echo load_lib(); ?>theme/js/amcharts.js"></script>
+<script src="<?php echo load_lib(); ?>theme/js/pie.js"></script>
+<script src="<?php echo load_lib(); ?>theme/js/export.min.js"></script>
+<link rel="stylesheet" href="<?php echo load_lib(); ?>theme/css/export.css" type="text/css" media="all" />
+<script src="<?php echo load_lib(); ?>theme/js/none.js"></script>
+
+<!-- Chart code -->
+<script>
+var chartData = <?php echo $newsletter_chart; ?>;
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "pie",
+  "theme": "none",
+  "dataProvider": chartData,
+  "titleField": "title",
+  "valueField": "value",
+  "labelRadius": 5,
+
+  "radius": "42%",
+  "innerRadius": "60%",
+  "labelText": "[[title]]",
+  "export": {
+    "enabled": true
+  }
+} );
+</script>
+    
+    <!-- HTML -->
+    
+    <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-bookmark"></span> Total Subscribe Charts</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div id="chartdiv"></div>
+            
+                    </div>
+                </div>
+            </div>
+    
+    
+    
+            
+    </div>
+    
+    
+    </div>
+</div>
+</div>
