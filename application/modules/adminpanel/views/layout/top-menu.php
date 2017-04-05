@@ -23,7 +23,7 @@
                             <a href="<?php echo admin_url()."dashboard/settings"; ?>"><i class="fa fa-gear"></i> Settings</a>
                         </li>
                         <li>
-                            <a href="<?php echo admin_url()."admin_logout"?>" ><i class="fa fa-pencil"></i> Change Password</a>
+                            <a href="<?php echo admin_url()."dashboard/changepassword"?>" ><i class="fa fa-pencil"></i> Change Password</a>
                         </li>
                         <li>
                             <a href="<?php echo admin_url()."admin_logout"?>" ><i class="fa fa-sign-out"></i> Logout</a>
