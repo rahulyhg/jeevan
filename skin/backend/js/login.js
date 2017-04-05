@@ -39,5 +39,67 @@ $("#login_form").validate(
 		    
 			}
 		});
+		
+		
+		/* forgot password */
+		 
+		 $("#forgot_form").validate(
+            {
+                ignore: "",
+                submitHandler: function () {
+					
+                    $.ajax({
+                        url: ADMIN_URL + "forgotpassword",
+                        data: $('#forgot_form').serialize(),
+                        type: 'POST',
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.status == "success") {
+                                $(".log_alert").removeClass("alert-danger");
+                                $(".log_alert").addClass("alert-success");
+                                $(".log_alert").show().html(data.message);
+                            } else if (data.status == "error") {
+                                $(".log_alert").removeClass("alert-success");
+                                $(".log_alert").addClass("alert-danger");
+                                $(".log_alert").show().html(data.message);
+                            }
+                        }
+                    });
+
+                }
+            });
+		 
+		
+		
+		/* reset password */
+		 $("#reset_form").validate(
+            {
+                ignore: "",
+                submitHandler: function () {
+					
+                    $.ajax({
+                        url: ADMIN_URL + "resetpassword",
+                        data: $('#reset_form').serialize(),
+                        type: 'POST',
+                        dataType: "json",
+                        success: function (data) {
+							
+                            if (data.status == "success") {
+                                $(".log_alert").removeClass("alert-danger");
+                                $(".log_alert").addClass("alert-success");
+                                $(".log_alert").show().html(data.message);
+								setTimeout(function () {
+									location.href = ADMIN_URL;
+								}, 2000);
+                            } else if (data.status == "error") {
+                                $(".log_alert").removeClass("alert-success");
+                                $(".log_alert").addClass("alert-danger");
+                                $(".log_alert").show().html(data.message);
+                            }
+                        }
+                    });
+
+                }
+            });
 
 }); /* end of document ready*/
