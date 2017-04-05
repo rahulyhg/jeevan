@@ -36,14 +36,13 @@ class Routeplan extends CI_Controller {
         }
 
         if ($action == "getProjectsList") {
-
             $d = dir(FCPATH . "/media/maps");
             while (($entry = $d->read()) !== false) {
                 if (preg_match("/\.json$/", $entry) && is_file($d->path . "/" . $entry)) {
                     try {
                         $str = join("", file($d->path . "/" . $entry));
                         $project = json_decode($str, true);
-                        $result["data"][] = array("id" => preg_replace("/\.json$/", "", $entry), "name" => $project["name"]);
+                        $result["data"][] = array("id" => preg_replace("/\.json$/", "", $entry), "name" => $project["name"], "layers_name" => $project['layers'][0]['name']);
                     } catch (Exception $e) {
                         $result["error"] = $e->getMessage();
                     }
