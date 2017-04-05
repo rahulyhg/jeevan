@@ -19,8 +19,12 @@ class Dashboard extends CI_Controller {
 		$this->table = "users";
 		$this->settings_table = "site_setting";
 		$this->master_admin_table = "master_admin";
-		
-			
+		$this->routeplan_table = "routeplan";
+		$this->feedback_table = "feedback";
+		$this->photo_oftheday_table = "photo_oftheday";
+		$this->cms_pages_table = "cms_pages";
+		$this->newsletter_table = "sramcms_newsletter";
+		$this->load->library('common');
 	}
 	
 	/* this method used to show all dashboard all details... */
@@ -32,6 +36,31 @@ class Dashboard extends CI_Controller {
 	  $data['module_labels'] = $this->module_label;
 	  $data['module'] = $this->module;
 	 
+	 $data['appointments'] = $this->Mydb->custom_query("SELECT u.name, u.email, u.phone_no, u.appointment_date, u.appointment_start_time, e.trip_name FROM sramcms_event_users AS u LEFT JOIN sramcms_routeplan AS e ON e.id = u.event_id WHERE u.appointment_date = '".date('y-m-d')."' AND u.is_active = '1' AND u.is_delete = '0'");
+	
+	 
+	 $data['event'] = $this->Mydb->get_all_records('count(id) AS event_count', $this->routeplan_table, array('is_active'=>'1', 'is_delete'=>'0'));
+	 $data['feedback'] = $this->Mydb->get_all_records('count(id) AS feedback_count', $this->feedback_table, array('is_active'=>'1', 'is_delete'=>'0'));
+	 $data['photo_oftheday'] = $this->Mydb->get_all_records('count(id) AS photo_oftheday_count', $this->photo_oftheday_table, array('is_active'=>'1', 'is_delete'=>'0'));
+	 $data['cms_pages'] = $this->Mydb->get_all_records('count(id) AS cms_pages_count', $this->cms_pages_table, array('is_active'=>'1', 'is_delete'=>'0'));
+	 
+	 $newsletter = $this->Mydb->custom_query("SELECT id,status FROM $this->newsletter_table WHERE is_active='1' AND is_delete='0' " );
+	 $i=0;
+	 $j=0;
+	 foreach($newsletter as $letter){
+		 if($letter['status'] == '1'){
+			 $i++;
+		 }else{
+			 $j++;
+		 }
+	 }
+	 $value = array(array('value' => $i), array('value' => $j));
+	 $title =array(array('title' => 'Subscribe'), array('title' => 'Unsubscribe'));
+		
+	foreach($value as $key => $head){
+			$data['newsletter'][] = array_merge($title[$key], $value[$key]);
+		}
+		
 	  $this->layout->display_admin($this->folder.$this->module ,$data);
 	}
 	
