@@ -1,8 +1,8 @@
 <div class="side-body padding-top">
 <div class="container">
 	<div class="row">
-    	<div class="col_3">
-        	<div class="col-md-3 widget widget1">
+    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        	<div class="col-md-3 col-sm-6 col-xs-12 widget">
             	<a href="<?php echo admin_url('events'); ?>">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
@@ -12,7 +12,7 @@
                     </div>
                 </div></a>
         	</div>
-        	<div class="col-md-3 widget widget1">
+        	<div class="col-md-3 col-sm-6 col-xs-12 widget">
             	<a href="<?php echo admin_url('feedback'); ?>">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-users user1 icon-rounded"></i>
@@ -22,7 +22,7 @@
                     </div>
                 </div></a>
         	</div>
-        	<div class="col-md-3 widget widget1">
+        	<div class="col-md-3 col-sm-6 col-xs-12 widget">
             	<a href="<?php echo admin_url('photooftheday'); ?>">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-comment user2 icon-rounded"></i>
@@ -32,7 +32,7 @@
                     </div>
                 </div></a>
         	</div>
-        	<div class="col-md-3 widget">
+        	<div class="col-md-3 col-sm-6 col-xs-12 widget">
             	<a href="<?php echo admin_url('cmspage'); ?>">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-book dollar1 icon-rounded"></i>
