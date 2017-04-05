@@ -238,6 +238,8 @@
 
 .ro-welcome-offset {
 	margin-top: 30px;
+        max-height: 275px;
+        overflow: auto;
 }
 
 .ro-iwnd {
