@@ -110,8 +110,8 @@ class Routeplan extends CI_Controller {
                                 $enddate = date('Y-m-d', strtotime($enddate . ' +1 days'));
                             }
                             $insert_array = array(
-                                'start_date' => $start_date,
-                                'end_date' => $enddate,
+                                'start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
+                                'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
                                 'map_id' => $id,
                                 'trip_name' => $trip_name,
                                 'plan_details' => $shapes[$j]->name,
@@ -142,8 +142,8 @@ class Routeplan extends CI_Controller {
                                 $enddate = date('Y-m-d', strtotime($enddate . ' +1 days'));
                             }
 
-                            $insert_array = array('start_date' => $start_date,
-                                'end_date' => $enddate,
+                            $insert_array = array('start_date' => date('Y-m-d', strtotime($shapes[$j]->startdate)),
+                                'end_date' => date('Y-m-d', strtotime($shapes[$j]->enddate)),
                                 'map_id' => $id,
                                 'trip_name' => $trip_name,
                                 'plan_details' => $shapes[$j]->name,
