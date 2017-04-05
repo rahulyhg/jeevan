@@ -7,6 +7,7 @@
 <script type="text/javascript">
     var FRONTEND_URL = '<?php echo admin_url(); ?>';
     var APIDATA_URL = 'routeplan/apidata';
+    var LOADMAP_URL = 'routeplan/loadmap/';
 </script>
 
 <div class="ro-loading-container" data-bind="fade:!isReady()">
@@ -335,7 +336,8 @@
                             <tr>
                                 <td data-bind="text:name"></td>
                                 <td data-bind="text:layers_name"></td>
-                                <td><a href="#" data-bind="click:$parent.getProject.bind($parent,id)">Load map</a></td>
+                                <td><a href="#" data-bind="click:$parent.getProject.bind($parent,id)">Edit</a></td>
+                                <td><a href="#" target="_blank" data-bind="click:$parent.editProject.bind($parent,id)">Load</a></td>
                                 <td><a href="#" data-bind="click:$parent.deleteProject.bind($parent,id)">Delete</a></td>
                             </tr>
                         </tbody>
@@ -422,3 +424,8 @@
 </script>
 <script type="text/javascript" src="<?php echo load_lib(); ?>routelib/require-2.1.8.min.js" data-main="<?php echo load_lib(); ?>theme/routejs/init"></script>
 <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/jquery.min.js" ></script>
+<script type="text/javascript">
+    function getfunction(mapid){
+        alert("yes");
+    }
+</script>
