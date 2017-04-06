@@ -53,11 +53,10 @@ if(!function_exists('send_email'))
 	           $datas = array('CONTENT' => $message1 );
 	           $CI->load->library(array('parser','email'));
 	           $message = $CI->parser->parse($html_template, $datas,true);
+	           
+	            /* mail part */
 	          
-			  	
-	           /* mail part */
-	          
-				if($result['settings_mail_from_smtp']==1)
+				if(isset($result['settings_mail_from_smtp']) && $result['settings_mail_from_smtp']==1)
 				{
 	            	$config['smtp_host']	= $result['settings_smtp_host'];	  
 	                $config['smtp_user']	= $result['settings_smtp_user'];	
@@ -68,7 +67,7 @@ if(!function_exists('send_email'))
 	            }
 	            else{
 	               	$config['protocol'] 	= 'sendmail';
-	            }  
+	            } 
 	           
 	         
 	             $config['charset'] 		= 'iso-8859-1';
