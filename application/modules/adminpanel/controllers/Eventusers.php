@@ -66,6 +66,10 @@ class Eventusers extends CI_Controller {
 			$this->form_validation->set_rules ( 'phone_no', 'lang:phone_no', 'trim|required' ); 
 			$this->form_validation->set_rules ( 'purpose_of_appointment[]', 'lang:purpose_of_appointment', 'trim|required' );
 			$this->form_validation->set_rules ( 'booked_date', 'lang:booked_date', 'trim|required' );
+			if(($this->input->post('appointment_date') != "" && $this->input->post('appointment_date') != "0000-00-00") && (!empty($this->input->post('appointment_start_time')) && $this->input->post('appointment_start_time') != "00:00" ) && (!empty($this->input->post('appointment_end_time')) &&  $this->input->post('appointment_end_time') != "00:00" )){
+				
+				$this->form_validation->set_rules ( 'appointment_end_time', 'lang:appointment_end_time', 'trim|callback_check_available_time' );
+			}
 			
 			if ($this->form_validation->run () == TRUE) {				
 				
@@ -94,6 +98,12 @@ class Eventusers extends CI_Controller {
 					);
 					$this->Mydb->insert($this->table ,$insert_data);		
 					
+					if($this->input->post('appointment_date') != "" && $this->input->post('appointment_start_time') !="" && $this->input->post('appointment_end_time') !=""){
+						$appointment_date = $this->input->post('appointment_date').' '.date('h:i a', strtotime($this->input->post('appointment_time')));
+						$event_page_link = frontend_url().'events';
+						
+						$this->send_appointment_confirmation_email($this->input->post('email'), $this->input->post('name'), $appointment_date, $event_page_link);
+					}
 					$msg = "A New ".$this->module_label.'has been added';
 					create_log('new',$this->module_label,$msg);
 					$this->session->set_flashdata ( 'action_success', sprintf ( $this->lang->line ( 'success_message_add' ), $this->module_label ) );
@@ -204,8 +214,11 @@ class Eventusers extends CI_Controller {
 			$this->form_validation->set_rules ( 'phone_no', 'lang:phone_no', 'trim|required' );
 			$this->form_validation->set_rules ( 'purpose_of_appointment[]', 'lang:purpose_of_appointment', 'trim|required' );
 			$this->form_validation->set_rules ( 'booked_date', 'lang:booked_date', 'trim|required' );
-			
+			if(($this->input->post('appointment_date') != "" && $this->input->post('appointment_date') != "0000-00-00") && (!empty($this->input->post('appointment_start_time')) && $this->input->post('appointment_start_time') != "00:00" ) && (!empty($this->input->post('appointment_end_time')) &&  $this->input->post('appointment_end_time') != "00:00" )){
 				
+				$this->form_validation->set_rules ( 'appointment_end_time', 'lang:appointment_end_time', 'trim|callback_check_available_time' );
+			}
+			
 			if ($this->form_validation->run () == TRUE) {
 				
 				$event_id = get_session_value ( $this->module . '_event_id' );
@@ -233,7 +246,7 @@ class Eventusers extends CI_Controller {
 							"is_active" => $this->input->post('is_active'),
 					);
 					$this->Mydb->update ( $this->table, array ($this->primary_key => $record ['id'] ), $update_data );
-					if($this->input->post('appointment_date') != "" && $this->input->post('appointment_time') !="" ){
+					if($this->input->post('appointment_date') != "" && $this->input->post('appointment_start_time') !="" && $this->input->post('appointment_end_time') !=""){
 						$appointment_date = $this->input->post('appointment_date').' '.date('h:i a', strtotime($this->input->post('appointment_time')));
 						$event_page_link = frontend_url().'events';
 						
@@ -430,7 +443,43 @@ class Eventusers extends CI_Controller {
 		}
 		
 	}
+	public function check_available_time(){
+		$edit_id = $this->input->post('edit_id');
+		$appointment_date = $this->input->post('appointment_date');
+		$start_time = $this->input->post('appointment_start_time');
+		$end_time = $this->input->post('appointment_end_time');
 		
+		if(!empty($appointment_date) && !empty($start_time) && !empty($end_time)){
+			
+			if($edit_id != ""){
+				$where_edit_id = " AND t1.id != '$edit_id'";
+			}
+			$records = $this->Mydb->custom_query(" SELECT * FROM $this->table AS t1 WHERE "
+												 . " ( '$start_time' BETWEEN t1.appointment_start_time AND t1.appointment_end_time"
+												 . " OR '$end_time' BETWEEN t1.appointment_start_time AND t1.appointment_end_time"
+												 . " OR t1.appointment_start_time BETWEEN '$start_time' AND '$end_time' ) "
+                                                 . " AND t1.appointment_date = '$appointment_date' AND t1.is_delete != '1' $where_edit_id" );
+			
+			
+			if(!empty($records)){				
+				if($this->input->post('ajax_request') == 'yes'){					
+					echo "1";	
+				}else{					
+					$this->form_validation->set_message('check_available_time', "The appointment time hase been already booked on this date.");
+					return FALSE;
+				}
+			
+			}else{	
+				
+				if($this->input->post('ajax_request') == 'yes'){					
+					echo "0";									
+				}else{				
+					return true;
+				}
+			}
+			
+		}	
+	}	
 	public function send_appointment_confirmation_email($to_email, $name, $appointment_date, $event_page_link){
 		$chk_arr = array('[NAME]', '[APPOINTMENT_DATE]', '[EVENT_PAGE_LINK]');
 		$rep_arr = array($name, $appointment_date, $event_page_link);
