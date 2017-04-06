@@ -83,19 +83,36 @@
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php echo form_input('booked_date', $records['booked_date'],' class="form-control required"  readonly');?></div></div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment date').'&nbsp;'.get_required();?></label>							
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment date');?></label>							
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date">
-							<?php echo form_input('appointment_date', (($records['appointment_date'] !="0000-00-00" && $records['appointment_date'] != "") ? $records['appointment_date'] : $records['booked_date']),' class="form-control required availablelocation_datepicker"');?></div></div>
+							<?php echo form_input('appointment_date', (($records['appointment_date'] !="0000-00-00" && $records['appointment_date'] != "") ? $records['appointment_date'] : '0000-00-00'),' class="form-control availablelocation_datepicker"');?>
+							
+							</div></div>
+							
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment Start Time').'&nbsp;'.get_required();?></label>							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date">
-							<?php echo form_input('appointment_start_time', (($records['appointment_start_time'] !="0000-00-00" && $records['appointment_start_time'] != "") ? $records['appointment_start_time'] : $records['appointment_start_time']),' class="form-control required appointment_start_time"');?></div></div>
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment Start Time');?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>">
+							<div class="input-group  appointment_start_time">
+							<?php 
+							$appointment_start_time = (($records['appointment_start_time'] !="0000-00-00" && $records['appointment_start_time'] != "") ? $records['appointment_start_time'] : $records['appointment_start_time']);
+							echo form_input('appointment_start_time', get_date_formart($appointment_start_time, 'H:i'),' class="form-control "');?>
+							<span class="input-group-addon">
+						        <span class="glyphicon glyphicon-time"></span>
+						    </span>
+							</div></div>
+							
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment End Time').'&nbsp;'.get_required();?></label>							
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date">
-							<?php echo form_input('appointment_end_time', (($records['appointment_end_time'] !="0000-00-00" && $records['appointment_start_time'] != "") ? $records['appointment_end_time'] : $records['appointment_end_time']),' class="form-control required appointment_end_time"');?></div></div>
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment End Time');?></label>							
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input-group appointment_end_time">
+							<?php 
+							$appointment_end_time = (($records['appointment_end_time'] !="0000-00-00" && $records['appointment_start_time'] != "") ? $records['appointment_end_time'] : $records['appointment_end_time']);
+							echo form_input('appointment_end_time', get_date_formart($appointment_end_time, 'H:i'),' class="form-control appointment_end_time"');?>
+							<span class="input-group-addon">
+						        <span class="glyphicon glyphicon-time"></span>
+						    </span>
+							</div></div>
 						</div>
 						<div class="form-group appointment_booked_list" style="display: none">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Appointment Scheduled Times');?></label>							
@@ -151,6 +168,7 @@
                         </div>
 					</div>
 					<?php
+					
 					echo form_hidden('edit_id',$records['id']);
 					echo form_hidden ( 'action', 'edit' );					
 					echo form_close ();
@@ -176,40 +194,122 @@ $(document).ready(function(){
 	    $(this).closest( "td" ).toggleClass('activetime_colmn');
 	    
 	});
-	
-    $(".available_date").mouseenter(function() {  	  
+
+  $(".available_date").focusin(function() {  
 	    	$(function () {	    		
 			    $('.availablelocation_datepicker').datetimepicker({
 			        format: 'YYYY-MM-DD',	  		          
 			        minDate : '<?php echo $event_data['start_date']; ?>',
 			        maxDate : '<?php echo $event_data['end_date']; ?>',        
+			        showClear:true,
 			    });			    
 		});
+	
+   });
+ 
+  var startTime =  $('.appointment_start_time').clockpicker({
+    	placement: 'top',
+    	align: 'left',
+    	autoclose: true,
+    	'default': 'now'
+    }).find('input').change(function(){
+    	$(".alert_msg").hide();
+    	/* start time */
+    	var start_time = this.value;
 
+    	/* end time */
+    	var end_time = $('.appointment_end_time').find('input').val();
+
+    	/* convert both time into timestamp */
+    	var stt = new Date("November 13, 2013 " + start_time);
+    	stt = stt.getTime();
+
+    	var endt = new Date("November 13, 2013 " + end_time);
+    	endt = endt.getTime();
+
+    	/* by this you can see time stamp value in console via firebug */
+    	console.log("Time1: "+ stt + " Time2: " + endt);
+
+    	if(stt > endt || stt == endt) {
+        	
+    	    $(".alert_msg").show().html('Start-time must be smaller then End-time.');
+            $('.side-body').scrollView();
+    	        return false;
+    	}
     });
+    $('.appointment_end_time').clockpicker({
+    	placement: 'bottom',
+    	align: 'left',
+    	autoclose: true,
+    	'default': 'now'
+    }).find('input').change(function(){
+    	$(".alert_msg").hide();
+    	
+    	var edit_id = $("input[name='edit_id']").find().val();
+    	var appointment_date = $('.available_date').find('input').val();
+    	/* start time */
+    	var start_time = $('.appointment_start_time').find('input').val();
+
+    	/* end time */
+    	var end_time = this.value;
+
+    	/* convert both time into timestamp */
+    	var stt = new Date("November 13, 2013 " + start_time);
+    	stt = stt.getTime();
+
+    	var endt = new Date("November 13, 2013 " + end_time);
+    	endt = endt.getTime();
+
+    	/* by this you can see time stamp value in console via firebug */
+    	console.log("Time1: "+ stt + " Time2: " + endt);
+
+    	if(stt > endt || stt == endt) {
+        	
+    	    $(".alert_msg").show().html('End-time must be bigger then Start-time.');
+            $('.side-body').scrollView();
+    	        return false;
+    	}
+    	$.ajax({
+            url: admin_url + module + "/check_available_time",
+            data: { 'ajax_request' : 'yes' , 'edit_id' : edit_id,'appointment_date' : appointment_date, 'appointment_start_time' : start_time, 'appointment_end_time' : end_time },
+            type: 'POST',
+            dataType: "json",
+            success: function (data) {
+            	 if (data == "1") {
+            		 $(".alert_msg").show().html('The appointment time hase been already booked on this date.');
+                     $('.side-body').scrollView();
+                      
+                  } else {
+                	  $(".alert_msg").hide();
+                  }
+              }
+            
+        });
+    });
+    
+
+   
     $(function () {	    		
-	    $('.appointment_start_time').datetimepicker({
-	    	 format: 'LT',	 	    	
-	    	/* disabledTimeIntervals: [
+	   /* $('.appointment_start_time').datetimepicker({
+	    	 format: 'LT',	 	
+	    	 disabledTimeIntervals: [
 	    	      [moment().hour(00).minutes(00), moment().hour(13).minutes(30)],
 	    	      [moment().hour(20).minutes(00), moment().hour(21).minutes(00)]
-	    	   ]*/
+	    	   ]
 	    });
 	   
 	    $('.appointment_end_time').datetimepicker({
 	    	 format: 'LT',	 
-	    	 /*disabledTimeIntervals: [
+	    	 
+	    	 disabledTimeIntervals: [
 	    	      [moment().hour(00).minutes(00), moment().hour(13).minutes(30)],
 	    	      [moment().hour(20).minutes(00), moment().hour(21).minutes(00)]
-	    	   ]*/
+	    	   ]
 	    	
 	    });
-	   $(".appointment_start_time").on("dp.change", function (e) {
-	        $('.appointment_end_time').data("DateTimePicker").minDate(e.date);
-	    });
-	    $(".appointment_end_time").on("dp.change", function (e) {
-	        $('.appointment_start_time').data("DateTimePicker").maxDate(e.date);
-	    });
+	  */
+
+    	
     });
 });
 
