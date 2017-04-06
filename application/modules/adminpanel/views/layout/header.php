@@ -7,7 +7,7 @@
    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/bootstrap-switch.min.css">
    <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>bootstrap/css/bootstrap-datetimepicker.min.css">
-   
+    <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>bootstrap/css/bootstrap-clockpicker.css">
    <?php /*?>
     <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>bootstrap/css/dataTables.bootstrap.css"> <?php */?>
