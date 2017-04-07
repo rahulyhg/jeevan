@@ -82,6 +82,15 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 </nav>
 </section>
 
+<div class="about_webcame">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h5><a href="<?php echo BASE_URL(); ?>">Home</a> <span class="coloum">|</span> <span class="text-capitalize"><a href="<?php echo $this->uri->segment(); ?>"><?php echo str_replace('-', ' ',$this->uri->segment(1)); ?></a></span></h5>
+			</div>
+		</div>
+	</div>
+</div>
 <?php
 }
 ?>
