@@ -79,6 +79,11 @@
                     <span class="icon fa fa-envelope"></span><span class="title">Feedback</span>
                 </a>
             </li>    
+            <li class="<?php echo ($module == "blog") ? 'active' : ''; ?>">
+                <a href="<?php echo admin_url() . "blog" ?>">
+                    <span class="icon fa fa-book"></span><span class="title">Blog</span>
+                </a>
+            </li>   
             <?php /* ?>
               <li class="panel panel-default dropdown">
               <a data-toggle="collapse" href="#dropdown-table">
