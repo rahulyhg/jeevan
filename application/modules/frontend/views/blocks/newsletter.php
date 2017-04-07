@@ -46,13 +46,13 @@ if(!empty($params)){
 ignore: ".ignore",
 rules: {
 	newsletter_firstname:{required: true,lettersonly: true},
-	newsletter_lastname:{required: true,lettersonly: true},
+	newsletter_lastname:{lettersonly: true},
 	newsletter_email:{required: true,email: true},
 	
 },
 messages: {
 	newsletter_firstname:{required: "Enter your first name",lettersonly: "Type only letter and white space"},
-	newsletter_lastname:{required: "Enter your last name",lettersonly: "Type only letter and white space"},
+	newsletter_lastname:{lettersonly: "Type only letter and white space"},
 	newsletter_email:{required: "Enter your email id",email: "Invaild email id"},
 },
 submitHandler: function (form) {
