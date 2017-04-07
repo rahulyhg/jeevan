@@ -45,7 +45,7 @@
 
             </div>
 
-            <div class="line_content"> <hr></div>
+            
             <div class="col-xs-12">
             <?php
             if(count($gallery) > 6) :

@@ -1,6 +1,6 @@
 <div class="col-lg-12 col-xs-12 round">
 			<div class="container">
-				<h3>Way of Life</h3>
+				<h3><em>Way of Life</em></h3>
 				<p>Shri Kumaran Swami Gurujee, is a Noble Soul and a Precious Gem whom the Mother Earth has given birth to serve the world for the great cause of World Peace.</p>
 			</div>
 			<div class="page-content"> <br>

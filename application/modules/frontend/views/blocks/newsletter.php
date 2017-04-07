@@ -1,53 +1,58 @@
 <?php
 if(!empty($params)){
 ?>
+<div class="news_subscribtions">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-xs-6">
+					<img src="<?php echo skin_url(); ?>img/subscribtionsimg.png" alt="news subscription">
+				</div>
+				<div class="col-xs-6 news_email round letter">
+					<h3><em><?php echo $params->newsletter_title; ?></em></h3>
+					<p><?php echo $params->newsletter_subtitle; ?></p>
+                    <form id="newsletter_form"  name="newsletter_form" method="post">
+						<div class="form-group col-xs-6 news_firstname">
+							<label for="newsletter_firstname" class="sr-only"></label>
+							<input id="newsletter_firstname" class="form-control input-group-lg" type="text" name="newsletter_firstname"
+								   title="Enter first name"
+								   placeholder="First name"/>
+						</div>
 
-<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 letter news_letter">
-
-
-<div class="col-lg-9 col-xs-12 letter_text">
-    <h3><?php echo $params->newsletter_title; ?></h3>
-    <p><?php echo $params->newsletter_subtitle; ?></p>
-</div>
-
-<?php if($params->newsletter_icon == 'show'){ ?>
-<div class="col-lg-3 col-xs-3">
-	<img src="<?php echo skin_url(); ?>img/msg.png" alt="msg">
-</div>
-<?php } ?>
-
-
-    <div class="col-lg-12">
-        <form id="newsletter_form" class="form-horizontal" name="newsletter_form" method="post">
-            <div class="col-lg-5 col-xs-12 form-group">
-                <input type="text" name="newsletter_name"  id="newsletter_name" class="form-control" placeholder="Name">
-                <input type="hidden" name="action" value="Subcribe">
-            </div>
-            <div class="col-lg-5 col-xs-12 form-group">
-                <input type="text" class="form-control" placeholder="E-mail" name="newsletter_email" id="newsletter_email">
-            </div>
-            <div class="col-lg-2 col-xs-12 input-group">
-                <div class="btn-group">
-                    <input class="btn" id="newsletter_submit" name="newsletter_submit" value="<?php echo $params->newsletter_button; ?>" type="submit">
-                </div>
-            </div>
-        </form>
-        <div class="clearfix"></div><div class="newsletter_status"></div>
-    </div>
-
-
-  
+						<div class="form-group col-xs-6 ">
+							<label for="newsletter_lastname" class="sr-only"></label>
+							<input id="newsletter_lastname" class="form-control input-group-lg" type="text" name="newsletter_lastname"
+								   title="Enter last name"
+								   placeholder="Last name"/>
+						</div>
+						
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="E-mail" name="newsletter_email" id="newsletter_email">
+							<div class="input-group-btn">
+								<input class="btn btn-danger" id="newsletter_submit" name="newsletter_submit" value="SUBSCRIBE" type="submit">
+							</div>
+						</div>
+        			</form>
+                    <div class="clearfix"></div><div class="newsletter_status"></div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript">
  $("#newsletter_form").validate({
 ignore: ".ignore",
 rules: {
-	newsletter_name:{required: true,lettersonly: true},
+	newsletter_firstname:{required: true,lettersonly: true},
+	newsletter_lastname:{required: true,lettersonly: true},
 	newsletter_email:{required: true,email: true},
+	
 },
 messages: {
-	newsletter_name:{required: "Enter your name",lettersonly: "Type only letter and white space"},
+	newsletter_firstname:{required: "Enter your first name",lettersonly: "Type only letter and white space"},
+	newsletter_lastname:{required: "Enter your last name",lettersonly: "Type only letter and white space"},
 	newsletter_email:{required: "Enter your email id",email: "Invaild email id"},
 },
 submitHandler: function (form) {
