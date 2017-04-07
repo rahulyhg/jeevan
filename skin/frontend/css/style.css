@@ -1425,19 +1425,19 @@ section {
 }
 .aboutus p
 {
-	text-align: justify;
-	line-height: 25px;
+	text-align: left;
+	line-height: 28px;
 	font-family: 'latoregular';
-	color: #888;
+	color: #666666;
 	margin-bottom: 30px;
 	font-size: 14px;
 }
 .read_buuton
 {
 	text-decoration: none !important;
-	color: orangered;
+	color: #ff3300 !important;
 	font-size: 15px;
-	font-weight: 600;
+	font-weight: 300;
 }
 .read_buuton:hover
 {
@@ -1473,24 +1473,23 @@ section {
 	float: left;
 	width: 100%;
 	height: auto;
-	min-height: 300px;
-	padding: 0px;
-	margin: 0px 0px 15px 0px;
-	background:#fff;
+	min-height: 290px;
+	background: #fff;
+	padding: 40px 0px;
 }
 .news_content h3
 {
-	color: orangered;
+	color: #ff3300;
 	font-size: 30px;
-	margin-top: 41px !important;
+	margin: 0px 0px 20px 0px;
 	font-family: 'latoregular';
 }
 .news_letter p
 {
-	line-height: 22px;
+	line-height: 28px;
 	font-family: 'latoregular';
-	color: #888;
-	text-align: justify;
+	color: #666666;
+	text-align: left;
 	font-size: 14px;
 }
 .letter
@@ -1499,19 +1498,6 @@ section {
 	padding: 0px;
 	margin-top: 40px;
 	float: left;
-	border-left: 1px solid gray;
-	height: 220px;
-}
-.letter h3
-{
-	color: orangered;
-	font-size: 30px;
-	margin-top: 0px;
-	font-family: 'latoregular';
-}
-.letter img
-{
-	margin-left: -12px;
 }
 .letter .navbar-form
 {
@@ -1520,12 +1506,17 @@ section {
 .letter .btn
 {
 	border-radius: 0px;
+	width: 122px;
+	height: 40px;
 }
 .letter .form-control {
     border-radius: 0px;
+    margin-top: 0px;
+	height: 40px;
 }
 .input-group-btn, .btn-danger {
-    margin-right: 0px;
+    margin-right: 15px;
+    margin-top: 0px;
 	padding: 0 0 20px 0;
 }
 .chakra
@@ -1554,13 +1545,14 @@ section {
 	float: left;
 	width: 100%;
 	height: auto;
-	min-height: 270px;
-	background-color: #000;
+	min-height: 300px;
+	background-color: #120000;
 	color: #a0a0a0;
 }
 .footer_section h3
 {
 	text-decoration: underline;
+	font-size: 20px;
 }
 .footer_section a
 {
@@ -1583,11 +1575,11 @@ section {
 }
 .footer_section1
 {
-	text-align: center
+	text-align: left
 }
 .footer_section2
 {
-	text-align: center
+	text-align: left
 }
 
 .footer_section1 h3
@@ -1718,6 +1710,10 @@ section {
 	text-decoration: underline;
 	font-size: 20px;
 }
+.footer_section3 .hide_txt
+{
+	display:none;
+}
 .footer_section3 .image-and-text{
     clear:both;
 }
@@ -1729,6 +1725,51 @@ section {
 	margin-bottom:70px;
 	width: 20px;
 	height: 20px;
+}
+.footer_section3 .connection .fa-sign-out
+{
+	padding: 0px 0 0 10px;
+}
+.footer_section3 .twitter_blog
+{
+	border-bottom: 1px solid #9f9f9f;
+}
+.footer_section3 .connection h5::before
+{
+	background-image: url(../img/twitter.png);
+	content: "";
+    width: 26px;
+    height: 20px;
+    position: absolute;
+    display: inline-block;
+	background-repeat: no-repeat;
+	margin: 0 0 0 -30px;
+}
+.footer_section3 .connection h5::after
+{
+	background-image: url(../img/twitter_small.png);
+	content: "";
+    width: 26px;
+    height: 20px;
+    position: absolute;
+    display: inline-block;
+	background-repeat: no-repeat;
+	margin: 0 0 0 8px;
+}
+.footer_section3 .connection .twitter_name
+{
+	padding: 0 0 0 20px;
+}
+.footer_section3 .connection .twitter_name::before
+{
+	background-image: url(../img/twitter_circle.png);
+	content: "";
+    width: 26px;
+    height: 20px;
+    position: absolute;
+    display: inline-block;
+	background-repeat: no-repeat;
+	margin: 0 0 0 -16px;
 }
 .connection .conn_name
 {
@@ -4101,4 +4142,96 @@ figure.effect-apollo:hover p {
 {
 	color: #666666;
 	line-height: 28px;
+}
+
+.message_of_day img
+{
+	margin-bottom: 20px;
+}
+em {
+  font-size: 30px;
+  display: block;
+  font-style:normal;
+	font-family: 'latoregular';
+  padding-top: 1.6px;
+	}
+em::before {
+  
+    padding: 0 10px 0 0;
+    content:url(../img/samyleft.png);
+}
+em::after
+	{
+
+    padding: 0 0px 0 10px;
+    content:url(../img/samy-right.png);
+	}
+.round em {
+  font-size: 30px;
+  display: block;
+  font-style:normal;
+	font-family: 'latoregular';
+  padding-top: 1.6px;
+	}
+.round em::before {
+  
+    padding: 0 10px 0 0;
+    content:url(../img/wayoflife-left.png);
+}
+.round em::after
+	{
+
+    padding: 0 0px 0 10px;
+    content:url(../img/wayoflife-right.png);
+	}
+.aboutus
+{
+	margin-bottom: 30px;
+}
+/*news_subscribtions*/
+.news_subscribtions
+{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	min-height: 300px;
+	margin: 0px;
+	padding: 0px;
+	background-color: #4d0000;
+}
+
+.news_email
+{
+	background: url(../img/subcribtion_mail.png) center center no-repeat;
+	margin-top: 20px !important;
+}
+.news_email h3
+{
+	text-align: left !important;
+}
+
+.news_email p
+{
+	color: #f8bebe;
+	font-size: 16px;
+	margin: 30px 0px;
+	text-align: left;
+	padding: 0px 45px 0px 0px;
+}
+.news_email .news_firstname
+{
+	padding: 0px;
+}
+.news_email #newsletter_form
+{
+	margin: 42px 0px;
+}
+.reg_name
+{
+	margin-left:15px;
+}
+#block_way_circle_40 .img-thumbnail
+{
+	padding:0px !important;
 }
