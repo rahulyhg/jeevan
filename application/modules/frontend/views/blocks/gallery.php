@@ -18,7 +18,7 @@
                             <div class="mask">
                                 <h2>Jeevanacharya</h2>
                                 <p><?php echo substr($gallery_album['name'], 0, 100); ?></p>
-                                <a href="<?php echo frontend_url() . 'gallery/' . $gallery_album['slug']; ?>" class="info">View more</a>
+                                <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>" class="info">View more</a>
                             </div>
                         </div>
                         <!--                        <div class="col-sm-4 col-xs-12 grid">
@@ -27,7 +27,7 @@
                                                         <figcaption>
                         
                                                             <p><?php echo $gallery_album['name']; ?></p>
-                                                            <a href="<?php echo frontend_url() . 'gallery/' . $gallery_album['slug']; ?>">View more</a>
+                                                            <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>">View more</a>
                                                         </figcaption>			
                                                     </figure>
                                                 </div>-->
