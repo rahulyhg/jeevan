@@ -189,11 +189,11 @@ class Cmspage extends CI_Controller {
 			
 			if ($this->form_validation->run () == TRUE) {
 				
-				$slug = create_pageuri(post_value ( 'page_title' ), $this->table, 'page_slug',array('is_delete !=' => 1));
+				$slug = create_pageuri(post_value ( 'page_title' ), $this->table, 'page_slug',array('is_delete !=' => 1, 'id !=' => $id));
 				
 				$update_array = array (
 						'page_title' => post_value ( 'page_title' ),
-						//'page_slug' => $slug,
+						'page_slug' => $slug,
 						'page_description' => $this->input->post('page_description', false),
 						'page_meta_title' => post_value('page_meta_title'),
 						'page_meta_keyword' => post_value('page_meta_keyword'),
