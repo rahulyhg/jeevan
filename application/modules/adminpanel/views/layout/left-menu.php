@@ -21,11 +21,6 @@
                 </a>
             </li>
 
-            <li class="<?php echo ($module == "user") ? 'active' : ''; ?>">
-                <a href="<?php echo admin_url() . "user" ?>">
-                    <span class="icon fa fa-users"></span><span class="title">Site Users</span>
-                </a>
-            </li>
             <li class="<?php echo ($module == "cmspage") ? 'active' : ''; ?>">
                 <a href="<?php echo admin_url() . "cmspage" ?>">
                     <span class="icon fa fa-slack"></span><span class="title">Pages</span>
