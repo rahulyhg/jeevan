@@ -31,6 +31,7 @@ class Pages extends MY_Controller {
         $data = array_merge($data, $this->view_data);
 
         $data['cms'] = $this->Mydb->get_record('*', $this->cms_pages, array('page_slug' => $method, 'is_active' => '1', 'is_delete' => '0'));
+		
         if (!empty($data['cms']['page_template'])) {
             $page_template = $data['cms']['page_template'];
         } else {
