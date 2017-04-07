@@ -1,13 +1,3 @@
-<div class="about_webcame">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h5><a href="index.html">Home</a> <span class="coloum">|</span> <span>Program</span></h5>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="travel_program">
     <div class="container">
         <div class="row">
