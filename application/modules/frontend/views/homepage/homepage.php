@@ -15,14 +15,7 @@
 	</div>
 </div>
 
-<div class="news_letter">
-	<div class="container">
-		<div class="row" >
+
         	
-            <?php echo $blocks['content_newsletter']; ?>
+<?php echo $blocks['content_newsletter']; ?>
             
-			
-            
-		</div>
-	</div>
-</div>
