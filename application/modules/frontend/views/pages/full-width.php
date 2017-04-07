@@ -20,15 +20,8 @@ if(!empty($blocks['inner_bottom'])){
 }
 ?>
 <div class="clearfix"></div>
-<div class="news_letter">
-	<div class="container">
-		<div class="row" >
-            <?php 
-			if(!empty($blocks['content_newsletter'])){
-			echo $blocks['content_newsletter']; 
-			}
-			?>
-            
-		</div>
-	</div>
-</div>
+<?php 
+if(!empty($blocks['content_newsletter'])){
+echo $blocks['content_newsletter']; 
+}
+?>
