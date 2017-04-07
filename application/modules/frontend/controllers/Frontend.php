@@ -117,7 +117,7 @@ class Frontend extends MY_Controller {
     public function newsletter() {
         if ($this->input->post('action') == 'Subcribe') {
 
-            $this->form_validation->set_rules('newsletter_name', 'Name', 'required');
+            $this->form_validation->set_rules('newsletter_firstname', 'First name', 'required');
             $this->form_validation->set_rules('newsletter_email', 'Email Address', 'required');
             if ($this->form_validation->run($this) == TRUE) {
 
@@ -125,7 +125,8 @@ class Frontend extends MY_Controller {
 
                 if (empty($check)) {
                     $insert_array = array(
-                        'name' => $this->input->post('newsletter_name'),
+                        'first_name' => $this->input->post('newsletter_firstname'),
+                        'last_name' => $this->input->post('newsletter_lastname'),
                         'email' => $this->input->post('newsletter_email'),
                         'status' => '1',
                         'is_active' => '1',
@@ -135,10 +136,10 @@ class Frontend extends MY_Controller {
                     );
                     $insert = $this->Mydb->insert($this->sramcms_newsletter_table, $insert_array);
 
-                    $details = $this->Mydb->get_record('name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
+                    $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
 
-                    $name = $details['name'];
+                    $name = $details['first_name'].($details['last_name'] ? $details['last_name'] :'');
                     $activation_link = frontend_url('newsletterunsubscribe/' . $details['activation_code']);
                     $to_email = $details['email'];
 
@@ -156,7 +157,8 @@ class Frontend extends MY_Controller {
                 } else {
 
                     $update_array = array(
-                        'name' => $this->input->post('newsletter_name'),
+                        'first_name' => $this->input->post('newsletter_firstname'),
+                        'last_name' => $this->input->post('newsletter_lastname'),
                         'email' => $this->input->post('newsletter_email'),
                         'status' => '1',
                         'is_active' => '1',
@@ -169,7 +171,7 @@ class Frontend extends MY_Controller {
 
                     if ($updateuser) {
 
-                        $update_result = $this->mailchimp->post("lists/$this->list_id/members", [ 'email_address' => $this->input->post('newsletter_email'), 'merge_fields' => ['FNAME' => $this->input->post('newsletter_name')], 'status' => 'subscribed',]);
+                        $update_result = $this->mailchimp->post("lists/$this->list_id/members", [ 'email_address' => $this->input->post('newsletter_email'), 'merge_fields' => ['FNAME' => $this->input->post('first_name'), 'LNAME' => $this->input->post('last_name')], 'status' => 'subscribed',]);
                         $response_msg ['status'] = 'success';
                         $response_msg ['message'] = 'Your Subscription updated successfully';
                     } else {
@@ -210,9 +212,9 @@ class Frontend extends MY_Controller {
 
                 $updateuser = $this->Mydb->update($this->sramcms_newsletter_table, array('id' => $id), $user_array);
 
-                $details = $this->Mydb->get_record('name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
+                $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
-                $name = $getsubscribe[0]['name'];
+                $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] :'');
                 $activation_link = frontend_url('newslettersubscribe/' . $getsubscribe[0]['activation_code']);
                 $to_emil = $getsubscribe[0]['email'];
                 $response_email = $this->send_newletter_un_email($name, $to_email, $activation_link);
@@ -256,9 +258,9 @@ class Frontend extends MY_Controller {
 
                 $updateuser = $this->Mydb->update($this->sramcms_newsletter_table, array('id' => $id), $user_array);
 
-                $details = $this->Mydb->get_record('name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
+                $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
-                $name = $getsubscribe[0]['name'];
+                $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] :'');
                 $activation_link = frontend_url('newsletterunsubscribe/' . $getsubscribe[0]['activation_code']);
                 $to_email = $getsubscribe[0]['email'];
                 $response_email = $this->send_newletter_email($name, $to_email, $activation_link);
