@@ -27,7 +27,7 @@ $pages['all'] = array(
 	'title' => 'All',
 	'positions' => 'all_page_right,site_header, site_header_desktop, site_footer,site_leftmenu, site_copyright, content_middle, menus, inner_top, inner_bottom, inner_right, inner_left, content_newsletter'
 );
-$pages['frontend/frontend/index'] = array(
+$pages['index'] = array(
 	'title' => 'Home',
 	'positions' => 'content_left, content_middle, way_circle, content_newsletter, site_latest'
 );
