@@ -44,5 +44,6 @@ $block_types = array(
 	"contactforms" => "Contact Forms",
 	"chakra" => "Chakra",
 	"gallery" => "Gallery",
+	"blog" => "Blog",
 	"photooftheday" => "Photo Of The Day",
 );
