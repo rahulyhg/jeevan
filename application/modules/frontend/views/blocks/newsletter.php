@@ -25,7 +25,7 @@ if(!empty($params)){
 								   title="Enter last name"
 								   placeholder="Last name"/>
 						</div>
-						
+						<div class="clearfix"></div>
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="E-mail" name="newsletter_email" id="newsletter_email">
 							<div class="input-group-btn">
