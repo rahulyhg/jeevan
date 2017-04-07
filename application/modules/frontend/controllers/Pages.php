@@ -45,6 +45,9 @@ class Pages extends MY_Controller {
                 $data['available_location'] = '';
             }
         }
+        $data['meta_title']   =  get_meta_text($data['cms']['page_meta_title']);
+        $data['meta_keyword'] = get_meta_text($data['cms']['page_meta_keyword']);
+        $data['meta_content'] = get_meta_text($data['cms']['page_meta_description']);
         $this->layout->display_frontend($this->folder . '/' . $page_template, $data);
     }
 
