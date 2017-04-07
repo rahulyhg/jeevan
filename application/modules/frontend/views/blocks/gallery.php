@@ -45,11 +45,14 @@
 
             </div>
 
+            <div class="line_content"> <hr></div>
+            <div class="col-xs-12">
             <?php
+            if(count($gallery) > 6) :
+            
             $list = $j - 1;
             $numbercount = $list + 1;
             ?>
-            <div class="col-xs-12">
                 <ul class="pager" role="tablist">
                     <li class="previous pull-left" onclick="goTo(1);"><a href="javascript:void(0);"><span aria-hidden="true">←</span> Previous</a></li>
                     <?php
@@ -63,8 +66,9 @@
                     ?>
                     <li class="next pull-right" onclick="goTo(2);"><a href="javascript:void(0);">Next <span aria-hidden="true">→</span></a></li>
                 </ul>
+                <?php endif; ?>
             </div>
-
+			
         </div>
     </div>
 </div>
