@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
 <head>
+<?php load_meta_tags(array('metatitle'=>(isset($meta_title)? $meta_title: ''),'metacontent'=>(isset($meta_content)? $meta_content : ''),'metakeyword'=>(isset($meta_keyword)? $meta_keyword : '')));?>
+
 <meta charset="utf-8">
    <?php echo $this->load->view('layout/header-includes');?>
 </head>
