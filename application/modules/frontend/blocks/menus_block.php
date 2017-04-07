@@ -16,7 +16,7 @@ class Menus_Block extends Core_Block {
 		$data['menuurlslug'] = $this->CI->uri->segment(1);
 		
 		$db = $this->CI->Mydb->db;
-		$db->select('mg.name, mg.link_type, mg.page_id, CASE WHEN (mg.page_id != "0") THEN CONCAT("'.frontend_url('pages/').'",cms.page_slug) ELSE mg.url END AS url, mg.menu_group_id, mg.target, mg.parent_id, cms.page_title, cms.page_slug');
+		$db->select('mg.name, mg.link_type, mg.page_id, CASE WHEN (mg.page_id != "0") THEN CONCAT("'.base_url().'",cms.page_slug,"/") ELSE mg.url END AS url, mg.menu_group_id, mg.target, mg.parent_id, cms.page_title, cms.page_slug');
 		$db->join('sramcms_cms_pages cms', 'cms.id = page_id','left');
 		$db->where('mg.is_active', '1');
 		$db->where('mg.is_delete', '0');
