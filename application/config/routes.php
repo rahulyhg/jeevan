@@ -57,4 +57,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['adminpanel'] = 'adminpanel';
 $route['events'] = 'frontend/events';
 $route['(:any)'] = 'frontend/pages/$1';
+$route['gallery/(:any)'] = 'frontend/gallery/$1';
 
