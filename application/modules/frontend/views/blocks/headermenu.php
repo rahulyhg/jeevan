@@ -1,6 +1,6 @@
 <ul class="sidebar-nav">
-    <a id="menu-close" href="index.html" class="btn btn-default  pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
-    <li class="sidebar-brand"><a href="index.php"><img src="<?php echo skin_url(); ?>img/logo.png" alt=""></a></li>
+    <a id="menu-close" href="javascript:void(0);" class="btn btn-default  pull-right toggle"><i class="glyphicon glyphicon-remove"></i></a>
+    <li class="sidebar-brand"><a href="<?php echo base_url(); ?>"><img src="<?php echo skin_url(); ?>img/logo.png" alt=""></a></li>
     <?php
 	if(!empty($menus_list)){
 		
