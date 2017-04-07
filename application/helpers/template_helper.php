@@ -81,7 +81,12 @@
   		}
   	}
   }  
-  
+  /* get metatitle */
+  if (! function_exists ( 'get_meta_text' )) {
+  	function get_meta_text($title) {
+  		return ($title != "") ? $title . " | " . get_site_title () : get_site_title ();
+  	}
+  }
   /*load meta tags */
   if (!function_exists('load_meta_tags')) {
   
@@ -94,7 +99,7 @@
   				array('name' => 'keywords', 'content' => (isset($data['metakeyword']) && $data['metakeyword'] !='' )? $data['metakeyword'] : $title),
   				array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv'));
   			
-  		echo "<title>" . $title . "</title>";
+  		echo "<title>" . $title ."</title>";
   		echo meta($meta);
   		echo "<meta charset=\"utf-8\">";
   		echo "<link rel=\"shortcut icon\" href=\"".skin_url()."images/favicon.ico\" type=\"image/x-icon\">";

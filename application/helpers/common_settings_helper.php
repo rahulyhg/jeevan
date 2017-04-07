@@ -18,7 +18,16 @@ if (! function_exists ( 'get_label' )) {
 		}
 	}
 }
-
+/* get site title */
+if (! function_exists ( 'get_site_title' )) {
+	function get_site_title($title = null) {
+		if ($title != "") {
+			return $title;
+		} else {
+			return get_label ( 'site_title' );
+		}
+	}
+}
 
 /* get current date */
 if (! function_exists ( 'current_date' )) {
