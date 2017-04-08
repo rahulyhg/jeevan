@@ -38,19 +38,10 @@
                                 <?php
                                 if ($gallery_details['media_type'] == '3') {
                                 	$file_url = $gallery_details['file_name'];
-                                    ?>
-                                    <iframe class="video_1" src="<?php echo $gallery_details['file_name']; ?>?rel=0" frameborder="0" allowfullscreen style="width:100%; height:250px; display:none;"></iframe>
-                                    <?php
+                                   
                                 } elseif ($gallery_details['media_type'] == '2') {
                                 	$file_url = media_url() . $gallery_details['file_name'];
-                                    ?>
-
-
-                                    <video controls  preload="metadata" class="video_2"  style="display:none; width:100%; height:250px;">
-                                        <source src="<?php echo media_url() . $gallery_details['file_name']; ?>" type="video/webm"></source>
-                                        <source src="<?php echo media_url() . $gallery_details['file_name']; ?>" type="video/mp4"></source>
-                                    </video>
-                                    <?php
+                                  
                                 }else{
                                 	$file_url = $gallery_details['image_url'];
                                 }
@@ -60,27 +51,7 @@
                                 <a data-fancybox="gallery" data-width="2048" data-height="1365" data-caption="<?php echo $gallery_details['description'] ? $gallery_details['description'] :$gallery_details['title']; ?>"  title="<?php echo $gallery_details['title']; ?>" href="<?php echo $file_url; ?>" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info gallery_box">View</a>
                             </div> 
                         </div>
-        <!--                        <a  title="<?php echo $gallery_details['title']; ?>" href="javascript:void(0);" data-title="<?php echo $gallery_details['media_type']; ?>" class="zoom" >
-                            <img class="gallery_image img-responsive" src="<?php echo $gallery_details['image_url']; ?>" />
-                            <span class="overlay gallery_box"><i class="glyphicon <?php if ($gallery_details['media_type'] != '1') { ?> glyphicon-facetime-video <?php } else { ?> glyphicon-picture <?php } ?>"></i></span>
-                        <?php
-                        if ($gallery_details['media_type'] == '3') {
-                            ?>
-                                                                        <iframe class="video_1" src="<?php echo $gallery_details['file_name']; ?>?rel=0" frameborder="0" allowfullscreen style="width:100%; height:250px; display:none;"></iframe>
-                            <?php
-                        } elseif ($gallery_details['media_type'] == '2') {
-                            ?>
-
-
-                                                                        <video controls  preload="metadata" class="video_2"  style="display:none; width:100%; height:250px;">
-                                                                            <source src="<?php echo media_url() . $gallery_details['file_name']; ?>" type="video/webm"></source>
-                                                                            <source src="<?php echo media_url() . $gallery_details['file_name']; ?>" type="video/mp4"></source>
-                                                                        </video>
-                            <?php
-                        }
-                        ?>
-                            <p style="display:none; color:#333 !important;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
-                        </a>-->
+    
                     </div>
 
 
@@ -112,6 +83,19 @@
     </div>
 </div>
 
+<div class="line_content">
+<hr /></div>
+<?php 
+if(!empty($blocks['inner_bottom'])){
+	echo $blocks['inner_bottom']; 
+}
+?>
+<div class="clearfix"></div>
+<?php 
+if(!empty($blocks['content_newsletter'])){
+echo $blocks['content_newsletter']; 
+}
+?>
 <script src="<?php echo skin_url(); ?>js/bootstrap-portfilter.min.js"></script>
 <script>
     $(document).ready(function () {
