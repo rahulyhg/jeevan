@@ -6,9 +6,7 @@ class Newsletter_Block extends Core_Block {
 	}
 	public function drawData() {
 		$data = $this->getBlockData();
-		//echo '<pre>';
-		//print_r($data);
-		//die;
+		
 		return $data;
 	}
 }
