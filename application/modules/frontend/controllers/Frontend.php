@@ -115,7 +115,7 @@ class Frontend extends MY_Controller {
     }
 
     public function newsletter() {
-        if ($this->input->post('action') == 'Subcribe') {
+        if ($this->input->post('action') == 'subscribe') {
 
             $this->form_validation->set_rules('newsletter_firstname', 'First name', 'required');
             $this->form_validation->set_rules('newsletter_email', 'Email Address', 'required');
