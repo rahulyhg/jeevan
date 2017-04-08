@@ -49,7 +49,7 @@ class Gallery extends MY_Controller {
 		
 		FROM $this->sramcms_gallary_categories_table AS gc 
 		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
-		WHERE gc.is_active='1' AND gc.is_delete='0' AND gc.slug = '".$method."'");	
+		WHERE g.is_active='1' AND g.is_delete='0' AND gc.slug = '".$method."'");	
 		
 		
 			
