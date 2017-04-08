@@ -12,6 +12,7 @@
 <div class="header1">
 	<div class="row">
     	<?php echo $blocks['way_circle'];	?>
+		
 	</div>
 </div>
 
