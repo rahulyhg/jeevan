@@ -6,7 +6,7 @@
 <meta charset="utf-8">
    <?php echo $this->load->view('layout/header-includes');?>
 </head>
-<body>
+<body class="page-<?php echo str_replace("/", ' ', uri_string()); ?>">
 	<?php echo $this->load->view('layout/header');?>
 	<?php echo $site_body; ?>	
     <?php echo $this->load->view('layout/footer');?>  
