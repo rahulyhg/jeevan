@@ -11,7 +11,9 @@ if(!empty($params)){
 				<div class="col-xs-6 news_email round letter">
 					<h3><em><?php echo $params->newsletter_title; ?></em></h3>
 					<p><?php echo $params->newsletter_subtitle; ?></p>
+					
                     <form id="newsletter_form"  name="newsletter_form" method="post">
+					     <div class="newsletter_status" class="display:none"></div>
 						<div class="form-group col-xs-6 news_firstname">
 							<label for="newsletter_firstname" class="sr-only"></label>
 							<input id="newsletter_firstname" class="form-control input-group-lg" type="text" name="newsletter_firstname"
@@ -29,11 +31,13 @@ if(!empty($params)){
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="E-mail" name="newsletter_email" id="newsletter_email">
 							<div class="input-group-btn">
+								<input type="hidden" name="action" value="subscribe">
 								<input class="btn btn-danger" id="newsletter_submit" name="newsletter_submit" value="SUBSCRIBE" type="submit">
+								
 							</div>
 						</div>
         			</form>
-                    <div class="clearfix"></div><div class="newsletter_status"></div>
+                   
 				</div>
 				
 			</div>
@@ -68,12 +72,14 @@ submitHandler: function (form) {
 		success: function(data) {
 			
 			if (data.status == 'success') {
+				$('.newsletter_status').show();
 				$('.newsletter_status').addClass('text-success');
 				$('.newsletter_status').html(data.message).slideDown();
 				$("#newsletter_name").val('');
 				$("#newsletter_email").val('');
 			}
 			else {
+				$('.newsletter_status').show();
 				$('.newsletter_status').addClass('text-warning');
 				$('.newsletter_status').html(data.message).slideDown();
 				$("#newsletter_name").val('');
