@@ -32,6 +32,9 @@ if(!empty($blocks['inner_top'])){
    </div>
 </div>
 <div class="clearfix"></div>
+
+<div class="line_content">
+<hr /></div>
 <?php 
 if(!empty($blocks['inner_bottom'])){
 	echo $blocks['inner_bottom']; 

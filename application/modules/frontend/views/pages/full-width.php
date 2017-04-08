@@ -14,6 +14,8 @@ echo $cms['page_description'];
 
 <div class="clearfix"></div>
 
+<div class="line_content">
+<hr /></div>
 <?php 
 if(!empty($blocks['inner_bottom'])){
 	echo $blocks['inner_bottom']; 
