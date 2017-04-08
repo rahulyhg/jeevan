@@ -4,7 +4,7 @@
 	$imagefiles =  json_decode($record_photo[0]['image']);
 	if(!empty($imagefiles->files[0])){
 	?>
-    <a data-fancybox="gallery" href="<?php echo media_url().$imagefiles->files[0]; ?>"> <img src="<?php echo media_url().$imagefiles->files[0]; ?>" class="img-thumbnail" style="width:100%; height:250px;" alt="jeevanacharya photo"> </a>
+    <a data-fancybox="gallery" href="<?php echo media_url().$imagefiles->files[0]; ?>"> <img src="<?php echo media_url().$imagefiles->files[0]; ?>" class="img-thumbnail"  alt="jeevanacharya photo"> </a>
     <?php
 	}
 	?>
