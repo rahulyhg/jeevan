@@ -32,7 +32,7 @@ class Events extends MY_Controller {
         $data['module'] = $this->module;
         $this->loadBlocks();
         $data = array_merge($data, $this->view_data);
-        $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active=1 AND is_visible = 1 ");
+        $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active=1 AND is_visible = 1 ORDER BY start_date ASC");
         $data['records'] = $getplandetails;
         $this->layout->display_frontend($this->folder . '/events', $data);
     }
