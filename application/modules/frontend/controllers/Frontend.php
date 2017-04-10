@@ -198,7 +198,8 @@ class Frontend extends MY_Controller {
         $data = array_merge($data, $this->view_data);
 
 
-        $key = $this->uri->segment(3);
+       $key = $this->uri->segment(2);
+		
         if (!empty($key)) {
             $getsubscribe = $this->Mydb->custom_query("SELECT * FROM $this->sramcms_newsletter_table WHERE activation_code='$key' AND status='1'");
             if (!empty($getsubscribe)) {
@@ -215,7 +216,7 @@ class Frontend extends MY_Controller {
                 $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
                 $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] :'');
-                $activation_link = frontend_url('newslettersubscribe/' . $getsubscribe[0]['activation_code']);
+                $activation_link = base_url().'newslettersubscribe/' . $getsubscribe[0]['activation_code'];
                 $to_emil = $getsubscribe[0]['email'];
                 $response_email = $this->send_newletter_un_email($name, $to_email, $activation_link);
 
@@ -244,7 +245,7 @@ class Frontend extends MY_Controller {
         $data = array_merge($data, $this->view_data);
 
 
-        $key = $this->uri->segment(3);
+        $key = $this->uri->segment(2);
         if (!empty($key)) {
             $getsubscribe = $this->Mydb->custom_query("SELECT * FROM $this->sramcms_newsletter_table WHERE activation_code='$key' AND status='0'");
             if (!empty($getsubscribe)) {
@@ -261,7 +262,7 @@ class Frontend extends MY_Controller {
                 $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
                 $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] :'');
-                $activation_link = frontend_url('newsletterunsubscribe/' . $getsubscribe[0]['activation_code']);
+                $activation_link = base_url().'newsletterunsubscribe/' . $getsubscribe[0]['activation_code'];
                 $to_email = $getsubscribe[0]['email'];
                 $response_email = $this->send_newletter_email($name, $to_email, $activation_link);
 
