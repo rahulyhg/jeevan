@@ -24,14 +24,16 @@
             if (!empty($gallery)) {
                 foreach ($gallery as $gallery_details) {
                     ?>
-                    <div class="col-lg-3 col-sm-6 col-xs-12" data-tag=<?php
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" data-tag=<?php
                     if ($gallery_details['media_type'] != '1') {
                         echo 'media_video';
+						
                     } else {
                         echo 'media_image';
                     }
                     ?>>
-
+						
                         <div class=" grid view view-sixth" >
                             <img src="<?php echo $gallery_details['image_url']; ?>" style="width:100%;height:200px" class="gallery_image img-responsive"/>
                            <div class="mask">
