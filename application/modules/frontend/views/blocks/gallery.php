@@ -13,7 +13,7 @@
                     $j = 2;
                     foreach ($gallery as $gallery_album) {
                         ?>
-                        <div class="col-lg-4 gallery_box">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gallery_box">
                         
                             <div class=" grid view view-first">
                                 <img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>"/>
