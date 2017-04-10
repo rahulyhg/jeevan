@@ -10,7 +10,7 @@
 						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
 						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
 						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-						<li onclick="location.href='<?php echo base_url(); ?>pages/chakra/twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
+						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
 						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
 						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
 						<li onclick="location.href='<?php echo base_url(); ?>chakra/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
