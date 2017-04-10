@@ -86,24 +86,27 @@ body
 }
  
 /********* Gallery Styles Start ***************/
+.gallery p
+{
+	color:#7d7777;
+	line-height:28px;
+	text-align:center;
+	padding-bottom:20px !important;
+}
 .view {
-   width: 300px;
-   height: 200px;
-   margin: 10px;
+   width: 100%;
+   height: 260px;
+   margin: 0px;
    float: left;
-   border: 10px solid #fff;
+   border: 0px solid #fff;
    overflow: hidden;
    position: relative;
    text-align: center;
-   -webkit-box-shadow: 1px 1px 2px #e6e6e6;
-   -moz-box-shadow: 1px 1px 2px #e6e6e6;
-   box-shadow: 1px 1px 2px #e6e6e6;
    cursor: default;
-   background: #fff url(../images/bgimg.jpg) no-repeat center center;
 }
 .view .mask,.view .content {
-   width: 300px;
-   height: 200px;
+   width: 100%;
+   height: 260px;
    position: absolute;
    overflow: hidden;
    top: 0;
@@ -131,248 +134,276 @@ body
    font-size: 12px;
    position: relative;
    color: #fff;
-   padding: 10px 20px 20px;
+   padding: 0px;
    text-align: center;
 }
 .view a.info {
-   display: inline-block;
+   display: block;
    text-decoration: none;
-   padding: 7px 14px;
-   background: #cc3333;
    color: #fff;
    text-transform: uppercase;
-   -webkit-box-shadow: 0 0 1px #cc3333;
-   -moz-box-shadow: 0 0 1px #cc3333;
-   box-shadow: 0 0 1px #cc3333;
+   text-align:center;
+   width:100%;
+   height:40px;
+   margin-top:110px;
+
+}
+.view 
+{
+	text-align:center;
+	
+}
+
+.view a.info img
+{
+	width:32px;
+	height:auto !important;
+	display:inline;
+	text-align:center;
+	margin-bottom:5px;
 }
 .view a.info:hover {
-   -webkit-box-shadow: 0 0 5px #cc3333;
-   -moz-box-shadow: 0 0 5px #cc3333;
-   box-shadow: 0 0 5px #cc3333;
+  
 }
-.view-eighth .mask {
-   background-color: rgba(255, 255, 255, 0.7);
-   top: -200px;
+.view-first img {
+   -webkit-transition: all 0.2s linear;
+   -moz-transition: all 0.2s linear;
+   -o-transition: all 0.2s linear;
+   -ms-transition: all 0.2s linear;
+   transition: all 0.2s linear;
+}
+.view-first .mask {
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
    filter: alpha(opacity=0);
    opacity: 0;
-   -webkit-transition: all 0.3s ease-out 0.5s;
-   -moz-transition: all 0.3s ease-out 0.5s;
-   -o-transition: all 0.3s ease-out 0.5s;
-   -ms-transition: all 0.3s ease-out 0.5s;
-   transition: all 0.3s ease-out 0.5s;
+   background-color: rgba(0,0,0, 0.7);
+   -webkit-transition: all 0.4s ease-in-out;
+   -moz-transition: all 0.4s ease-in-out;
+   -o-transition: all 0.4s ease-in-out;
+   -ms-transition: all 0.4s ease-in-out;
+   transition: all 0.4s ease-in-out;
 }
-.view-eighth h2 {
-   -webkit-transform: translateY(-200px);
-   -moz-transform: translateY(-200px);
-   -o-transform: translateY(-200px);
-   -ms-transform: translateY(-200px);
-   transform: translateY(-200px);
-   -webkit-transition: all 0.2s ease-in-out 0.1s;
-   -moz-transition: all 0.2s ease-in-out 0.1s;
-   -o-transition: all 0.2s ease-in-out 0.1s;
-   -ms-transition: all 0.2s ease-in-out 0.1s;
-   transition: all 0.2s ease-in-out 0.1s;
+.view-first h2 {
+   -webkit-transform: translateY(-100px);
+   -moz-transform: translateY(-100px);
+   -o-transform: translateY(-100px);
+   -ms-transform: translateY(-100px);
+   transform: translateY(-100px);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+   -o-transition: all 0.2s ease-in-out;
+   -ms-transition: all 0.2s ease-in-out;
+   transition: all 0.2s ease-in-out;
 }
-.view-eighth p {
-   color: #cc3333;
-   -webkit-transform: translateY(-200px);
-   -moz-transform: translateY(-200px);
-   -o-transform: translateY(-200px);
-   -ms-transform: translateY(-200px);
-   transform: translateY(-200px);
-   -webkit-transition: all 0.2s ease-in-out 0.2s;
-   -moz-transition: all 0.2s ease-in-out 0.2s;
-   -o-transition: all 0.2s ease-in-out 0.2s;
-   -ms-transition: all 0.2s ease-in-out 0.2s;
-   transition: all 0.2s ease-in-out 0.2s;
+.view-first p {
+   -webkit-transform: translateY(100px);
+   -moz-transform: translateY(100px);
+   -o-transform: translateY(100px);
+   -ms-transform: translateY(100px);
+   transform: translateY(100px);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   text-align:left !important;
+   -webkit-transition: all 0.2s linear;
+   -moz-transition: all 0.2s linear;
+   -o-transition: all 0.2s linear;
+   -ms-transition: all 0.2s linear;
+   transition: all 0.2s linear;
 }
-.view-eighth a.info {
-   -webkit-transform: translateY(-200px);
-   -moz-transform: translateY(-200px);
-   -o-transform: translateY(-200px);
-   -ms-transform: translateY(-200px);
-   transform: translateY(-200px);
-   -webkit-transition: all 0.2s ease-in-out 0.3s;
-   -moz-transition: all 0.2s ease-in-out 0.3s;
-   -o-transition: all 0.2s ease-in-out 0.3s;
-   -ms-transition: all 0.2s ease-in-out 0.3s;
-   transition: all 0.2s ease-in-out 0.3s;
+.view-first:hover img {
+   -webkit-transform: scale(1.1,1.1);
+   -moz-transform: scale(1.1,1.1);
+   -o-transform: scale(1.1,1.1);
+   -ms-transform: scale(1.1,1.1);
+   transform: scale(1.1,1.1);
 }
-.view-eighth:hover .mask {
+.view-first a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.2s ease-in-out;
+   -moz-transition: all 0.2s ease-in-out;
+   -o-transition: all 0.2s ease-in-out;
+   -ms-transition: all 0.2s ease-in-out;
+   transition: all 0.2s ease-in-out;
+}
+.view-first:hover .mask {
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
    filter: alpha(opacity=100);
    opacity: 1;
-   top: 0px;
-   -webkit-transition-delay: 0s;
-   -moz-transition-delay: 0s;
-   -o-transition-delay: 0s;
-   -ms-transition-delay: 0s;
-   transition-delay: 0s;
-   -webkit-animation: bounceY 0.9s linear;
-   -moz-animation: bounceY 0.9s linear;
-   -ms-animation: bounceY 0.9s linear;
-   animation: bounceY 0.9s linear;
 }
-.view-eighth:hover h2 {
+.view-first:hover h2,
+.view-first:hover p,
+.view-first:hover a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
    -webkit-transform: translateY(0px);
    -moz-transform: translateY(0px);
    -o-transform: translateY(0px);
    -ms-transform: translateY(0px);
    transform: translateY(0px);
-   -webkit-transition-delay: 0.4s;
-   -moz-transition-delay: 0.4s;
-   -o-transition-delay: 0.4s;
-   -ms-transition-delay: 0.4s;
-   transition-delay: 0.4s;
 }
-.view-eighth:hover p {
-   -webkit-transform: translateY(0px);
-   -moz-transform: translateY(0px);
-   -o-transform: translateY(0px);
-   -ms-transform: translateY(0px);
-   transform: translateY(0px);
+.view-first:hover p {
+   -webkit-transition-delay: 0.1s;
+   -moz-transition-delay: 0.1s;
+   -o-transition-delay: 0.1s;
+   -ms-transition-delay: 0.1s;
+   transition-delay: 0.1s;
+}
+.view-first:hover a.info {
    -webkit-transition-delay: 0.2s;
    -moz-transition-delay: 0.2s;
    -o-transition-delay: 0.2s;
    -ms-transition-delay: 0.2s;
    transition-delay: 0.2s;
 }
-.view-eighth:hover a.info {
-   -webkit-transform: translateY(0px);
-   -moz-transform: translateY(0px);
-   -o-transform: translateY(0px);
-   -ms-transform: translateY(0px);
-   transform: translateY(0px);
+.gallery_box h4 small, .gallery_box p
+{
+	color:#7d7777;
+	text-align:left !important;
+	padding:0px !important;
+	margin:0px !important;
+}
+.gallery_box p{ min-height:70px;}
+.view-sixth img {
+   -webkit-transition: all 0.4s ease-in-out 0.5s;
+   -moz-transition: all 0.4s ease-in-out 0.5s;
+   -o-transition: all 0.4s ease-in-out 0.5s;
+   -ms-transition: all 0.4s ease-in-out 0.5s;
+   transition: all 0.4s ease-in-out 0.5s;
+}
+.view-sixth .mask {
+   background-color: rgba(146,96,91,0.5);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transition: all 0.3s ease-in 0.4s;
+   -moz-transition: all 0.3s ease-in 0.4s;
+   -o-transition: all 0.3s ease-in 0.4s;
+   -ms-transition: all 0.3s ease-in 0.4s;
+   transition: all 0.3s ease-in 0.4s;
+}
+.view-sixth h2 {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+   background: transparent;
+   margin: 20px 40px 0px 40px;
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -webkit-transition: all 0.3s ease-in-out 0.1s;
+   -moz-transition: all 0.3s ease-in-out 0.1s;
+   -o-transition: all 0.3s ease-in-out 0.1s;
+   -ms-transition: all 0.3s ease-in-out 0.1s;
+   transition: all 0.3s ease-in-out 0.1s;
+}
+.view-sixth p {
+	padding:0px;
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -webkit-transition: all 0.3s ease-in-out 0.2s;
+   -moz-transition: all 0.3s ease-in-out 0.2s;
+   -o-transition: all 0.3s ease-in-out 0.2s;
+   -ms-transition: all 0.3s ease-in-out 0.2s;
+   transition: all 0.3s ease-in-out 0.2s;
+}
+.view-sixth a.info {
+	background:#CC3333 !important;
+	width:100px !important;
+	margin-top:0px !important;
+	line-height:40px;
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform: translateY(100px);
+   -moz-transform: translateY(100px);
+   -o-transform: translateY(100px);
+   -ms-transform: translateY(100px);
+   transform: translateY(100px);
+   -webkit-transition: all 0.3s ease-in-out 0.1s;
+   -moz-transition: all 0.3s ease-in-out 0.1s;
+   -o-transition: all 0.3s ease-in-out 0.1s;
+   -ms-transition: all 0.3s ease-in-out 0.1s;
+   transition: all 0.3s ease-in-out 0.1s;
+}
+.view-sixth:hover .mask {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
    -webkit-transition-delay: 0s;
    -moz-transition-delay: 0s;
    -o-transition-delay: 0s;
    -ms-transition-delay: 0s;
    transition-delay: 0s;
 }
-@keyframes bounceY {
-    0% { transform: translateY(-205px);}
-    40% { transform: translateY(-100px);}
-    65% { transform: translateY(-52px);}
-    82% { transform: translateY(-25px);}
-    92% { transform: translateY(-12px);}
-    55%, 75%, 87%, 97%, 100% { transform: translateY(0px);}
+.view-sixth:hover img {
+   -webkit-transition-delay: 0s;
+   -moz-transition-delay: 0s;
+   -o-transition-delay: 0s;
+   -ms-transition-delay: 0s;
+   transition-delay: 0s;
 }
-@-moz-keyframes bounceY {
-    0% { -moz-transform: translateY(-205px);}
-    40% { -moz-transform: translateY(-100px);}
-    65% { -moz-transform: translateY(-52px);}
-    82% { -moz-transform: translateY(-25px);}
-    92% { -moz-transform: translateY(-12px);}
-    55%, 75%, 87%, 97%, 100% { -moz-transform: translateY(0px);}
-}
-@-webkit-keyframes bounceY {
-    0% { -webkit-transform: translateY(-205px);}
-    40% { -webkit-transform: translateY(-100px);}
-    65% { -webkit-transform: translateY(-52px);}
-    82% { -webkit-transform: translateY(-25px);}
-    92% { -webkit-transform: translateY(-12px);}
-    55%, 75%, 87%, 97%, 100% { -webkit-transform: translateY(0px);}
-}
-.view-tenth img {
-   -webkit-transform: scaleY(1);
-   -moz-transform: scaleY(1);
-   -o-transform: scaleY(1);
-   -ms-transform: scaleY(1);
-   transform: scaleY(1);
-   -webkit-transition: all 0.7s ease-in-out;
-   -moz-transition: all 0.7s ease-in-out;
-   -o-transition: all 0.7s ease-in-out;
-   -ms-transition: all 0.7s ease-in-out;
-   transition: all 0.7s ease-in-out;
-}
-.view-tenth .mask {
-   background-color: rgba(255, 231, 179, 0.3);
-   -webkit-transition: all 0.5s linear;
-   -moz-transition: all 0.5s linear;
-   -o-transition: all 0.5s linear;
-   -ms-transition: all 0.5s linear;
-   transition: all 0.5s linear;
-   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   filter: alpha(opacity=0);
-   opacity: 0;
-}
-.view-tenth h2 {
-   border-bottom: 1px solid #cc3333;
-   background: transparent;
-   margin: 20px 40px 0px 40px;
-   -webkit-transform: scale(0);
-   -moz-transform: scale(0);
-   -o-transform: scale(0);
-   -ms-transform: scale(0);
-   transform: scale(0);
-   color: #cc3333;
-   -webkit-transition: all 0.5s linear;
-   -moz-transition: all 0.5s linear;
-   -o-transition: all 0.5s linear;
-   -ms-transition: all 0.5s linear;
-   transition: all 0.5s linear;
-   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   filter: alpha(opacity=0);
-   opacity: 0;
-}
-.view-tenth p {
-   color: #cc3333;
-   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   filter: alpha(opacity=0);
-   opacity: 0;
-   -webkit-transform: scale(0);
-   -moz-transform: scale(0);
-   -o-transform: scale(0);
-   -ms-transform: scale(0);
-   transform: scale(0);
-   -webkit-transition: all 0.5s linear;
-   -moz-transition: all 0.5s linear;
-   -o-transition: all 0.5s linear;
-   -ms-transition: all 0.5s linear;
-   transition: all 0.5s linear;
-}
-.view-tenth a.info {
-   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   filter: alpha(opacity=0);
-   opacity: 0;
-   -webkit-transform: scale(0);
-   -moz-transform: scale(0);
-   -o-transform: scale(0);
-   -ms-transform: scale(0);
-   transform: scale(0);
-   -webkit-transition: all 0.5s linear;
-   -moz-transition: all 0.5s linear;
-   -o-transition: all 0.5s linear;
-   -ms-transition: all 0.5s linear;
-   transition: all 0.5s linear;
-}
-.view-tenth:hover img {
-   -webkit-transform: scale(10);
-   -moz-transform: scale(10);
-   -o-transform: scale(10);
-   -ms-transform: scale(10);
-   transform: scale(10);
-   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
-   filter: alpha(opacity=0);
-   opacity: 0;
-}
-.view-tenth:hover .mask {
+.view-sixth:hover h2 {
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
    filter: alpha(opacity=100);
    opacity: 1;
-}
-.view-tenth:hover h2,.view-tenth:hover p,.view-tenth:hover a.info {
    -webkit-transform: scale(1);
    -moz-transform: scale(1);
    -o-transform: scale(1);
    -ms-transform: scale(1);
    transform: scale(1);
+   -webkit-transition-delay: 0.1s;
+   -moz-transition-delay: 0.1s;
+   -o-transition-delay: 0.1s;
+   -ms-transition-delay: 0.1s;
+   transition-delay: 0.1s;
+}
+.view-sixth:hover p {
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
    filter: alpha(opacity=100);
    opacity: 1;
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   -webkit-transition-delay: 0.2s;
+   -moz-transition-delay: 0.2s;
+   -o-transition-delay: 0.2s;
+   -ms-transition-delay: 0.2s;
+   transition-delay: 0.2s;
 }
-				
+.view-sixth:hover a.info {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+   -webkit-transform: translateY(0px);
+   -moz-transform: translateY(0px);
+   -o-transform: translateY(0px);
+   -ms-transform: translateY(0px);
+   transform: translateY(0px);
+   -webkit-transition-delay: 0.3s;
+   -moz-transition-delay: 0.3s;
+   -o-transition-delay: 0.3s;
+   -ms-transition-delay: 0.3s;
+   transition-delay: 0.3s;
+}
+		
 /********* Gallery Styles End ***************/
 
 .breadcrumbs span {
@@ -3952,25 +3983,55 @@ span {
 	
 }
 /*Gallery pagenation*/
+.pager li
+{
+	display:inline-block !important;
+	text-transform:uppercase !important;
+}
 .pager li > a, .pager li > span {
-    display: inline-block;
+    display: inline-block !important;
     padding: 5px 14px;
     background-color: #fff;
-    border: 1px solid #c40308;
-    border-radius: 5px;
-    color: #c40308 !important;
+    border: 1px solid #6d6d6d;
+    border-radius: 0px !important;
+    color: #6d6d6d !important;
 }
-.pager .active a{
-    background-color : #C40308 ;
+.pager li:first-child > a {
+	background-color : #C40308 !important;
     color: #FFF  !important;
     border: 0px;
+	border: 1px solid #C40308;
 }
-.pager li > a:hover, .pager li > a:focus
-{
-	 background-color : #C40308 !important;
+.pager li:last-child > a {
+	background-color : #C40308 !important;
     color: #FFF  !important;
+    border: 0px;
+	border: 1px solid #C40308;
+}
+.pager li > a:hover
+{
+	 background-color : #FFF !important;
+    color: #C40308  !important;
+	border: 1px solid #C40308;
+}
+.pager .active a{
+    background-color : #C40308 !important;
+    color: #FFF  !important;
+    border: 0px;
+	border: 1px solid #C40308;
+}
+.pager .disabled a{
+    background-color : #C40308 !important;
+    color: #FFF  !important;
+    border: 0px;
+	border: 1px solid #C40308;
 }
 
+
+.pager .previous > a, .pager .previous > span, .pager .next > a, .pager .next > span
+{
+	float: none !important;
+}
 .gallery h1{
 	    color: #ff3300;
     margin: 30px 0px 30px 0;
@@ -3978,7 +4039,7 @@ span {
 }
 .grid 
 {
-	margin-bottom:30px;
+	margin-bottom:10px;
 }
 /* Common style */
 .grid figure {
@@ -4307,30 +4368,35 @@ figure.effect-apollo:hover p {
 	display:none;
 }
 .galleryviews .btn-warning  {
-    color: #fff;
-    background-color: #C9302C;
-    border-color: #C9302C;
+    color: #7d7777;
+    background-color: #fff;
+    border:1px solid #7d7777;
     border-radius: 0px;
-    margin: 0px 1px;
-    padding: 8px 50px;
+	width: 140px;
+	height: 40px;
+	margin: 0px 0px 0px 10px;
+	padding: 0px;
+	text-transform: uppercase;
+	font-size: 16px;
+	   
     
 }
 .galleryviews .btn-warning:hover{
-    color: #d1bdbd;
-    background-color: #C9302C;
-    border-color: #C9302C;
+    color: #cc3333;
+    background-color: #fff;
+    border-color: #cc3333;
 }
 .galleryviews .btn-warning:focus
 {
     color: #fff !important;
-    background-color: #C9302C !important;
-    border-color: #C9302C !important;
+    background-color: #cc3333 !important;
+    border-color: #cc3333 !important;
 }
 .galleryviews .btn-warning:active
 {
     color: #fff !important;
-    background-color: #C9302C !important;
-    border-color: #C9302C !important;
+    background-color: #cc3333 !important;
+    border-color: #cc3333 !important;
 }
 .modal-header .close span{font-size: 18.5px;}
 
@@ -4477,8 +4543,9 @@ position: absolute;
 	margin: 0px;
 	padding: 0px;
 }
-.page-way-of-life  .line_content{display: none !important;;}
-.page-gallery .line_content {display:none !important;;}
-.page-blog .line_content {display:none !important;;}
-.page-gallery #block_inner_bottom_41 {   border-top: 2.5px solid #ddcccd !important;;}
-.page-blog #block_inner_bottom_41{    border-top: 2.5px solid #ddcccd !important;;}
+.page-way-of-life  .line_content{display: none !important;}
+.page-gallery .line_content {display:none !important;}
+.page-blog .line_content {display:none !important;}
+.page-gallery #block_inner_bottom_41 {   border-top: 2.5px solid #ddcccd !important;}
+.page-blog #block_inner_bottom_41{    border-top: 2.5px solid #ddcccd !important;}
+.page-way-of-life .way{ background:#CB0F0F;}
