@@ -11,9 +11,9 @@ if(!empty($params)){
 				<div class="col-xs-6 news_email round letter">
 					<h3><em><?php echo $params->newsletter_title; ?></em></h3>
 					<p><?php echo $params->newsletter_subtitle; ?></p>
-					
+					 <div class="newsletter_status" style="display:none"></div>
                     <form id="newsletter_form"  name="newsletter_form" method="post">
-					     <div class="newsletter_status" class="display:none"></div>
+					    
 						<div class="form-group col-xs-6 news_firstname">
 							<label for="newsletter_firstname" class="sr-only"></label>
 							<input id="newsletter_firstname" class="form-control input-group-lg" type="text" name="newsletter_firstname"
