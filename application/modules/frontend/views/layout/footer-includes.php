@@ -42,8 +42,9 @@ $(function() {
 </script>
 <script>
 $(document).ready(function () {
-	var accordid = $('#according').val();
-  $('#'+accordid + '.collapse').collapse('show');
+	location.hash && $(location.hash + '.collapse').collapse('show');
+	/*var accordid = $('#according').val();
+  	$('#'+accordid + '.collapse').collapse('show');*/
 });	
 </script>
 <script>
