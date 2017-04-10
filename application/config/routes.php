@@ -59,3 +59,5 @@ $route['program'] = 'frontend/events';
 $route['(:any)'] = 'frontend/pages/$1';
 $route['gallery/(:any)'] = 'frontend/gallery/$1';
 $route['blog/(:any)'] = 'frontend/blog/$1';
+$route['newsletterunsubscribe/(:any)'] = 'frontend/newsletterunsubscribe/$1';
+$route['newslettersubscribe/(:any)'] = 'frontend/newslettersubscribe/$1';
