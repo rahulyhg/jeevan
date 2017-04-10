@@ -137,9 +137,9 @@ class Events extends MY_Controller {
                 array_push($response['destinations'], $rows);
             endforeach;
         } else {
-            $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND is_visible = 1 AND  CURDATE() between start_date and end_date");
+            $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND is_visible = 1 AND  CURDATE() between start_date and end_date  ORDER BY start_date ASC");
             if (empty($getplandetails)) {
-                $getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 AND is_visible = 1  ORDER BY id DESC");
+                $getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 AND is_visible = 1  ORDER BY start_date ASC");
             }
             $plan_details = explode('-', $getplandetails[0]['plan_details']);
             $response['startvalue'] = $plan_details[0];
