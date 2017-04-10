@@ -1,36 +1,36 @@
 <div class="gallery">
     <div class="container">
         <div class="col-xs-12">
-
-            <h1 class="text-center"><?php echo $title; ?></h1>
+			<h1 class="text-center"><em><?php echo $title; ?></em></h1>
+            <p>Shri Kumaran Swami Gurujee is a Visionary and a spiritual leader, who dedicated himself to serve the mankind. With his uncommon spiritual gifts and extrasensory power he transforms his devotees spiritually, mentally and physically stronger, </p>
             <!-- Tab panes -->
             <div class="tab-content">
+				                <div class="tab-pane active" id="tab1" role="tabpanel">
 
-                <div class="tab-pane active" id="tab1" role="tabpanel">
 
                     <?php
                     $i = 0;
                     $j = 2;
                     foreach ($gallery as $gallery_album) {
                         ?>
-                        <div class=" grid view view-eighth">
-                            <img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>"/>
-                            <div class="mask">
-                                <h2>Jeevanacharya</h2>
-                                <p><?php echo substr($gallery_album['name'], 0, 100); ?></p>
-                                <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>" class="info">View more</a>
-                            </div>
-                        </div>
-                        <!--                        <div class="col-sm-4 col-xs-12 grid">
-                                                    <figure class="effect-apollo">
-                                                        <img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>"/>
-                                                        <figcaption>
+                        <div class="col-lg-4 gallery_box">
                         
-                                                            <p><?php echo $gallery_album['name']; ?></p>
-                                                            <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>">View more</a>
-                                                        </figcaption>			
-                                                    </figure>
-                                                </div>-->
+                            <div class=" grid view view-first">
+                                <img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>"/>
+                                <div class="mask">
+                                    
+                                    <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>" class="info">
+                                    <img src="<?php echo media_url().'gallery_icon.png' ?>"><br>
+                                    View All</a>
+                                </div>
+                                
+                            </div>
+                            <h4><small>Jeevanacharya</small></h4>
+                            <h4><strong><?php echo substr($gallery_album['name'], 0, 30); ?></strong></h4>
+                            <p><?php echo substr($gallery_album['description'], 0, 100); ?></p>
+                           
+                        </div>
+      
 
                         <?php
                         $i++;
@@ -54,7 +54,7 @@
             $numbercount = $list + 1;
             ?>
                 <ul class="pager" role="tablist">
-                    <li class="previous pull-left" onclick="goTo(1);"><a href="javascript:void(0);"><span aria-hidden="true">←</span> Previous</a></li>
+                    <li class="previous" onclick="goTo(1);"><a href="javascript:void(0);"><span aria-hidden="true"><?php echo '<<< &nbsp;&nbsp;'; ?></span>  Previous</a></li>
                     <?php
                     for ($k = 1; $k <= $list; $k++) {
                         ?>
@@ -64,7 +64,7 @@
                         <?php
                     }
                     ?>
-                    <li class="next pull-right" onclick="goTo(2);"><a href="javascript:void(0);">Next <span aria-hidden="true">→</span></a></li>
+                    <li class="next" onclick="goTo(2);"><a href="javascript:void(0);">Next <span aria-hidden="true"><?php echo '&nbsp;&nbsp; >>>'; ?></span></a></li>
                 </ul>
                 <?php endif; ?>
             </div>
@@ -88,14 +88,12 @@
             $('.gallery ul.pager li:eq(0)').attr("class", "previous");
         } else {
             $('.gallery ul.pager li:eq(0)').attr("class", "disabled");
-            $('.gallery ul.pager li:eq(0)').attr("class", "pull-left");
         }
         if (number <<?php echo $list; ?>) {
             $('.gallery ul.pager li:eq(<?php echo $numbercount; ?>)').attr("onclick", "goTo(" + (number + 1) + ")");
             $('.gallery ul.pager li:eq(<?php echo $numbercount; ?>)').attr("class", "next");
         } else {
             $('.gallery ul.pager li:eq(<?php echo $numbercount; ?>)').attr("class", "disabled");
-            $('.gallery ul.pager li:eq(<?php echo $numbercount; ?>)').attr("class", "pull-right");
         }
     }
     $(document).ready(function () {
