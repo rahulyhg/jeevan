@@ -122,7 +122,7 @@ body
    position: relative;
    font-size: 17px;
    padding: 10px;
-   background: rgba(0, 0, 0, 0.8);
+   background: #cc3333;
    margin: 20px 0 0 0;
 }
 .view p {
@@ -138,17 +138,17 @@ body
    display: inline-block;
    text-decoration: none;
    padding: 7px 14px;
-   background: #000;
+   background: #cc3333;
    color: #fff;
    text-transform: uppercase;
-   -webkit-box-shadow: 0 0 1px #000;
-   -moz-box-shadow: 0 0 1px #000;
-   box-shadow: 0 0 1px #000;
+   -webkit-box-shadow: 0 0 1px #cc3333;
+   -moz-box-shadow: 0 0 1px #cc3333;
+   box-shadow: 0 0 1px #cc3333;
 }
 .view a.info:hover {
-   -webkit-box-shadow: 0 0 5px #000;
-   -moz-box-shadow: 0 0 5px #000;
-   box-shadow: 0 0 5px #000;
+   -webkit-box-shadow: 0 0 5px #cc3333;
+   -moz-box-shadow: 0 0 5px #cc3333;
+   box-shadow: 0 0 5px #cc3333;
 }
 .view-eighth .mask {
    background-color: rgba(255, 255, 255, 0.7);
@@ -175,7 +175,7 @@ body
    transition: all 0.2s ease-in-out 0.1s;
 }
 .view-eighth p {
-   color: #333;
+   color: #cc3333;
    -webkit-transform: translateY(-200px);
    -moz-transform: translateY(-200px);
    -o-transform: translateY(-200px);
@@ -298,7 +298,7 @@ body
    opacity: 0;
 }
 .view-tenth h2 {
-   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+   border-bottom: 1px solid #cc3333;
    background: transparent;
    margin: 20px 40px 0px 40px;
    -webkit-transform: scale(0);
@@ -306,7 +306,7 @@ body
    -o-transform: scale(0);
    -ms-transform: scale(0);
    transform: scale(0);
-   color: #333;
+   color: #cc3333;
    -webkit-transition: all 0.5s linear;
    -moz-transition: all 0.5s linear;
    -o-transition: all 0.5s linear;
@@ -317,7 +317,7 @@ body
    opacity: 0;
 }
 .view-tenth p {
-   color: #333;
+   color: #cc3333;
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
    filter: alpha(opacity=0);
    opacity: 0;
@@ -723,12 +723,13 @@ blockquote {
 .para1 p, .para2 p
 {
 	color:#fff;
+	line-height: 28px;
 }
 	
 .para1, .para2
 {
 	position: relative;
-	margin: 0px;
+	margin: 0px 0 30px 0;
 	float: left;
 	width: 100%;
 	padding: 0px;
@@ -948,7 +949,7 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow sp
 	position: fixed; 
 	top: 0; 
 	height: 70px; 
-	z-index: 1;
+	z-index: 999999;
 	background-color: #B20306;
 	-webkit-box-shadow: 0px 4px 8px -1px rgba(178,3,6,1);
 	-moz-box-shadow: 0px 4px 8px -1px rgba(178,3,6,1);
@@ -1160,18 +1161,31 @@ section {
 }
 
 /* Screens Settings */
+#screen1 nav {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+}
 #screen1 {	
-	background:url(../img/gurujeee.png) no-repeat center center;
-	background-size:cover;
+	background:url(../img/jeevannew.jpg) center center no-repeat;
+	background-size:100% 100%;
+	height: 300px;
+	position: relative;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
 #screen1 h1
 {
-	font-size: 78px;
+	font-size: 53px;
 	margin-right: 0;
 	color: #fff;
 	font-family: 'lemon_tuesdayregular';
-	padding-top: 170px;
+	padding-top: 70px;
 	text-align: center;
+	text-shadow: rgb(28, 26, 26) 5px 5px 5px;
+	text-transform: capitalize;
 }
 #screen1 h3
 {
@@ -1180,6 +1194,7 @@ section {
 	font-size: 33px;
 	color: #fff;
 	text-align: center;
+	display: none;
 }
 #screen1 .button1
 {
@@ -1191,7 +1206,8 @@ section {
 	background-color: transparent;
 	text-align: center;
 	padding: 8px 20px;
-	text-decoration: none;	
+	text-decoration: none;
+	display: none;
 }
 
 #screen1 .button1:hover
@@ -1201,13 +1217,51 @@ section {
 	background-color: white;
 	transition: 0.7s;
 }
-
-#screen2 {
-	background: #efc94d;
+#screen1 .logo_img img
+{
+	margin: 0px;
+	padding: 0px 0px;
+	height: 61px;
 }
 
-#screen3 {
-	background: #e1793d;
+#screen1 .menubar li
+{
+	display: inline-block;
+	margin:0px;
+	padding: 15px 25px;
+	background-color: rgba(255, 255, 255, 0.25);
+	opacity: 1;
+	text-align: center;
+}
+#screen1 .menubar li a
+{
+	color:#FFF !important;
+	padding:20px 5px !important;
+	font-size:14px;
+	text-decoration: none;
+}
+#screen1 .menubar ul {
+ 	margin: 15px 0px 10px 0px;
+	padding: 0px 0px 0px 10px;
+	list-style-type: none;
+}
+#screen1 .menubar li:hover
+{
+	background-color: rgba(98, 0, 0, 0.45); /* Old browsers */
+	opacity: 1;
+	color:#fff !important;
+	padding: 15px 25px;
+}
+#screen1 .menubar .active
+{
+	background-color: rgba(98, 0, 0, 0.65); /* Old browsers */
+	color:#fff !important;
+	padding: 15px 25px;
+	opacity: 1;
+}
+#screen1 .menubar li a span
+{
+	font-size: 11px;
 }
 .menu_text
 {
@@ -1216,7 +1270,52 @@ section {
 	width: 100%;
 	
 }
+.fixed #screen1 .logo_img img
+{
+	margin: 0px;
+	padding: 0px 0px;
+	height: 61px;
+}
 
+.fixed #screen1 .menubar li
+{
+	display: inline-block;
+	margin:0px;
+	padding: 15px 25px;
+	background-color: rgba(255, 255, 255, 0.25);
+	opacity: 1;
+	text-align: center;
+}
+.fixed #screen1 .menubar li a
+{
+	color:#FFF !important;
+	padding:20px 5px !important;
+	font-size:14px;
+	text-decoration: none;
+}
+.fixed #screen1 .menubar ul {
+ 	margin: 15px 0px 10px 0px;
+	padding: 0px 0px 0px 10px;
+	list-style-type: none;
+}
+.fixed #screen1 .menubar li:hover
+{
+	background-color: rgba(98, 0, 0, 0.45); /* Old browsers */
+	opacity: 1;
+	color:#fff !important;
+	padding: 15px 25px;
+}
+.fixed #screen1 .menubar .active
+{
+	background-color: rgba(98, 0, 0, 0.65); /* Old browsers */
+	color:#fff !important;
+	padding: 15px 25px;
+	opacity: 1;
+}
+.fixed #screen1 .menubar li a span
+{
+	font-size: 11px;
+}
 @media only screen and (max-width: 520px) {
 
 	nav li {
@@ -1348,7 +1447,7 @@ section {
 	padding: 0px 0px;
 	overflow: hidden;
 	background-color: #ea8118;
-	margin: 0px 0px;
+	margin: 10px 0px;
 }
 .content *{
 	-webkit-box-sizing:border-box;
@@ -1376,18 +1475,19 @@ section {
 }
 .marquee-sibling {
 	padding: 0;
-	background-color:#fff;
+	background-color: #fff;
 	width: 15%;
 	height: 45px;
 	line-height: 42px;
-	font-size: 14px;
+	font-size: 17px;
 	font-weight: 600;
-	color: orange;
+	color: #e98118;
 	text-align: center;
 	float: left;
 	left: 0px;
 	z-index: 999;
-	border:1px solid orange;
+	border: 1px solid #e98118;
+	text-transform: uppercase;
 }
 .marquee, *[class^="marquee"] {
 	display: inline-block;
@@ -1834,12 +1934,14 @@ section {
 	padding: 0px;
 	margin: 0px;
 	height: auto;
+	border-bottom: 1px solid #ddcccd;
 }
 .aboutus_section h2
 {
 	color:#ff3300;
 	font-size: 35px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
+	margin-top: 90px;
 }
 .aboutus_section p
 {
@@ -1850,7 +1952,7 @@ section {
 {
 	height: 450px;
 	width: 400px;
-	margin: -35px 0px 30px 0px;
+	margin: 0px 0px 50px 0px;
 	padding: 0px;
 }
 .line_content
@@ -2255,12 +2357,24 @@ tbody
 {
 	margin-bottom: 25px;
 }
-.contactus_form .btn-default
+.contactus_form .btn-default,.contactus_form .btn-default:hover,.contactus_form .btn-default:active,.contactus_form .btn-default:focus
 {
-	background-color:#cc3333;
-	color: #fff;
-	height: 35px;
+	background-color:#cc3333 !important;
+	color: #fff !important;
+	height: 40px;
 	width: 125px;
+	border: 0;
+	border-radius: 0;
+	text-transform: uppercase;
+}
+.ashram_div .ashram_section1 .btn-danger
+{
+	background-color:#cc3333 !important;
+	color: #fff !important;
+	height: 40px;
+	width: 125px;
+	border: 0;
+	border-radius: 0;
 }
 .contactus_form .form-control
 {
@@ -2669,7 +2783,107 @@ span {
 
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-		.letter img
+	#screen1 nav {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+}
+#screen1 {	
+	background:url(../img/jeevannew.jpg) center center no-repeat;
+	background-size:100% 100%;
+	height: 300px;
+	position: relative;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+#screen1 h1
+{
+	font-size: 53px;
+	margin-right: 0;
+	color: #fff;
+	font-family: 'lemon_tuesdayregular';
+	padding-top: 70px;
+	text-align: center;
+}
+#screen1 h3
+{
+	font-family: 'OCRAStd';
+	margin-top: 20px;
+	font-size: 33px;
+	color: #fff;
+	text-align: center;
+	display: none;
+}
+#screen1 .button1
+{
+	border:0.5px solid #fff;
+	margin-top: 68px;
+	float: right;
+	margin-right: -270px;
+	color: #fff;
+	background-color: transparent;
+	text-align: center;
+	padding: 8px 20px;
+	text-decoration: none;
+	display: none;
+}
+
+#screen1 .button1:hover
+{
+	text-decoration: none !important;
+	color: orangered;
+	background-color: white;
+	transition: 0.7s;
+}
+#screen1 .logo_img img
+{
+	margin: 0px;
+	padding: 0px 0px;
+	height: 61px;
+}
+
+#screen1 .menubar li
+{
+	display: inline-block;
+	margin:0px;
+	padding: 15px 13px;
+	background-color: rgba(255, 255, 255, 0.25);
+	opacity: 1;
+	text-align: center;
+}
+#screen1 .menubar li a
+{
+	color:#FFF !important;
+	padding:20px 5px !important;
+	font-size:14px;
+	text-decoration: none;
+}
+#screen1 .menubar ul {
+ 	margin: 15px 0px 10px 0px;
+	padding: 0px 0px 0px 10px;
+	list-style-type: none;
+}
+#screen1 .menubar li:hover
+{
+	background-color: rgba(98, 0, 0, 0.45); /* Old browsers */
+	opacity: 1;
+	color:#fff !important;
+	padding: 15px 13px;
+}
+#screen1 .menubar .active
+{
+	background-color: rgba(98, 0, 0, 0.65); /* Old browsers */
+	color:#fff !important;
+	padding: 15px 13px;
+	opacity: 1;
+}
+#screen1 .menubar li a span
+{
+	font-size: 11px;
+}
+.letter img
 {
 	margin-left: 0px;
     padding: 0px 0px 0px 0px !important;
@@ -2704,7 +2918,7 @@ span {
 	}
 	#screen1 h1
 	{
-		padding-top: 220px;
+		padding-top: 70px;
 	}
 	.fixed {
 	position: fixed; 
@@ -4099,7 +4313,7 @@ figure.effect-apollo:hover p {
     border-radius: 0px;
     margin: 0px 1px;
     padding: 8px 50px;
-    box-shadow: 3px 4px 13px #c54144;
+    
 }
 .galleryviews .btn-warning:hover{
     color: #d1bdbd;
@@ -4147,6 +4361,17 @@ figure.effect-apollo:hover p {
 .message_of_day img
 {
 	margin-bottom: 20px;
+}
+.message_of_day a {
+    height: 292px;
+    float: left;
+    text-align: left;
+    width: 100%;
+
+}
+.message_of_day  .img-thumbnail{
+    width: 90%;
+    height: 100%;
 }
 em {
   font-size: 30px;
@@ -4235,3 +4460,25 @@ em::after
 {
 	padding:0px !important;
 }
+.newsletter_status {    
+position: absolute;
+    margin-top: -28px;
+    font-size: 16px;
+    background: #fff;
+    width: 92%;
+    padding: 6px 15px;
+}
+.Wayoflife_Chakras
+{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	margin: 0px;
+	padding: 0px;
+}
+.page-way-of-life  .line_content{display: none !important;;}
+.page-gallery .line_content {display:none !important;;}
+.page-blog .line_content {display:none !important;;}
+.page-gallery #block_inner_bottom_41 {   border-top: 2.5px solid #ddcccd !important;;}
+.page-blog #block_inner_bottom_41{    border-top: 2.5px solid #ddcccd !important;;}
