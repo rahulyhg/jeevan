@@ -1,4 +1,3 @@
-<input type="hidden" name="according" id="according" value="<?php echo $accord_slug; ?>">
 <div class="accordian">
 	<div class="container">
 	<div class="row">
