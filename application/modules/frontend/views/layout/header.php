@@ -7,7 +7,7 @@
  <?php
 if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('frontend')){
  ?>
-<section>
+<section class="screen2">
 
  
 <div class="fullscreen-bg">
@@ -18,7 +18,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 </div>
  
 	
-<nav>
+<nav class="videonav">
 	<div class="header">
 		<div class="container">
 			<div class="row">
@@ -50,15 +50,17 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 	<div class="menu_text">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-offset-4 col-lg-8 col-md-offset-4 col-md-8 col-sm-offset-4 col-sm-8">
-					<h1>Jeevanacharya</h1>
-					<h3>The way of life</h3>
-					
+				<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<?php 
+					$page_url = str_replace('-', " ", uri_string());
+					$page_title = explode("/", $page_url)
+				?>
+					<h1><?php echo $page_title[0]; ?></h1>
 				</div>
 			</div>
 		</div>
 	</div>
-<nav>
+<nav class="innernav">
 	<div class="header">
 		<div class="container">
 			<div class="row">
