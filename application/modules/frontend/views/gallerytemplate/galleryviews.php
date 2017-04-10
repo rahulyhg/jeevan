@@ -32,7 +32,7 @@
                     }
                     ?>>
 
-                        <div class=" grid view view-tenth" >
+                        <div class=" grid view view-sixth" >
                             <img src="<?php echo $gallery_details['image_url']; ?>" style="width:100%;height:200px" class="gallery_image img-responsive"/>
                            <div class="mask">
                                 <?php
@@ -48,7 +48,7 @@
                                 ?>
                                 <h2>Jeevanacharya</h2>
                                 <p><?php echo $gallery_details['title']; ?></p>
-                                <a data-fancybox="gallery" data-width="2048" data-height="1365" data-caption="<?php echo $gallery_details['description'] ? $gallery_details['description'] :$gallery_details['title']; ?>"  title="<?php echo $gallery_details['title']; ?>" href="<?php echo $file_url; ?>" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info gallery_box">View</a>
+                                <center><a data-fancybox="gallery" data-width="2048" data-height="1365" data-caption="<?php echo $gallery_details['description'] ? $gallery_details['description'] :$gallery_details['title']; ?>"  title="<?php echo $gallery_details['title']; ?>" href="<?php echo $file_url; ?>" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info gallery_box">View</a></center>
                             </div> 
                         </div>
     
