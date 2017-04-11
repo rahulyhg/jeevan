@@ -4268,8 +4268,8 @@ figure.effect-apollo:hover p {
 .galleryviews .gallery_image
 {
 	width:100%;
-	min-height:250px;
-	max-height:250px;
+	min-height:260px;
+	max-height:260px;
 }
 
 #filters {
@@ -4550,3 +4550,187 @@ position: absolute;
 .page-gallery #block_inner_bottom_41 {   border-top: 2.5px solid #ddcccd !important;}
 .page-blog #block_inner_bottom_41{    border-top: 2.5px solid #ddcccd !important;}
 .page-way-of-life .way{ background:#CB0F0F;}
+
+#events-modal .modal-footer
+{
+	display: none !important;
+}
+
+
+.travel_content .table thead tr th
+{
+	color: #ffffff;
+}
+.travel_content .table tbody tr td
+{
+	color: #2e2e2e;
+}
+.travel_content .table thead tr th {
+    border: 1px solid #a2a2a2;
+}
+
+.travel_content .table tbody tr td
+{
+	border: 1px solid #a2a2a2;
+	text-align: left;
+	padding-left:20px; 
+}
+.travel_content .table thead tr:nth-child(odd)
+{
+	background: #2e2e2e;
+}
+.travel_content .table tbody tr:nth-child(odd)
+{
+	background: #f5f5f5;
+}
+.travel_content .table tbody tr:nth-child(even)
+{
+	background: #fff;
+}
+.travel_content .table tbody tr td a {
+    color: #2e2e2e;
+}
+.travel_program h3
+{
+	text-align: center;
+	color: #ff3300;
+	margin: 50px 0px 40px 0px;
+}
+.travel_content
+{
+	background-color: #ffffff;
+	margin: 0px;
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	padding: 0px 0px 60px 0px;
+		
+}
+
+.travel_content h3
+{
+	color: #ff3300;
+	padding: 30px 0px 20px 0px;
+	text-align: center;
+}
+.travel_content p
+{
+	color: #7d7777;
+	text-align: center;
+	padding: 0px 310px 20px 392px;
+	font-size: 16px;
+}
+.bs-example 
+{
+	height: 360px !important;
+}
+.prg_booking_event
+{
+	position: relative;
+	float: left;
+	padding: 30px 0px;
+	width: 100%;
+	height: auto;
+}
+.prg_booking_event h1
+{
+	text-align: center;
+	color: #ff3300;
+}
+.prg_booking_event h3
+{
+	color: #c9302c;
+}
+.cal-day-today
+{
+	background-color: #550107 !important;
+}
+.cal-day-today span[data-cal-date]
+{
+	color: #fff !important; 
+	opacity: 1;
+}
+.mCS-dark-3.mCSB_scrollTools .mCSB_draggerRail
+{
+	background-color: #9c9c9c !important;
+}
+.event_booking_section
+{
+	background-color: #eeeeee;
+	border-bottom: 1px solid #ddcccd;
+}
+.event {
+  display: block;
+  background-image: url(../img/calender_icon.png);
+  width: 34px !important;
+  height: 18px !important;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  border-radius: 0 !important;
+	-webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+	box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+	border: 0 !important;
+}
+.event:hover
+{
+	background-image: url(../img/calender_iconred.png) !important;
+}
+.cal-day-today .event
+{
+	background-image: url(../img/calender_iconwhite.png);
+}
+/*.day-highlight .event
+{
+	background-image: url(../img/calender_iconred.png);
+}*/
+.cal-year-box [class*="span"], .cal-month-box [class*="cal-cell"]
+{
+	border-right: 1px solid #cab2b3 !important;
+}
+.cal-month-box
+{
+    border-top: 1px solid #cab2b3 !important;
+    border-bottom: 1px solid #cab2b3 !important;
+    border-right: none !important;
+    border-left: 1px solid #cab2b3 !important;
+    border-radius: 2px;
+}
+.cal-month-box .cal-row-fluid
+{
+	border-bottom: 1px solid #cab2b3 !important;
+}
+#cal-week-box
+{
+	border: 1px solid #cab2b3 !important;
+}
+.prg_booking_event .btn-default
+{
+	border-color: #C9302C !important;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: center;
+  background-color: #c9302c !important;
+  border-radius: 0px !important;
+}
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px!important;
+  border-width: 5px 5px 0;
+  border-top-color: #c9302c !important;
+}
+@media (max-width: 767px){
+	.cal-month-day span
+	{
+		display: block;
+	}
+	.travel_content p
+	{
+		padding: 0px;
+	}
+}
