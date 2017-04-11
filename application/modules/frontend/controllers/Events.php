@@ -83,23 +83,27 @@ class Events extends MY_Controller {
             $check_exist = $this->Mydb->get_record('*', $this->booking_table, array('event_id' => $event_id, 'email' => $this->input->post('email'), 'booked_date' => $this->input->post('booked_date')));
 
             if (empty($check_exist)) {
-
+				
+				
                 $purpose_of_appoint = json_encode($this->input->post('purpose'));
                 $insert_data = array("name" => $this->input->post('firstname'),
                     "email" => $this->input->post('email'),
                     "phone_no" => $this->input->post('phonenumber'),
                     "event_id" => $event_id,
                     "booked_date" => $this->input->post('booked_date'),
+					"location_date" => $this->input->post('location_date'),
+					"location" => $this->input->post('location'),
                     "purpose_of_appointment" => $purpose_of_appoint ? $purpose_of_appoint : '',
                     "message" => $this->input->post('message'),
                     "created_on" => current_date(),
                     "created_ip" => get_ip(),
-                    "created_by" => get_admin_id(),
+                    "created_by" => get_admin_id() ? get_admin_id() : '',
                     "is_active" => '1',
                 );
+				
 
                 $result = $this->Mydb->insert($this->booking_table, $insert_data);
-
+				
                 if (!empty($result)) {
                     $this->send_notification_email_to_admin($insert_data);
                     $this->send_acknowledgement_email_to_user($insert_data);
