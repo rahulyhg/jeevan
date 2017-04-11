@@ -2,18 +2,19 @@
     <div class="container">
         <div class="row">
 
-            <h3 class="text-center"><?php echo $gallery[0]['gallery_category']; ?></h3>
+            <h3 class="text-center"><em><?php echo $gallery[0]['gallery_category']; ?></em></h3>
 
 
             <div class="col-xs-12 text-center">
-                <button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="all">
-                    All
-                </button>
+                
                 <button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="media_image">
                     Images
                 </button>
                 <button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="media_video">
                     Videos
+                </button>
+                <button class="btn btn-small btn-warning" data-toggle="portfilter" data-target="all">
+                    All
                 </button>
 
             </div>
