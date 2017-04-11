@@ -1,20 +1,27 @@
+
 <div class="travel_program">
-    <div class="container">
+    <div class="container-fulid">
         <div class="row">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 travel_location" id="tvr">
-                <h3>Tour Plan</h3>
-                <div id="map" style="height:400px">
+                <h3><em>Jeevanacharya Tour Plan</em></h3>
+                <div id="map" style="height:460px">
 
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 travel_content">
-                <h3>Swamiji-Travel Program</h3>
+		</div>
+           </div>
+           </div>
+            <div class=" travel_content">
+               <div class="container">
+               <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3><em>Swamiji-Travel Program</em></h3>
                 <p>Tentative Tour Programme of Jeevanacharya, watch and get connected with his WAY OF LIFE</p>
-                <div class="wrapper scrollbar-dynamic">
-                    <div class="bs-example">
+                <div class="wrapper scrollbar-dynamic ">
+                    <div class="bs-example table-responsive order">
                         <table class="table table-bordered">
-                            <thead style="background-color: #390004;">
+                            <thead>
                                 <tr>
                                     <th>S.No</th>
                                     <th>Start Date</th>
@@ -50,9 +57,12 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 <div class="event_booking_section">
     <div class="container">
         <div class="row">
@@ -78,14 +88,30 @@
                 </div>
 
                 <div id="calendar"></div>
+				
+                <div class="page-header">				
+                    <div class="pull-right form-inline">  
+                        <div class="btn-group">
+                            <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
+                            <button class="btn btn-default" data-calendar-nav="today">Today</button>
+                            <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                        </div>
+                        <!-- <div class="btn-group">
+                                <button class="btn btn-warning" data-calendar-view="year">Year</button>
+                                <button class="btn btn-warning active" data-calendar-view="month">Month</button>
+                                <button class="btn btn-warning" data-calendar-view="week">Week</button>
+                                <button class="btn btn-warning" data-calendar-view="day">Day</button>
+                        </div> -->
+                    </div>				
 
+                </div>
 
                 <div class="clearfix"></div>
                 <br><br>
                 <div id="disqus_thread"></div>
 
                 <div class="modal fade" id="events-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog" style="width:700px;">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h3 class="modal-title">GET SWAMIJI APPOINTMENT</h3>
@@ -120,6 +146,28 @@ if(!empty($blocks['content_newsletter'])){
 echo $blocks['content_newsletter']; 
 }
 ?>
+
+
+<script>
+	(function($){
+		$(window).on("load",function(){
+			
+			
+			
+			$(".order").mCustomScrollbar({
+				setHeight:430,
+				theme:"dark-3"
+			});
+			$("get_value").mCustomScrollbar({
+				setHeight:180,
+				theme:"dark-3"
+			});
+			
+			
+		});
+	})(jQuery);
+</script>
+
 
 <script type="text/javascript">
     function loadmap(mapid) {
@@ -237,6 +285,7 @@ echo $blocks['content_newsletter'];
         document.getElementById('total').innerHTML = total + ' km';
     }
 </script>
+
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7xN19aOc0P7G4S9zP6N_uKywn7Vmeebs&callback=initMap">
 </script>
