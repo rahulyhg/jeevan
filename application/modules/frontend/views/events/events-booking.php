@@ -289,7 +289,7 @@ em::after
             			var request;
             			
             			var last = $('#contact_form').serialize();
-						alert( site_url +'/events/user_booking_appointment');
+						
             			request =  $.ajax({
             				type: 'POST',
             				url: site_url +'/events/user_booking_appointment',
