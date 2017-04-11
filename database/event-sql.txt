@@ -1,0 +1,4 @@
+
+ALTER TABLE `sramcms_event_users` ADD `location` TEXT NOT NULL AFTER `phone_no`;
+
+ALTER TABLE `sramcms_event_users` ADD `location_date` DATETIME NOT NULL AFTER `location`;
