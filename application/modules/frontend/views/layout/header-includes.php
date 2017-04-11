@@ -13,11 +13,13 @@
 <link rel="stylesheet" href="<?php echo skin_url(); ?>event/css/calendar.css">
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/jquery.fancybox.css">
 
+<link rel="stylesheet" href="<?php echo skin_url(); ?>css/jquery.mCustomScrollbar.css">
 <script src="<?php echo skin_url(); ?>js/jquery-3.1.1.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/marquee.js"></script>
 <script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap-datetimepicker.js"></script>
+<script src="<?php echo skin_url(); ?>js/jquery.mCustomScrollbar.concat.min.js"></script>
 <?php /* common javascript varibles ...*/ ?>
 <script>
  var admin_url ="<?php echo frontend_url(); ?>";

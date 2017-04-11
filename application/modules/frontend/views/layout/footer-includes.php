@@ -78,8 +78,5 @@ $('.footer_section3').on('DOMSubtreeModified propertychange',"#twitter-widget-0"
 	
 	});
 </script>
-<script>
-
-</script>
 
       
