@@ -312,14 +312,13 @@
 }
 .event {
   display: block;
-  background-color: #d8812b;
-  width: 16px;
-  height: 16px;
+  width: 34px;
+  height: 18px;
   margin-right: 2px;
   margin-bottom: 2px;
   -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
   box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid #ffffff;
 }
 .event-block {
@@ -486,7 +485,7 @@ span[data-cal-date]:hover {
 #cal-slide-content {
   padding: 20px;
   color: #ffffff;
-  background-image: url("../img/dark_wood.png");
+  background-image:url("../img/dark_wood.png");
   -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
   box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
 }
