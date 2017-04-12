@@ -19,7 +19,8 @@
                 <h3><em>Swamiji-Travel Program</em></h3>
                 <p>Tentative Tour Programme of Jeevanacharya, watch and get connected with his WAY OF LIFE</p>
                 <div class="wrapper scrollbar-dynamic ">
-                    <div class="bs-example table-responsive order">
+                    <div class="bs-example order">
+						<div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -50,10 +51,9 @@
                                     $i++;
                                 endforeach;
                                 ?>
-
-
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
