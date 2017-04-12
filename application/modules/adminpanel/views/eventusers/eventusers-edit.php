@@ -76,6 +76,14 @@
                                 ?></div>
                         </div>
                         <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Place Of Birth') . get_required(); ?></label>
+                            <div class="col-sm-<?php echo get_form_size(); ?>"><div class="input_box"><?php echo form_input('location', $records['location'], ' class="form-control required placepicker"  '); ?></div></div>
+                        </div>
+                        <div class="form-group dateofbirth_section">
+                            <label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Date and Time of Birth') . '&nbsp;' . get_required(); ?></label>							
+                            <div class="col-sm-<?php echo get_form_size(); ?>"><div class="input_box"><?php echo form_input('location_date', get_date_formart($records['location_date'], 'Y-m-d H:s a'), ' class="form-control required location_date"'); ?></div></div>
+                        </div>
+                        <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Booking date') . '&nbsp;' . get_required(); ?></label>							
                             <div class="col-sm-<?php echo get_form_size(); ?>"><div class="input_box"><?php echo form_input('booked_date', $records['booked_date'], ' class="form-control required"  readonly'); ?></div></div>
                         </div>
@@ -84,7 +92,7 @@
                             <div class="col-sm-<?php echo get_form_size(); ?>"><div class="input_box available_date">
                                     <?php echo form_input('appointment_date', (($records['appointment_date'] != "0000-00-00" && $records['appointment_date'] != "") ? $records['appointment_date'] : '0000-00-00'), ' class="form-control availablelocation_datepicker"'); ?>
 
-                                </div></div>
+                              </div></div>
 
                         </div>
                         <div class="form-group">
@@ -200,7 +208,7 @@
                 });
             });
         });
-
+        
         var startTime = $('.appointment_start_time').clockpicker({
             placement: 'top',
             align: 'left',
@@ -291,6 +299,15 @@
 
 
         });
+        /*placepicker*/
+        $(".dateofbirth_section").focusin(function () {
+            $(function () {
+                $('.location_date').datetimepicker({
+                	format: 'YYYY-MM-DD H:mm a',
+                });
+            });
+        });
+        $(".placepicker").placepicker(); 
     });
     function validate_datetime() {
         var start_time = $('.appointment_start_time').find('input').val();
@@ -308,4 +325,5 @@
 
         }
     }
+   
 </script>

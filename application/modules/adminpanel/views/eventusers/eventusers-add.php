@@ -65,6 +65,14 @@
                            
                             ?></div>
 						</div>
+						 <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Place Of Birth') . get_required(); ?></label>
+                            <div class="col-sm-<?php echo get_form_size(); ?>"><div class="input_box"><?php echo form_input('location', set_value('location'), ' class="form-control required placepicker"  '); ?></div></div>
+                        </div>
+                        <div class="form-group dateofbirth_section">
+                            <label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Date and Time of Birth') . '&nbsp;' . get_required(); ?></label>							
+                            <div class="col-sm-<?php echo get_form_size(); ?>"><div class="input_box"><?php echo form_input('location_date', set_value('location_date'), ' class="form-control required location_date"'); ?></div></div>
+                        </div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Booking date').'&nbsp;'.get_required();?></label>							
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box available_date"><?php echo form_input('booked_date', set_value('booked_date'),' class="form-control required availablelocation_datepicker"  ');?></div></div>
@@ -282,7 +290,15 @@ $(document).ready(function(){
 	    	
 	    });
 	  */
-
+    	/*placepicker*/
+        $(".dateofbirth_section").focusin(function () {
+            $(function () {
+                $('.location_date').datetimepicker({
+                	format: 'YYYY-MM-DD H:mm a',
+                });
+            });
+        });
+        $(".placepicker").placepicker(); 
     	
     });
 });
