@@ -1,5 +1,5 @@
-
-<div class="col-xs-12 contact_sectionform">
+<div class="col-xs-12" style="background:#f5f5f5;">
+<div class="col-lg-10 col-lg-offset-1 contact_sectionform">
     
     <h4><em>Get in Touch</em></h4>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -41,6 +41,7 @@
     <div class="contact_status"></div>
 </div>
 
+</div>
 <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit&hl=en"></script>
 <script type="text/javascript">
   var CaptchaCallback = function(){        
