@@ -7,7 +7,7 @@ if (!empty($blocks['inner_top'])) {
 <div class="left-siderbar">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
                 <?php
                 if (!empty($cms['page_description'])) {
                     echo $cms['page_description'];
@@ -19,11 +19,12 @@ if (!empty($blocks['inner_top'])) {
                 
             </div>
             
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
                 <?php
                 if (!empty($blocks['inner_right'])) {
                     echo $blocks['inner_right'];
                 }
+				
                 ?>
             </div>
             
