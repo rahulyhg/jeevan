@@ -1,33 +1,40 @@
+
 <div class="col-xs-12 contact_sectionform">
     
-    <h4>Get in Touch</h4>
-    <form id="contact_form" class="contactus_form" name="contact_form" method="post" >
+    <h4><em>Get in Touch</em></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <form id="contact_form" class="contactus_form row" name="contact_form" method="post" >
     		<input type="hidden" name="action" value="feedback">
-            <div class="form-group">
+            <div class="form-group col-lg-6">
                 <label for="First Name" class="form-control-label">First Name</label>
-                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
+                <input type="text" class="form-control" name="firstname" id="firstname">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-lg-6">
                 <label for="Last Name" class="form-control-label">Last Name</label>
-                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name">
+                <input type="text" class="form-control" name="lastname" id="lastname">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-lg-6">
                 <label for="email" class="form-control-label">E-mail</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
+                <input type="email" class="form-control" name="email" id="email">
+            </div>
+            
+            <div class="form-group col-lg-6">
+                <label for="phone" class="form-control-label">Phone No</label>
+                <input type="text" class="form-control" name="phone" id="phone">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-xs-12">
                 <label for="message-text" class="form-control-label">Message</label>
-                <textarea class="form-control" name="message_text" id="message-text" placeholder="Message"></textarea>
+                <textarea class="form-control" name="message_text" id="message-text"></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12">
                 <label class="control-label">Captcha Code</label>
                 <div class="g-recaptcha" id="g-recaptcha"></div>
                 <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12">
                 <input type="submit" class="btn btn-default" name="contact_submit" id="contact_submit" value="Submit">
             </div>
     </form>
@@ -49,6 +56,7 @@
 		rules: {
 			firstname:{required: true,lettersonly: true},
 			lastname:{required: true,lettersonly: true},
+			phone:{required: true,number: true,minlength: 10},
 			email:{required: true,email: true},
 			message_text:{required: true,},
 			"hiddenRecaptcha": {
@@ -62,8 +70,9 @@
 			}
 		},
 		messages: {
-			firstname:{required: "Enter your name",lettersonly: "Type only letter and white space"},
+			firstname:{required: "Enter your firstname",lettersonly: "Type only letter and white space"},
 			lastname:{required: "Enter your lastname",lettersonly: "Type only letter and white space"},
+			phone:{required: "Enter your Phone",number: "Invaild phone number",minlength: "Minimum 10 charaters."},
 			email:{required: "Enter your email id",email: "Invaild email id"},
 			message_text:{required: "Enter your Message",},
 			"hiddenRecaptcha" : {required: "Please click on the reCAPTCHA box",}
