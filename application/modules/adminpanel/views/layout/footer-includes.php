@@ -20,4 +20,5 @@
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/app.js"></script>
             <script type="text/javascript" src="<?php echo admin_skin()?>js/pagination.js"></script>
             <script type="text/javascript" src="<?php echo load_lib()?>theme/js/custom_js.js"></script>
-      
+      		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6CByIc-IB3nAmQpqh2uu3F4xQKk1Mtm8&sensor=true&libraries=places"> </script>
+			<script type="text/javascript" src="<?php echo skin_url(); ?>js/jquery.placepicker.js"></script>	
