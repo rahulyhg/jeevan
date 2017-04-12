@@ -33,6 +33,10 @@ class Gallery extends MY_Controller {
 		$data['module'] = $this->module;
 		$this->loadBlocks();
 		$data = array_merge($data, $this->view_data);
+		
+
+		
+		
 		$data['gallery'] = $this->Mydb->custom_query("SELECT gc.name AS gallery_category, g.title, g.description, g.gallery_category_id, g.media_type,
 		g.file_name, 
 		CASE 
@@ -51,10 +55,49 @@ class Gallery extends MY_Controller {
 		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
 		WHERE g.is_active='1' AND g.is_delete='0' AND gc.slug = '".$method."'");	
 		
+		$data['gallery_slug'] = $method;
 		
-			
-		
+				
 		$this->layout->display_frontend($this->folder . '/galleryviews', $data);
+		
+   }
+   
+  public  function  ajaxgallery($method, $args=array()){
+	  
+		$gallery_path = media_url();
+		$gallery_default = skin_url().'img/mediab2.png';
+	   if($this->input->post('type_name') !=''){
+			
+			if($this->input->post('type_name') == 'media_image'){
+				$media_type = ' AND g.media_type IN (1)';
+			}elseif($this->input->post('type_name') == 'media_video'){
+				$media_type = ' AND g.media_type IN (2,3)';
+			}else{
+				$media_type = ' AND g.media_type IN (1,2,3)';
+			}
+			
+		}
+		
+		
+		$data['gallery'] = $this->Mydb->custom_query("SELECT gc.name AS gallery_category, g.title, g.description, g.gallery_category_id, g.media_type,
+		g.file_name, 
+		CASE 
+		WHEN (g.media_type = '1' AND g.video_thumb = '') THEN CONCAT('".$gallery_path."', g.file_name) 
+		WHEN (g.media_type = '1' AND g.video_thumb != '') THEN CONCAT('".$gallery_path."', g.file_name) 
+		
+		WHEN (g.media_type = '2' AND g.video_thumb = '') THEN '".$gallery_default."' 
+		WHEN (g.media_type = '2' AND g.video_thumb != '') THEN CONCAT('".$gallery_path."', g.video_thumb) 
+		
+		WHEN (g.media_type = '3' AND g.video_thumb = '') THEN '".$gallery_default."'
+		WHEN (g.media_type = '3' AND g.video_thumb != '') THEN CONCAT('".$gallery_path."', g.video_thumb) 
+		
+		ELSE '".$gallery_default."' END AS image_url 
+		
+		FROM $this->sramcms_gallary_categories_table AS gc 
+		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
+		WHERE g.is_active='1' ".$media_type." AND g.is_delete='0' AND gc.slug = '".$method[0]."'");	
+	   
+	   $this->load->view($this->folder . '/ajaxgallery', $data);
    }
   
 }
