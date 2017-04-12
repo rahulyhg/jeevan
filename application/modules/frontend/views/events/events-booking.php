@@ -156,6 +156,13 @@ em::after
 .event-booking-form span:empty {
    background: #fff !important;	
 }
+.success_heading h3
+	{
+		color: #ff3300;
+		font-size: 25px;
+		font-family: 'latoheavy';
+	}
+	
 </style>
 
 
@@ -171,8 +178,12 @@ em::after
 <div class="event-booking-form col-xs-12">
  <p>Take the simple yet life-changing step by filling up and submitting the appointment form given below. May the grace of Jeevanacharya fall upon you and help you stay connected with his glory.</p>
                     <h5>Appointment Form</h5>
-                    <div class="contact_gurujee"></div>
-                    <form id="contact_form" class="form-horizontal" action="" name="contact_form" method="post">
+                    
+                    <div class="contact_gurujee" style="text-align:center;">
+                        
+                    </div>
+                    
+                    <form id="contact_form" class="form-horizontal contact_form" action="" name="contact_form" method="post">
                     	
                        
                         <div class="form-group">
@@ -296,16 +307,13 @@ em::after
             				data:last,
             				dataType : "json",
             				success: function(data) {
-            					if (data.status == 'success') {
-            						$('.contact_gurujee').addClass('text-success');
-            						$('.contact_gurujee').html("<div class='alert alert-success'>"+ data.message + "</div>");
+								
+								if (data.status == 'success') {
+            						$('#contact_form, .event-details, .event-booking-form p, .event-booking-form h5').hide();
+									$('.contact_gurujee img').show();
+            						$('.contact_gurujee').html("<img src='<?php echo skin_url(); ?>/img/success_popup.png'><div class='success_heading'><h3>"+ data.message + "<h3></div>");
             						scroll_error_content('.contact_gurujee');
-            						$("#firstname").val('');
-            						$("#email").val('');
-            						$("#phonenumber").val('');
-									$("#location").val('');
-            						$("#purpose").val('');
-            						$("#message").val('');
+            						
             					}
             					else {
             						$('.contact_gurujee').addClass('text-warning');
@@ -315,15 +323,16 @@ em::after
             					    $("#firstname").val('');
             						$("#email").val('');
             						$("#phonenumber").val('');
-									$("#location").val('');
             						$("#purpose").val('');
             						$("#message").val('');
             						$('#contact_submit').attr("disabled", false);
             					} 
+            					
             				}
             			});
             		}
             	});
+				
             	jQuery.validator.addMethod("lettersonly", function(value, element) {
                 return this.optional(element) || /^[a-zA-Z\s]*$/i.test(value);
             	}, "type only letter and white space");
