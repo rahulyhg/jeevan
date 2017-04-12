@@ -4761,6 +4761,27 @@ position: absolute;
     color: #7d7777;
     font-size: 15px;
 }
+@media (max-width: 1199px){}
+
+@media (min-width: 992px) and (max-width: 1199px){
+	.travel_content p
+	{
+		padding: 10px 0px;
+	}
+}
+
+@media (max-width: 991px){}
+
+@media (min-width: 768px) and (max-width: 991px){
+	.travel_content p
+	{
+		padding: 20px 0px;
+	}
+	.travel_content h3
+	{
+		padding: 10px 0px 10px 0px;
+	}
+}
 
 @media (max-width: 767px){
 	.cal-month-day span
@@ -4770,6 +4791,62 @@ position: absolute;
 	.travel_content p
 	{
 		padding: 0px;
+	}
+	.ashram_div em
+	{
+		font-size: 20px;
+	}
+	.ashram_div .ashram_heading
+	{
+		padding-bottom: 20px;
+	}
+	.travel_content p
+	{
+		padding: 0px;
+	}
+	
+	.bs-example
+	{
+		height: auto !important;
+	}
+	.table-responsive > .table > thead > tr > th, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > tbody > tr > td, .table-responsive > .table > tfoot > tr > td
+	{
+		white-space: normal !important;
+		font-size: 10px;
+		padding: 5px
+	}
+	.cal-month-day
+	{
+		height: 60px!important;
+	}
+	.cal-month-box [class*="cal-cell"]
+	{
+		min-height: 60px !important;
+	}
+	span[data-cal-date]
+	{
+		font-size: 11px !important;
+	}
+	.prg_booking_event h3 {
+    color: #c9302c;
+    text-align: center;
+	}
+	.prg_booking_event em
+	{
+		font-size: 28px;
+	}
+	.travel_content em
+	{
+		font-size: 20px;
+	}
+	.travel_program h3 {
+    text-align: center;
+    color: #ff3300;
+    margin: 30px 0px 30px 0px;
+	}
+	.travel_program em
+	{
+		font-size: 22px;
 	}
 }
 
