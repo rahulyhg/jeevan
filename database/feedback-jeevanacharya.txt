@@ -1,0 +1,1 @@
+ALTER TABLE `sramcms_feedback` ADD `phone` VARCHAR(15) NOT NULL AFTER `email`;
