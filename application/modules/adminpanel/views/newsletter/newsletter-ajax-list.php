@@ -12,7 +12,8 @@
 <table class="table ">
 	<thead class="first">
 		<tr>
-			<th><?=get_label('name');?></th>
+			<th><?=get_label('First name');?></th>
+			<th><?=get_label('Last name');?></th>
 			<th><?= get_label('email');?></th>
 			<th><?=get_label('status');?></th>
 			<th><?= get_label('created_on');?></th>
@@ -31,7 +32,8 @@
   
 	
 			
-			<td><?php echo output_value($val['name']);?></td>
+			<td><?php echo output_value($val['first_name']);?></td>
+		    <td><?php echo output_value($val['last_name']);?></td>
 			<td><?php echo output_value($val['email']);?></td>
 			<td><?php if($val['status']==1){ echo '<div class="btn btn-success">Subscribe</div>'; }else{ echo '<div class="btn btn-danger">Unsubscribe</div>'; } ?></td>
 			<td><?php echo get_date_formart(($val['created']));?></td>
@@ -52,7 +54,8 @@
 	</tbody>
 		<thead class="last">
 		<tr>
-			<th><?=get_label('name');?></th>
+			<th><?=get_label('First name');?></th>
+			<th><?=get_label('Last name');?></th>
 			<th><?= get_label('email');?></th>
 			<th><?=get_label('status');?></th>
 			<th><?= get_label('created_on');?></th>
