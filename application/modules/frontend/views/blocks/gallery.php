@@ -54,7 +54,7 @@
             $numbercount = $list + 1;
             ?>
                 <ul class="pager" role="tablist">
-                    <li class="previous" onclick="goTo(1);"><a href="javascript:void(0);"><span aria-hidden="true"><?php echo '<<< &nbsp;&nbsp;'; ?></span>  Previous</a></li>
+                    <li class="previous" onclick="goTo(1);"><a href="javascript:void(0);"><span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i><?php echo ' &nbsp;&nbsp;'; ?></span>  Previous</a></li>
                     <?php
                     for ($k = 1; $k <= $list; $k++) {
                         ?>
@@ -64,7 +64,7 @@
                         <?php
                     }
                     ?>
-                    <li class="next" onclick="goTo(2);"><a href="javascript:void(0);">Next <span aria-hidden="true"><?php echo '&nbsp;&nbsp; >>>'; ?></span></a></li>
+                    <li class="next" onclick="goTo(2);"><a href="javascript:void(0);">Next <span aria-hidden="true"><?php echo '&nbsp;&nbsp; '; ?><i class="fa fa-chevron-right" aria-hidden="true"></i><i class="fa fa-chevron-right" aria-hidden="true"></i></span></a></li>
                 </ul>
                 <?php endif; ?>
             </div>
