@@ -5,22 +5,22 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
     <form id="contact_form" class="contactus_form row" name="contact_form" method="post" >
     		<input type="hidden" name="action" value="feedback">
-            <div class="form-group col-lg-6">
+            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="First Name" class="form-control-label">First Name</label>
                 <input type="text" class="form-control" name="firstname" id="firstname">
             </div>
 
-            <div class="form-group col-lg-6">
+            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="Last Name" class="form-control-label">Last Name</label>
                 <input type="text" class="form-control" name="lastname" id="lastname">
             </div>
 
-            <div class="form-group col-lg-6">
+            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="email" class="form-control-label">E-mail</label>
                 <input type="email" class="form-control" name="email" id="email">
             </div>
             
-            <div class="form-group col-lg-6">
+            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <label for="phone" class="form-control-label">Phone No</label>
                 <input type="text" class="form-control" name="phone" id="phone">
             </div>
