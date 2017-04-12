@@ -4768,9 +4768,34 @@ position: absolute;
 	{
 		padding: 10px 0px;
 	}
+	.marquee-sibling {width: 17%;}
+	
+	.letter {border-left: none !important;}
+	
+	.footer_section1 {text-align: left;}
 }
 
-@media (max-width: 991px){}
+@media (max-width: 991px){
+	
+	.simple-marquee-container {width: 100%;}
+	.marquee-sibling {font-size: 15px;}
+	
+	.block-textwidgets em {font-size: 28px;}
+	
+	.aboutus p {text-align: justify;}
+	
+	.message_of_day em {font-size: 28px;}
+	
+	.news_letter p{text-align: justify;}
+	
+	.round em {text-align: center;}
+	
+	.about_img img {width: 100% !important; height: auto !important;}
+	
+	.footer_section1 {text-align: left;}
+
+	
+	}
 
 @media (min-width: 768px) and (max-width: 991px){
 	.travel_content p
@@ -4848,5 +4873,41 @@ position: absolute;
 	{
 		font-size: 22px;
 	}
+	
+	#block_content_left_19 em {font-size: 20px; font-weight: 25; text-align: center;}
+	
+	#block_content_left_19 em::before {padding: 0 10px 0 0; content: url(../img/samyleft.png); position: absolute; left: 10px; top: 35px; }
+	.aboutus p { text-align: justify; }
+	
+	.message_of_day em {font-size: 20px; text-align: center;}
+	
+	.letter { border: none;}
+	
+	.round em{font-size: 16px !important;}
+	
+	.news_letter p {text-align: justify; padding: 0px 15px;}
+	
+	.news_content h3 {margin-top: 0px;}
+	
+	.block-menus .simple-marquee-container{width: 100%;}
+	.block-menus .marquee-sibling{width: 40%; font-size: 14px; height: 40px;}
+	.block-menus .content{height: 40px;}
+	.block-menus .marquee-content-items li{line-height: 30px;}
+	
+	#block_way_circle_40 .img-thumbnail
+	{
+		padding: 0px 10px !important;
+	}
+	
+	.news_email p{font-size: 14px;}
+	
+	.form-group {padding: 0px !important;}
+	
+	.about_img img {width: 100% !important; height: auto !important;}
+	
+	#screen1{ min-height: 150px;}
+	
+	#screen1 h1{text-align: left;}
+
 }
 
