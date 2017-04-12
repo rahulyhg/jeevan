@@ -20,7 +20,7 @@
                                 <div class="mask">
                                     
                                     <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>" class="info">
-                                    <img src="<?php echo media_url().'gallery_icon.png' ?>"><br>
+                                    
                                     View All</a>
                                 </div>
                                 
