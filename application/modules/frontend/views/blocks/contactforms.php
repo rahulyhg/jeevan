@@ -27,7 +27,7 @@
 
             <div class="form-group col-xs-12">
                 <label for="message-text" class="form-control-label">Message</label>
-                <textarea class="form-control" name="message_text" id="message-text"></textarea>
+                <textarea class="form-control" name="message_text" id="message-text" rows="5"></textarea>
             </div>
             <div class="form-group col-xs-12">
                 <label class="control-label">Captcha Code</label>
