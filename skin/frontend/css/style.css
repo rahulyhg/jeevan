@@ -284,6 +284,7 @@ body
 	text-align:left !important;
 	padding:0px !important;
 	margin:0px !important;
+	word-break:break-all;
 }
 .gallery_box p{ min-height:70px !important;}
 .view-sixth img {
@@ -4883,7 +4884,7 @@ position: absolute;
 	
 	.letter { border: none;}
 	
-	.round em{font-size: 16px !important;}
+	.round em{font-size: 20px !important;}
 	
 	.news_letter p {text-align: justify; padding: 0px 15px;}
 	
@@ -4899,6 +4900,12 @@ position: absolute;
 		padding: 0px 10px !important;
 	}
 	
+	
+	.news_email em::before, .news_email em::after
+	{
+		position:relative;
+		top:5px;
+	}
 	.news_email p{font-size: 14px;}
 	
 	.form-group {padding: 0px !important;}
@@ -4911,3 +4918,13 @@ position: absolute;
 
 }
 
+.contact_sectionform span {
+    color: #ff3300 !important;
+    background: url(../img/al.png) no-repeat #fff !important;	
+    padding-left: 25px;
+    line-height: 40px;
+	padding-top: 2px;
+}
+.contact_sectionform span:empty {
+   background: #fff !important;	
+}
