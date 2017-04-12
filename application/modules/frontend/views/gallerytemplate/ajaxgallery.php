@@ -1,8 +1,12 @@
+<?php
+if(!empty($gallery)){
+?>
 <div class="tab-content">
     <div class="tab-pane active" id="tab1" role="tabpanel">
         <?php
         $i = 0;
         $j = 2;
+		
         foreach ($gallery as $gallery_details) {
         ?>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 gallery_box" data-tag=<?php
@@ -45,11 +49,16 @@
                 $j++;
             }
         }
+		
         ?>
     </div>
 </div>
 
-
+<?php
+}else{
+			echo '<div class="clearfix"></div><h3 class="text-center">No Found Data</h3>';
+		}
+?>
 
 <div class="col-xs-12">
 
