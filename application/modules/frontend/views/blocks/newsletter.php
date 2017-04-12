@@ -5,30 +5,30 @@ if(!empty($params)){
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="col-xs-6">
+				<div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
 					<img src="<?php echo skin_url(); ?>img/subscribtionsimg.png" alt="news subscription">
 				</div>
-				<div class="col-xs-6 news_email round letter">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 news_email round letter">
 					<h3><em><?php echo $params->newsletter_title; ?></em></h3>
 					<p><?php echo $params->newsletter_subtitle; ?></p>
 					 <div class="newsletter_status" style="display:none"></div>
                     <form id="newsletter_form"  name="newsletter_form" method="post">
 					    
-						<div class="form-group col-xs-6 news_firstname">
+						<div class="form-group col-xs-12 col-md-6 col-sm-6 col-lg-6 news_firstname">
 							<label for="newsletter_firstname" class="sr-only"></label>
 							<input id="newsletter_firstname" class="form-control input-group-lg" type="text" name="newsletter_firstname"
 								   title="Enter first name"
 								   placeholder="First name"/>
 						</div>
 
-						<div class="form-group col-xs-6 ">
+						<div class="form-group col-xs-12 col-md-6 col-sm-6 col-lg-6 lname">
 							<label for="newsletter_lastname" class="sr-only"></label>
 							<input id="newsletter_lastname" class="form-control input-group-lg" type="text" name="newsletter_lastname"
 								   title="Enter last name"
 								   placeholder="Last name"/>
 						</div>
 						<div class="clearfix"></div>
-						<div class="input-group">
+						<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 input-group">
 							<input type="text" class="form-control" placeholder="E-mail" name="newsletter_email" id="newsletter_email">
 							<div class="input-group-btn">
 								<input type="hidden" name="action" value="subscribe">
