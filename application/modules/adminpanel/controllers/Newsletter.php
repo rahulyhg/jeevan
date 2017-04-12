@@ -92,7 +92,8 @@ class Newsletter extends CI_Controller {
          * * pagination part end **
          */
         $select_array = array(
-            'name',
+            'first_name',
+        	'last_name',
             'email',
             'status',
             'created',
