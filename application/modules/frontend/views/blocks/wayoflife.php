@@ -7,42 +7,42 @@
         <div id="pie-menu" class="pie-outer">
             <div class="pie black">
               <ul class="link2">
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelve_nakhatras';"  style="cursor:pointer;"><a href="#"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#twelvenakhatras';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
               </ul>
             </div>
             <div class="pie teal">
               <ul>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#ether';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#water';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#air';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#fire';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#earth';"  style="cursor:pointer;"><a href="#"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#ether';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#water';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#air';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#fire';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#earth';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
               </ul>
             </div>
             <div class="pie gray">
               <ul>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#healthproblem';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#career_problem';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#business_problem';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#marriageproblem';"  style="cursor:pointer;"><a href="#"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#healthproblem';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#careerproblem';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#businessproblem';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#marriageproblem';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
               </ul>
             </div>
             <div class="pie orange">
               <ul>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#mind';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#soul';"  style="cursor:pointer;"><a href="#"></a></li>
-                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#body';"  style="cursor:pointer;"><a href="#"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#mind';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#soul';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
+                <li onclick="location.href='<?php echo base_url(); ?>way-of-life/#body';"  style="cursor:pointer;"><a href="javascript:void(0);"></a></li>
               </ul>
             </div>
             <div class="round-middle" onclick="location.href='<?php echo base_url(); ?>way-of-life/#body';"   style="cursor:pointer;">

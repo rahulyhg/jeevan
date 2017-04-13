@@ -1,10 +1,24 @@
+<style>
+#left {
+	position:relative;
+	height:100%;
+	margin-bottom:60px;
+}
+#right {
+  position: relative;
+  float: right;
+}
 
+#sidebar {
+ 
+}
+</style>
 <div class="accordian">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 wayoflife_list">
+				<div id="left">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 wayoflife_list " id="sidebar" >
 					<ul>
 						<li class="header_life">First Chakra</li>
 							<ul>
@@ -39,9 +53,11 @@
 								
 							</ul>
 					</ul>
-				</div>
 				
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 wayoflife_content chakra-content text-center">
+				
+                </div>
+                
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 wayoflife_content chakra-content text-center" id="right">
 					<h6><em>Way of life Chakras</em></h6>
 					<div id="body" class="common_view">
 						<img src="<?php echo skin_url(); ?>img/001.png" alt="first chakra">
@@ -158,9 +174,14 @@
 					</div>
 				</div>
 			</div>
+            
+            <div class="clearfix"></div>
+            
 		</div>
 	</div>
 </div>
+
+<div class="clearfix"></div>
 
 <script>
 $('.common_view').hide();
@@ -175,4 +196,41 @@ $('.wayoflife_accord').click(function(e) {
 	$(id).show();
 });
 
+</script>
+
+<script>
+if ($(window).width() > 1199) {
+var length = $('#left').height() - $('#sidebar').height() + $('#left').offset().top;
+
+$(window).scroll(function () {
+
+	var scroll = $(this).scrollTop();
+	var height = $('#sidebar').height() + 'px';
+
+	if (scroll < $('#left').offset().top) {
+
+		$('#sidebar').css({
+			'position': 'absolute',
+			'top': '0'
+		});
+
+	} else if (scroll > length) {
+
+		$('#sidebar').css({
+			'position': 'absolute',
+			'bottom': '0',
+			'top': 'auto'
+		});
+
+	} else {
+
+		$('#sidebar').css({
+			'position': 'fixed',
+			'top': '0',
+			'width' : '280px',
+			'height': height
+		});
+	}
+});
+}
 </script>
