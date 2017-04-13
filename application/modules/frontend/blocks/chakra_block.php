@@ -6,7 +6,7 @@ class Chakra_Block extends Core_Block {
 	}
 	public function drawData() {
 		$data = $this->getBlockData();
-		//$data['accord_slug'] = $this->CI->uri->segment(n);
+		$data['accord_slug'] = $this->CI->uri->segment(3);
 		return $data;
 	}
 }
