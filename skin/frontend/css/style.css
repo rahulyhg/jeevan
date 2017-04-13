@@ -4775,6 +4775,10 @@ position: absolute;
 	.letter {border-left: none !important;}
 	
 	.footer_section1 {text-align: left;}
+	.wayoflife_list .header_life{font-size: 15px !important;}
+	.wayoflife_list ul li a{font-size: 12px !important;}
+	.ashram_section1 h3{text-align: left !important;}
+	.contact_sectionform h4{margin: 50px 0 55px 0;}
 }
 
 @media (max-width: 991px){
@@ -4808,6 +4812,17 @@ position: absolute;
 	{
 		padding: 10px 0px 10px 0px;
 	}
+	.wayoflife_content img {width: 350px !important; height: 350px !important;}
+	.wayoflife_list .header_life{font-size: 14px !important;}
+	.wayoflife_list ul li a{font-size: 13px !important;}
+	.guru_aboutus em{font-size: 28px !important;}
+	.galleryviews em{font-size: 24px!important;}
+	.ashram_section1 h3{text-align: left !important;}
+	#screen1{background: url(../img/jeevannew.jpg) left center no-repeat; background-size: 100% 100% !important; height: auto!important; min-height: 200px!important;}
+	.contact_sectionform em{font-size: 28px!important;}
+	.contact_sectionform p{text-align: justify;}
+	.contact_sectionform h4{margin: 0px 0px 20px 0px !important;}
+	.contact_sectionform form{margin-top: 0px!important;}
 }
 
 @media (max-width: 767px){
@@ -4916,6 +4931,20 @@ position: absolute;
 	#screen1{ min-height: 150px;}
 	
 	#screen1 h1{text-align: left;}
+	
+	.wayoflife_content em{font-size: 21px;}
+	.wayoflife_content img {width: 250px !important; height: 250px !important;}
+	.guru_aboutus em{font-size: 22px !important;}
+	.news_email em{font-size: 16px !important;}
+	.news_email p{margin: 0px!important; padding:0px !important; text-align: center;}
+	.galleryviews .btn-warning{width: 80px; font-size: 12px;}
+	.galleryviews em{font-size: 19px!important;}
+	#screen1{background: url(../img/jeevannew.jpg) left center no-repeat; background-size: 100% 100% !important; height: auto!important; min-height: 150px!important;}
+	.contact_section em{font-size: 15px!important;}
+	.contact_sectionform h4{margin:0px 0px 20px 0px!important;}
+	.contact_sectionform em{font-size: 28px!important;}
+	.contact_sectionform p{text-align: justify;}
+	.contact_sectionform form{margin-top: 0px!important;}
 
 }
 
