@@ -4954,7 +4954,7 @@ position: absolute;
 .wayoflife_list ul li a
 {
 	color: #3e0308;
-	font-size: 16px;
+	font-size: 14px;
 }
 .wayoflife_list ul ul li .active, .wayoflife_list ul ul li a:hover 
 {
@@ -4970,7 +4970,7 @@ position: absolute;
     display: block;
     height: 0;
     width: 0;
-    left: -1em;
+    margin-left: -1em;
     top: 4px;
     position: relative;
 	float:left;
