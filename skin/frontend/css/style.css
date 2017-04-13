@@ -5105,5 +5105,15 @@ position: absolute;
   background:transparent;
   border-radius:0px; 
 }
+
+#newsletter_form span {
+    color:  #FABA4B !important;
+    background: url(../img/al.png) no-repeat !important;	
+    padding-left: 25px;
+	padding-top: 2px;
+}
+#newsletter_form span:empty {
+   background: #fff !important;	
+}
     
 
