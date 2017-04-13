@@ -83,16 +83,16 @@ class Events extends MY_Controller {
             $check_exist = $this->Mydb->get_record('*', $this->booking_table, array('event_id' => $event_id, 'email' => $this->input->post('email'), 'booked_date' => $this->input->post('booked_date')));
 
             if (empty($check_exist)) {
-				
-				
+
+
                 $purpose_of_appoint = json_encode($this->input->post('purpose'));
                 $insert_data = array("name" => $this->input->post('firstname'),
                     "email" => $this->input->post('email'),
                     "phone_no" => $this->input->post('phonenumber'),
                     "event_id" => $event_id,
                     "booked_date" => $this->input->post('booked_date'),
-					"location_date" => $this->input->post('location_date'),
-					"location" => $this->input->post('location'),
+                    "location_date" => $this->input->post('location_date'),
+                    "location" => $this->input->post('location'),
                     "purpose_of_appointment" => $purpose_of_appoint ? $purpose_of_appoint : '',
                     "message" => $this->input->post('message'),
                     "created_on" => current_date(),
@@ -100,10 +100,10 @@ class Events extends MY_Controller {
                     "created_by" => get_admin_id() ? get_admin_id() : '',
                     "is_active" => '1',
                 );
-				
+
 
                 $result = $this->Mydb->insert($this->booking_table, $insert_data);
-				
+
                 if (!empty($result)) {
                     $this->send_notification_email_to_admin($insert_data);
                     $this->send_acknowledgement_email_to_user($insert_data);
@@ -141,7 +141,8 @@ class Events extends MY_Controller {
                 array_push($response['destinations'], $rows);
             endforeach;
         } else {
-            $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND is_visible = 1 AND  CURDATE() between start_date and end_date  ORDER BY start_date ASC");
+            $curdate = date('Y-m-d');
+            $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active =1 AND is_visible = 1 AND  '$curdate' between start_date and end_date  ORDER BY start_date ASC");
             if (empty($getplandetails)) {
                 $getplandetails = $this->Mydb->custom_query("SELECT * from $this->table WHERE is_active=1 AND is_visible = 1  ORDER BY start_date ASC");
             }
