@@ -9,57 +9,57 @@
 
                 </div>
             </div>
-		</div>
-           </div>
-           </div>
-            <div class=" travel_content">
-               <div class="container">
-               <div class="row">
-               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        </div>
+    </div>
+</div>
+<div class=" travel_content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h3><em>Swamiji-Travel Program</em></h3>
                 <p>Tentative Tour Programme of Jeevanacharya, watch and get connected with his WAY OF LIFE</p>
                 <div class="wrapper scrollbar-dynamic ">
                     <div class="bs-example order">
-						<div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Available Date</th>
-                                    <th>Available Location</th>
-                                    <th>Program and Destination</th>
-                                    <th>View</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 1;
-                                foreach ($records as $details):
-                                    ?>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $i; ?></td>
-                                        <td><?php echo $details['start_date']; ?></td>
-                                        <td><?php echo $details['end_date']; ?></td>
-                                        <td><?php echo $details['available_date'] ? $details['available_date'] : '--'; ?></td>
-                                        <td><?php echo $details['available_location'] ? $details['available_location'] : '--'; ?></td>
-                                        <td><?php echo "<strong>" . $details['trip_name'] . "</strong>"; ?><br /><?php echo stripslashes(str_replace('|*|', ' >>> ', $details['destinations'])); ?></td>
-                                        <td><a href="javascript:void(0)" onclick="loadmap(<?php echo $details['id']; ?>)">Route Map</a></td>
+                                        <th>S.No</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Available Date</th>
+                                        <th>Available Location</th>
+                                        <th>Program and Destination</th>
+                                        <th>View</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <?php
-                                    $i++;
-                                endforeach;
-                                ?>
-                            </tbody>
-                        </table>
+                                    $i = 1;
+                                    foreach ($records as $details):
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo date('d M, Y', strtotime($details['start_date'])); ?></td>
+                                            <td><?php echo date('d M, Y', strtotime($details['end_date'])); ?></td>
+                                            <td><?php echo $details['available_date'] != 0 ? $details['available_date'] : '--'; ?></td>
+                                            <td><?php echo $details['available_location'] ? $details['available_location'] : '--'; ?></td>
+                                            <td><?php echo "<strong>" . $details['trip_name'] . "</strong>"; ?><br /><?php echo stripslashes(str_replace('|*|', ' >>> ', $details['destinations'])); ?></td>
+                                            <td><a href="javascript:void(0)" onclick="loadmap(<?php echo $details['id']; ?>)">Route Map</a></td>
+                                        </tr>
+                                        <?php
+                                        $i++;
+                                    endforeach;
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -88,7 +88,7 @@
                 </div>
 
                 <div id="calendar"></div>
-				
+
                 <div class="page-header">				
                     <div class="pull-right form-inline">  
                         <div class="btn-group">
@@ -135,37 +135,37 @@
 <input type="hidden" name="start_long" id="start_long"/>
 <input type="hidden" name="end_long" id="end_long"/>
 <div class="clearfix"></div>
-<?php 
-if(!empty($blocks['inner_bottom'])){
-	echo $blocks['inner_bottom']; 
+<?php
+if (!empty($blocks['inner_bottom'])) {
+    echo $blocks['inner_bottom'];
 }
 ?>
 <div class="clearfix"></div>
-<?php 
-if(!empty($blocks['content_newsletter'])){
-echo $blocks['content_newsletter']; 
+<?php
+if (!empty($blocks['content_newsletter'])) {
+    echo $blocks['content_newsletter'];
 }
 ?>
 
 
 <script>
-	(function($){
-		$(window).on("load",function(){
-			
-			
-			
-			$(".order").mCustomScrollbar({
-				setHeight:430,
-				theme:"dark-3"
-			});
-			$("get_value").mCustomScrollbar({
-				setHeight:180,
-				theme:"dark-3"
-			});
-			
-			
-		});
-	})(jQuery);
+    (function ($) {
+        $(window).on("load", function () {
+
+
+
+            $(".order").mCustomScrollbar({
+                setHeight: 430,
+                theme: "dark-3"
+            });
+            $("get_value").mCustomScrollbar({
+                setHeight: 180,
+                theme: "dark-3"
+            });
+
+
+        });
+    })(jQuery);
 </script>
 
 
