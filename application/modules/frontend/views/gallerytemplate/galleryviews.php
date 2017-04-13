@@ -1,9 +1,10 @@
 <div class="galleryviews">
     <div class="container">
         <div class="row">
-
+			
             <h3 class="text-center"><em><?php echo $gallery[0]['gallery_category']; ?></em></h3>
 			<div class="col-xs-12 text-center">
+				<button class="btn btn-small btn-warning" onclick="goBack()">Go Back</button>
                 <a href="javascript:void(0);" class="btn btn-small btn-warning filter_gallery" id="all">All</a>
                 <a href="javascript:void(0);" class="btn btn-small btn-warning filter_gallery" id="media_image">Images</a>                    
                 <a href="javascript:void(0);" class="btn btn-small btn-warning filter_gallery" id="media_video">Videos</a>
