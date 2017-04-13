@@ -27,6 +27,9 @@ $('html, body').animate({
 
 
 <script>
+function goBack() {
+    window.history.back();
+}
 $(function() {
   $(".expand").on( "click", function() {
     $(this).next().slideToggle(200);

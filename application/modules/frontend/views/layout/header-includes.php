@@ -14,7 +14,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/jquery.fancybox.css">
 
 <!--<link rel="stylesheet" href="<?php echo skin_url(); ?>css/jquery.mCustomScrollbar.css">-->
-<script src="<?php echo skin_url(); ?>js/jquery-3.1.1.min.js"></script>
+<!-- <script src="<?php //echo skin_url(); ?>js/jquery-3.1.1.min.js"></script> -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/marquee.js"></script>
 <script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
