@@ -185,13 +185,29 @@
 
 <script>
 $('.common_view').hide();
-$(location.hash).show();
-$(".wayoflife_list ul ul li a[href='"+location.hash+"']").addClass('active');
+
+if(location.hash == ''){
+	$('#body').show();
+	$(".wayoflife_list ul ul li a[href='#body']").addClass('active');
+}else{	
+	$(location.hash).show();
+	$(".wayoflife_list ul ul li a[href='"+location.hash+"']").addClass('active');
+}
+
 
 $('.wayoflife_accord').click(function(e) {
 	var id = $(this).attr('href');
-    $(location.hash).hide();
-	$(".wayoflife_list ul ul li a[href='"+location.hash+"']").removeClass('active');
+    
+	if(location.hash == ''){
+		$('#body').hide();
+		$(".wayoflife_list ul ul li a[href='#body']").removeClass('active');
+	}else{	
+		$(location.hash).hide();
+		$(".wayoflife_list ul ul li a[href='"+location.hash+"']").removeClass('active');
+	}
+	
+	
+	
 	$(".wayoflife_list ul ul li a[href='"+id+"']").addClass('active');
 	$(id).show();
 });
@@ -206,7 +222,7 @@ $(window).scroll(function () {
 
 	var scroll = $(this).scrollTop();
 	var height = $('#sidebar').height() + 'px';
-
+	
 	if (scroll < $('#left').offset().top) {
 
 		$('#sidebar').css({

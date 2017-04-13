@@ -148,7 +148,7 @@ if (!empty($blocks['content_newsletter'])) {
 ?>
 
 
-<script>
+<!--<script>
     (function ($) {
         $(window).on("load", function () {
 
@@ -166,7 +166,7 @@ if (!empty($blocks['content_newsletter'])) {
 
         });
     })(jQuery);
-</script>
+</script>-->
 
 
 <script type="text/javascript">
