@@ -5061,3 +5061,20 @@ position: absolute;
 	color: #ff3300;
 }
 
+
+#twitter-widget-holder, .twitter-timeline {
+    height:280px;
+    padding:20px;
+    background:transparent;
+    border-radius:0px;
+    }
+
+#twitter-widget-holder { 
+  max-height:400px; 
+  max-width:320px; 
+  padding:10px; 
+  background:transparent;
+  border-radius:0px; 
+}
+    
+
