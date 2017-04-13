@@ -15,6 +15,7 @@
 			<th><?=get_label('firstname');?></th>
             <th><?=get_label('lastname');?></th>
 			<th><?= get_label('email');?></th>
+			<th><?= get_label('phone');?></th>
 			<th><?=get_label('message');?></th>
 			<th><?= get_label('created_on');?></th>
 
@@ -34,6 +35,7 @@
 			<td><?php echo output_value($val['firstname']);?></td>
             <td><?php echo output_value($val['lastname']);?></td>
 			<td><?php echo output_value($val['email']);?></td>
+			<td><?php echo output_value($val['phone']);?></td>
             <td><?php echo output_value($val['message_text']);?></td>
 			<td><?php echo get_date_formart(($val['created']));?></td>
 			
@@ -54,6 +56,7 @@
 			<th><?=get_label('firstname');?></th>
             <th><?=get_label('lastname');?></th>
 			<th><?= get_label('email');?></th>
+			<th><?= get_label('phone');?></th>
 			<th><?=get_label('message');?></th>
 			<th><?= get_label('created_on');?></th>
 
