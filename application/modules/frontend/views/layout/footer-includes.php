@@ -40,13 +40,7 @@ $(function() {
   });
 });
 </script>
-<!--<script>
-$(document).ready(function () {
-	location.hash && $(location.hash + '.collapse').collapse('show');
-	/*var accordid = $('#according').val();
-  	$('#'+accordid + '.collapse').collapse('show');*/
-});	
-</script>-->
+
 <script>
    $(document).ready(function(){
 	   $(window).bind('scroll', function() {
@@ -58,25 +52,11 @@ $(document).ready(function () {
 				 $('nav').removeClass('fixed');
 			 }
 		});
-$('.footer_section3').on('DOMSubtreeModified propertychange',"#twitter-widget-0", function() {
-  $(".twitter-timeline").contents().find(".timeline-Tweet-media, .timeline-Header, .timeline-Footer, .timeline-LoadMore").css("display", "none");
-  $(".twitter-timeline").contents().find(".timeline-Widget").css({"background": "#120000","left":"-10px", "position":"relative"});
-  $(".twitter-timeline").contents().find(".TweetAuthor-name").css({"color": "#ffffff"});
-  $(".twitter-timeline").contents().find(".timeline-Tweet-text").css({"color": "#a0a0a0"});
-  $(".twitter-timeline").contents().find(".timeline-TweetList-tweet").css({"border-bottom": "1px solid #737373"});
-  $(".twitter-timeline").contents().find(".timeline-TweetList-tweet:last-child").css({"border-bottom":"0px"});
-  
-  
-  
-  
-  $(".twitter-timeline").contents().find(".timeline-Viewport").css({"overflow-x" : "hidden", "overflow-y" : "hidden"});
- 
-  
-  
-  $(".footer_section3").css("height", "100%");
-});
+
 	
 	});
 </script>
+
+
 
       
