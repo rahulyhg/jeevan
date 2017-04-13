@@ -7,10 +7,11 @@
 #right {
   position: relative;
   float: right;
+  min-height:1200px;
 }
-
+@media (max-width: 1199px){#right {  min-height:100px;}}
 #sidebar {
- 
+  position:absolute;
 }
 </style>
 <div class="accordian">
