@@ -87,6 +87,7 @@ class Feedback extends CI_Controller {
             'firstname',
 			'lastname',
             'email',
+        	'phone',
             'message_text',
             'created',
         );
