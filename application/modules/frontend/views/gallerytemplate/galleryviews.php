@@ -69,7 +69,7 @@
             
  <?php
 }else{
-			echo '<div class="clearfix"></div><h3 class="text-center">No Found Data</h3>';
+			echo '<div class="clearfix"></div><h3 class="text-center">Media No Found</h3>';
 		}
 ?>
            
