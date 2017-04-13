@@ -188,10 +188,10 @@
 $('.common_view').hide();
 
 if(location.hash == ''){
-	$('#body').show();
+	$('#body').fadeIn(1000);
 	$(".wayoflife_list ul ul li a[href='#body']").addClass('active');
 }else{	
-	$(location.hash).show();
+	$(location.hash).fadeIn(1000);
 	$(".wayoflife_list ul ul li a[href='"+location.hash+"']").addClass('active');
 }
 
@@ -210,7 +210,7 @@ $('.wayoflife_accord').click(function(e) {
 	
 	
 	$(".wayoflife_list ul ul li a[href='"+id+"']").addClass('active');
-	$(id).show();
+	$(id).fadeIn(1000);
 });
 
 </script>
