@@ -1,0 +1,3 @@
+ALTER TABLE `sramcms_gallary_categories` ADD `is_order` BIGINT(20) NOT NULL AFTER `category_image`;
+
+ALTER TABLE `sramcms_galleries` ADD `is_order` BIGINT(20) NOT NULL AFTER `updated_ip`;
