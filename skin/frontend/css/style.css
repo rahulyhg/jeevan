@@ -5116,4 +5116,16 @@ position: absolute;
    background: #fff !important;	
 }
     
+.travel_content .table thead tr .start_date
+{
+	width: 110px !important;
+}
+.travel_content .table thead tr .available_location
+{
+	width: 140px !important;
+}
+.events_booking
+{
+	width: 700px !important;
+}
 
