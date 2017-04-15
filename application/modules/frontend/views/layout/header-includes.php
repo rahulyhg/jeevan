@@ -24,6 +24,7 @@
 <?php /* common javascript varibles ...*/ ?>
 <script>
  var admin_url ="<?php echo frontend_url(); ?>";
+ var base_url = "<?php echo base_url(); ?>";
  var skin_url ="<?php echo skin_url(); ?>";
  var lod_lib = "<?php echo load_lib(); ?>";
  var module ="<?php echo $module; ?>";

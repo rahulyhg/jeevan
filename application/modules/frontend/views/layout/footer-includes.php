@@ -44,19 +44,24 @@ $(function() {
 });
 </script>
 
+			
 <script>
    $(document).ready(function(){
 	   $(window).bind('scroll', function() {
-	   var navHeight = $( window ).height() - 100;
-			 if ($(window).scrollTop() > navHeight) {
-				 $('nav').addClass('fixed');
-			 }
-			 else {
-				 $('nav').removeClass('fixed');
-			 }
+		   	if(document.URL == base_url){
+				var offet = 100;
+			}else{
+				var offet = 500;
+			}
+				var navHeight = $( window ).height() - offet;
+			
+			if ($(window).scrollTop() > navHeight) {
+				$('nav').addClass('fixed');
+			}
+			else {
+				$('nav').removeClass('fixed');
+			}
 		});
-
-	
 	});
 </script>
 
