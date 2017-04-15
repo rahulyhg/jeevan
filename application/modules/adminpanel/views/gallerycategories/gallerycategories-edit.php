@@ -30,6 +30,13 @@
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('category description');?></label>
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('description',stripslashes($records['description']),' class="form-control"  ');?></div></div>
 						</div>
+                         <div class="form-group" id="is_order">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Position');?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box">
+							<input type="number" name="is_order" class="form-control" value="<?php echo $records['is_order']; ?>">
+							</div>
+							</div>
+						</div>
 						
 							<div class="form-group">
 									<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('category thumbnail');?></label>

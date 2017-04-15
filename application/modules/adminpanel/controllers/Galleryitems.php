@@ -149,6 +149,7 @@ class Galleryitems extends CI_Controller {
 				
 				$category_id = get_session_value ( $this->module . '_gallery_category_id' );		
 				$insert_data = array("title" => post_value('title'),
+									"is_order" =>	post_value('is_order') ? post_value('is_order') :'',
 									 "description" => post_value('description') ? post_value('description') :'',	
 									 "created_on" => current_date(),
 									 "created_by" => get_admin_id(),
@@ -273,6 +274,7 @@ class Galleryitems extends CI_Controller {
 				
 				$update_data = array(
 						"title" => post_value('title'),
+						"is_order" =>	post_value('is_order') ? post_value('is_order') :'',
 						"description" => post_value('description') ? post_value('description') :'',
 						"updated_on" => current_date(),
 						"updated_by" => get_admin_id(),
