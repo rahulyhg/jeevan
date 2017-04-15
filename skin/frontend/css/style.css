@@ -1217,8 +1217,8 @@ section {
 }
 #screen1 {	
 
-	background:url(../img/jeevannew1.jpg) center center no-repeat;
-	background-size:100% 100%;
+	background:url(../img/jeevannew1.jpg) center right no-repeat #E12E17;
+	background-size:cover;
 	height: 300px;
 	position: relative;
 	width: 100%;
@@ -1983,7 +1983,6 @@ section {
 	padding: 0px;
 	margin: 0px;
 	height: auto;
-	border-bottom: 1px solid #ddcccd;
 }
 .aboutus_section h2
 {
