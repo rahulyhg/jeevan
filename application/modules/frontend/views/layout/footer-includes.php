@@ -47,21 +47,24 @@ $(function() {
 			
 <script>
    $(document).ready(function(){
-	   $(window).bind('scroll', function() {
-		   	if(document.URL == base_url){
-				var offet = 100;
-			}else{
-				var offet = 500;
-			}
-				var navHeight = $( window ).height() - offet;
-			
-			if ($(window).scrollTop() > navHeight) {
-				$('nav').addClass('fixed');
-			}
-			else {
-				$('nav').removeClass('fixed');
-			}
-		});
+	   if ($(window).width() > 992) {
+		   $(window).bind('scroll', function() {
+				if(document.URL == base_url){
+					var offet = 100;
+				}else{
+					var offet = 500;
+				}
+					var navHeight = $( window ).height() - offet;
+				
+				if ($(window).scrollTop() > navHeight) {
+					$('nav').addClass('fixed');
+				}
+				else {
+					$('nav').removeClass('fixed');
+				}
+			});
+		  }
+		
 	});
 </script>
 
