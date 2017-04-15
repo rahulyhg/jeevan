@@ -25,12 +25,12 @@
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Available Date</th>
-                                        <th>Available Location</th>
+                                        <th class="start_date">Start Date</th>
+                                        <th class="start_date">End Date</th>
+                                        <th class="start_date">Available Date</th>
+                                        <th class="available_location">Available Location</th>
                                         <th>Program and Destination</th>
-                                        <th>View</th>
+                                        <th class="start_date">View</th>
                                     </tr>
                                 </thead>
                                 <tbody>
