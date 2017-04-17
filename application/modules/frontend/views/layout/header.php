@@ -41,15 +41,18 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 }else{
 	$scroll_position = '1';
 ?>
-
-<section id="screen1">
+<?php
+$page_url = str_replace('-', " ", uri_string());
+$page_title = explode("/", $page_url);
+?>
+<section id="screen1" style="background:url(<?php echo bannerimage(uri_string()); ?>) center right no-repeat #E12E17;">
 	<div class="menu_text">
 		<div class="container">
 			<div class="row">
 				<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<?php 
 					$page_url = str_replace('-', " ", uri_string());
-					$page_title = explode("/", $page_url)
+					$page_title = explode("/", $page_url);
 				?>
 					<h1><?php echo $page_title[0]; ?></h1>
 				</div>
