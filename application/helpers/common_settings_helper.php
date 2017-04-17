@@ -361,3 +361,19 @@ if(!function_exists('get_hoursRange')){
 		return $times;
 	}
 }
+
+if (!function_exists('bannerimage')) {
+
+    function bannerimage($current_url) {
+        $CI = & get_instance();
+		
+        $bannerimage_record = $CI->Mydb->custom_query("SELECT page_slug, page_image FROM sramcms_cms_pages WHERE page_slug = '".$current_url."'");
+        if(!empty($bannerimage_record)){
+			$record = media_url().'cms/'.$bannerimage_record[0]['page_image'];
+		}else{
+			$record = media_url().'cms/default.jpg';
+		}
+        return $record;
+    }
+
+}
