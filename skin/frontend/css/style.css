@@ -4775,6 +4775,9 @@ position: absolute;
 	.wayoflife_list ul li a{font-size: 12px !important;}
 	.ashram_section1 h3{text-align: left !important;}
 	.contact_sectionform h4{margin: 50px 0 55px 0;}
+	#screen1
+{background-size: 100% 100% !important;}
+
 }
 
 @media (max-width: 991px){
@@ -4819,6 +4822,7 @@ position: absolute;
 	.contact_sectionform p{text-align: justify;}
 	.contact_sectionform h4{margin: 0px 0px 20px 0px !important;}
 	.contact_sectionform form{margin-top: 0px!important;}
+	#screen1{background-size: cover !important;}
 }
 
 @media (max-width: 767px){
@@ -4941,6 +4945,28 @@ position: absolute;
 	.contact_sectionform em{font-size: 28px!important;}
 	.contact_sectionform p{text-align: justify;}
 	.contact_sectionform form{margin-top: 0px!important;}
+	
+	.modal-dialog{width: 100% !important;  left: -10px!important;}
+	.modal-dialog span{display: block;}
+	.show span{display: block!important;}
+	.gallery h1{text-align: center;}
+	.gallery em{font-size: 19px;}
+	.gallery p{text-align: justify;}
+	.gallery .pager li > a, .pager li > span{padding: 5px 11px !important;}
+	.media img{margin: 0px !important;}
+	.media .media-heading{font-size: 12px !important; line-height: 28px; padding: 0px;}
+	.form-group .events_book{width: 300px !important;}
+	
+	#sidebar {position: relative !important;}
+	#screen1 h1 {
+		text-align: right !important;
+	}
+	#screen1 {
+		height: auto !important;
+		min-height: 150px !important;
+		background-size: cover !important;
+	}
+
 
 }
 
@@ -5125,3 +5151,6 @@ position: absolute;
 	width: 700px !important;
 }
 
+.innernav {z-index: 9999 !important;}
+.discourse_img_box img , 
+.discourse-img-section img {width: 100%;}
