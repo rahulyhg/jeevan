@@ -45,5 +45,6 @@ $block_types = array(
 	"chakra" => "Chakra",
 	"gallery" => "Gallery",
 	"blog" => "Blog",
+	"discourse" => "Discourse",
 	"photooftheday" => "Photo Of The Day",
 );
