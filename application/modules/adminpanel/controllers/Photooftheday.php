@@ -19,6 +19,7 @@ class Photooftheday extends CI_Controller {
 		$this->table = "sramcms_photo_oftheday";
 		$this->primary_key = 'id';
 		$this->load->library('common');
+		
 			
 	}
 	
@@ -230,8 +231,36 @@ class Photooftheday extends CI_Controller {
 		$this->module_label ="User Info";
 		$data ['breadcrumb'] = $data ['form_heading'] = get_label ( 'edit' ) . ' ' . $this->module_label;
 		$data['edit_id'] = $edit_id;
+		
 		$data ['module_action'] = 'edit/' . encode_value ( $record [$this->primary_key] );
 		$this->layout->display_admin ( $this->folder . $this->module . '-edit', $data );
+	}
+	
+	public function share($edit_id = NULL) {
+		$data = $this->load_module_info ();
+		$id = addslashes ( decode_value ( $edit_id ) );
+		$response = array ();
+		$record = $this->Mydb->get_record ( '*', $this->table, array (
+				$this->primary_key => $id
+		) );
+		(empty ( $record )) ? redirect ( admin_url() . $this->module ) : '';
+	
+
+		$data ['records'] = $record;
+		/* Common labels */
+		$this->module_label ="User Info";
+		$data ['breadcrumb'] = $data ['form_heading'] = get_label ( 'share' ) . ' ' . $this->module_label;
+		$data['edit_id'] = $edit_id;
+		$data['meta_jeevan_url'] = $edit_id;
+		$data['meta_jeevan_link'] = 'http://jeevanacharya.com/';
+		$data['meta_jeevan_title'] = $record['title'];
+		$data['meta_jeevan_summary'] = $record['description'];
+		$media_files = json_decode($record['image']);
+		$data['meta_jeevan_image'] =  media_url($media_files->files[0]);
+		
+		
+		$data ['module_action'] = 'share/' . encode_value ( $record [$this->primary_key] );
+		$this->layout->display_admin ( $this->folder . $this->module . '-share', $data );
 	}
 	
 	/* this method used to common module labels */
