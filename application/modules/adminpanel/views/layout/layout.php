@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html  itemscope itemtype="http://schema.org/Article">
 <head>
    <?php echo $this->load->view('layout/header');?>
 </head>
-<body class="flat-blue">
+<body class="flat-blue" >
 	<div class="app-container">
 		<div class="row content-container">
 			<!-- top  menu  -->

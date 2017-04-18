@@ -1,5 +1,38 @@
  <title><?php  echo get_label('admin_title'); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <?php
+    if(!empty($meta_jeevan_url)){
+    ?>
+    
+
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="<?php echo $meta_jeevan_title; ?>">
+    <meta itemprop="description" content="<?php echo $meta_jeevan_summary; ?>">
+    <meta itemprop="image" content="<?php echo $meta_jeevan_image; ?>">
+    
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Jeevanascharya.com">
+    <meta name="twitter:creator" content="@JeevanascharyaG">
+    <meta name="twitter:title" content="<?php echo $meta_jeevan_title; ?>">
+    <meta name="twitter:description" content="<?php echo $meta_jeevan_summary; ?>">
+    <meta name="twitter:image" content="<?php echo $meta_jeevan_image; ?>">
+
+    
+    <!-- Open Graph data -->
+    <meta property="og:title" content="<?php echo $meta_jeevan_title; ?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<?php echo $meta_jeevan_link; ?>" />
+    <meta property="og:image" content="<?php echo $meta_jeevan_image; ?>" />
+    <meta property="og:description" content="<?php echo $meta_jeevan_summary; ?>" />
+    <meta property="og:site_name" content="Jeevanacharya" />
+    <?php
+    }
+    ?>
+   
+    
     <!-- Fonts -->
     <link href='<?php echo  load_font('google_lato.css')?>' rel='stylesheet' type='text/css'>
     <link href='<?php echo  load_font('google_roboto_condensed.css')?>' rel='stylesheet' type='text/css'>
