@@ -55,6 +55,8 @@
 					title="<?php echo get_label('delete')?>"></i></a>
 					 <a  href="<?php echo admin_url().$module."/edit/".encode_value($val['id']);?>" class="btn btn-success"><i class="fa fa-edit"
 					title="<?php echo get_label('edit')?>"></i></a>
+                    <a  href="<?php echo admin_url().$module."/share/".encode_value($val['id']);?>" class="btn btn-success"><i class="fa fa-globe" 
+					title="<?php echo get_label('share')?>">Social Media Share</i></a>
 					</td>
 		</tr>
 <?php  } } else { ?>
