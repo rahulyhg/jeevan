@@ -68,11 +68,11 @@ $(function() {
 	});
 </script>
 
-<link rel="stylesheet" type="text/css" href="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo skin_url(); ?>css//jquery.mCustomScrollbar.min.css">
     <!-- jQuery lib -->
 
     <!-- custom scrollbar plugin script -->
-    <script type="text/javascript" src="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="<?php echo skin_url(); ?>js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
  (function($){
 	$(window).load(function(){
