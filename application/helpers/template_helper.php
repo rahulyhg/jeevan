@@ -84,7 +84,8 @@
   /* get metatitle */
   if (! function_exists ( 'get_meta_text' )) {
   	function get_meta_text($title) {
-  		return ($title != "") ? $title . " | " . get_site_title () : get_site_title ();
+  		//return ($title != "") ? $title . " | " . get_site_title () : get_site_title ();
+		return ($title != "") ? $title  : get_site_title ();
   	}
   }
   /*load meta tags */
