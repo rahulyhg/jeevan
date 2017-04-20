@@ -40,16 +40,21 @@ class Events extends MY_Controller {
     /* Get event data */
 
     public function get_event_data() {
+		
         $response = array();
         $event_url = frontend_url() . $this->module . '/get_event_booking/';
-        $result = $this->Mydb->get_all_records("id, trip_name AS title, CONCAT('" . $event_url . "',id) AS url,(UNIX_TIMESTAMP(start_date) * 1000) AS start, (UNIX_TIMESTAMP(end_date) * 1000) AS end", $this->table, array('is_active' => '1', 'is_delete' => '0'));
-
+		 $today = date('Y-m-d');
+        $result = $this->Mydb->get_all_records("id, trip_name AS title, CONCAT('" . $event_url . "',id) AS url,(UNIX_TIMESTAMP(start_date) * 1000) AS start, (UNIX_TIMESTAMP(end_date) * 1000) AS end", $this->table, array('is_active' => '1', 'is_delete' => '0', 'start_date >=' => $today));
+	  
+		
         if (!empty($result)) {
             $response['success'] = 1;
             $response['result'] = $result;
         }
-
+		
         echo json_encode($response);
+		
+		
     }
 
     /* Event booking popup modal window */
