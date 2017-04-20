@@ -308,7 +308,7 @@ if (! function_exists ( 'get_is_subscribe_dropdown' )) {
 		$status	=	array (
 				' ' => get_label('select_status'),
 				'1' => 'Subscribe',
-				'0' => 'Unsubscribe'
+				'2' => 'Unsubscribe'
 		);
 		if(!empty($addStatus)){
 			$status	=	$status + $addStatus;
