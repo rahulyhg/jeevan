@@ -128,7 +128,7 @@ class Events extends CI_Controller {
 		if (post_value ( 'paging' ) == "") {
 			$this->session->set_userdata ( $this->module . "_search_field", post_value ( 'search_field' ) );
 			$this->session->set_userdata ( $this->module . "_search_value", post_value ( 'search_value' ) );
-			$this->session->set_userdata ( $this->module . "_search_status", post_value ( 'status' ) );
+			$this->session->set_userdata ( $this->module . "_search_status", (int)post_value ( 'is_active' ));
 		}
 		
 		if (get_session_value ( $this->module . "_search_field" ) != "" && get_session_value ( $this->module . "_search_value" ) != "") {
@@ -138,13 +138,15 @@ class Events extends CI_Controller {
 		}
 		
 			
-		if (get_session_value ( $this->module . "_search_status" ) != "") {
+		if (get_session_value ( $this->module . "_search_status" ) != "" || get_session_value ( $this->module . "_search_status" ) == "0") {
+			
 			$where = array_merge ( $where, array (
-					'user_status' => get_session_value ( $this->module . "_search_status" )
+					'is_active' => get_session_value ( $this->module . "_search_status" )
 			) );
 		}
 		
 		// print_r($like); exit;
+		 //print_r($where); exit;
 		
 		$totla_rows = $this->Mydb->get_num_rows ( $this->primary_key, $this->table, $where, null, null, null, $like );
 		

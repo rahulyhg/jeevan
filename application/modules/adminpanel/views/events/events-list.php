@@ -21,7 +21,7 @@
                             <?php echo form_open('',' id="common_search" class="form-inline"');?>
                              <?php  $search_array = array(
                              		 '' => get_label('select'),
-                             		 'title' => get_label('title'),
+                             		 'trip_name' => get_label('title'),
                              		 );
                              
                              echo form_dropdown('search_field',$search_array,get_session_value($module."_search_field"));

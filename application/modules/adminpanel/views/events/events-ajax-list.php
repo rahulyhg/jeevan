@@ -46,7 +46,7 @@
 			<td><?php echo $val['trip_name'];?></td>	
 			<?php $media_files = json_decode( $val['image']); ?>
 			<td width="20%"><?php echo $val['plan_details'];?>	</td>
-			<td><?php echo get_date_formart(($val['available_date']), 'Y-m-d');?></td>
+			<td><?php if($val['available_date'] == '0000-00-00'){ echo 'N/A'; }else{ echo get_date_formart(($val['available_date']), 'Y-m-d'); }?></td>
 			<td><?php echo get_date_formart(($val['start_date']), 'Y-m-d');?></td>			
 			<td><?php echo get_date_formart(($val['end_date']), 'Y-m-d');?></td>
 			<td><?php echo get_date_formart(($val['created_on']));?></td>

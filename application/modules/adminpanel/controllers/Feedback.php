@@ -20,7 +20,7 @@ class Feedback extends CI_Controller {
         $this->folder = "feedback/";
         $this->table = "feedback";
         $this->load->library('common');
-
+		$this->load->helper('emailtemplate');
         $this->primary_key = 'id';
     }
 
@@ -84,6 +84,7 @@ class Feedback extends CI_Controller {
          * * pagination part end **
          */
         $select_array = array(
+			'id',
             'firstname',
 			'lastname',
             'email',
@@ -147,12 +148,58 @@ class Feedback extends CI_Controller {
 
     /* this method used to clear all session values and reset search values */
 
+
+	function feedback_reply(){
+		if ($this->input->post ( 'action' ) == "reply") {
+			
+			$this->form_validation->set_rules ( 'reply_message', 'lang:page_title', 'required' );
+			if ($this->form_validation->run () == TRUE) {	
+				
+				$id = $this->input->post('feedback_id');
+				$reply_message = $this->input->post('reply_message');
+				$check = $this->Mydb->get_record('id, firstname, lastname, message_text, reply_message, email, phone', $this->table, array('is_active' => '1', 'is_delete' => '0', 'id' => $id));
+				
+				if(!empty($check)){
+					
+					$this->Mydb->update($this->table, array('id' => $id), array('reply_message' => $reply_message));
+					$name = $check['firstname'].' '.$check['lastname'];
+					$to_email = $check['email'];
+					$reply_content = $reply_message;
+					$content = $check['message_text'];
+					
+					$this->send_feedback_reply($name, $to_email, $content, $reply_content);
+					$result ['status'] = 'success';
+					$result ['message'] = 'Admin reply to  is success';
+					
+				}else{
+					$result ['status'] = 'error';
+					$result ['message'] = 'Your email is not exit';
+				}
+				
+			}else{
+				$result ['status'] = 'error';
+				$result ['message'] = validation_errors();
+			}
+			echo json_encode($result);
+			exit;
+			
+		}
+	}
+	
     function refresh() {
         $this->session->unset_userdata($this->module . "_search_field");
         $this->session->unset_userdata($this->module . "_search_value");
         $this->session->unset_userdata($this->module . "_search_category");
         $this->session->unset_userdata($this->module . "_search_status");
         redirect(admin_url() . $this->module);
+    }
+	
+	public function send_feedback_reply($name, $to_email, $content, $reply_content) {
+
+        $chk_arr = array('[NAME]', '[CONTENT]', '[REPLYCONTENT]');
+        $rep_arr = array($name, $content, $reply_content);
+        $response = send_email($to_email, $template_slug = "feedback-reply", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
+        return $response;
     }
 
     /* this method used to common module labels */

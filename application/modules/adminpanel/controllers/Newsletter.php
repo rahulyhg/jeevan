@@ -64,13 +64,19 @@ class Newsletter extends CI_Controller {
 		
 		
         if (get_session_value($this->module . "_search_status") != "") {
-            $where = array_merge($where, array(
-                'status' => get_session_value($this->module . "_search_status")
-            ));
+			if(get_session_value($this->module . "_search_status") == '2'){
+				$where = array_merge($where, array(
+					'status' => '0'
+				));
+			}else{
+				$where = array_merge($where, array(
+					'status' => get_session_value($this->module . "_search_status")
+				));
+			}
         }
 
 	
-        //print_r($where); exit;
+       // print_r($where); exit;
 
         $totla_rows = $this->Mydb->get_num_rows($this->primary_key, $this->table, $where, null, null, null, $like);
 
@@ -104,7 +110,7 @@ class Newsletter extends CI_Controller {
         $html = get_template($this->folder . '/' . $this->module . '-ajax-list', $data);
         echo json_encode(array(
             'status' => 'ok',
-            'sd' => post_value('status'),
+            //'sd' => post_value('status'),
             'offset' => $offset,
             'active_page' => $active_page,
             'html' => $html

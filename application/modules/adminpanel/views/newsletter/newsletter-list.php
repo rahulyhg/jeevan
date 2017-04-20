@@ -15,7 +15,8 @@
                             <?php echo form_open('',' id="common_search" class="form-inline"');?>
                              <?php  $search_array = array(
                              		 '' => get_label('select'),
-                             	     'name' => get_label('user_name'),
+                             	     'first_name' => get_label('first_name'),
+									 'last_name' => get_label('last_name'),
                              		 'email' =>  get_label('email'));
                              
                              echo form_dropdown('search_field',$search_array,get_session_value($module."_search_field"));
@@ -24,6 +25,9 @@
                             
                                
                                 <?php echo form_input('search_value',get_session_value($module."_search_value"),'class="form-control"');?>
+                               
+                               
+                                
                                  <?php echo get_is_subscribe_dropdown(get_session_value($module."_search_status"));?>
                                 <button class="btn btn-primary" type="button" id="submit_search" onclick="get_content('')"><i class="fa fa-search"></i></button> <a class="btn btn-info"  id="reset_search"  href="<?php echo admin_url().$module."/refresh"?>"><i class="fa fa-refresh"></i>&nbsp; Refresh</a> 
                              <?php echo form_close(); ?>                        </div>
