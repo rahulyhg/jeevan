@@ -18,7 +18,8 @@
 		<i class="fa fa-2x fa-arrow-circle-up"></i>
 	</span>
 </div>
-
+<link rel="stylesheet" type="text/css" href="<?php echo skin_url(); ?>css/jquery.floating-social-share.css" />
+<script type="text/javascript" src="<?php echo skin_url(); ?>js/jquery.floating-social-share.js"></script>
 <script>
 	$(function(){
  
@@ -39,6 +40,16 @@
 	offsetTop = offset.top;
 	$('html, body').animate({scrollTop: offsetTop}, 1000, 'linear');
 }
+</script>
+<script>
+  $("body").floatingSocialShare({
+    buttons: [
+      "facebook", "google-plus", "twitter"
+    ],
+    twitter_counter: true,
+    text: "share with: ",
+    url: "<?php echo  get_the_current_url(); ?>"
+  });
 </script>
 
 

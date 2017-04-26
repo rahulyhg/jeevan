@@ -1,6 +1,7 @@
 
  
  <?php
+
 if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('frontend')){
  ?>
 <section class="screen2">
@@ -44,6 +45,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 <?php
 $page_url = str_replace('-', " ", uri_string());
 $page_title = explode("/", $page_url);
+
 ?>
 <section id="screen1" style="background:url(<?php echo bannerimage(uri_string()); ?>) center right no-repeat #E12E17;">
 	<div class="menu_text">

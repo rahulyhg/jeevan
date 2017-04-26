@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>theme/css/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>theme/css/owl.theme.css">
 
+
 <!--<link rel="stylesheet" href="<?php echo skin_url(); ?>css/jquery.mCustomScrollbar.css">-->
 <!-- <script src="<?php //echo skin_url();      ?>js/jquery-3.1.1.min.js"></script> -->
 <script type="text/javascript" src="<?php echo skin_url(); ?>js/jquery.min.1.10.1.js"></script>

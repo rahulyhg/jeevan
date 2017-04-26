@@ -3,6 +3,7 @@
 <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/jquery.fancybox.js"></script>
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/calendar.js"></script>
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/app.js"></script>
+
 <script>
 	$(function (){
 		$('.simple-marquee-container').SimpleMarquee();
@@ -103,6 +104,7 @@ $('.footer_section3').on('DOMSubtreeModified propertychange',"#twitter-widget-0"
 
 })(jQuery);
 </script>
+
 
 
 
