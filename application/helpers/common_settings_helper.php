@@ -377,3 +377,13 @@ if (!function_exists('bannerimage')) {
     }
 
 }
+
+function get_the_current_url() {
+    
+    $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+    $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+    $complete_url =   $base_url . $_SERVER["REQUEST_URI"];
+    
+    return $complete_url;
+     
+}
