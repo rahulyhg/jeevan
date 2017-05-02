@@ -1566,6 +1566,12 @@ section {
 }
 .aboutus{ background:#fff;
 }
+.aboutus h1
+{
+	font-size: 35px;
+	color: orangered;
+	margin: 30px 0px;
+}
 .aboutus h2
 {
 	font-size: 35px;
@@ -2378,7 +2384,7 @@ tbody
 {
 	margin-bottom: 70px;
 }
-.contactus_header .contact_section h1, .contact_sectionform h4
+.contactus_header .contact_section h2, .contact_sectionform h4
 {
 	color:#ff3300;
 	font-size: 30px;
@@ -2423,6 +2429,7 @@ tbody
 	width: 125px;
 	border: 0;
 	border-radius: 0;
+	line-height:28px !important;
 }
 .contactus_form .form-control
 {
@@ -3703,6 +3710,9 @@ span {
 	{
 		width: 46%;
 	}
+	.aboutus h1 {
+    font-size: 28px;
+	}
 .aboutus h2 {
     font-size: 28px;
 	}
@@ -4050,7 +4060,7 @@ span {
 {
 	float: none !important;
 }
-.gallery h1{
+.gallery h2{
 	    color: #ff3300;
     margin: 30px 0px 30px 0;
     font-family: 'latoregular';
@@ -4377,7 +4387,7 @@ figure.effect-apollo:hover p {
 {
 	color: #C9302C !important;
 }
-.prg_booking_event h1
+.prg_booking_event h2
 {
 	font-size: 24px;
 }
@@ -4648,7 +4658,7 @@ position: absolute;
 	width: 100%;
 	height: auto;
 }
-.prg_booking_event h1
+.prg_booking_event h2
 {
 	text-align: center;
 	color: #ff3300;
@@ -4949,7 +4959,7 @@ position: absolute;
 	.modal-dialog{width: 100% !important;  left: -10px!important;}
 	.modal-dialog span{display: block;}
 	.show span{display: block!important;}
-	.gallery h1{text-align: center;}
+	.gallery h2{text-align: center;}
 	.gallery em{font-size: 19px;}
 	.gallery p{text-align: justify;}
 	.gallery .pager li > a, .pager li > span{padding: 5px 11px !important;}
@@ -5119,7 +5129,11 @@ position: absolute;
     background:transparent;
     border-radius:0px;
     }
-
+.twitter-timeline
+{
+	height:600px !important;
+	width:100% !important;
+}
 #twitter-widget-holder { 
   max-height:400px; 
   max-width:320px; 
@@ -5154,3 +5168,33 @@ position: absolute;
 .innernav {z-index: 9999 !important;}
 .discourse_img_box img , 
 .discourse-img-section img {width: 100%;}
+h1
+{
+	font-size: 35px;
+	color: orangered;
+	margin: 30px 0px;
+}
+
+#left {
+	position:relative !important;
+	height:100% !important;
+	margin-bottom:60px !important;
+}
+#right {
+  position: relative !important;
+  float: right !important;
+  min-height:1200px !important;
+}
+@media (max-width: 1199px){#right {  min-height:100px;}}
+#sidebar {
+  position:absolute !important;
+}
+.contact_map
+{
+	width:100% !important;
+	height:350px !important;
+	padding:0px !important;
+	margin:0px !important;
+	border:0px !important;
+}
+	
