@@ -1,16 +1,19 @@
 
- 
+ <?php
+$page_url = str_replace('-', " ", uri_string());
+$page_title = explode("/", $page_url);
+
+?>
  <?php
 
 if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('frontend')){
  ?>
 <section class="screen2">
 
- 
+
 <div class="fullscreen-bg">
-    <video loop muted autoplay class="fullscreen-bg__video">
-        <source src="<?php echo skin_url(); ?>video/jeevanacharya_videos.webm" type="video/webm"></source>
-     <source src="<?php echo skin_url(); ?>video/jeevanacharya_videos.mp4" type="video/mp4"></source>
+    <video loop muted autoplay class="fullscreen-bg__video" src="<?php echo skin_url(); ?>video/jeevanacharya_videos.mp4">
+     	
     </video>
 </div>
  
@@ -27,7 +30,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 			
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menu_section">
 					<div class="col-lg-2 col-md-3 logo_img">
-					<a href="<?php echo BASE_URL(); ?>"><img class="pull-right" src="<?php echo skin_url(); ?>img/logo.png" alt="jeevanacharya"></a>
+					<a href="<?php echo BASE_URL(); ?>"><img class="pull-right" src="<?php echo skin_url(); ?>img/logo.png" alt="jeevanacharya" title="jeevanacharya" ></a>
 					</div>
 					<div class="col-lg-10 col-md-9 menubar">
 						<?php echo $blocks['site_header_desktop']; ?>
@@ -42,11 +45,7 @@ if(base_url(uri_string()) == BASE_URL() || base_url(uri_string()) == BASE_URL('f
 }else{
 	$scroll_position = '1';
 ?>
-<?php
-$page_url = str_replace('-', " ", uri_string());
-$page_title = explode("/", $page_url);
 
-?>
 <section id="screen1" style="background:url(<?php echo bannerimage(uri_string()); ?>) center right no-repeat #E12E17;">
 	<div class="menu_text">
 		<div class="container">
@@ -73,7 +72,7 @@ $page_title = explode("/", $page_url);
 			
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menu_section">
 					<div class="col-lg-2 col-md-3 logo_img">
-					<a href="<?php echo BASE_URL(); ?>"><img class="pull-right" src="<?php echo skin_url(); ?>img/logo.png" alt="jeevanacharya"></a>
+					<a href="<?php echo BASE_URL(); ?>"><img class="pull-right" src="<?php echo skin_url(); ?>img/logo.png" alt="jeevanacharya" title="jeevanacharya" ></a>
 					</div>
 					<div class="col-lg-10 col-md-9 menubar">
 						<?php echo $blocks['site_header_desktop']; ?>

@@ -1,4 +1,5 @@
 
+
 <div class="travel_program">
     <div class="container-fulid">
         <div class="row">
@@ -60,21 +61,21 @@
         </div>
     </div>
 </div>
-</div>
+
 
 
 <div class="event_booking_section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 prg_booking_event">
-                <h1>Program Booking</h1>
+                <h2>Program Booking</h2>
 
                 <div class="page-header">				
                     <div class="pull-right form-inline">  
                         <div class="btn-group">
-                            <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
+                            <button class="btn btn-primary" data-calendar-nav="prev"><i class="fa fa-angle-left" aria-hidden="true"></i><i class="fa fa-angle-left" aria-hidden="true"></i> Prev</button>
                             <button class="btn btn-default" data-calendar-nav="today">Today</button>
-                            <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                            <button class="btn btn-primary" data-calendar-nav="next">Next <i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i></button>
                         </div>
                         <!-- <div class="btn-group">
                                 <button class="btn btn-warning" data-calendar-view="year">Year</button>
@@ -83,7 +84,7 @@
                                 <button class="btn btn-warning" data-calendar-view="day">Day</button>
                         </div> -->
                     </div>				
-                    <h3></h3>
+                    <h3>&nbsp;</h3>
 
                 </div>
 
@@ -92,9 +93,9 @@
                 <div class="page-header">				
                     <div class="pull-right form-inline">  
                         <div class="btn-group">
-                            <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
+                            <button class="btn btn-primary" data-calendar-nav="prev"><i class="fa fa-angle-left" aria-hidden="true"></i><i class="fa fa-angle-left" aria-hidden="true"></i> Prev</button>
                             <button class="btn btn-default" data-calendar-nav="today">Today</button>
-                            <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                            <button class="btn btn-primary" data-calendar-nav="next">Next <i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i></button>
                         </div>
                         <!-- <div class="btn-group">
                                 <button class="btn btn-warning" data-calendar-view="year">Year</button>
@@ -110,7 +111,7 @@
                 <br><br>
                 <div id="disqus_thread"></div>
 
-                <div class="modal fade" id="events-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="events-modal" tabindex="-1" role="dialog"  aria-hidden="true">
                     <div class="modal-dialog" style="width:700px;">
                         <div class="modal-content">
                             <div class="modal-header">

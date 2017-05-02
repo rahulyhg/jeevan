@@ -20,6 +20,7 @@ class Gallery extends MY_Controller {
           else
           {
 			$this->index($method,$args);
+			
           }
     }
  
@@ -34,10 +35,7 @@ class Gallery extends MY_Controller {
 		$this->loadBlocks();
 		$data = array_merge($data, $this->view_data);
 		
-
-		
-		
-		$data['gallery'] = $this->Mydb->custom_query("SELECT gc.name AS gallery_category, g.title, g.description, g.gallery_category_id, g.media_type,
+		$data['gallery'] = $this->Mydb->custom_query("SELECT gc.name AS gallery_category,  g.title, g.description, g.gallery_category_id, g.media_type,
 		g.file_name, 
 		CASE 
 		WHEN (g.media_type = '1' AND g.video_thumb = '') THEN CONCAT('".$gallery_path."', g.file_name) 
@@ -53,12 +51,26 @@ class Gallery extends MY_Controller {
 		
 		FROM $this->sramcms_gallary_categories_table AS gc 
 		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
-		WHERE g.is_active='1' AND g.is_delete='0' AND gc.slug = '".$method."'");	
+		WHERE gc.is_active='1' AND gc.is_delete='0' AND gc.slug = '".$method."'");	
+		
+		
+		
+		$data['gallery_meta'] = $this->Mydb->custom_query("SELECT gc.meta_title, gc.meta_keyword, gc.meta_description
+		FROM $this->sramcms_gallary_categories_table AS gc 
+		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
+		WHERE gc.is_active='1' AND gc.is_delete='0' AND gc.slug = '".$method."' GROUP BY gc.id");	
 		
 		$data['gallery_slug'] = $method;
 		
-				
-		$this->layout->display_frontend($this->folder . '/galleryviews', $data);
+		$data['meta_title']   =  get_meta_text($data['gallery_meta'][0]['meta_title']);
+		$data['meta_keyword'] = get_meta_text($data['gallery_meta'][0]['meta_keyword']);
+		$data['meta_content'] = get_meta_text($data['gallery_meta'][0]['meta_description']);
+		
+		if(!empty($data['gallery'])){
+			$this->layout->display_frontend($this->folder . '/galleryviews', $data);
+		}else{
+			show_404();	
+		}
 		
    }
    
@@ -78,7 +90,6 @@ class Gallery extends MY_Controller {
 			
 		}
 		
-		
 		$data['gallery'] = $this->Mydb->custom_query("SELECT gc.name AS gallery_category, g.title, g.description, g.gallery_category_id, g.media_type,
 		g.file_name, 
 		CASE 
@@ -95,7 +106,9 @@ class Gallery extends MY_Controller {
 		
 		FROM $this->sramcms_gallary_categories_table AS gc 
 		LEFT JOIN $this->sramcms_galleries_table AS g ON g.gallery_category_id = gc.id
-		WHERE g.is_active='1' ".$media_type." AND g.is_delete='0' AND gc.slug = '".$method[0]."'");	
+		WHERE gc.is_active='1' ".$media_type." AND gc.is_delete='0' AND gc.slug = '".$this->input->post('url_slug')."'");	
+	   
+	
 	   
 	   $this->load->view($this->folder . '/ajaxgallery', $data);
    }

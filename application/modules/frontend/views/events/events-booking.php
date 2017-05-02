@@ -311,7 +311,7 @@ em::after
 								if (data.status == 'success') {
             						$('#contact_form, .event-details, .event-booking-form p, .event-booking-form h5').hide();
 									$('.contact_gurujee img').show();
-            						$('.contact_gurujee').html("<img src='<?php echo skin_url(); ?>/img/success_popup.png'><div class='success_heading'><h3>"+ data.message + "<h3></div>");
+            						$('.contact_gurujee').html("<img src='<?php echo skin_url(); ?>/img/success_popup.png' alt='success message' title='success message'><div class='success_heading'><h3>"+ data.message + "<h3></div>");
             						scroll_error_content('.contact_gurujee');
             						
             					}
@@ -362,7 +362,7 @@ $(".placepicker").placepicker();
 <div class="col-xs-10 col-xs-offset-1">
 <div class="media">
     <div class="media-left">
-      <img src="<?php echo skin_url(); ?>/img/no_booking_img.png" class="media-object" style="width:100px">
+      <img src="<?php echo skin_url(); ?>/img/no_booking_img.png" alt="no booking" title="no booking" class="media-object" style="width:100px">
     </div>
     <div class="media-body">
       <h4 class="media-heading">BOOKING NOT AVAILABLE ON THIS DATE</h4>

@@ -9,7 +9,7 @@
             <div class="tab-pane active" id="tab1" role="tabpanel">
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/jeevan2.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/jeevan2.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							
 							<p>Apollo's last game of pool was so strange.</p>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/jeevan3.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/jeevan3.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							
 							<p>Apollo's last game of pool was so strange.</p>
@@ -29,7 +29,7 @@
                 </div>
                  <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/jeevan4.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/jeevan4.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							
 							<p>Apollo's last game of pool was so strange.</p>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/jeevan1.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/jeevan1.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							
 							<p>Apollo's last game of pool was so strange.</p>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/jeevan3.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/jeevan3.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							
 							<p>Apollo's last game of pool was so strange.</p>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/jeevan2.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/jeevan2.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -71,7 +71,7 @@
             <div class="tab-pane" id="tab2" role="tabpanel">
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -91,7 +91,7 @@
                 </div>
                  <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -133,7 +133,7 @@
             <div class="tab-pane" id="tab3" role="tabpanel">
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -153,7 +153,7 @@
                 </div>
                  <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -183,7 +183,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -195,7 +195,7 @@
             <div class="tab-pane" id="tab4" role="tabpanel">
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -205,7 +205,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -215,7 +215,7 @@
                 </div>
                  <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -235,7 +235,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -245,7 +245,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -257,7 +257,7 @@
             <div class="tab-pane" id="tab5" role="tabpanel">
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -267,7 +267,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -277,7 +277,7 @@
                 </div>
                  <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -287,7 +287,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -297,7 +297,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -307,7 +307,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -319,7 +319,7 @@
             <div class="tab-pane" id="tab5" role="tabpanel">
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -329,7 +329,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -339,7 +339,7 @@
                 </div>
                  <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -349,7 +349,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -359,7 +359,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>
@@ -369,7 +369,7 @@
                 </div>
                 <div class="col-sm-4 grid">
                     <figure class="effect-apollo">
-						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="img18"/>
+						<img src="<?php echo skin_url(); ?>img/25.jpg" alt="jeevanacharya" title="jeevanacharya"/>
 						<figcaption>
 							<h2>Strong <span>Apollo</span></h2>
 							<p>Apollo's last game of pool was so strange.</p>

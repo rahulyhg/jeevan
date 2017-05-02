@@ -13,7 +13,7 @@
 				<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 ashram_section1">
 					<h3><?php echo $discourse_list['title']; ?></h3>
 					<p><?php echo $discourse_list['shortdesc']; ?></p>
-                    <button class="btn btn-danger pull-right">Read More</button>
+                    <span class="btn btn-danger pull-right">Read More</span>
 				</div>
 			</div>
             </a>

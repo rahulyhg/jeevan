@@ -3,8 +3,8 @@
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/style.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/animate.css">
-<link rel="stylesheet" href="<?php echo skin_url(); ?>lato regular/stylesheet.css">
-<link rel="stylesheet" href="<?php echo skin_url(); ?>lemon tuesdayfont/stylesheet.css">
+<link rel="stylesheet" href="<?php echo skin_url(); ?>lato-regular/stylesheet.css">
+<link rel="stylesheet" href="<?php echo skin_url(); ?>lemon-tuesdayfont/stylesheet.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>OCRAStd/styles.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?php echo skin_url(); ?>css/stylesheet.css">

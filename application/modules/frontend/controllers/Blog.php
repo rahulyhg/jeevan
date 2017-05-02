@@ -41,7 +41,11 @@ class Blog extends MY_Controller {
 		
 		FROM $this->sramcms_blog_table
 		WHERE is_active='1' AND is_delete='0' AND blog_slug = '".$method."'");	
-		$this->layout->display_frontend($this->folder . '/blogviews', $data);
+		if(!empty($data['blog'])){
+			$this->layout->display_frontend($this->folder . '/blogviews', $data);
+		}else{
+			show_404();	
+		}
    }
   
 }

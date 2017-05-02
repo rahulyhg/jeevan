@@ -19,8 +19,8 @@ if(!empty($gallery)){
         ?>>
             
             <div class=" grid view view-first" >
-                <img src="<?php echo $gallery_details['image_url']; ?>" class="gallery_image img-responsive"/>
-               <div class="mask">
+                <img src="<?php echo $gallery_details['image_url']; ?>" alt="<?php echo $gallery_details['title']; ?>" title="<?php echo $gallery_details['title']; ?>" class="gallery_image img-responsive"/>
+               <div class="mask text-center">
                     <?php
                     if ($gallery_details['media_type'] == '3') {
                         $file_url = $gallery_details['file_name'];
@@ -33,10 +33,10 @@ if(!empty($gallery)){
                     }
                     ?>
                     
-                    <center><a data-fancybox="gallery" data-width="2048" data-height="1365" data-caption="<?php echo $gallery_details['description'] ? $gallery_details['description'] :$gallery_details['title']; ?>"  title="<?php echo $gallery_details['title']; ?>" href="<?php echo $file_url; ?>" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info icon_details">
+                    <a data-fancybox="gallery" data-width="2048" data-height="1365" data-caption="<?php echo $gallery_details['description'] ? $gallery_details['description'] :$gallery_details['title']; ?>"  title="<?php echo $gallery_details['title']; ?>" href="<?php echo $file_url; ?>" data-title="<?php echo $gallery_details['media_type']; ?>"  class="info icon_details">
                     
                     
-                    View</a></center>
+                    View</a>
                 </div> 
             </div>
             <div class="clearfix"></div>

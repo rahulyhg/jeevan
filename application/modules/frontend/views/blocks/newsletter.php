@@ -6,7 +6,7 @@ if(!empty($params)){
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
-					<img src="<?php echo skin_url(); ?>img/subscribtionsimg.png" alt="news subscription">
+					<img src="<?php echo skin_url(); ?>img/subscribtionsimg.png" alt="news subscription" title="news subscription">
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 news_email round letter">
 					<h3><em><?php echo $params->newsletter_title; ?></em></h3>

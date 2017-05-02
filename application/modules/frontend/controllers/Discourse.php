@@ -40,7 +40,11 @@ class Discourse extends MY_Controller {
 		ELSE '".$default."' END AS image_url 		
 		FROM $this->table
 		WHERE is_active='1' AND is_delete='0' AND slug = '".$method."'");	
-		$this->layout->display_frontend($this->folder . '/discourse-details', $data);
+		if(!empty($data['discourse'])){
+			$this->layout->display_frontend($this->folder . '/discourse-details', $data);
+		}else{
+			show_404();	
+		}
    }
   
 }

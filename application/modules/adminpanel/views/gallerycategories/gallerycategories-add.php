@@ -26,6 +26,31 @@
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('category name').'&nbsp;'.get_required();?></label>
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('name',set_value('name'),' class="form-control required"  ');?></div></div>
 						</div>
+                        
+                        
+                        <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta_title').'&nbsp;'.get_required();?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"> <div class="input_box">
+							<?php  echo form_input('meta_title',set_value('meta_title'),' class="form-control required"  ');?>
+                                </div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta_keyword').'&nbsp;'.get_required();?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_input('meta_keyword',set_value('meta_keyword'),' class="form-control required"  ');?></div></div>
+						</div>
+					
+                        <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta_description').'&nbsp;'.get_required();?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"> <div class="input_box">
+							<?php  echo form_input('meta_description',set_value('meta_description'),' class="form-control required"  ');?>
+                              
+                             
+                                </div>
+							</div>
+						</div>
+                        
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('category description');?></label>
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('description',set_value('description'),' class="form-control"  ');?></div></div>

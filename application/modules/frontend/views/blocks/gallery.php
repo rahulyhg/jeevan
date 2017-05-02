@@ -1,7 +1,7 @@
 <div class="gallery">
     <div class="container">
         <div class="col-xs-12">
-			<h1 class="text-center"><em><?php echo $title; ?></em></h1>
+			<h2 class="text-center"><em><?php echo $title; ?></em></h2>
             <p>Shri Kumaran Swami Gurujee is a Visionary and a spiritual leader, who dedicated himself to serve the mankind. With his uncommon spiritual gifts and extrasensory power he transforms his devotees spiritually, mentally and physically stronger, </p>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -16,7 +16,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 gallery_box">
                         
                             <div class=" grid view view-first">
-                                <img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>"/>
+                                <img src="<?php echo $gallery_album['category_image']; ?>" alt="<?php echo $gallery_album['name']; ?>" title="<?php echo $gallery_album['name']; ?>"/>
                                 <div class="mask">
                                     
                                     <a href="<?php echo base_url() . 'gallery/' . $gallery_album['slug'].'/'; ?>" class="info">

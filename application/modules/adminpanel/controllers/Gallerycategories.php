@@ -73,6 +73,9 @@ class Gallerycategories extends CI_Controller {
 		if ($this->input->post( 'action' ) == "Add") {
 			check_ajax_request ();	
 			$this->form_validation->set_rules ( 'name', 'lang:name', 'trim|required|callback_gallerycategory_exist' );
+			$this->form_validation->set_rules ( 'meta_title', 'lang:meta_title', 'required' );
+			$this->form_validation->set_rules ( 'meta_keyword', 'lang:meta_keyword', 'required' );
+			$this->form_validation->set_rules ( 'meta_description', 'lang:meta_description', 'required' );
 			
 			if ($this->form_validation->run () == TRUE) {
 				
@@ -84,6 +87,9 @@ class Gallerycategories extends CI_Controller {
 									  "created_by" => get_admin_id (),
 									  "created_ip" => get_ip(),
 									  "name" => $this->input->post('name'),
+									  "meta_title" => $this->input->post('meta_title'),
+									  "meta_keyword" => $this->input->post('meta_keyword'),
+									  "meta_description" => $this->input->post('meta_description'),
 									  "is_order" =>	post_value('is_order') ? post_value('is_order') :'',
 									  "slug" => $slug,	
 									  "description" => post_value('description') ? post_value('description') :'',	
@@ -188,6 +194,9 @@ class Gallerycategories extends CI_Controller {
 			else {
 				$this->form_validation->set_rules ( 'name', 'lang:title', 'trim|required');	
 			}	
+			$this->form_validation->set_rules ( 'meta_title', 'lang:meta_title', 'required' );
+			$this->form_validation->set_rules ( 'meta_keyword', 'lang:meta_keyword', 'required' );
+			$this->form_validation->set_rules ( 'meta_description', 'lang:meta_description', 'required' );
 			
 			
 			if ($this->form_validation->run () == TRUE) {
@@ -198,6 +207,9 @@ class Gallerycategories extends CI_Controller {
 						             "updated_by" => get_admin_id (),
 									 "updated_ip" => get_ip(),
 									 "name" => $this->input->post('name'),
+									 "meta_title" => $this->input->post('meta_title'),
+									 "meta_keyword" => $this->input->post('meta_keyword'),
+									 "meta_description" => $this->input->post('meta_description'),
 									 "is_order" =>	post_value('is_order') ? post_value('is_order') :'',
 									 "slug" => $slug,
 						             "category_image" => post_value('thumbnail') ? post_value('thumbnail') : $record['category_image'],
@@ -219,6 +231,7 @@ class Gallerycategories extends CI_Controller {
 			exit ();
 		}
 		$data ['records'] = $record;
+		
 		/* Common labels */
 		$this->module_label ="User Info";
 		$data ['breadcrumb'] = $data ['form_heading'] = get_label ( 'edit' ) . ' ' . $this->module_label;
