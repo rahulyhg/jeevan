@@ -102,10 +102,10 @@
   			
   		echo "<title>" . $title ."</title>";
   		echo meta($meta);
-  		echo "<meta charset=\"utf-8\">";
+  		
   		echo "<link rel=\"shortcut icon\" href=\"".skin_url()."img/jeevanacharya-favicon.ico\" type=\"image/x-icon\">";
   		echo "<link rel=\"icon\" href=\"".skin_url()."img/jeevanacharya-favicon.ico\" type=\"image/x-icon\">";
-  		echo "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" />";
+  		
   		echo '<meta http-equiv="X-UA-Compatible" content="IE=Edge" />';
   
   	}
