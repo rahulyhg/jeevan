@@ -56,6 +56,12 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['adminpanel'] = 'adminpanel';
 $route['program'] = 'frontend/events';
+$route['livetv'] = 'frontend/livetv';
+//$route['security'] = 'frontend/security';
+$route['databases'] = 'frontend/databases';
+$route['settings'] = 'frontend/settings';
+
+$route['done'] = 'frontend/done';
 $route['(:any)'] = 'frontend/pages/$1';
 $route['gallery/(:any)'] = 'frontend/gallery/$1';
 $route['blog/(:any)'] = 'frontend/blog/$1';
