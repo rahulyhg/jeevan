@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['adminpanel'] = 'adminpanel';
 $route['program'] = 'frontend/events';
 $route['livetv'] = 'frontend/livetv';
+$route['live_tv'] = 'frontend/live_tv';
 //$route['security'] = 'frontend/security';
 $route['databases'] = 'frontend/databases';
 $route['settings'] = 'frontend/settings';
