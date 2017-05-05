@@ -74,6 +74,7 @@ class Events extends MY_Controller {
             }
             $data['booking_date'] = $booking_date;
             $data['records'] = $result;
+			
             $this->load->view($this->folder . '/events-booking', $data);
         }
     }

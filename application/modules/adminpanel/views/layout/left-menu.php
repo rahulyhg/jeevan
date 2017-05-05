@@ -64,6 +64,11 @@
                     <span class="icon fa fa-envelope-o"></span><span class="title">Email Setting</span>
                 </a>
             </li> 
+            <li class="<?php echo ($module == "smstemplates") ? 'active' : ''; ?>">
+                <a href="<?php echo admin_url() . "smstemplates" ?>">
+                    <span class="icon fa fa-phone"></span><span class="title">SMS Setting</span>
+                </a>
+            </li> 
             <li class="<?php echo ($module == "newsletter") ? 'active' : ''; ?>">
                 <a href="<?php echo admin_url() . "newsletter" ?>">
                     <span class="icon fa fa-comments-o"></span><span class="title">Newsletter</span>
