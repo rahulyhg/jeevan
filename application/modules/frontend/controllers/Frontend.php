@@ -38,21 +38,41 @@ class Frontend extends MY_Controller {
 
     public function index() {
 
-
         $data = array();
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
         $data['module'] = $this->module;
         $this->loadBlocks();
         $data = array_merge($data, $this->view_data);
+//        print_r($data);
 
         $this->layout->display_frontend($this->folder . '/homepage', $data);
+    }
+
+    public function security() {
+        $this->layout->display_frontend('security/Source/install/index');
+    }
+
+    public function databases() {
+        $this->layout->display_frontend('security/Source/install/database');
+    }
+
+    public function settings() {
+        $this->layout->display_frontend('security/Source/install/settings');
+    }
+
+    public function done() {
+        $this->layout->display_frontend('security/Source/install/done');
     }
 
     public function routeplan() {
         $getplandetails = $this->Mydb->custom_query("select * from $this->routeplan_table where is_active=1 and is_visible = 1 ");
         $data['records'] = $getplandetails;
         $this->load->view($this->folder . '/routeplan', $data);
+    }
+
+    public function livetv() {
+        $this->layout->display_frontend($this->folder . '/livetvplayer');
     }
 
     public function getroute_by_map_id() {
@@ -139,7 +159,7 @@ class Frontend extends MY_Controller {
                     $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
 
-                    $name = $details['first_name'].($details['last_name'] ? $details['last_name'] :'');
+                    $name = $details['first_name'] . ($details['last_name'] ? $details['last_name'] : '');
                     $activation_link = frontend_url('newsletterunsubscribe/' . $details['activation_code']);
                     $to_email = $details['email'];
 
@@ -198,8 +218,8 @@ class Frontend extends MY_Controller {
         $data = array_merge($data, $this->view_data);
 
 
-       $key = $this->uri->segment(2);
-		
+        $key = $this->uri->segment(2);
+
         if (!empty($key)) {
             $getsubscribe = $this->Mydb->custom_query("SELECT * FROM $this->sramcms_newsletter_table WHERE activation_code='$key' AND status='1'");
             if (!empty($getsubscribe)) {
@@ -215,8 +235,8 @@ class Frontend extends MY_Controller {
 
                 $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
-                $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] :'');
-                $activation_link = base_url().'newslettersubscribe/' . $getsubscribe[0]['activation_code'];
+                $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] : '');
+                $activation_link = base_url() . 'newslettersubscribe/' . $getsubscribe[0]['activation_code'];
                 $to_emil = $getsubscribe[0]['email'];
                 $response_email = $this->send_newletter_un_email($name, $to_email, $activation_link);
 
@@ -261,8 +281,8 @@ class Frontend extends MY_Controller {
 
                 $details = $this->Mydb->get_record('first_name, last_name, email, activation_code', $this->sramcms_newsletter_table, array('id' => $insert));
 
-                $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] :'');
-                $activation_link = base_url().'newsletterunsubscribe/' . $getsubscribe[0]['activation_code'];
+                $name = $getsubscribe[0]['first_name'] . ($getsubscribe[0]['last_name'] ? $getsubscribe[0]['last_name'] : '');
+                $activation_link = base_url() . 'newsletterunsubscribe/' . $getsubscribe[0]['activation_code'];
                 $to_email = $getsubscribe[0]['email'];
                 $response_email = $this->send_newletter_email($name, $to_email, $activation_link);
 
@@ -283,7 +303,7 @@ class Frontend extends MY_Controller {
             $this->form_validation->set_rules('firstname', 'First Name', 'required');
             $this->form_validation->set_rules('lastname', 'Last Name', 'required');
             $this->form_validation->set_rules('email', 'Email Address', 'required');
-			$this->form_validation->set_rules('phone', 'Phone Number', 'required');
+            $this->form_validation->set_rules('phone', 'Phone Number', 'required');
             $this->form_validation->set_rules('message_text', 'Message', 'required');
 
             if ($this->form_validation->run($this) == TRUE) {
@@ -295,7 +315,7 @@ class Frontend extends MY_Controller {
                         'firstname' => $this->input->post('firstname'),
                         'lastname' => $this->input->post('lastname'),
                         'email' => $this->input->post('email'),
-						'phone' => $this->input->post('phone'),
+                        'phone' => $this->input->post('phone'),
                         'message_text' => $this->input->post('message_text'),
                         'is_active' => '1',
                         'is_delete' => '0',
@@ -310,7 +330,7 @@ class Frontend extends MY_Controller {
                     $firstname = $details['firstname'];
                     $lastname = $details['lastname'];
                     $email = $details['email'];
-					$phone = $details['phone'];
+                    $phone = $details['phone'];
                     $content = $details['content'];
 
                     $response_email = $this->send_feedback_email($name, $to_email, $firstname, $lastname, $phone, $email, $content);
