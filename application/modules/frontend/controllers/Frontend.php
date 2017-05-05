@@ -71,6 +71,11 @@ class Frontend extends MY_Controller {
         $this->load->view($this->folder . '/routeplan', $data);
     }
 
+    public function live_tv() {
+        $redirectpath = "http://localhost/jeevan/trunk/livetv";
+        redirect($redirectpath);
+    }
+
     public function livetv() {
         $this->layout->display_frontend($this->folder . '/livetvplayer');
     }
