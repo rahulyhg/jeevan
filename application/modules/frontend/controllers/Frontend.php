@@ -43,9 +43,10 @@ class Frontend extends MY_Controller {
         $data['module_labels'] = $this->module_label;
         $data['module'] = $this->module;
         $this->loadBlocks();
+		$data['meta_title']   =  get_meta_text('Jeevanacharya - Shri Kumaran Swami Gurujee');
+		$data['meta_keyword'] = get_meta_text('Shri Kumaran Swami Gurujee, Jeevanacharya');
+		$data['meta_content'] = get_meta_text('Shri Kumaran Swami Gurujee, is a Noble Soul and a Precious Gem whom the Mother Earth has given birth to serve the world for the great cause of World Peace.');
         $data = array_merge($data, $this->view_data);
-//        print_r($data);
-
         $this->layout->display_frontend($this->folder . '/homepage', $data);
     }
 

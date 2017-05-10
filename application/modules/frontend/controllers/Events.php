@@ -30,6 +30,9 @@ class Events extends MY_Controller {
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
         $data['module'] = $this->module;
+		$data['meta_title']   =  get_meta_text('Jeevanacharya Tour Plan - Travel Program');
+		$data['meta_keyword'] = get_meta_text('Jeevanacharya Tour Plan, Jeevanacharya Travel Program');
+		$data['meta_content'] = get_meta_text('Tentative Tour Programme of Jeevanacharya, watch and get connected with his way of  life.');
         $this->loadBlocks();
         $data = array_merge($data, $this->view_data);
         $getplandetails = $this->Mydb->custom_query("SELECT * FROM $this->table WHERE is_active=1 AND is_visible = 1 ORDER BY start_date ASC");
