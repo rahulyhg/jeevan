@@ -2,7 +2,23 @@
 <div class="col-lg-10 col-lg-offset-1 contact_sectionform">
     
     <h4><em>Get in Touch</em></h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+	<div class="contact-address-section">
+
+		<h5>Cambodia Indian Association</h5>
+		<div class="address-info">
+			<p>IOC Building, No.254, Monivong Blvd, <br />
+			Corner St.109, 6th Floor, <br />
+			Room No.007, Phnom Penh, <br />
+			Cambodia.</p>
+		</div>
+		<div class="contact-info">
+			<ul> 
+			<li class="animated zoomIn"><a href="mailto:info@cia-cambodia.com"><i class="fa fa-envelope"></i> info@cia-cambodia.com</a></li> 
+			<li class="animated zoomIn"><a href="tell:+855 2390 0007"><i class="fa fa-phone"></i> +855 2390 0007</a></li> 
+			</ul>
+		</div>
+	</div>
+ 
     <form id="contact_form" class="contactus_form row" name="contact_form" method="post" >
     		<input type="hidden" name="action" value="feedback">
             <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
