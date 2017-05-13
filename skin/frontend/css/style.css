@@ -2400,12 +2400,27 @@ tbody
 {
 	margin: 75px 0px 50px 0px;
 }
-.contact_sectionform p
+.contact-address-section{
+	margin-bottom: 40px;
+    float: left;
+    width: 100%;
+}
+.contact-address-section h5{
+	font-weight: bold;
+}
+.contact_sectionform .contact-address-section .address-info p
 {
 	line-height: 28px;
 	color:#666666;
-	margin-bottom: 40px;
+	margin-bottom: 5px;
 	margin-top: -10px;
+}
+.contact-address-section .contact-info ul li
+{
+	float: left;
+    width: 50%;
+	list-style:none;
+	
 }
 .contact_sectionform h4
 {
