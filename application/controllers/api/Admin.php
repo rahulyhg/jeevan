@@ -27,6 +27,7 @@ class Admin extends REST_Controller {
 		$this->blog = "blog";
 		$this->discourse = "discourse";
 		$this->newsletter = "newsletter";
+		$this->routeplan_table = 'sramcms_routeplan';
 		$this->gallary_categories = "gallary_categories";
 		$this->routeplan = "routeplan";
 		$this->load->library('form_validation');
@@ -98,8 +99,15 @@ class Admin extends REST_Controller {
 						if($check_oauth['oauth_token'] == ''){
 							$this->Mydb->update ( $this->table, array ('admin_id' => $admin_id ), $token_array );
 						}
-						$user_data = $this->Mydb->get_record ('oauth_token,admin_id, admin_username,admin_email_address,admin_phone_number',$this->table,array ('admin_id'  => $admin_id));
-						$result = array( 'success'=> 1 , 'message'=> 'Sucessfully Logged In', 'data'=> $user_data );
+						$userdata = array();
+						$userdata[] = $this->Mydb->get_record ('oauth_token,admin_id, admin_username,admin_email_address,admin_phone_number',$this->table,array ('admin_id'  => $admin_id));
+						$data['user_data'] = $userdata;
+						$feedback = $this->Mydb->get_all_records('id', $this->feedback);
+						$data['feedback'] = count($feedback);
+						$booking = $this->Mydb->get_all_records('id', 'sramcms_event_users', array('is_active' => '1', 'is_delete' => '0', 'is_cancel' => '0'));
+						$data['booking'] = count($booking);
+						
+						$result = array( 'success'=> 1 , 'message'=> 'Sucessfully Logged In', 'data'=> $data );
 					}else{
 						$result = array( 'success'=> 0 , 'message'=> 'Password Mismatch');
 					}
@@ -416,12 +424,61 @@ class Admin extends REST_Controller {
 	/*Admin gallery category list method*/
 	public function gallerycategory_post(){
 		$oauth_token = post_value ( 'oauth_token' );
+		$media_type = post_value ( 'media_type' );
+		if($media_type == 1){
+			$where = "AND gc.media_type = 1";
+		}else{
+			$where = "AND gc.media_type != 1";
+		}
+		$default_image = media_url('default-image.png');
+		$image_path = media_url();
+		
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
 			if(!empty($data['admin'])){
-				$data['gallarycategories'] = $this->Mydb->get_all_records('id,name', $this->gallary_categories,$where=null, $limit = '', $offset = '', array('id' => 'DESC'),$like='', $groupby = '', $join='');
+				
+				$data['gallarycategories'] = $this->Mydb->custom_query("SELECT al.id, al.name, 
+				 CASE WHEN gc.is_active !='0' THEN count(gc.gallery_category_id) ELSE '0' END AS gallery_count, 
+				CASE WHEN category_image !='' THEN CONCAT('".$image_path."', category_image) ELSE '$default_image' END AS category_image, gc.media_type FROM sramcms_gallary_categories AS al LEFT JOIN sramcms_galleries AS gc ON gc.gallery_category_id = al.id  WHERE al.is_active = '1' ".$where." GROUP BY al.id");
 				
 				$result = array( 'success'=> 1 , 'message'=> 'Gallary Categories Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin gallery list method*/
+	public function gallerylist_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$id = post_value ('id');
+		$media_type = post_value('media_type');
+		if($media_type == '1'){
+			$where = "AND media_type = '1' ";
+		}else{
+			$where = " AND media_type != '1' ";
+		}
+		$default_image = media_url('default-image.png');
+		$image_path = media_url();
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				
+				
+				$data['gallerylist'] = $this->Mydb->custom_query("SELECT id, 
+				CASE 	
+				WHEN file_name !='' AND media_type = '1'  THEN CONCAT('".$image_path."', file_name) 		
+				WHEN file_name !='' AND media_type = '2'  THEN CONCAT('".$image_path."', file_name) 
+				WHEN file_name !='' AND media_type = '3'  THEN REPLACE(file_name, 'https://www.youtube.com/embed/', '')
+				ELSE '$default_image' END 	AS file_name, CASE WHEN video_thumb !='' THEN CONCAT('".$image_path."', video_thumb) ELSE '$default_image' END AS video_thumb, media_type FROM sramcms_galleries WHERE gallery_category_id = '".$id."' ".$where." AND is_active = '1' ");
+			
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Gallary Lisiting', 'data' => $data);
 			}else{
 				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
 			}
@@ -442,9 +499,9 @@ class Admin extends REST_Controller {
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
 			if(!empty($data['admin'])){
-				$data['discourse'] = $this->Mydb->custom_query("SELECT id, name, meta_title, meta_keyword, slug, description, meta_description, CASE WHEN category_image !='' THEN CONCAT('".$image_path."', category_image) ELSE '$default_image' END AS category_image FROM sramcms_gallary_categories WHERE id = '".$id."' ");
+				$data['gallerycategorydetail'] = $this->Mydb->custom_query("SELECT id, name, meta_title, meta_keyword, slug, description, meta_description, CASE WHEN category_image !='' THEN CONCAT('".$image_path."', category_image) ELSE '$default_image' END AS category_image FROM sramcms_gallary_categories WHERE id = '".$id."' ");
 				
-				$result = array( 'success'=> 1 , 'message'=> 'Discourse details', 'data' => $data);
+				$result = array( 'success'=> 1 , 'message'=> 'Gallertcategory details', 'data' => $data);
 			}else{
 				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
 			}
@@ -479,167 +536,14 @@ class Admin extends REST_Controller {
 			return true;
 		}
 	}
-	/*Admin gallery category add method*/
-	public function gallerycategoryadd_post(){
-		$oauth_token = post_value ( 'oauth_token' );
-		if($oauth_token != ''){
-			$data['admin'] = $this->Mydb->get_record ('admin_id,admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
-			if(!empty($data['admin'])){
-				
-				$this->form_validation->set_rules ( 'name', 'lang:name', 'trim|required' );
-				$this->form_validation->set_rules ( 'meta_title', 'lang:meta_title', 'required' );
-				$this->form_validation->set_rules ( 'meta_keyword', 'lang:meta_keyword', 'required' );
-				$this->form_validation->set_rules ( 'meta_description', 'lang:meta_description', 'required' );
-				$slug = create_pageuri(post_value ( 'name' ), $this->gallary_categories, 'slug',array('is_delete !=' => 1));
-				
-				if ($this->form_validation->run () == TRUE) {
-					
-					$categoryname_exists 	  =  $this->categoryname_exists($this->gallary_categories,array('name' => $this->input->post('name')));
-					
-					if(!empty($_FILES['category_image']['name'])){
-						$create_folder = 'gallery/categories/'. date("Y/m", strtotime("now")) . "/";
-						create_folder($create_folder);
-						
-						$config['upload_path'] = 'media/gallery/categories/'. date("Y/m", strtotime("now")) . "/";
-						$config['allowed_types'] = 'jpg|jpeg|png|gif';
-						$config['file_name'] = 'app-gallerycategory-'.time().str_replace(' ', '-', $_FILES['category_image']['name']);
-						
-						//Load upload library and initialize configuration
-						$this->load->library('upload',$config);
-						$this->upload->initialize($config);
-						
-						if($this->upload->do_upload('category_image')){
-							$uploadData = $this->upload->data();
-							$category_image = 'gallery/categories/'. date("Y/m", strtotime("now")) . "/".$uploadData['file_name'];
-						}else{
-							$category_image = '';
-						}
-					}else{
-						$category_image = '';
-					}
-					
-					$insert_data = array( 
-						"created_on" => current_date(),
-						"created_by" => $data['admin']['admin_id'],
-						"created_ip" => get_ip(),
-						"name" => str_replace("+", " ", $this->input->post('name')),
-						"meta_title" => str_replace("+", " ", $this->input->post('meta_title')),
-						"meta_keyword" => str_replace("+", " ", $this->input->post('meta_keyword')),
-						"meta_description" => str_replace("+", " ", $this->input->post('meta_description')),
-						"is_order" =>	post_value('is_order') ? post_value('is_order') :'',
-						"slug" => $slug,	
-						"description" => str_replace("+", " ", post_value('description')) ? post_value('description') :'',	
-						"category_image" => $category_image, 
-						"is_active" => '1'
-					);
-				
-				
-					
-					$gallarycategories = $this->Mydb->insert($this->gallary_categories,$insert_data);	
-					
-					if($gallarycategories !=''){
-						$result = array( 'success'=> 1 , 'message' => 'Gallery category added succesfully');
-					}else{
-						$result = array( 'success'=> 0 , 'message' => 'Gallery category is not added');
-					}
-					
-				}else{
-					$result = array( 'success'=> 0 , 'message' => 'Please Enter All fields');
-				}
-			}else{
-				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
-			}
-			
-		}else{
-			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
-		}
-		echo $response = json_encode($result);
-		return TRUE;
-	}
-	/*Admin gallery category edit method*/
-	public function gallerycategoryedit_post(){
-		$oauth_token = post_value ( 'oauth_token' );
-		$id = post_value('id');
-		if($oauth_token != ''){
-			$data['admin'] = $this->Mydb->get_record ('admin_id,admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
-			if(!empty($data['admin'])){
-				
-				$this->form_validation->set_rules ( 'name', 'lang:name', 'trim|required' );
-				$this->form_validation->set_rules ( 'meta_title', 'lang:meta_title', 'required' );
-				$this->form_validation->set_rules ( 'meta_keyword', 'lang:meta_keyword', 'required' );
-				$this->form_validation->set_rules ( 'meta_description', 'lang:meta_description', 'required' );
-				$slug = create_pageuri(post_value ( 'name' ), $this->gallary_categories, 'slug',array('is_delete !=' => 1, 'id' => $id));
-				
-				if ($this->form_validation->run () == TRUE) {
-					
-					$categoryname_exists 	  =  $this->categoryname_exists($this->gallary_categories,array('name' => $this->input->post('name')));
-					
-					
-					$insert_data = array( 
-						"created_on" => current_date(),
-						"created_by" => $data['admin']['admin_id'],
-						"created_ip" => get_ip(),
-						"name" => str_replace("+", " ", $this->input->post('name')),
-						"meta_title" => str_replace("+", " ", $this->input->post('meta_title')),
-						"meta_keyword" => str_replace("+", " ", $this->input->post('meta_keyword')),
-						"meta_description" => str_replace("+", " ", $this->input->post('meta_description')),
-						"is_order" =>	post_value('is_order') ? post_value('is_order') :'',
-						"slug" => $slug,	
-						"description" => str_replace("+", " ", post_value('description')) ? post_value('description') :'',	
-						"is_active" => '1'
-					);
-					
-					if(!empty($_FILES['category_image']['name'])){
-						$create_folder = 'gallery/categories/'. date("Y/m", strtotime("now")) . "/";
-						create_folder($create_folder);
-						
-						$config['upload_path'] = 'media/gallery/categories/'. date("Y/m", strtotime("now")) . "/";
-						$config['allowed_types'] = 'jpg|jpeg|png|gif';
-						$config['file_name'] = 'app-gallerycategory-'.time().str_replace(' ', '-', $_FILES['category_image']['name']);
-						
-						//Load upload library and initialize configuration
-						$this->load->library('upload',$config);
-						$this->upload->initialize($config);
-						
-						if($this->upload->do_upload('category_image')){
-							$uploadData = $this->upload->data();
-							$category_image = 'gallery/categories/'. date("Y/m", strtotime("now")) . "/".$uploadData['file_name'];
-						}else{
-							$category_image = '';
-						}
-						$image_arr = array( "category_image" => $category_image);
-						$update_array = array_merge ( $insert_data, $image_arr );
-					}else{
-						$category_image = '';
-						$update_array = $insert_data;
-					}
-					
-					
-				
-					$gallarycategories = $this->Mydb->update($this->gallary_categories, array('id' => $id), $update_array);					
-					$result = array( 'success'=> 1 , 'message' => 'Gallery category edited succesfully');
-					
-					
-				}else{
-					$result = array( 'success'=> 0 , 'message' => 'Please Enter All fields');
-				}
-			}else{
-				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
-			}
-			
-		}else{
-			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
-		}
-		echo $response = json_encode($result);
-		return TRUE;
-	}
+	
 	/*Admin event past program method*/
 	public function eventpastprogram_post(){
 		$oauth_token = post_value ( 'oauth_token' );
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
 			if(!empty($data['admin'])){
-				$data['eventpastprogram'] = $this->Mydb->custom_query("SELECT trip_name, start_date, end_date, destinations, created_on FROM sramcms_routeplan WHERE end_date < NOW()");				
+				$data['eventpastprogram'] = $this->Mydb->custom_query("SELECT id, trip_name, start_date, end_date, destinations, created_on FROM sramcms_routeplan WHERE end_date < NOW() AND is_reschedule = '0'");				
 				$result = array( 'success'=> 1 , 'message'=> 'Past Event Lisiting', 'data' => $data);
 			}else{
 				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
@@ -658,7 +562,26 @@ class Admin extends REST_Controller {
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
 			if(!empty($data['admin'])){
-				$data['eventpastprogram'] = $this->Mydb->custom_query("SELECT trip_name, start_date, end_date, destinations, created_on FROM sramcms_routeplan WHERE end_date > NOW()");				
+				$data['eventupcomingprogram'] = $this->Mydb->custom_query("SELECT id, trip_name, start_date, end_date, destinations, created_on FROM sramcms_routeplan WHERE end_date > NOW() AND is_reschedule = '0'");				
+				$result = array( 'success'=> 1 , 'message'=> 'Upcoming Event Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin event reschdule program method*/
+	public function eventreschduleprogram_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['eventreschduleprogram'] = $this->Mydb->custom_query("SELECT id, trip_name, start_date, end_date, destinations, created_on FROM sramcms_routeplan WHERE  is_reschedule = '1'");				
 				$result = array( 'success'=> 1 , 'message'=> 'Upcoming Event Lisiting', 'data' => $data);
 			}else{
 				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
@@ -674,14 +597,347 @@ class Admin extends REST_Controller {
 	/*Admin event program detail method*/
 	public function eventprogramdetail_post(){
 		$oauth_token = post_value ( 'oauth_token' );
+		$route = media_url('route.jpg');
 		$id = post_value ('id');
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
 			if(!empty($data['admin'])){
-				$data['eventdetail'] = $this->Mydb->custom_query("SELECT r.start_date, r.map_id, r.end_date, r.trip_name, r.description, r.destinations, r.plan_details, r.created_on, count(eu.event_id) AS appointment FROM sramcms_routeplan AS r
+				$eventprogramdetail = $this->Mydb->custom_query("SELECT r.id, r.start_date, r.map_id, r.end_date, r.trip_name, r.description, r.destinations, r.plan_details, r.created_on, count(eu.event_id) AS appointment FROM sramcms_routeplan AS r
 				LEFT JOIN sramcms_event_users AS eu ON  eu.event_id = r.id
-				WHERE r.id = '".$id."' ");		
+				WHERE r.id = '".$id."' ");	
+				$thumbnail_list[] = array( 'thumbnail' => $route);	
+				
+				foreach($eventprogramdetail as $key => $value){
+					$data['eventprogramdetail_list'][] = array_merge($eventprogramdetail[$key], $thumbnail_list[$key]);
+				}
+				
 				$result = array( 'success'=> 1 , 'message'=> 'Event Detail', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin event reschdule form method*/
+	public function eventreschduleform_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$id = post_value ('id');
+		$start_date = post_value ('start_date');
+		$end_date = post_value ('end_date');
+		
+		$routplan = $this->Mydb->get_record('start_date, end_date, is_reschedule', 'sramcms_routeplan', array('id' => $id));
+		$routlist = $this->Mydb->custom_query("SELECT id, start_date, end_date FROM sramcms_routeplan WHERE is_active = '1' AND id!='".$id."'");
+		
+		foreach($routlist as $plan){
+						
+			if($plan['start_date'] <= $start_date && $start_date <= $plan['end_date'] || $plan['start_date'] <= $end_date && $end_date <= $plan['end_date']) {
+				$status = '0';
+			}else{
+				$status = '1';
+			}
+		}
+		if($status == '1'){
+			$eventreschdule = $this->Mydb->update('sramcms_routeplan', array('id' => $id), array('is_reschedule' => '1', 'start_date' => $start_date, 'end_date' => $end_date));
+			$result = array( 'success'=> 1 , 'message'=> 'Program reschdule is success');
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Your program date already exit. please try again');
+		}
+		
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment list method*/
+	public function appointmentlist_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['appointmentlist'] = $this->Mydb->custom_query("SELECT id, name, email, phone_no, location, DATE_FORMAT(booked_date, '%d-%M-%Y') AS appointment_date, DATE_FORMAT(appointment_start_time, '%H:%i') AS appointment_time FROM sramcms_event_users WHERE event_id = '".$event_id."' ");				
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment details method*/
+	public function appointmentdetails_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$id = post_value('id');
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				
+				$data['appointmentdetails'] = $this->Mydb->custom_query("SELECT ap.id, ap.name, ap.email, ap.phone_no, ap.purpose_of_appointment, ap.message AS short_message, ap.message AS long_message, ap.location, ap.location_date, DATE_FORMAT(ap.booked_date, '%d-%M-%Y') AS appointment_date, DATE_FORMAT(ap.appointment_start_time, '%H:%i') AS appointment_time, r.trip_name AS event_name, r.destinations AS event_location, DATE_FORMAT(r.start_date, '%d-%M-%Y') AS event_date FROM sramcms_event_users AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id WHERE ap.id = '".$id."' ");
+				
+								
+				$data['appointmentdetails'][0]['purpose'] = str_replace('[', '',str_replace(']', '',str_replace('"', '', $data['appointmentdetails'][0]['purpose_of_appointment'])));
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Details', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	/*Admin appointment reschdule method*/
+	public function appointmentreschdule_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		$id = post_value('id');
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){			
+				$data['appointmentdetails'] = $this->Mydb->custom_query("SELECT ap.id, ap.name, ap.email, ap.phone_no, ap.purpose_of_appointment, ap.message AS short_message, ap.message AS long_message, ap.location, ap.location_date, DATE_FORMAT(ap.booked_date, '%d-%M-%Y') AS appointment_date, DATE_FORMAT(ap.appointment_start_time, '%H:%i') AS appointment_time, r.trip_name AS event_name, r.destinations AS event_location, DATE_FORMAT(r.start_date, '%d-%M-%Y') AS event_date FROM sramcms_event_users AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id WHERE ap.event_id = '".$event_id."' AND ap.id = '".$id."' ");
+					
+				$appointment = $this->Mydb->custom_query("SELECT ap.appointment_date, r.end_date FROM sramcms_event_users AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id WHERE ap.event_id = '".$event_id."'  AND ap.id ='".$id."' ");
+				
+				$appointment_list = $this->Mydb->custom_query("SELECT ap.appointment_date, r.end_date FROM sramcms_event_users AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id WHERE ap.event_id = '".$event_id."'  AND ap.id !='".$id."' AND ap.appointment_date !='0000-00-00'");
+				$appointment_date = new DateTime($appointment[0]['appointment_date']);
+				$end_date = new DateTime($appointment[0]['end_date'].' +1 day');
+				$daterange = new DatePeriod($appointment_date, new DateInterval('P1D'), $end_date);
+				
+				
+				foreach($daterange as $date){
+					$total_date[] = $date->format("Y-m-d");
+					$total_check = $date->format("Y-m-d");
+					foreach($appointment_list as $list){
+						$i=1;
+						if($total_check == $list['appointment_date']){
+							$available[$list['appointment_date']][] = $i; 
+						}
+						$i++;
+					}
+					$final[$total_check] = count($available[$total_check]);
+					
+				}
+				$data['date_list'] = $final;
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Details', 'data' => $data);
+		}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment reschdule method*/
+	public function appointmentreschduleform_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+	
+		$id = post_value('id');
+		$appointment_date = post_value('appointment_date');
+		
+		$eventreschdule = $this->Mydb->update('sramcms_event_users', array('id' => $id), array('is_reschedule' => '1', 'is_cancel' => '0', 'appointment_date' => $appointment_date));
+		$result = array( 'success'=> 1 , 'message'=> 'Appointment reschdule is success');
+		
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment tripname list method*/
+	function tourlist_post()
+	{
+		$records = "";
+		$data=array();
+		$select = "id,trip_name";
+		$where =" is_active=1  ";
+		$records = $this->Mydb->get_all_records($select,'sramcms_routeplan',$where);
+		if(!empty($records))
+		{
+			foreach($records as $value)
+			{
+				$data[] = array( 'id' => $value['id'], 'name' => stripslashes($value['trip_name']));
+			}
+			$result = array( 'success'=> 1 , 'message'=> 'Success', 'data'=>$data);
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Tour List','data'=>$data);
+		}
+		
+		echo $response = json_encode($result);
+		return TRUE;
+		
+	}
+	/*Admin appointment manage method*/
+	public function appointmentmanage_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		if(!empty($event_id)){
+			$event = "WHERE ap.event_id = '".$event_id."'";
+		}else{
+			$event = " ";
+		}
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				
+				$data['appoinrmentmanage'] = $this->Mydb->custom_query("SELECT ap.id, SUM(CASE WHEN (ap.appointment_date ='0000-00-00' AND ap.is_cancel !='1') THEN 1 ELSE 0 END) as prnding, SUM(CASE WHEN (ap.appointment_date !='0000-00-00' AND ap.is_cancel !='1') THEN 1 ELSE 0 END) as confirm, SUM(CASE WHEN ap.is_cancel ='1' THEN 1 ELSE 0 END) as cancel, SUM(CASE WHEN (ap.id !='') THEN 1 ELSE 0 END) as archived,  r.trip_name AS event_name, r.destinations AS event_location FROM sramcms_event_users AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id  ".$event." ");
+								
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Details', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment pending method*/
+	public function appointmentpending_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		if(!empty($event_id)){
+			$event = " AND ap.event_id = '".$event_id."'";
+		}else{
+			$event = " ";
+		}
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['appointmentpending'] = $this->Mydb->custom_query("SELECT ap.id, ap.name, ap.email, ap.phone_no, ap.location,  r.trip_name AS event_name, r.destinations AS event_location FROM sramcms_event_users  AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id 
+				WHERE ap.appointment_date ='0000-00-00' AND ap.is_cancel = '0' ".$event." ");	
+				$data['pending'] = count($data['appointmentlist']);
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Pending Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment cancel method*/
+	public function appointmentcancel_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		if(!empty($event_id)){
+			$event = " AND ap.event_id = '".$event_id."'";
+		}else{
+			$event = " ";
+		}
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['appointmentcancel'] = $this->Mydb->custom_query("SELECT ap.id, ap.name, ap.email, ap.phone_no, ap.location,  r.trip_name AS event_name, r.destinations AS event_location FROM sramcms_event_users  AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id 
+				WHERE  ap.is_cancel = '1' ".$event." ");	
+				$data['cancel'] = count($data['appointmentlist']);
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Cancel Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	/*Admin appointment confirm form method*/
+	public function appointmentconfirmform_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$id = post_value('id');
+		
+		$appointment_date = date("Y-m-d", strtotime(post_value('appointment_date')));
+		
+		$eventreschdule = $this->Mydb->update('sramcms_event_users', array('id' => $id), array('appointment_date' => $appointment_date, 'is_cancel' => '0'));
+		$result = array( 'success'=> 1 , 'message'=> 'Appointment confirm is success');
+		
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment cancel form method*/
+	public function appointmentcancelform_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$id = post_value('id');
+		
+		
+		$eventreschdule = $this->Mydb->update('sramcms_event_users',array('id' => $id), array('is_cancel' => '1'));
+		$result = array( 'success'=> 1 , 'message'=> 'Appointment cancel is success');
+		
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	/*Admin appointment confirm method*/
+	public function appointmentconfirm_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		if(!empty($event_id)){
+			$event = " AND ap.event_id = '".$event_id."'";
+		}else{
+			$event = " ";
+		}
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['appointmentconfirm'] = $this->Mydb->custom_query("SELECT ap.id, ap.name, ap.email, ap.phone_no, ap.location,  r.trip_name AS event_name, r.destinations AS event_location FROM sramcms_event_users  AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id 
+				WHERE  ap.appointment_date !='0000-00-00' AND ap.is_cancel = '0' ".$event."  ");	
+				$data['confirm'] = count($data['appointmentlist']);
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Confirm Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin appointment archived method*/
+	public function appointmentarchived_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$event_id = post_value ('event_id');
+		if(!empty($event_id)){
+			$event = " AND ap.event_id = '".$event_id."'";
+		}else{
+			$event = " ";
+		}
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['appointmentarchived'] = $this->Mydb->custom_query("SELECT ap.id, ap.name, ap.email, ap.phone_no, ap.location,  r.trip_name AS event_name, r.destinations AS event_location FROM sramcms_event_users  AS ap
+				LEFT JOIN sramcms_routeplan AS r ON r.id = ap.event_id 
+				WHERE r.end_date < NOW() ".$event."  ");	
+				$data['confirm'] = count($data['appointmentlist']);
+				$result = array( 'success'=> 1 , 'message'=> 'Appointment Confirm Lisiting', 'data' => $data);
 			}else{
 				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
 			}
@@ -721,7 +977,7 @@ class Admin extends REST_Controller {
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
 			if(!empty($data['admin'])){
-				$data['feedback'] = $this->Mydb->get_record('id,firstname, lastname, email, phone, message_text, DATE_FORMAT(created, "%d-%M-%Y") AS submited_date, DATE_FORMAT(created, "%H:%i") AS submited_time', $this->feedback, array('id' => $id));
+				$data['feedbackdetail'][] = $this->Mydb->get_record('id,firstname, lastname, email, phone, message_text, DATE_FORMAT(created, "%d-%M-%Y") AS submited_date, DATE_FORMAT(created, "%H:%i") AS submited_time', $this->feedback, array('id' => $id));
 				$result = array( 'success'=> 1 , 'message'=> 'Feedback details', 'data' => $data);
 			}else{
 				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
@@ -766,6 +1022,446 @@ class Admin extends REST_Controller {
         $response = send_email($to_email, $template_slug = "feedback-reply", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
         return $response;
     }
+	/*Admin photo of the day list method*/
+	public function photooftheday_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$image_path = media_url();
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$photooftheday = $this->Mydb->custom_query("SELECT id, date, image FROM sramcms_photo_oftheday WHERE is_active = '1' ORDER BY id DESC ");
+				foreach($photooftheday as $photooftheday_row){
+					
+					$image_array = json_decode($photooftheday_row['image']);
+					$photooftheday_image[] = array( 'photooftheday_image' => $image_path.$image_array->files[0]);
+					
+				}
+				foreach($photooftheday as $key => $value){
+					$data['photolist'][] = array_merge($photooftheday_image[$key], $photooftheday[$key]);
+				}
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Photo of the day Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+
+	/*Admin photo of the day add method*/
+	public function photooftheadd_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_id,admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				
+				$this->form_validation->set_rules ( 'title', 'lang:title', 'trim|required' );
+				
+				
+				if ($this->form_validation->run () == TRUE) {
+					
+					if(!empty($_FILES['mediaFiles']['name'])){
+						$create_folder = 'photooftheday/media/' . date("Y/m", strtotime("now")) . "/";
+						create_folder($create_folder);
+						
+						$config['upload_path'] = 'media/photooftheday/media/'.date("Y/m", strtotime("now"))."/";
+						$config['allowed_types'] = 'jpg|jpeg|png|gif';
+						$config['file_name'] = 'app-photooftheday-'.time().str_replace(' ', '-', $_FILES['mediaFiles']['name']);
+						
+						//Load upload library and initialize configuration
+						$this->load->library('upload',$config);
+						$this->upload->initialize($config);
+						
+						if($this->upload->do_upload('mediaFiles')){
+							$uploadData = $this->upload->data();
+							$mediaFiles = 'photooftheday/media/'.date('Y/m', strtotime('now')).'/'.$uploadData['file_name'];
+						}else{
+							$mediaFiles = '';
+						}
+					}else{
+						$mediaFiles = '';
+					}
+					
+					$insert_data = array(
+						"title" => str_replace("+", " ", $this->input->post('title')),
+						 "date" => get_date_formart($this->input->post('date'), 'Y-m-d'),
+						"image" => json_encode(array('files' => array($mediaFiles))),
+						 "created_on" => current_date(),
+						 "created_ip" => get_ip(),
+						 "created_by" => $data['admin']['admin_id'],									
+						 "is_active" => '1',
+						);
+						
+					
+					$photooftheday = $this->Mydb->insert($this->photooftheday,$insert_data);	
+					
+					if($photooftheday !=''){
+						$result = array( 'success'=> 1 , 'message' => 'Photo of the day added succesfully');
+					}else{
+						$result = array( 'success'=> 0 , 'message' => 'Photo of the day is not added');
+					}
+					
+				}else{
+					$result = array( 'success'=> 0 , 'message' => 'Please Enter All fields');
+				}
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	/*Admin newsletter list method*/
+	public function newsletter_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['newsletter'] = $this->Mydb->get_all_records('id,first_name', $this->newsletter,$where=null, $limit = '', $offset = '', array('id' => 'DESC'),$like='', $groupby = '', $join='');
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Newsletter Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	/*Admin newsletter detail method*/
+	public function newsletterdetail_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$Subscribe = 'Subscribe';
+		$Unsubscribe ='Unsubscribe';
+		$id = post_value ( 'id' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$data['newsletterdetail'] = $this->Mydb->custom_query("SELECT id, first_name, last_name, email, CASE WHEN status !='0' THEN '$Subscribe' ELSE '$Unsubscribe' END AS status FROM sramcms_newsletter WHERE id = '".$id."' ");
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Newsletter details', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	/*Admin enquiry list method*/
+	public function enquirylist_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$feedback = $this->Mydb->get_all_records('id', $this->feedback);
+				$data['feedback'] = count($feedback);
+				$booking = $this->Mydb->get_all_records('id', 'sramcms_event_users', array('is_active' => '1', 'is_delete' => '0', 'is_cancel' => '0'));
+				$data['booking'] = count($booking);
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Newsletter Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	/*Admin album and gallery add image, video method*/
+	public function galleryadd_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				
+				if (isset($_FILES)) {
+					
+					$gallery_category_id = post_value('id');
+					$name = str_replace("+", " ", post_value('name'));
+					$slug= url_title($name, '-',TRUE);		
+					$media_type = post_value('media_type');
+					
+					if($gallery_category_id != 'A'){
+						
+						if($media_type == '1'){
+							$create_folder = 'gallery/medias/images/'. date("Y/m", strtotime("now")) . "/";
+							create_folder($create_folder);	
+						}elseif($media_type == '2'){
+							$create_folder = 'gallery/medias/videos/'. date("Y/m", strtotime("now")) . "/";
+							create_folder($create_folder);	
+						}
+						
+						$files['gallery'] = $this->upload_multiple_files($create_folder, $_FILES['file']);
+						
+						foreach($files['gallery'] as $gallery_list){
+							$gallery = $this->Mydb->insert('sramcms_galleries', array('media_type' => $media_type, 'gallery_category_id' => $gallery_category_id, 'is_active' => '1', 'created_on' => current_date (), 'file_name' => $create_folder.$gallery_list));
+						}
+						
+						$result = array( 'success'=> 1 , 'message'=> 'Gallery Album Added Success', 'data' => $data);
+						
+					}else{
+						
+						if($media_type == '1'){
+							$create_folder = 'gallery/medias/images/'. date("Y/m", strtotime("now")) . "/";
+							create_folder($create_folder);	
+						}elseif($media_type == '2'){
+							$create_folder = 'gallery/medias/videos/'. date("Y/m", strtotime("now")) . "/";
+							create_folder($create_folder);	
+						}	
+						
+						$create_folder_1 = 'gallery/categories/'. date("Y/m", strtotime("now")) . "/";
+						create_folder($create_folder_1);
+						
+						$files['gallery'] = $this->upload_multiple_files($create_folder, $_FILES['file']);
+						$files['category'] = $this->upload_single_files($create_folder_1, $_FILES['file']);
+						
+						
+						if($media_type == '1'){
+							$category = $create_folder_1.$files['category'][0];
+						}elseif($media_type == '2'){
+							$category = '';
+						}
+						$gallery_insert = $this->Mydb->insert('sramcms_gallary_categories', array('name' => $name, 'slug' => $slug, 'is_active' => '1', 'created_on' => current_date (), 'category_image' => $category));
+						
+						
+						foreach($files['gallery'] as $gallery_list){
+							$gallery = $this->Mydb->insert('sramcms_galleries', array('media_type' => $media_type, 'gallery_category_id' => $gallery_insert, 'is_active' => '1', 'created_on' => current_date (), 'file_name' => $create_folder.$gallery_list));
+							
+						}
+						
+						$result = array( 'success'=> 1 , 'message'=> 'Gallery Album Added Success', 'data' => $data);
+						
+					}
+				}
+				
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	public function upload_multiple_files($path, $files)
+    {
+    	$this->load->library('upload', $config);
+    	$images = array();
+		
+    	foreach ($files['name'] as $key => $media_file) {
+    		$config['upload_path'] = FCPATH . 'media/' . $path;
+    		$config ['allowed_types'] = 'gif|jpg|jpeg|png|pdf|csv|xlsx|mp3|aac|ogg|wma|m4a|flac|wac|mp4|avi|mpg|mov|wmv|mkv|m4v|webm|flv|3gp';
+    		$_FILES['mediafiles']['name']= $files['name'][$key];
+    		$_FILES['mediafiles']['type']= $files['type'][$key];
+    		$_FILES['mediafiles']['tmp_name']= $files['tmp_name'][$key];
+    		$_FILES['mediafiles']['error']= $files['error'][$key];
+    		$_FILES['mediafiles']['size']= $files['size'][$key];
+    		$file_info = pathinfo($_FILES['mediafiles']['name']);
+    		$extension = $file_info['extension'];
+    		$file_name_slug = url_title($file_info['filename'], '_');
+    		$file_name = $file_name_slug . "_" . time() . "." . $extension;
+    		$mediafiles[] = $file_name;
+    		$config['file_name'] = $file_name;
+    		$this->upload->initialize($config);
+    		if ($this->upload->do_upload('mediafiles')) {
+    			$this->upload->data();
+				
+    		} else {
+    			return false;
+    		}
+    	}
+    	
+    	return $mediafiles;
+    }
+	public function upload_single_files($path_single, $files_single)
+    {
+    	
+    	$this->load->library('upload', $config_single);
+    	$images_single = array();
+		$config_single['upload_path'] = FCPATH . 'media/' . $path_single;
+		$config_single ['allowed_types'] = 'gif|jpg|jpeg|png|pdf|csv|xlsx|mp3|aac|ogg|wma|m4a|flac|wac|mp4|avi|mpg|mov|wmv|mkv|m4v|webm|flv|3gp';
+		$_FILES['mediafiles_single']['name']= $files_single['name'][1];
+		$_FILES['mediafiles_single']['type']= $files_single['type'][1];
+		$_FILES['mediafiles_single']['tmp_name']= $files_single['tmp_name'][1];
+		$_FILES['mediafiles_single']['error']= $files_single['error'][1];
+		$_FILES['mediafiles_single']['size']= $files_single['size'][1];
+		$file_info_single = pathinfo($_FILES['mediafiles_single']['name']);
+		$extension_single = $file_info_single['extension'];
+		$file_single_name_slug = url_title($file_info_single['filename'], '_');
+		$file_single_name = $file_single_name_slug . "_" . time(). "." . $extension_single;
+		$mediafiles_single[] = $file_single_name;
+		$config_single['file_single_name'] = $file_single_name;
+		$category = $this->upload->initialize($config_single);
+
+		if ($this->upload->do_upload('mediafiles_single')) {
+			$this->upload->data();
+		} else {
+			return false;
+		}
+    	return $mediafiles_single;
+    }
+	/*Admin Gallery album name list method*/
+	function albumname_post()
+	{
+		
+	
+		$records = "";
+		$data=array();
+		$select = "id,name";
+		$where =" is_active=1  ";
+		$records = $this->Mydb->get_all_records($select,'sramcms_gallary_categories',$where);
+		if(!empty($records))
+		{
+			$data['albumname'][] = array( 'id' => 'A', 'name' => stripslashes('new album'));
+			foreach($records as $value)
+			{
+				$data['albumname'][] = array( 'id' => $value['id'], 'name' => stripslashes($value['name']));
+			}
+			$result = array( 'success'=> 1 , 'message'=> 'Success', 'data'=>$data);
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Tour List','data'=>$data);
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+		
+	}
+	/* Dashboard  Count For User Refresh*/
+	function refreshDashboardCount_post(){
+		$result = array();
+		$oauth_token = post_value ('oauth_token'); 
+		$data = array();
+		if($oauth_token != ''){
+			
+			$feedback = $this->Mydb->get_all_records('id', $this->feedback);
+			$data['feedback'] = count($feedback);
+			$booking = $this->Mydb->get_all_records('id', 'sramcms_event_users', array('is_active' => '1', 'is_delete' => '0', 'is_cancel' => '0'));
+			$data['booking'] = count($booking);
+			
+		    $result = array( 'success'=> 1 , 'message'=> 'Success', 'data' => $data);
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
+	
+	function generateUniqueId($n) {
+        $availableCharacters = "qwertyuiopasdfghjklzxcvbnm1234567890";
+        $id = "";
+        for ($i = 0; $i < $n; $i++) {
+            $id .= substr($availableCharacters, rand(0, strlen($availableCharacters) - 1), 1);
+        }
+        return $id;
+    }
+	/*Admin enquiry list method*/
+	public function routeadd_post(){
+		
+		$oauth_token = post_value ( 'oauth_token' );
+		$this->form_validation->set_rules ( 'trip_name', 'trip_name', 'required|trim' );
+		$this->form_validation->set_rules ( 'description', 'description', 'required|trim' );
+		$this->form_validation->set_rules ( 'start_date', 'start_date', 'required|trim' );
+		$this->form_validation->set_rules ( 'end_date', 'end_date', 'required|trim' );
+		$this->form_validation->set_rules ( 'destinations[]', 'destinations', 'required|trim' );
+		if ($this->form_validation->run ( $this ) == TRUE) {
+		
+			if($oauth_token != ''){
+				$data['admin'] = $this->Mydb->get_record ('admin_id,admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+				
+				if(!empty($data['admin'])){
+					$id = $this->generateUniqueId(20);
+					$check_exist = $this->Mydb->get_record ('map_id',$this->routeplan_table,array ('map_id'  => $id));
+					if($check_exist['map_id']){
+						$id = $this->generateUniqueId(20);
+					}
+					
+					$get_destinations = $this->input->post('destinations');
+					$trip_name   = post_value('trip_name');
+					$description = post_value('description');
+					$start_date  = post_value('start_date');
+					$end_date    = post_value('end_date');
+					
+					$plan_details= implode('-', $get_destinations);
+					$destinations= implode('|*|', $get_destinations);
+					$insert_array = array(
+						'start_date' => date('Y-m-d', strtotime($start_date)),
+						'end_date' => date('Y-m-d', strtotime($end_date)),
+						'map_id' => $id,
+						'trip_name' => $trip_name,
+						'plan_details' => $plan_details,
+						'description' => $description,
+						'destinations' => $destinations,
+						'type' => 'directions',
+						'created_on' => current_date(),
+						'created_ip' => get_ip(),
+						'created_by' => $data['admin']['admin_id'],
+						'is_visible' => '1',
+						'is_active' => 1);
+					
+					$list = array(
+						 "name" => "Jeevanacharya Route Plan",
+						 "description" => "Jeevanacharya Route Plan",					 
+						 "layers" => array(
+									array("name" => $trip_name, "isVisible" => true, "isVisible" => true, "isExpanded" => true,  "shapes" => array(array("name" => $plan_details,
+									"description" => $description,
+									"type" => "directions",
+									"startdate" => date('Y-m-d', strtotime($start_date)),
+									"enddate" => date('Y-m-d', strtotime($end_date)),
+									"destinations" => $get_destinations,
+									"avoidHighways" => false,
+									"avoidTolls" => false
+									)), 						
+								 )),
+								 "selectedLayerId" => 0,
+								 "mapPosition" => "5.49549987804796,102.96690710937501,8,roadmap",
+						);
+				
+					$jsonData = json_encode($list);
+					
+					$insert_id = $this->Mydb->insert($this->routeplan_table, $insert_array);
+					
+					$f = fopen(FCPATH . "/media/maps/" .$id. ".json", "w");
+					fwrite($f, $jsonData);
+					fclose($f);
+					
+					$result = array( 'success'=> 1 , 'message'=> 'Route Plan Added Successfully');
+				}else{
+					$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+				}
+				
+				
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+			}
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter All Fields');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
+	}
 	
 
 }
