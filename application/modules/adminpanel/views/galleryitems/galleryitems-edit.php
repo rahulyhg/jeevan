@@ -146,7 +146,7 @@
 									
 									var input = document.createElement("input");
 									input.setAttribute("type", "hidden");
-									input.setAttribute("name", "mediaFiles[]");
+									input.setAttribute("name", "mediaFiles");
 									input.value = '<?php echo $records['file_name']; ?>';
 									mockFile.previewElement.appendChild(input);
 									

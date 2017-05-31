@@ -55,7 +55,27 @@
 							
 							</div></div>
 						</div>
-                        
+                         <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('image');?></label>
+                            <div class="col-sm-<?php echo get_form_size();?>">
+                                <div class="input_box">
+                                    <div class="custom_browsefile">
+                                        <?php  echo form_upload('blog_image')?>
+                                        <span class="result_browsefile"><span class="brows"></span>+ Upload Blog Image</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+							<?php if(!empty($record['blog_image'])){ ?>								
+							
+                            <div class="col-xs-6 col-md-3 show_image_box">
+								<a class="thumbnail"    href="javascript:;" title="<?php echo get_label('remove_image_title');?>">
+								<img class="img-responsive delete_blog_image" style="width: 250px; height:250px;"  src="<?php echo media_url()."blog/".$record['blog_image'];?>">
+								</a>
+							</div>
+							<?php }?>
+						</div>
 						
                         <div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('author').'&nbsp;'.get_required();?></label>
@@ -77,7 +97,7 @@
                         
                         <?php
 					echo form_hidden ( 'action', 'edit' );
-					echo form_hidden('remove_page_image','No');
+					echo form_hidden('remove_blog_image','No');
 					echo form_close ();
 					?>			
 			
@@ -90,4 +110,21 @@
 		</div>
 	</div>
 </div>
+<script>
+/* Add Multi field   */
+$(document).ready(function(){
+	
+	/* Remove Image Yes or No*/
+    $(".delete_blog_image").click(function() {
+  	  
+   	 if(confirm('Are you want delete this image?'))
+   	  {
+   		    $('.show_image_box').remove();
+   			$('input[name="remove_blog_image"]').val('Yes');
+   	  }
+    });
+  
+});
 
+
+</script>

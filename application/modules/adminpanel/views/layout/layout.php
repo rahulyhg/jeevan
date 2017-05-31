@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  itemscope itemtype="http://schema.org/Article">
+<html itemscope itemtype="http://schema.org/Article">  
 <head>
    <?php echo $this->load->view('layout/header');?>
 </head>

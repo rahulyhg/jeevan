@@ -78,7 +78,7 @@
 						 <div class="form-group" id="menu_position">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('Menu Position');?></label>
 							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box">
-							<input type="number" name="menu_position" class="form-control" value="<?php echo $records['position']; ?>">
+							<input type="number" name="position" class="form-control" value="<?php echo $records['position']; ?>">
 							</div>
 							</div>
 						</div>

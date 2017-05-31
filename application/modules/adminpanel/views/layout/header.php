@@ -13,13 +13,14 @@
     <meta itemprop="image" content="<?php echo $meta_jeevan_image; ?>">
     
     
+    <!-- Twitter Card data -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@Jeevanascharya.com">
-    <meta name="twitter:creator" content="@JeevanascharyaG">
+    <meta name="twitter:site" content="@publisher_handle">
     <meta name="twitter:title" content="<?php echo $meta_jeevan_title; ?>">
     <meta name="twitter:description" content="<?php echo $meta_jeevan_summary; ?>">
-    <meta name="twitter:image" content="<?php echo $meta_jeevan_image; ?>">
-
+    <meta name="twitter:creator" content="@<?php echo $meta_jeevan_link; ?>">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="<?php echo $meta_jeevan_image; ?>">
     
     <!-- Open Graph data -->
     <meta property="og:title" content="<?php echo $meta_jeevan_title; ?>" />
@@ -31,7 +32,8 @@
     <?php
     }
     ?>
-   
+    <meta name="og:image" content="<?php echo $meta_jeevan_image; ?>" />
+	<link rel="image_src" href="<?php echo $meta_jeevan_image; ?>"/>
     
     <!-- Fonts -->
     <link href='<?php echo  load_font('google_lato.css')?>' rel='stylesheet' type='text/css'>

@@ -40,15 +40,21 @@
 							</div></div>
 									
 						</div>	
-						
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('page_image').'&nbsp;';?></label>
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box">
-							<input type ="file" name="page_image" value="<?php set_value('page_image'); ?>"  class="form-control"  >
-							
-							</div></div>
+					    <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('page_image');?></label>
+                            <div class="col-sm-<?php echo get_form_size();?>">
+                                <div class="input_box">
+                                    <div class="custom_browsefile">
+                                        <?php  echo form_upload('page_image')?>
+                                        <span class="result_browsefile"><span class="brows"></span>+ Upload Page Image</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                           
 						</div>
-                        
+
 						
                         <div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta_title').'&nbsp;'.get_required();?></label>

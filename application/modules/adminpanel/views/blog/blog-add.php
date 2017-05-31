@@ -47,13 +47,19 @@
 						</div>	
 						
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('image').'&nbsp;';?></label>
-							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box">
-							<input type ="file" name="blog_image" value="<?php set_value('blog_image'); ?>"   class="form-control"  >
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('blog image');?></label>
+                            <div class="col-sm-<?php echo get_form_size();?>">
+                                <div class="input_box">
+                                    <div class="custom_browsefile">
+                                        <?php  echo form_upload('blog_image')?>
+                                        <span class="result_browsefile"><span class="brows"></span>+ Upload Blog Image</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
 							
-							</div></div>
 						</div>
-                        
 						
                         <div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('author').'&nbsp;'.get_required();?></label>
@@ -87,4 +93,3 @@
 		</div>
 	</div>
 </div>
-
