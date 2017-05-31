@@ -20,6 +20,8 @@ class Menus_Block extends Core_Block {
 		$db->join('sramcms_cms_pages cms', 'cms.id = page_id','left');
 		$db->where('mg.is_active', '1');
 		$db->where('mg.is_delete', '0');
+	        $db->order_by('mg.position','asc');
+
 		switch ($data["params"]->menus_views) {
 			case self::TYPE_HEADER:
 				$db->where('mg.menu_group_id', $data["params"]->menu_group);
@@ -33,6 +35,7 @@ class Menus_Block extends Core_Block {
 		}
 		
 		$query = $db->get("sramcms_menus mg");
+		
 		//echo $db->last_query();
 		if($query->num_rows() > 0) {
 			$data["menus_list"] = $query->result_array();

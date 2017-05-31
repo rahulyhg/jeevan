@@ -18,8 +18,7 @@ class Gallery_Block extends Core_Block {
 		ELSE 1   END) AS category_image, sgc.is_order		
 		FROM  sramcms_gallary_categories AS sgc
 		LEFT JOIN sramcms_galleries AS sg ON sg.gallery_category_id = sgc.id
-		WHERE sgc.is_active = '1' AND sgc.is_delete = '0' GROUP BY sgc.id ORDER BY sgc.id ASC ");
-		
+		WHERE sgc.is_active = '1' AND sgc.is_delete = '0' GROUP BY sgc.id ORDER BY sgc.is_order ASC ");
 		
 		return $data;
 	}
