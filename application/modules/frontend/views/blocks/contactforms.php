@@ -13,7 +13,7 @@
 		</div>
 		<div class="contact-info">
 			<ul> 
-			<li class="animated zoomIn"><a href="mailto:info@cia-cambodia.com"><i class="fa fa-envelope"></i> info@cia-cambodia.com</a></li> 
+			<li class="animated zoomIn"><a href="mailto:info@jeevanacharya.com"><i class="fa fa-envelope"></i> info@jeevanacharya.com</a></li> 
 			<li class="animated zoomIn"><a href="tell:+855 2390 0007"><i class="fa fa-phone"></i> +855 2390 0007</a></li> 
 			</ul>
 		</div>
