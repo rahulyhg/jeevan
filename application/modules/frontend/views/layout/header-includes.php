@@ -16,6 +16,28 @@
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>theme/css/owl.theme.css">
 
 
+
+<link rel="alternate" href="https://www.jeevanacharya.com" hreflang="en-us" />
+<link rel="alternate" href="https://www.jeevanacharya.com" hreflang="en-gb" /> 
+<link rel="alternate" href="https://www.jeevanacharya.com" hreflang="km-kh" />
+<link rel="alternate" href="https://www.jeevanacharya.com" hreflang="hi-in" />
+<link rel="alternate" href="https://www.jeevanacharya.com" hreflang="en-in" /> 
+
+<meta name="yandex-verification" content="da9c3677fe610813" />
+<meta name="msvalidate.01" content="29B3BD53EF4F87F322C71BE1FF8CC9F8" />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K9BQDGW');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+
 <!--<link rel="stylesheet" href="<?php echo skin_url(); ?>css/jquery.mCustomScrollbar.css">-->
 <!-- <script src="<?php //echo skin_url();      ?>js/jquery-3.1.1.min.js"></script> -->
 <script type="text/javascript" src="<?php echo skin_url(); ?>js/jquery.min.1.10.1.js"></script>
