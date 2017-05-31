@@ -34,9 +34,46 @@ if (!empty($blocks['inner_top'])) {
     </div>
     
 </div>
+	<div id="location_map" class="contact_map"></div>
 
-<iframe class="contact_map" src="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en-&amp;geocode=&amp;abauth=52846723_CvfcNinFxxGfLf9q73NnFIgoyE&amp;authuser=0&amp;q=<?php echo $urlencode_address; ?>&amp;aq=0&amp;oq=svas&amp;vps=2&amp;jsv=469e&amp;sll=10.084754,78.77966&amp;sspn=0.002696,0.004699&amp;vpsrc=6&amp;num=10&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+<script>
 
+
+      function initMap() {
+        var uluru = {lat: 11.5657387, lng: 104.9193093};
+        var map = new google.maps.Map(document.getElementById('location_map'), {
+          zoom: 4,
+          center: uluru
+        });
+
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h4 id="firstHeading" class="firstHeading">Cambodia Indian Association</h4>'+
+            '<div id="bodyContent">'+
+            '<p>IOC Building, No.254, Monivong Blvd, <br />' +
+            'Corner St.109, 6th Floor, <br />'+
+            'Room No.007, Phnom Penh, <br />'+
+            'Cambodia.'+               
+            '</div>'+
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgt4YQGp9JWQhxOyzy4_JAFdvXKHMZ-Kw&callback=initMap"
+  type="text/javascript"></script>
 
 <div class="clearfix"></div>
 
