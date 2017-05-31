@@ -1,4 +1,5 @@
 <?php
+
 /**************************
 Project Name	: POS
 Created on		: 18 Feb, 2016
@@ -17,10 +18,8 @@ class Adminpanel extends CI_Controller {
 		$this->login_history_table = "master_admin_login_history";
 		$this->load->helper('emailtemplate');
 	}
-	
-	/* this method used to check login */
-	public function index() {
-		$data = array ();
+	public function index(){
+	$data = array ();
 		
 		if ($this->input->post ( 'submit' ) == 'Login') 		// if ajax submit
 		{
@@ -80,7 +79,6 @@ class Adminpanel extends CI_Controller {
 		}
 		$this->load->view ( $this->folder . 'login' );
 	}
-	
 	function forgotpassword() {
         if ($this->input->post('submit') == 'Forgot') {   // if ajax submit
             $error = array();
@@ -138,9 +136,8 @@ class Adminpanel extends CI_Controller {
         }
         $this->load->view($this->folder.'forgotpassword');
     }
-
     function resetpassword() {
-        if (empty(get_session_value('current_user_id'))) {
+        if (get_session_value('current_user_id')=='') {
             
 
             if ($this->input->post('submit') == 'Reset') {   // if ajax submit
@@ -190,8 +187,7 @@ class Adminpanel extends CI_Controller {
             redirect(admin_url());
         }
     }
-	
-	public function send_forgot_email($name, $to_email, $link) {
+    public function send_forgot_email($name, $to_email, $link) {
 
         $chk_arr = array('[NAME]', '[LINK]');
         $rep_arr = array($name, $link);
@@ -207,4 +203,5 @@ class Adminpanel extends CI_Controller {
 		redirect(admin_url());
 	
 	}
+	
 }

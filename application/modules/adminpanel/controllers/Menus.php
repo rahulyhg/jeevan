@@ -123,7 +123,7 @@ class Menus extends CI_Controller {
 									 "is_active" => '1',
 									 "parent_id" => $this->input->post('parent_menu') ? $this->input->post('parent_menu') :'0', );
 				$this->Mydb->insert($this->table,$insert_data);		
-				if(!empty($this->input->post('parent_menu'))){
+				if(!$this->input->post('parent_menu')){
 					$update_isparent_data = array("is_parent" => '1');					
 					$this->Mydb->update ( $this->table, array ($this->primary_key => $this->input->post('parent_menu') ), $update_isparent_data );
 				}
@@ -273,7 +273,7 @@ class Menus extends CI_Controller {
 						"parent_id" => $this->input->post('parent_menu') ? $this->input->post('parent_menu') :$record['parent_id'], );					
 				
 				$this->Mydb->update ( $this->table, array ($this->primary_key => $record ['id'] ), $update_data );
-				if(!empty($this->input->post('parent_menu'))){
+				if(!$this->input->post('parent_menu')){
 					$update_isparent_data = array("is_parent" => '1');
 					$this->Mydb->update ( $this->table, array ($this->primary_key => $this->input->post('parent_menu') ), $update_isparent_data );
 				}

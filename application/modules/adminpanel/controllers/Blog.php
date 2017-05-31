@@ -1,6 +1,6 @@
 <?php
 /**************************
-Project Name	: Elect TV
+Project Name	: Jeevanacharya
 Created on		: 08 Nov, 2016
 Last Modified 	: 
 Description		:  this file contains common setting for admin and client panel..
@@ -207,7 +207,7 @@ class Blog extends CI_Controller {
 					$update_array = array_merge ( $update_array, $image_arr );
 				
 				} else {
-					if(post_value ( 'remove_page_image' ) == "Yes"){
+					if(post_value ( 'remove_blog_image' ) == "Yes"){
 						$image_arr = array (
 								'blog_image' => ''
 						);

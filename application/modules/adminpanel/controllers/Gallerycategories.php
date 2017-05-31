@@ -231,7 +231,6 @@ class Gallerycategories extends CI_Controller {
 			exit ();
 		}
 		$data ['records'] = $record;
-		
 		/* Common labels */
 		$this->module_label ="User Info";
 		$data ['breadcrumb'] = $data ['form_heading'] = get_label ( 'edit' ) . ' ' . $this->module_label;

@@ -137,7 +137,7 @@ class Galleryitems extends CI_Controller {
 			
 			
 			if(post_value('media_type') != 3){
-				$this->form_validation->set_rules ( 'mediaFiles', 'lang:mediaFiles', 'trim|required' ); 
+				$this->form_validation->set_rules ( 'mediaFiles[]', 'lang:mediaFiles', 'trim|required' ); 
 			}else{
 				$this->form_validation->set_rules ( 'video_url', 'lang:video_url', 'trim|required' ); 
 			}
