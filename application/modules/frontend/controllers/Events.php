@@ -47,9 +47,9 @@ class Events extends MY_Controller {
         $response = array();
         $event_url = frontend_url() . $this->module . '/get_event_booking/';
 		 $today = date('Y-m-d');
-        $result = $this->Mydb->get_all_records("id, trip_name AS title, CONCAT('" . $event_url . "',id) AS url,(UNIX_TIMESTAMP(start_date) * 1000) AS start, (UNIX_TIMESTAMP(end_date) * 1000) AS end", $this->table, array('is_active' => '1', 'is_delete' => '0', 'start_date >=' => $today));
+        $result = $this->Mydb->get_all_records("id, trip_name AS title, CONCAT('" . $event_url . "',id) AS url,(UNIX_TIMESTAMP(start_date) * 1000) AS start, (UNIX_TIMESTAMP(end_date) * 1000) AS end", $this->table, array('is_active' => '1', 'is_delete' => '0'));
 	  
-		
+       
         if (!empty($result)) {
             $response['success'] = 1;
             $response['result'] = $result;
