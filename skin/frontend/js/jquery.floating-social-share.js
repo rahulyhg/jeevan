@@ -187,9 +187,9 @@
   }
 
   function appendButtons(count, $component) {
-    if (count && count > 0) {
-      $component.append($("<span>", { class: "shareCount" }).append(shorten(count))).find("i").removeClass("margin-top-5");
-    }
+   // if (count && count > 0) {
+     // $component.append($("<span>", { class: "shareCount" }).append(shorten(count))).find("i").removeClass("margin-top-5");
+   // }
   }
 
   function issetOrZero(fn) {
