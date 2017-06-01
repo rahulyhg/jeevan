@@ -51,7 +51,7 @@
               _text_output = base.settings.text_title_case ? title_case(_text_value) : _text_value,
               $component = $("<a>", { title: base.settings.title, class: v.className + " pop-upper"}).attr("href", _href).attr("title", _text_output).append($icon);
             if (base.settings.counter === true) {
-              setShareCount(value, encodeURI(base.settings.url), $component, base.settings.twitter_counter);
+              //setShareCount(value, encodeURI(base.settings.url), $component, base.settings.twitter_counter);
             }
             $child.append($component);
             return false;
@@ -202,7 +202,7 @@
     return value;
   }
 
-  function setShareCount(network, url, $component, twitter_counter) {
+  /*function setShareCount(network, url, $component, twitter_counter) {
     switch(network) {
       case "facebook":
         $.getJSON('https://graph.facebook.com/?id=' + url + '&callback=?', function(data) {
@@ -259,7 +259,7 @@
       default:
         return -1;
     }
-  }
+  }*/
 
   $.fn[pluginName] = function(options) {
     return this.each(function() {
