@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>theme/css/jquery.fancybox.css">
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>theme/css/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="<?php echo load_lib(); ?>theme/css/owl.theme.css">
-
+<link rel="stylesheet" type="text/css" href="<?php echo load_lib();?>theme/css/select2.min.css">
 
 
 <link rel="alternate" href="https://www.jeevanacharya.com" hreflang="en-us" />
@@ -42,8 +42,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- <script src="<?php //echo skin_url();      ?>js/jquery-3.1.1.min.js"></script> -->
 <script type="text/javascript" src="<?php echo skin_url(); ?>js/jquery.min.1.10.1.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/select2.full.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/marquee.js"></script>
 <script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/user_script.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap-datetimepicker.js"></script>
 <script src="<?php echo load_lib(); ?>theme/js/owl.carousel.min.js"></script>
 <!--<script src="<?php echo skin_url(); ?>js/jquery.mCustomScrollbar.concat.min.js"></script>-->
@@ -58,6 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var module_labels = "<?php echo $module_labels; ?>";
     var module_action = "<?php echo (isset($module_action) ? $module_action : '' ); ?>";
     var secure_key = "<?php echo $this->security->get_csrf_hash(); ?>";
+	
 </script>
 <script>
     (function (i, s, o, g, r, a, m) {

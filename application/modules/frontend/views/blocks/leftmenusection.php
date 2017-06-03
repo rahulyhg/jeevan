@@ -3,6 +3,23 @@
 
 if(!empty($menus_list)){
 ?>
+<p class="pull-right topmenu">
+	<a href="#"><span>DONATE</span></a>
+	<?php
+	echo get_session_value('current_user_id');
+   // if (empty(get_session_value('current_user_id'))) {
+    ?>
+    <a href="javascript:void(0);" data-type="login-modal" data-toggle="modal" class="allmodal"><span>LOGIN</span></a>
+    <a href="javascript:void(0);" data-type="register-modal" data-toggle="modal" class="allmodal"><span>REGISTER</span></a>
+    <?php
+	//}else{
+	?>
+    <a href="<?php echo base_url('myaccount'); ?>"><span>MY ACCOUNT</span></a>
+    <a href="<?php echo frontend_url('logout'); ?>"><span>LOGOUT</span></a>
+    <?php
+	//}
+	?>
+</p>
 <ul>
 	<?php
 		foreach($menus_list as $desktop){
@@ -11,6 +28,7 @@ if(!empty($menus_list)){
     <?php
 		}
 		?>
+        
 </ul>
 <?php
 	}

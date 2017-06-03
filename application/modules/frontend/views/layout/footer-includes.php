@@ -1,8 +1,10 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
+
 <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/jquery.fancybox.js"></script>
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/calendar.js"></script>
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/app.js"></script>
+<script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/user_script.js"></script>
 
 <script>
 	$(function (){
@@ -105,6 +107,14 @@ $('.footer_section3').on('DOMSubtreeModified propertychange',"#twitter-widget-0"
 })(jQuery);
 </script>
 
+
+<script>
+$(".allmodal").click(function(e) {
+    $('.modal').modal('hide');
+	var id = $(this).attr('data-type');
+	$('#'+ id).modal('show');
+});
+</script>
 
 
 
