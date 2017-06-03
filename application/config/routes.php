@@ -69,3 +69,11 @@ $route['blog/(:any)'] = 'frontend/blog/$1';
 $route['discourse/(:any)'] = 'frontend/discourse/$1';
 $route['newsletterunsubscribe/(:any)'] = 'frontend/newsletterunsubscribe/$1';
 $route['newslettersubscribe/(:any)'] = 'frontend/newslettersubscribe/$1';
+$route['accountactivation/(:any)'] = 'frontend/accountactivation/$1';
+$route['resetpassword/(:any)'] = 'frontend/resetpassword/$1';
+$route['dashboard/(:any)'] = 'frontend/dashboard/$1';
+/*$route['accountactivation/(:any)'] = 'frontend/accountactivation/$1';
+$route['resetpassword/(:any)'] = 'frontend/resetpassword/$1';
+$route['(:any)'] = 'frontend/myaccount/$1';
+*/
+

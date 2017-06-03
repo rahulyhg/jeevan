@@ -20,12 +20,13 @@ $block_postions = array(
 	'inner_bottom' =>'Inner Bottom',
 	'inner_left' =>'Inner Left',
 	'inner_right' =>'Inner Right',
+	'inner_all_model' => 'Inner All Modal'
 	
 );
 
 $pages['all'] = array(
 	'title' => 'All',
-	'positions' => 'all_page_right,site_header, site_header_desktop, site_footer,site_leftmenu, site_copyright, content_middle, menus, inner_top, inner_bottom, inner_right, inner_left, content_newsletter'
+	'positions' => 'all_page_right,site_header, site_header_desktop, site_footer,site_leftmenu, site_copyright, content_middle, menus, inner_top, inner_bottom, inner_right, inner_left, content_newsletter, inner_all_model'
 );
 $pages['index'] = array(
 	'title' => 'Home',
@@ -47,4 +48,5 @@ $block_types = array(
 	"blog" => "Blog",
 	"discourse" => "Discourse",
 	"photooftheday" => "Photo Of The Day",
+	"allmodal" => "All Modal"
 );
