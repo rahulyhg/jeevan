@@ -13,6 +13,8 @@ if (! function_exists ( 'get_admin_id' )) {
 	}
 }
 
+
+
 /* this method used to get admin records per page value */
 if (! function_exists ( 'admin_records_perpage' )) {
 	function admin_records_perpage() {
