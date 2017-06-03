@@ -303,6 +303,56 @@ class Frontend extends MY_Controller {
         $this->layout->display_frontend($this->folder . 'subscribe', $data);
     }
 
+
+	public function accountactivation() {
+		$data = array();
+        $data['module_label'] = $this->module_label;
+        $data['module_labels'] = $this->module_label;
+        $data['module'] = $this->module;
+        $this->loadBlocks();
+        $data = array_merge($data, $this->view_data);
+
+
+        $key = $this->uri->segment(2);
+        if (!empty($key)) {
+           $getuserid = $this->Mydb->custom_query("SELECT admin_id FROM sramcms_master_admin WHERE admin_email_code='$key'");
+           
+
+		   if (!empty($getuserid)) {
+
+			$admin_id = $getuserid[0]['admin_id'];
+			$user_array = array(
+				'admin_status' => 'A',
+			);
+			
+			$updateuser = $this->Mydb->update($this->table, array('admin_id' => $admin_id), $user_array);
+			$data['emailmsg'] = "Congratulations your account has been activated successfully. Please go to login";
+			} else {
+			
+			$data['emailmsg'] = "Activation code is wrong . Please try again";
+			}
+           
+        } else {
+            $data['emailmsg'] = "Something Error. Please try again";
+        }
+
+        $this->layout->display_frontend($this->folder . 'emailactivation', $data);
+	   
+    }
+	
+	public function dashboard(){
+		$data = array();
+        $data['module_label'] = $this->module_label;
+        $data['module_labels'] = $this->module_label;
+        $data['module'] = $this->module;
+        $this->loadBlocks();
+        $data = array_merge($data, $this->view_data);
+
+        $this->layout->display_frontend($this->folder . 'myaccount', $data);
+	}
+	
+	
+	
     public function feedback() {
         if ($this->input->post('action') == 'feedback') {
 
@@ -383,12 +433,14 @@ class Frontend extends MY_Controller {
         $response_email = send_email($to_email, $template_slug = "feedback-admin", $chk_arr, $rep_arr, $attach_file = array(), $path = '', $subject = '', $cc = '', $html_template = 'email_template');
         return $response_email;
     }
+	
+		
 
     public function logout() {
 
         $this->session->sess_destroy();
 
-        redirect(frontend_url());
+        redirect(base_url());
     }
 
 }
