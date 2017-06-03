@@ -1014,7 +1014,7 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow sp
 {
 	display: inline-block;
 	margin:0px;
-	padding: 10px 25px;
+	padding: 8px 15px;
 	background-color: rgba(255, 255, 255, 0.25);
 	opacity: 1;
 	text-align: center;
@@ -1027,7 +1027,7 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow sp
 	text-decoration: none;
 }
 .fixed .menubar ul {
- 	margin: 15px 0px 10px 0px;
+ 	margin: 0px 0px 10px 0px;
 	padding: 0px 0px 0px 10px;
 	list-style-type: none;
 }
@@ -1036,13 +1036,13 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow sp
 	background-color: rgba(98, 0, 0, 0.45); /* Old browsers */
 	opacity: 1;
 	color:#fff !important;
-	padding: 10px 25px;
+	padding: 8px 15px;
 }
 .fixed .menubar .active
 {
 	background-color: rgba(98, 0, 0, 0.65); /* Old browsers */
 	color:#fff !important;
-	padding: 10px 25px;
+	padding: 8px 15px;
 	opacity: 1;
 }
 .fixed .menubar li a span
@@ -1069,11 +1069,19 @@ nav {
 {
 	margin: 12px;
 }
+.menubar .topmenu span
+{
+	border:1px solid #fff;
+	padding:5px 10px;
+	color:#fff;
+	font-size:10px;
+	font-weight:100;
+}
 .menubar li
 {
 	display: inline-block;
 	margin:0px;
-	padding: 30px 25px;
+	padding: 30px 15px;
 	background-color: rgba(255, 255, 255, 0.25);
 	opacity: 1;
 	text-align: center;
@@ -1086,22 +1094,23 @@ nav {
 	text-decoration: none;
 }
 .menubar ul {
- 	margin: 26px 0px 0px 0px;
+ 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 10px;
 	list-style-type: none;
+	float:right;
 }
 .menubar li:hover
 {
 	background-color: rgba(98, 0, 0, 0.45); /* Old browsers */
 	opacity: 1;
 	color:#fff !important;
-	padding: 30px 25px;
+	padding: 30px 15px;
 }
 .menubar .active
 {
 	background-color: rgba(98, 0, 0, 0.65); /* Old browsers */
 	color:#fff !important;
-	padding: 30px 25px;
+	padding: 30px 15px;
 	opacity: 1;
 }
 .menubar li a span
@@ -1269,15 +1278,15 @@ section {
 #screen1 .logo_img img
 {
 	margin: 0px;
-	padding: 0px 0px;
-	height: 61px;
+	padding: 15px 0px 0px 0px;
+	height: 70px;
 }
 
 #screen1 .menubar li
 {
 	display: inline-block;
 	margin:0px;
-	padding: 15px 25px;
+	padding: 8px 15px;
 	background-color: rgba(255, 255, 255, 0.25);
 	opacity: 1;
 	text-align: center;
@@ -1290,22 +1299,23 @@ section {
 	text-decoration: none;
 }
 #screen1 .menubar ul {
- 	margin: 15px 0px 10px 0px;
+ 	margin: 0px 0px 10px 0px;
 	padding: 0px 0px 0px 10px;
 	list-style-type: none;
+	float:right;
 }
 #screen1 .menubar li:hover
 {
 	background-color: rgba(98, 0, 0, 0.45); /* Old browsers */
 	opacity: 1;
 	color:#fff !important;
-	padding: 15px 25px;
+	padding: 8px 15px;
 }
 #screen1 .menubar .active
 {
 	background-color: rgba(98, 0, 0, 0.65); /* Old browsers */
 	color:#fff !important;
-	padding: 15px 25px;
+	padding: 8px 15px;
 	opacity: 1;
 }
 #screen1 .menubar li a span
@@ -1323,7 +1333,7 @@ section {
 {
 	margin: 0px;
 	padding: 0px 0px;
-	height: 61px;
+	height: auto;
 }
 
 .fixed #screen1 .menubar li
@@ -2759,7 +2769,7 @@ span.rollover:hover {
 	font-family: 'latoregular';
 	line-height: 28px;
 }
-span {
+span[class="text-danger"] {
     font-size: 12.5px;
 }
 #left,#right{
