@@ -1,0 +1,17 @@
+ALTER TABLE `sramcms_master_admin` ADD `admin_firstname` VARCHAR(255) NOT NULL AFTER `admin_username`, ADD `admin_lastname` VARCHAR(255) NOT NULL AFTER `admin_firstname`, ADD `admin_country` TINYINT NOT NULL AFTER `admin_lastname`;
+
+ALTER TABLE `sramcms_master_admin` ADD `phone_code` TEXT NOT NULL AFTER `admin_updated_on`, ADD `email_code` TEXT NOT NULL AFTER `phone_code`;
+
+ALTER TABLE `sramcms_master_admin` ADD `admin_devices_type` VARCHAR(11) NOT NULL COMMENT 'I - Iso, A - Android, W - Web' AFTER `admin_email_code`;
+
+ALTER TABLE `sramcms_master_admin` ADD `admin_forgot_email` TEXT NOT NULL AFTER `admin_otp`;
+
+ALTER TABLE `sramcms_feedback` ADD `country_id` TINYINT NOT NULL AFTER `phone`;
+
+ALTER TABLE `sramcms_master_admin` ADD `admin_profile` TEXT NOT NULL AFTER `admin_country`;
+
+ALTER TABLE `sramcms_event_users` ADD `admin_id` BIGINT(20) NOT NULL AFTER `email`;
+
+ALTER TABLE `sramcms_master_admin` CHANGE `admin_country` `admin_country` TEXT NOT NULL;
+
+ALTER TABLE `sramcms_event_users` ADD `admin_country` VARCHAR(255) NOT NULL AFTER `admin_id`;
