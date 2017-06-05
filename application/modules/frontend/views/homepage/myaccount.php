@@ -117,6 +117,7 @@ $("#changepassword_form").validate({
 	}
 });
 </script>
+
 <div class="modal fade" id="myaccountedit-modal" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="max-width:700px; width:100%; position:relative; float:left;">
@@ -176,7 +177,7 @@ $("#changepassword_form").validate({
                     <div class="col-xs-12">
                         
                         <div class="custom_browsefile col-xs-12">
-                            <input type="file" name="photo" value="" class="form-control">
+                            <input type="file" name="admin_profile" value="" class="form-control">
                             <span class="result_browsefile"><span class="brows"></span>+ Upload Profile Image</span>
                         </div>
                     </div>
@@ -200,6 +201,7 @@ $("#changepassword_form").validate({
         </div>
     </div>
 </div>
+
 <script>
 $("#myaccount_form").validate({
 	ignore: ".ignore",
@@ -223,17 +225,20 @@ $("#myaccount_form").validate({
 		admin_password:{required: "Enter your password"},
 	},
 	submitHandler: function (form) {
+		
 		$.ajax({
 			type: 'POST',
 			url: admin_url +'user/edit',
+			data: new FormData($('#myaccount_form')[0]),
+			dataType:"json",
 			cache: false,
-			data: $('#myaccount_form').serialize(),
-			dataType : "json",
 			success: function(data) {
+				alert(data);
 				if (data.status == "success") {
 					$(".myaccount_alert").removeClass("alert-danger");
                     $(".myaccount_alert").addClass("alert-success");
 					$(".myaccount_alert").show().html(data.message);
+					
 				}else{
 					$(".myaccount_alert").removeClass("alert-success");
                     $(".myaccount_alert").addClass("alert-danger");
