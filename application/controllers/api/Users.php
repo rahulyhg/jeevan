@@ -101,7 +101,13 @@ class Users extends REST_Controller {
 								$this->Mydb->update ( $this->table, array ('admin_id' => $admin_id ), $token_array );
 							}
 							$userdata = array();
-							$userdata[] = $this->Mydb->get_record ('oauth_token,admin_id, admin_firstname, admin_lastname,  admin_email_address, admin_phone_number', $this->table,array ('admin_id'  => $admin_id));
+							$default_image = media_url('default-image.png');
+							$image_path = media_url('profile/');
+							$userdata[] = $this->Mydb->custom_query("SELECT ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, admin_country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
+			LEFT JOIN sramcms_countries AS c ON c.id = ma.admin_country
+			WHERE ma.admin_id = '".$admin_id."' AND ma.admin_status = 'A'");
+							
+							
 							$data['user_data'] = $userdata;
 							
 							
@@ -240,7 +246,7 @@ class Users extends REST_Controller {
 		$oauth_token = post_value ( 'oauth_token' );
 		if($oauth_token != ''){
 			$default_image = media_url('default-image.png');
-			$image_path = media_url();
+			$image_path = media_url('profile/');
 			
 			$data['admin'] = $this->Mydb->custom_query("SELECT ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, admin_country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
 			LEFT JOIN sramcms_countries AS c ON c.id = ma.admin_country
