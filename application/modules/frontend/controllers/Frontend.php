@@ -347,7 +347,13 @@ class Frontend extends MY_Controller {
         $data['module'] = $this->module;
         $this->loadBlocks();
         $data = array_merge($data, $this->view_data);
-
+		$admin_id = get_session_value('current_user_id');
+		$default_image = media_url('default-image.png');
+		$image_path = media_url();
+		
+		$data['user'] = $this->Mydb->custom_query("SELECT ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, ma.admin_country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
+			WHERE ma.admin_id = '".$admin_id."' AND ma.admin_status = 'A'");
+		
         $this->layout->display_frontend($this->folder . 'myaccount', $data);
 	}
 	
