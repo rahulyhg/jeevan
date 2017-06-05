@@ -242,7 +242,7 @@ class Users extends REST_Controller {
 			$default_image = media_url('default-image.png');
 			$image_path = media_url();
 			
-			$data['admin'] = $this->Mydb->custom_query("SELECT ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, c.title AS country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
+			$data['admin'] = $this->Mydb->custom_query("SELECT ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, admin_country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
 			LEFT JOIN sramcms_countries AS c ON c.id = ma.admin_country
 			WHERE ma.oauth_token = '".$oauth_token."' AND ma.admin_status = 'A'");
 			
