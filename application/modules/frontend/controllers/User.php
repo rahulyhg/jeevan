@@ -318,11 +318,13 @@ class User extends CI_Controller {
                     'admin_lastname' => post_value('admin_lastname'),
                     'admin_email_address' => post_value('admin_email_address'),
                     'admin_updated_on' => current_date(),
-                    'admin_phone_number' => post_value('phone'),
+                    'admin_phone_number' => post_value('admin_phone_number'),
 					'admin_country' => post_value('admin_country'),
                 );
 				
-				if (!empty($_FILES['admin_profile']['name'])) {
+				if ($_FILES['admin_profile']['name'] != '') {
+					
+					
                     $config['upload_path'] = 'media/profile/';
                     $config['allowed_types'] = 'jpg|jpeg|png|gif';
                     $config['file_name'] =  'profile-' .random_string('numeric',15).'-'. $_FILES['admin_profile']['name'];
@@ -342,9 +344,10 @@ class User extends CI_Controller {
                     );
                     $user_array = array_merge($user_array, $image_arr);
                 } else {
+					
                     if (post_value('remove_image') == "Yes") {
                         $image_arr = array(
-                            'photo' => ''
+                            'admin_profile' => ''
                         );
                         $user_array = array_merge($user_array, $image_arr);
                     }
@@ -353,15 +356,8 @@ class User extends CI_Controller {
 
                 $update = $this->Mydb->update($this->table, array('admin_id' => $id), $user_array);
 
-               
-				if($update){				
-					
-					$result ['status'] = 'success';
-					$result ['message'] = 'Update your account success';
-				}else{
-					$result ['status'] = 'error';
-               		$result ['message'] = 'Update your account not success';
-				}
+               redirect(frontend_url().'dashboard/myaccount');
+			   
             } else {
                 $result ['status'] = 'error';
                 $result ['message'] = validation_errors();
@@ -494,7 +490,16 @@ class User extends CI_Controller {
         }
     }
 	
-	
+	public function validate_photo() {
+        if (isset($_FILES ['admin_profile'] ['name']) && $_FILES ['admin_profile'] ['name'] != "") {
+            if ($this->common->valid_image($_FILES ['admin_profile']) == "No") {
+                $this->form_validation->set_message('validate_photo', get_label('upload_valid_image'));
+                return false;
+            }
+        }
+
+        return true;
+    }
 	
 	/* this method used to common module labels */
 	private function load_module_info() {
