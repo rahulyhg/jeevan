@@ -45,7 +45,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="<?php echo skin_url(); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/select2.full.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/marquee.js"></script>
+<script type="text/javascript" src="<?php echo load_lib(); ?>jquery/additional-methods.min.js"></script>
 <script src="<?php echo skin_url(); ?>js/jquery.validate.js"></script>
+
+
 <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/user_script.js"></script>
 <script src="<?php echo skin_url(); ?>js/bootstrap-datetimepicker.js"></script>
 <script src="<?php echo load_lib(); ?>theme/js/owl.carousel.min.js"></script>

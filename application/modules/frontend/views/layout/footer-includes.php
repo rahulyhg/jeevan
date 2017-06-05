@@ -5,7 +5,6 @@
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/calendar.js"></script>
 <script type="text/javascript" src="<?php echo skin_url('event');?>/js/app.js"></script>
 <script type="text/javascript" src="<?php echo load_lib(); ?>theme/js/user_script.js"></script>
-
 <script>
 	$(function (){
 		$('.simple-marquee-container').SimpleMarquee();
