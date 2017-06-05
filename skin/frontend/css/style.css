@@ -5223,3 +5223,9 @@ h1
 	border:0px !important;
 }
 	
+	
+	/* Browse */
+.custom_browsefile input[type=file]{ height: 100px; width: 100%; opacity: 0; filter: alpha(opacity=0);cursor: pointer; }
+.result_browsefile{ border: 2px dashed #ccc; position: absolute; height: 100px; left:0; top:0; width: 100%; pointer-events: none; text-align: center; font-weight: bold; overflow: hidden;}
+.result_browsefile:before{content: ""; height: 100%; width: 0; display: inline-block; vertical-align: middle;}
+.brows{display: inline-block; vertical-align: middle; }
