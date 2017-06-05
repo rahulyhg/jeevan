@@ -15,8 +15,9 @@
                     <label class="col-xs-12 control-label">Email Address </label>
                     <div class="col-xs-12">
                         <input type="text" class="form-control" id="admin_email_address" name="admin_email_address" />
+                        <span for="admin_email_address" class="text-danger"></span>
                     </div>
-                    <span for="admin_email_address" class="text-danger"></span>
+                    
                 </div>
                 
                 <div class="col-xs-12 text-center">
