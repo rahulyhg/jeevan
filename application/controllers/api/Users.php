@@ -100,10 +100,10 @@ class Users extends REST_Controller {
 							if($check_oauth['oauth_token'] == ''){
 								$this->Mydb->update ( $this->table, array ('admin_id' => $admin_id ), $token_array );
 							}
-							$userdata = array();
+							
 							$default_image = media_url('default-image.png');
 							$image_path = media_url('profile/');
-							$userdata[] = $this->Mydb->custom_query("SELECT ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, admin_country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
+							$userdata = $this->Mydb->custom_query("SELECT ma.oauth_token, ma.admin_id, ma.admin_username, ma.admin_firstname, ma.admin_lastname, ma.admin_email_address, ma.admin_phone_number, ma.admin_status, admin_country, CASE WHEN ma.admin_profile !='' THEN CONCAT('".$image_path."', ma.admin_profile) ELSE '$default_image' END AS profile FROM sramcms_master_admin AS ma 
 			LEFT JOIN sramcms_countries AS c ON c.id = ma.admin_country
 			WHERE ma.admin_id = '".$admin_id."' AND ma.admin_status = 'A'");
 							
