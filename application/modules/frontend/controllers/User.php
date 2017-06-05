@@ -249,7 +249,7 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('admin_phone_number', 'lang:phone', 'required|callback_phone_exists');
 			$this->form_validation->set_rules('admin_password', 'lang:password', 'required');
 
-            $country_list = $this->Mydb->get_record('id', $this->countries_table, array('phonecode' => $this->input->post('phonecode')));
+           
 
             if ($this->form_validation->run() == TRUE) {
 
@@ -300,6 +300,78 @@ class User extends CI_Controller {
         }
     }
 	
+	public function edit(){
+		 $id = get_session_value('current_user_id');	
+		  if ($this->input->post('action') == "Edit") {
+			
+            $this->form_validation->set_rules('admin_firstname', 'lang:firstname', 'required');
+            $this->form_validation->set_rules('admin_lastname', 'lang:lastname', 'required');
+            $this->form_validation->set_rules('admin_country', 'lang:country', 'required');
+            $this->form_validation->set_rules('admin_email_address', 'lang:email', 'required|callback_email_exists');
+            $this->form_validation->set_rules('admin_phone_number', 'lang:phone', 'required|callback_phone_exists');
+
+
+            if ($this->form_validation->run() == TRUE) {
+						
+                $user_array = array(
+                    'admin_firstname' => post_value('admin_firstname'),
+                    'admin_lastname' => post_value('admin_lastname'),
+                    'admin_email_address' => post_value('admin_email_address'),
+                    'admin_updated_on' => current_date(),
+                    'admin_phone_number' => post_value('phone'),
+					'admin_country' => post_value('admin_country'),
+                );
+				
+				if (!empty($_FILES['admin_profile']['name'])) {
+                    $config['upload_path'] = 'media/profile/';
+                    $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                    $config['file_name'] =  'profile-' .random_string('numeric',15).'-'. $_FILES['admin_profile']['name'];
+
+                    //Load upload library and initialize configuration
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+
+                    if ($this->upload->do_upload('admin_profile')) {
+                        $uploadData = $this->upload->data();
+                        $admin_profile = $uploadData['file_name'];
+                    } else {
+                        $admin_profile = '';
+                    }
+                    $image_arr = array(
+                        'admin_profile' => $admin_profile
+                    );
+                    $user_array = array_merge($user_array, $image_arr);
+                } else {
+                    if (post_value('remove_image') == "Yes") {
+                        $image_arr = array(
+                            'photo' => ''
+                        );
+                        $user_array = array_merge($user_array, $image_arr);
+                    }
+                }
+
+
+                $update = $this->Mydb->update($this->table, array('admin_id' => $id), $user_array);
+
+               
+				if($update){				
+					
+					$result ['status'] = 'success';
+					$result ['message'] = 'Update your account success';
+				}else{
+					$result ['status'] = 'error';
+               		$result ['message'] = 'Update your account not success';
+				}
+            } else {
+                $result ['status'] = 'error';
+                $result ['message'] = validation_errors();
+            }
+
+            echo json_encode($result);
+            exit();
+        }
+	}
+	
 	public function send_activation_email($name, $to_email, $activation_link){
 		
 			$chk_arr = array('[NAME]','[ACTIVATIONLINK]');
@@ -310,17 +382,85 @@ class User extends CI_Controller {
 	}
 	
 	
-	
+	public function changepassword(){
+		$id = get_session_value('current_user_id');
+        if ($this->input->post('action') == "Changepassword") {
+			
+			
+            $this->form_validation->set_rules('old_password', 'Old Password', 'required|trim|callback_oldpasswordcheck');
+            $this->form_validation->set_rules('new_password', 'New Password', 'required|trim|min_length[6]');
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|trim|min_length[6]|matches[new_password]');
 
-	
+
+            $this->form_validation->set_message('required', '%s is required');
+            $this->form_validation->set_message('min_length', '%s should be min 6 digits length');
+
+            if ($this->form_validation->run($this) == TRUE) {
+				
+				
+                $selectpass = $this->Mydb->custom_query("select * from sramcms_master_admin where admin_id=$id");
+				
+                $new_password = do_bcrypt($this->input->post('new_password'));
+                $password_verify = check_hash($this->input->post('new_password'), $selectpass[0]['admin_password']);
+				
+                if ($password_verify == "Yes") {
+					
+                    $response = array('status' => 'error', 'message' => 'New and current password also a same');
+                } else {
+
+                    $this->Mydb->update($this->table, array('admin_id' => $id), array('admin_password' => $new_password));
+                    $response = array('status' => 'success', 'message' => 'Your password has been changed. please login again');
+                    session_destroy();
+				    echo json_encode($response);
+           			 exit;
+					
+                }
+//                
+//                redirect(frontend_url('login'));
+            } else {
+				$response = array('status' => 'error', 'message' => validation_errors());
+                
+            }
+
+            echo json_encode($response);
+            exit;
+        }
+	}
+
+	public function oldpasswordcheck() {
+        $old_password = $this->input->post('old_password');
+        //$old_password = do_bcrypt($old_password);
+        $id = get_session_value('current_user_id');
+        $check_details = $this->Mydb->get_record('admin_password', $this->table, array('admin_id' => $id));
+        if (!empty($check_details)) {
+            $password_verify = check_hash($old_password, $check_details['admin_password']);
+            //$this->bcrypt->check_password($old_password, $check_details['org_password']);
+            if ($password_verify == "Yes") {
+                return true;
+            } else {
+                $this->form_validation->set_message('oldpasswordcheck', 'Old Password Miss Match');
+                return false;
+            }
+        }
+    }
 
     public function email_exists() {
         $email = $this->input->post('admin_email_address');
-        $where = array(
+		 $id = get_session_value('current_user_id');	
+         
+		if(!empty($id)){
+			 $where = array(
+			 	'admin_email_address' => trim($email),
+			 	'admin_id !=' => $id
+			 );
+		}else{
+			$where = array(
             'admin_email_address' => trim($email),
                 //'is_active' => '1' 
-        );
+        	);	
+		}
         $result = $this->Mydb->get_record('*', $this->table, $where);
+
         if (!empty($result)) {
             $this->form_validation->set_message('email_exists', 'Email Already exit.');
             return false;
@@ -331,13 +471,20 @@ class User extends CI_Controller {
 
     public function phone_exists() {
         $phone = $this->input->post('admin_phone_number');
-        $edit_id = get_session_value('current_user_id');
+        $id = get_session_value('current_user_id');
 
-        $where = array(
+       
+        if(!empty($id)){
+			 $where = array(
+			 	'admin_phone_number' => trim($phone),
+			 	'admin_id !=' => $id
+			 );
+		}else{
+			 $where = array(
             'admin_phone_number' => trim($phone),
                 //'is_active' => '1' 
-        );
-        
+       		);
+		}
         $result = $this->Mydb->get_record('*', $this->table, $where);
         if (!empty($result)) {
             $this->form_validation->set_message('phone_exists', 'Phone number already exit');
