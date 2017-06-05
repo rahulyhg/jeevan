@@ -4,12 +4,10 @@
     <h4><em>Get in Touch</em></h4>
 	<div class="contact-address-section">
 
-		<h5>Cambodia Indian Association</h5>
+		
 		<div class="address-info">
-			<p>IOC Building, No.254, Monivong Blvd, <br />
-			Corner St.109, 6th Floor, <br />
-			Room No.007, Phnom Penh, <br />
-			Cambodia.</p>
+        	<p>#3,/st. 283, Sangkat Beoung Kok1, <br />Khan Toul Kok, Phnom Pehn,<br /> Cambodia.</p>
+        
 		</div>
 		<div class="contact-info">
 			<ul> 

@@ -69,7 +69,7 @@ $("#login_form").validate({
                     $(".log_alert").addClass("alert-success");
 					$(".log_alert").show().html(data.message);
 					setTimeout(function(){
-						window.location.href = base_url+'user/myaccount';
+						window.location.href = base_url+'dashboard/myaccount';
 					} , 1000);
 				}else{
 					$(".log_alert").removeClass("alert-success");
