@@ -169,6 +169,7 @@ if (! function_exists ( 'check_hash' )) {
 if (! function_exists ( 'get_session_value' )) {
 	function get_session_value($sess_name) {
 		$CI = & get_instance ();
+		
 		return  $CI->session->userdata($sess_name);
 	}
 }
