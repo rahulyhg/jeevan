@@ -25,7 +25,8 @@
 
 <meta name="yandex-verification" content="da9c3677fe610813" />
 <meta name="msvalidate.01" content="29B3BD53EF4F87F322C71BE1FF8CC9F8" />
-
+<link rel="stylesheet" type="text/css" href="<?php echo load_lib()?>theme/css/dropzone.css">
+<script type="text/javascript" src="<?php echo load_lib();?>theme/js/dropzone.js"></script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

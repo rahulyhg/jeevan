@@ -114,6 +114,19 @@ $(".allmodal").click(function(e) {
 	var id = $(this).attr('data-type');
 	$('#'+ id).modal('show');
 });
+/* browse file type*/
+var fileinput=$('input[type=file]');
+fileinput.change(function() {
+	var displayEl = $(this).next('.result_browsefile');
+	if(displayEl.size() > 0) {
+		var file_path = $(this).val().split("/");
+		if(file_path.length == 1) {
+			file_path = $(this).val().split("\\");
+		}
+		displayEl.html('<span class="brows"></span>'+file_path[file_path.length-1]);
+	}
+});
+  /* browse file type end*/
 </script>
 
 
