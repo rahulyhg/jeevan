@@ -241,7 +241,7 @@ class User extends CI_Controller {
         $data = $this->load_module_info();
         if ($this->input->post('action') == "Register") {
 			
-			$this->form_validation->set_rules('admin_username', 'lang:username', 'required');
+			//$this->form_validation->set_rules('admin_username', 'lang:username', 'required');
             $this->form_validation->set_rules('admin_firstname', 'lang:firstname', 'required');
             $this->form_validation->set_rules('admin_lastname', 'lang:lastname', 'required');
             $this->form_validation->set_rules('admin_country', 'lang:country', 'required');
@@ -256,7 +256,7 @@ class User extends CI_Controller {
                 $password = do_bcrypt(post_value('password'));
 				$devices_type = 'W';
                 $insert_array = array(
-					'admin_username' => post_value('admin_username'),
+                	'admin_username' => post_value('admin_email_address'),
                     'admin_firstname' => post_value('admin_firstname'),
                     'admin_lastname' => post_value('admin_lastname'),
                     'admin_email_address' => post_value('admin_email_address'),
@@ -279,7 +279,7 @@ class User extends CI_Controller {
 					$details = $this->Mydb->get_record ('*', $this->table, array ('admin_id' => $insert_id));
 					
 					$name = $details['admin_firstname'].' '.$details['admin_lastname'];
-					$activation_link = frontend_url('user/email/'.$details['admin_email_code']);
+					$activation_link = frontend_url('accountactivation/'.$details['admin_email_code']);
 					$to_email = $details['admin_email_address'];
 					
 					$response_email = $this->send_activation_email($name, $to_email, $activation_link);

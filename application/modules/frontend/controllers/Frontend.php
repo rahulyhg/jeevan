@@ -1,7 +1,7 @@
 <?php
 
 /* * ************************
-  Project Name	        : POS
+  Project Name	    : POS
   Created on		: 19 Feb, 2016
   Last Modified 	: 19 Feb, 2016
   Description		: Page contains dashboard related functions.
