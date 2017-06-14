@@ -9,7 +9,7 @@
             	<div class="col-md-8 col-md-offset-2 col-xs-12">
             	<div class="alert reg_alert" role="alert" style="display:none;"></div>   
                 <?php echo form_open_multipart(frontend_url('user/register'), ' class="register_form" id="register_form" '); ?>
-                
+               <!-- 
                 <div class="form-group">
                     <label class="col-xs-12 control-label">User Name </label>
                     <div class="col-xs-12">
@@ -17,7 +17,7 @@
                         <span for="admin_username" class="text-danger"></span>
                     </div>
                     
-                </div>
+                </div> --> 
                 
                 <div class="form-group">
                     <label class="col-xs-12 control-label">First Name </label>
@@ -142,6 +142,7 @@ $("#register_form").validate({
 					$(".reg_alert").removeClass("alert-danger");
                     $(".reg_alert").addClass("alert-success");
 					$(".reg_alert").show().html(data.message);
+					 $('#register_form').find("input[type=text],input[type=email], input[type=password], textarea").val("");
 				}else{
 					$(".reg_alert").removeClass("alert-success");
                     $(".reg_alert").addClass("alert-danger");
