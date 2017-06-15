@@ -37,7 +37,7 @@ class Frontend extends MY_Controller {
     /* this method used to show all dashboard all details... */
 
     public function index() {
-
+    	
         $data = array();
         $data['module_label'] = $this->module_label;
         $data['module_labels'] = $this->module_label;
