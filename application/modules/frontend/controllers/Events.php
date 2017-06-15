@@ -112,7 +112,14 @@ class Events extends MY_Controller {
 
 
                 $result = $this->Mydb->insert($this->booking_table, $insert_data);
-
+                /* Create notification for admin */
+                if(get_all_users()){
+                	foreach (get_all_users() as $admin_user){
+                		$msg = "Appointment has been booked";
+                		create_notification($admin_user['admin_id'], $module_type = "event", $msg, $from_user_id = get_admin_id(), $module_id = $event_id);
+                	}
+                }
+                
                 if (!empty($result)) {
                     $this->send_notification_email_to_admin($insert_data);
                     $this->send_acknowledgement_email_to_user($insert_data);
