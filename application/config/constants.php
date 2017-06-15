@@ -87,3 +87,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 /* custon  values */
 
 define('PASSWORD_LENGHT',6);
+define( 'FIREBACE_API_ACCESS_KEY', 'AIzaSyCyfchyFDBwKC3WlQcYAZqcjZSv6FbjQBM' );#for push notification
