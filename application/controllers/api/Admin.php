@@ -27,6 +27,7 @@ class Admin extends REST_Controller {
 		$this->blog = "blog";
 		$this->discourse = "discourse";
 		$this->newsletter = "newsletter";
+		$this->live_program_table = "live_program";
 		$this->routeplan_table = 'sramcms_routeplan';
 		$this->gallary_categories = "gallary_categories";
 		$this->routeplan = "routeplan";
@@ -351,7 +352,7 @@ class Admin extends REST_Controller {
 			{
 				$details = $this->Mydb->get_record ('admin_id', $this->table, array ('oauth_token' => $this->input->post('oauth_token')));
 				$user_arr = array (
-						'admin_id' => $details['admin_id']
+						'user_id' => $details['admin_id']
 				);
 				$device_detail = array_merge ( $device_array, $user_arr );
 				$this->Mydb->update ($this->device_detail, array ('device_imei' => $device_imei ), $device_detail );	
@@ -1265,7 +1266,55 @@ class Admin extends REST_Controller {
 		echo $response = json_encode($result);
 		return TRUE;
 	}
+	/* This for program schedule */
+	public function addLiveProgram_post (){
+		
+		$oauth_token = post_value ( 'oauth_token' );
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_id,admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				
+				$this->form_validation->set_rules ( 'program_start_time', 'lang:program_start_time', 'trim|required' );
+				$this->form_validation->set_rules ( 'program_title', 'lang:program_title', 'trim|required' );
+				$this->form_validation->set_rules ( 'program_location', 'lang:program_location', 'trim|required' );
+				
+				
+				if ($this->form_validation->run () == TRUE) {					
+					
+					$insert_data = array(
+							"program_start_time" => get_date_formart($this->input->post('program_start_time'), 'Y-m-d'),
+							"program_title" => $this->input->post('program_title'),
+							"program_location" => $this->input->post('program_location'),
+							"image" => json_encode(array('files' => array($mediaFiles))),
+							"created_on" => current_date(),
+							"created_ip" => get_ip(),
+							"created_by" => $data['admin']['admin_id'],
+							"is_active" => '1',
+					);
+					
+					
+					$photooftheday = $this->Mydb->insert($this->live_program_table,$insert_data);
+					
+					if($photooftheday !=''){
+						$result = array( 'success'=> 1 , 'message' => 'Live Program added succesfully');
+					}else{
+						$result = array( 'success'=> 0 , 'message' => 'Live Program is not added');
+					}
+					
+				}else{
+					$result = array( 'success'=> 0 , 'message' => 'Please Enter All fields');
+				}
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
 	
+	}
 	public function upload_multiple_files($path, $files)
     {
     	$this->load->library('upload', $config);

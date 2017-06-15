@@ -360,7 +360,7 @@ class Users extends REST_Controller {
 			{
 				$details = $this->Mydb->get_record ('admin_id', $this->table, array ('oauth_token' => $this->input->post('oauth_token')));
 				$user_arr = array (
-						'admin_id' => $details['admin_id']
+						'user_id' => $details['admin_id']
 				);
 				$device_detail = array_merge ( $device_array, $user_arr );
 				$this->Mydb->update ($this->device_detail, array ('device_imei' => $device_imei ), $device_detail );	
