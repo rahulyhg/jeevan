@@ -478,40 +478,47 @@ if (!function_exists('get_ad_chat_conversation')) {
 
 }
 
+/* get users base their type */
+if (!function_exists('get_all_users')) {
+	
+	function get_all_users($user_type = 1) {
+		$CI = & get_instance();
+		$user_records = $CI->Mydb->get_all_records('*', 'sramcms_master_admin', array('admin_user_type' => $user_type));
+		if(!empty($user_records)){
+			return $user_records;
+		}else{
+			return "";
+		}	
+	}
+	
+}
+
 /* create notification */
 if (!function_exists('create_notification')) {
 
-    function create_notification($to_user_id, $type, $msg, $from_user_id, $id = null) {
+	function create_notification($to_user_id, $module_type, $msg, $from_user_id, $module_id = null) {
         $CI = & get_instance();
-        $user_record = $CI->Mydb->get_record('*', 'users', array('id' => $from_user_id));
-        $data = array();
-        if ($type == 'news') {
-            $data = array("created" => current_date(),
-                "msg" => $msg . ' by ' . $user_record['first_name'] . ' ' . $user_record['last_name'],
-                "login_id" => $from_user_id,
-                'type' => $type,
-                "to_user_id" => $to_user_id,
-                'news_id' => $id,
-                "is_read" => 0,
-                "ip_address" => get_ip());
-        } else if ($type == 'user') {
-            $data = array("created" => current_date(),
-                "msg" => $msg . ' by ' . $user_record['first_name'] . ' ' . $user_record['last_name'],
-                "login_id" => $from_user_id,
-                'type' => $type,
-                "to_user_id" => $to_user_id,
-                'user_id' => $id,
-                "is_read" => 0,
-                "ip_address" => get_ip());
-        } else {
-            $data = array("created" => current_date(),
-                "msg" => $msg . ' by ' . $user_record['first_name'] . ' ' . $user_record['last_name'],
-                "login_id" => get_admin_id(),
-                'type' => $type,
-                "to_user_id" => $to_user_id,
-                "is_read" => 0,
-                "ip_address" => get_ip());
+        $user_record = $CI->Mydb->get_record('*', 'sramcms_master_admin', array('admin_id' => $from_user_id));
+        
+        if($user_record['admin_firstname'] != "" && $user_record['admin_lastname'] != ""){
+        	$created_by_user = $user_record['admin_firstname'] . ' ' . $user_record['admin_lastname'];
+        }elseif($user_record['admin_firstname'] != ""){
+        	$created_by_user = $user_record['admin_firstname'] ;
+        }else{
+        	$created_by_user = $user_record['admin_email_address'] ;
         }
+        
+        $data = array();
+      
+            $data = array("created" => current_date(),
+            	"msg" => $msg . ' by ' . $created_by_user,
+                "login_id" => $from_user_id,
+            	'module_id' => $module_id,
+            	'module_type' => $module_type,
+                "to_user_id" => $to_user_id,                
+                "is_read" => 0,
+                "ip_address" => get_ip());
+        
         $CI->Mydb->insert('notification', $data);
     }
 
