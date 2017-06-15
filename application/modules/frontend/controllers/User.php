@@ -27,6 +27,7 @@ class User extends CI_Controller {
         );
         $this->load->helper('smstemplate');
 		$this->load->helper('emailtemplate');
+		$this->load->helper('adminsite');
 	}
 	
 	public function index() {
@@ -277,6 +278,14 @@ class User extends CI_Controller {
 				if(!empty($insert_id)){
 					
 					$details = $this->Mydb->get_record ('*', $this->table, array ('admin_id' => $insert_id));
+					
+					/* Create notification for admin */
+					if(get_all_users()){
+						foreach (get_all_users() as $admin_user){
+							$msg = "New user register";
+							create_notification($admin_user['admin_id'], $module_type = "user", $msg, $from_user_id = $insert_id, $module_id = $insert_id);
+						}
+					}
 					
 					$name = $details['admin_firstname'].' '.$details['admin_lastname'];
 					$activation_link = frontend_url('accountactivation/'.$details['admin_email_code']);
