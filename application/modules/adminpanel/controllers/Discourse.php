@@ -117,7 +117,9 @@ class Discourse extends CI_Controller {
 			$this->form_validation->set_rules ( 'title', 'lang:page_title', 'required' );
 			$this->form_validation->set_rules ( 'shortdesc', 'lang:shortdesc', 'required' );
 			$this->form_validation->set_rules ( 'discourse_image', 'lang:discourse_image', 'callback_validate_page_image' );
-			
+			$this->form_validation->set_rules ( 'metacontent', 'lang:metacontent', 'required' );
+			$this->form_validation->set_rules ( 'metakeyword', 'lang:metakeyword', 'required' );
+			$this->form_validation->set_rules ( 'metatitle', 'lang:metatitle', 'required' );
 		
 			if ($this->form_validation->run () == TRUE) {	
 				
@@ -139,6 +141,9 @@ class Discourse extends CI_Controller {
 						'slug' => $slug,
 						'description' => $this->input->post('description', false),
 						'image' => $discourse_image,
+						'metacontent' => post_value ( 'metacontent' ),
+						'metakeyword' => post_value ( 'metakeyword' ),
+						'metatitle' => post_value ( 'metatitle' ),
 						'is_active' => '1',
 						'created' => current_date (),
 						'is_delete' => '0'
