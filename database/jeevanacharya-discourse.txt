@@ -1,0 +1,1 @@
+ALTER TABLE `sramcms_discourse` ADD `metatitle` TEXT NOT NULL AFTER `image`, ADD `metakeyword` TEXT NOT NULL AFTER `metatitle`, ADD `metacontent` TEXT NOT NULL AFTER `metakeyword`;
