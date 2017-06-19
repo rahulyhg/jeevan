@@ -33,7 +33,7 @@ class Discourse extends MY_Controller {
 		$data['module'] = $this->module;
 		$this->loadBlocks();
 		$data = array_merge($data, $this->view_data);
-		$data['discourse'] = $this->Mydb->custom_query("SELECT id, title, slug,description, created, metacontent, metakeyword, metatitle
+		$data['discourse'] = $this->Mydb->custom_query("SELECT id, title, slug,description, created, metacontent, metakeyword, metatitle,
 		CASE 
 		WHEN (image != '') THEN CONCAT('".$blog_path."', image) 
 		WHEN (image = '') THEN '".$default."'
