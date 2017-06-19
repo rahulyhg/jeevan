@@ -193,6 +193,9 @@ class Discourse extends CI_Controller {
 				$update_array = array (
 						'title' => post_value ( 'title' ),
 						'shortdesc' => post_value ( 'shortdesc' ),
+						'metacontent' => post_value ( 'metacontent' ),
+						'metakeyword' => post_value ( 'metakeyword' ),
+						'metatitle' => post_value ( 'metatitle' ),
 						'slug' => $slug,
 						'description' => $this->input->post('description', false),	
                         'modified' => current_date(),
