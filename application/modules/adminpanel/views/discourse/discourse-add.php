@@ -54,6 +54,23 @@
                              </div>
 							</div></div>
 						</div>
+                        
+                        <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta title').'&nbsp;'.get_required();?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box">
+							<?php  echo form_input('metatitle',set_value('metatitle'),' class="form-control required"  ');?>
+							</div></div>
+						</div>
+						
+                        <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta keyword').'&nbsp;'.get_required();?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('metakeyword',set_value('metakeyword'),' class="form-control required"    ');?></div></div>
+						</div>
+                        
+                        <div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label"><?php echo get_label('meta content').'&nbsp;'.get_required();?></label>
+							<div class="col-sm-<?php echo get_form_size();?>"><div class="input_box"><?php  echo form_textarea('metacontent',set_value('metacontent'),' class="form-control required" maxlength="250"   ');?></div></div>
+						</div>
 						               
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-<?php echo get_form_size();?>  btn_submit_div">
