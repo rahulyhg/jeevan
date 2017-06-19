@@ -11,7 +11,7 @@
                 	<div class="col-xs-12 businesstable-content">
                     	<div class="panel panel-pricing hvr-float-shadow">
                         	<div class="panel-heading">
-    <a data-fancybox="gallery" href="<?php echo media_url().$images; ?>"> <img src="<?php echo media_url().$images; ?>" class="img-thumbnail"  alt="jeevanacharya photo"> </a>
+    <a href="javascript:void(0);"> <img src="<?php echo media_url().$images; ?>" class="img-thumbnail"  alt="jeevanacharya photo"> </a>
 	</div>
                    	</div>
                    	</div>
