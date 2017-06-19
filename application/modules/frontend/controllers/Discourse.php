@@ -33,7 +33,7 @@ class Discourse extends MY_Controller {
 		$data['module'] = $this->module;
 		$this->loadBlocks();
 		$data = array_merge($data, $this->view_data);
-		$data['discourse'] = $this->Mydb->custom_query("SELECT id, title, slug,description, created,
+		$data['discourse'] = $this->Mydb->custom_query("SELECT id, title, slug,description, created, metacontent, metakeyword, metatitle
 		CASE 
 		WHEN (image != '') THEN CONCAT('".$blog_path."', image) 
 		WHEN (image = '') THEN '".$default."'
@@ -41,9 +41,9 @@ class Discourse extends MY_Controller {
 		FROM $this->table
 		WHERE is_active='1' AND is_delete='0' AND slug = '".$method."'");	
 		
-		$data['metacontent'] = 'test';
-		$data['metakeyword'] = 'test';
-		$data['metatitle'] = 'test';
+		$data['meta_content'] = $data['discourse'][0]['metacontent'];
+		$data['meta_keyword'] = $data['discourse'][0]['metakeyword'];
+		$data['meta_title'] = $data['discourse'][0]['metatitle'];
 		
 		if(!empty($data['discourse'])){
 			$this->layout->display_frontend($this->folder . '/discourse-details', $data);
