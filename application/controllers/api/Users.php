@@ -206,6 +206,7 @@ class Users extends REST_Controller {
 	}
 	
 	public function forgotpassword_post() {
+		
 		$this->form_validation->set_rules ( 'admin_email_address', 'admin_email_address', 'required' );
 		if ($this->form_validation->run()){
 			$admin_email_address =  $this->input->post ( 'admin_email_address' );
@@ -243,7 +244,9 @@ class Users extends REST_Controller {
 	}
 	
 	public function myaccount_post(){
-		$oauth_token = post_value ( 'oauth_token' );
+		
+		$oauth_token = post_value ('oauth_token');
+		
 		if($oauth_token != ''){
 			$default_image = media_url('default-image.png');
 			$image_path = media_url('profile/');
@@ -432,8 +435,10 @@ class Users extends REST_Controller {
 	}
 
 	public function photoalbum_post(){
+		
 		$oauth_token = post_value ( 'oauth_token' );
 		$media_type = post_value ( 'media_type' );
+		
 		if($media_type == 1){
 			$where = "AND gc.media_type = 1";
 		}else{
@@ -448,7 +453,7 @@ class Users extends REST_Controller {
 				
 				$data['photoalbum'] = $this->Mydb->custom_query("SELECT al.id, al.name, 
 				 CASE WHEN gc.is_active !='0' THEN count(gc.gallery_category_id) ELSE '0' END AS gallery_count, 
-				CASE WHEN category_image !='' THEN CONCAT('".$image_path."', category_image) ELSE '$default_image' END AS category_image, gc.media_type FROM sramcms_gallary_categories AS al LEFT JOIN sramcms_galleries AS gc ON gc.gallery_category_id = al.id  WHERE al.is_active = '1' ".$where."  GROUP BY al.id");
+				CASE WHEN category_image !='' THEN CONCAT('".$image_path."', category_image) ELSE '$default_image' END AS category_image, gc.media_type FROM sramcms_gallary_categories AS al LEFT JOIN sramcms_galleries AS gc ON gc.gallery_category_id = al.id  WHERE al.is_active = '1' AND al.is_delete = '0' ".$where."  GROUP BY al.id");
 				
 				$result = array( 'success'=> 1 , 'message'=> 'Photo Album', 'data' => $data);
 			}else{
@@ -464,6 +469,7 @@ class Users extends REST_Controller {
 	}
 
 	public function photoalbumlist_post(){
+		
 		$oauth_token = post_value ( 'oauth_token' );
 		$id = post_value ('id');
 		$media_type = post_value('media_type');
@@ -482,7 +488,7 @@ class Users extends REST_Controller {
 			if(!empty($data['admin'])){
 				
 				
-				$data['photoalbumlist'] = $this->Mydb->custom_query("SELECT id, 
+				$data['photoalbumlist'] = $this->Mydb->custom_query("SELECT id,title, 
 				CASE 	
 				WHEN file_name !='' AND media_type = '1'  THEN CONCAT('".$image_path."', file_name) 		
 				WHEN file_name !='' AND media_type = '2'  THEN CONCAT('".$image_path."', file_name) 
@@ -502,6 +508,7 @@ class Users extends REST_Controller {
 		}
 		echo $response = json_encode($result);
 		return TRUE;
+		
 	}
 	
 	public function contact_post(){
@@ -532,6 +539,7 @@ class Users extends REST_Controller {
 	}
 	
 	public function tourprogram_post(){
+		
 		$oauth_token = post_value ( 'oauth_token' );
 		if($oauth_token != ''){
 			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
@@ -764,6 +772,36 @@ class Users extends REST_Controller {
 		echo $response = json_encode($result);
 		return TRUE;
 		
+	}
+	
+	public function messageoftheday_post(){
+		$oauth_token = post_value ( 'oauth_token' );
+		$image_path = media_url();
+		if($oauth_token != ''){
+			$data['admin'] = $this->Mydb->get_record ('admin_username,admin_email_address,admin_phone_number',$this->table,array ('oauth_token'  => $oauth_token));
+			if(!empty($data['admin'])){
+				$photooftheday = $this->Mydb->custom_query("SELECT id, date, image FROM sramcms_photo_oftheday WHERE is_active = '1' ORDER BY id DESC ");
+				foreach($photooftheday as $photooftheday_row){
+					
+					$image_array = json_decode($photooftheday_row['image']);
+					$photooftheday_image[] = array( 'photooftheday_image' => $image_path.$image_array->files[0]);
+					
+				}
+				foreach($photooftheday as $key => $value){
+					$data['photolist'][] = array_merge($photooftheday_image[$key], $photooftheday[$key]);
+				}
+				
+				$result = array( 'success'=> 1 , 'message'=> 'Message of the day Lisiting', 'data' => $data);
+			}else{
+				$result = array( 'success'=> 0 , 'message'=> 'Oauth Token is not found');
+			}
+			
+			
+		}else{
+			$result = array( 'success'=> 0 , 'message'=> 'Enter Oauth token');
+		}
+		echo $response = json_encode($result);
+		return TRUE;
 	}
 	
 }
