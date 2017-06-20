@@ -5003,6 +5003,21 @@ position: absolute;
 	}
 
 
+/*	DONATE SECTION*/
+	
+	.donate_form h3 {padding: 25px 0px 20px 0px;}
+	.donate_form em::before, .donate_form em::after {display: none;}
+	.donate_form em {font-size: 20px;}
+	.donate_form .donetion_detail p {line-height: 25px !important; font-size: 14px !important;}
+	.donate_form .form_heading h4 {text-align: center; padding: 0px 0px 10px 15px;}
+	.donate_form .form-control-label {font-size: 14px !important;}
+	.donate_form .btn-default {width: 100% !important;}
+	.donate_form .btn-default:hover {width: 100% !important;}
+	.donate_form .form-group {padding: 0px 15px !important;}
+	
+/*	END OF DONATE SECTION*/
+	
+	
 }
 
 .contact_sectionform span {
@@ -5229,3 +5244,121 @@ h1
 .result_browsefile{ border: 2px dashed #ccc; position: absolute; height: 100px; left:0; top:0; width: 100%; pointer-events: none; text-align: center; font-weight: bold; overflow: hidden;}
 .result_browsefile:before{content: ""; height: 100%; width: 0; display: inline-block; vertical-align: middle;}
 .brows{display: inline-block; vertical-align: middle; }
+
+
+
+
+/*DONATE SECTION*/
+
+.donate_form
+{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	margin: 0px;
+	padding: 0px;
+}
+.donate_form h3 
+{
+	color: #ff3300;
+	font-size: 35px;
+	text-align: center;
+	padding: 40px 0px 45px 0px;
+}
+.donate_form .donetion_detail p 
+{
+	font-size: 16px;
+	text-align: center;
+	color: #7d7777;
+	line-height: 30px;
+	padding: 75px 0px 30px 0px;
+}
+.donate_form .form_heading
+{
+	position: relative;
+	float: left;
+	width: 100%;
+}
+.donate_form .form_heading h4
+{
+	color: #1b1b1b;
+	font-size: 20px;
+	padding: 15px 0px 20px 15px;
+	font-family: 'latobold';
+}
+.donate_form .form-control-label
+{
+	color: #1b1b1b;
+	font-size: 18px;
+}
+.donate_form .btn-default
+{
+	background-color: #cc3333 !important;
+	color: #fff !important;
+	height: 40px;
+	width: 50%;
+	border: 0;
+	border-radius: 0;
+	text-transform: uppercase;
+}
+.donate_form .btn-default:hover
+{
+	background-color: #f02626 !important;
+	color: #fff !important;
+	height: 40px;
+	width: 50%;
+	transition: all 0.25s ease;
+}
+.donate_form .checkbox .cr
+{
+    position: relative;
+    display: inline-block;
+    border: 2px solid #929292;
+    border-radius:0em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+	
+}
+
+.donate_form .checkbox label {margin: 10px 0px 20px 0px;}
+.donate_form .checkbox label:after
+{
+    content: '';
+    display: table;
+    clear: both;
+}
+.donate_form .checkbox .cr .cr-icon{
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+.donate_form .checkbox
+{
+	display:inline-block;
+}
+.donate_form .checkbox label input[type="checkbox"], .loan .checkbox label input[type="radio"]
+ {
+    display: none;
+}
+.donate_form .checkbox label input[type="checkbox"] + .cr > .cr-icon, .donate_form .checkbox label input[type="radio"] + .cr > .cr-icon
+{
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+.donate_form .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon, .donate_form .checkbox label input[type="radio"]:checked + .cr > .cr-icon
+{
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+.donate_form .checkbox label input[type="checkbox"]:disabled + .cr, .donate_form .checkbox label input[type="radio"]:disabled + .cr
+{
+    opacity: .5;
+}
+/*END OF DONATE SECTION*/
+
