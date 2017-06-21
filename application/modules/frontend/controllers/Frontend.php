@@ -21,6 +21,7 @@ class Frontend extends MY_Controller {
         $this->routeplan_table = "sramcms_routeplan";
         $this->sramcms_newsletter_table = "sramcms_newsletter";
         $this->sramcms_feedback_table = "sramcms_feedback";
+        $this->sramcms_donation = "sramcms_donation";
         $this->load->library('common');
 
         $config = Array(
@@ -415,7 +416,66 @@ class Frontend extends MY_Controller {
             exit();
         }
     }
-
+    /* Add donation */
+    public function donation() {
+    	if ($this->input->post('action') == 'donate') {
+    		$this->form_validation->set_rules('donation_amount', 'Donation Amount', 'required');
+    		$this->form_validation->set_rules('firstname', 'First Name', 'required');
+    		$this->form_validation->set_rules('lastname', 'Last Name', 'required');
+    		$this->form_validation->set_rules('email', 'Email Address', 'required');
+    		$this->form_validation->set_rules('address', 'Address', 'required');
+    		$this->form_validation->set_rules('mobile', 'Mobile Number', 'required');
+    		$this->form_validation->set_rules('pan_number', 'PAN Number', 'required');
+    		
+    		if ($this->form_validation->run($this) == TRUE) {
+    			
+    			
+    				$insert_array = array(
+    						'fund_type' => $this->input->post('fund_type'),
+    						'donation_amount' => $this->input->post('donation_amount'),
+    						'first_name' => $this->input->post('firstname'),
+    						'last_name' => $this->input->post('lastname'),
+    						'address' => $this->input->post('address'),
+    						'home_phone' => $this->input->post('home_phone'),
+    						'city' => $this->input->post('city'),
+    						'work_phone' => $this->input->post('work_phone'),
+    						'postal_code' => $this->input->post('postal_code') ? $this->input->post('postal_code') :'',
+    						'mobile' => $this->input->post('mobile'),
+    						'state_province_county' => $this->input->post('state_province_county') ? $this->input->post('state_province_county') :'',
+    						'email' => $this->input->post('email'),
+    						'country' => $this->input->post('country'),
+    						'pan_number' => $this->input->post('pan_number') ? $this->input->post('pan_number') :'',
+    						'work_detail' => $this->input->post('work_detail') ? $this->input->post('work_detail') :'',
+    						'designation' => $this->input->post('designation') ? $this->input->post('designation') :'',
+    						'location' => $this->input->post('location')?  $this->input->post('location') :'',
+    						'is_active' => '1',
+    						'is_delete' => '0',
+    						'created_on' => current_date(),
+    				);
+    				$insert = $this->Mydb->insert($this->sramcms_donation, $insert_array);
+    				
+    				
+    				if ($insert) {
+    					$session_datas = array('donation_form_id' => $insert);
+    					
+    					$this->session->set_userdata($session_datas);
+    					$response_msg ['status'] = 'success';
+    					$response_msg ['message'] = 'Thank you for contacting us. We will be in touch with you very soon.';
+    				} else {
+    					$response_msg ['status'] = 'error';
+    					$response_msg ['message'] = 'Contact form is not added';
+    				}
+    				
+    			
+    		} else {
+    			$response_msg ['status'] = 'error';
+    			$response_msg ['message'] = validation_errors();
+    		}
+    		echo json_encode($response_msg);
+    		exit();
+    	}
+    }
+    
     public function send_newletter_email($name, $to_email, $activation_link) {
 
         $chk_arr = array('[NAME]', '[ACTIVATIONLINK]');
