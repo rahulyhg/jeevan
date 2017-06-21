@@ -48,5 +48,6 @@ $block_types = array(
 	"blog" => "Blog",
 	"discourse" => "Discourse",
 	"photooftheday" => "Photo Of The Day",
-	"allmodal" => "All Modal"
+	"allmodal" => "All Modal",
+	"donate" => "Donate",
 );
