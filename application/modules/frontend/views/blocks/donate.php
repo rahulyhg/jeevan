@@ -3,14 +3,14 @@
 		<div class="row">
 			<div class="col-lg-offset-2 col-lg-8">
 				<h3><em>Jeevancharya - 1008 Shiva Lingam Fund</em></h3>
-				<form id="contact_form" class="contactus_form row" name="contact_form" method="post" >
-					
+				<div class="alert donate_alert" role="alert" style="display:none;"></div> 
+				<?php echo form_open_multipart(frontend_url('donation'), ' class="donation_form" id="donation_form" '); ?>	
 					<div class="donation_amount">
 						<div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
-							<label for="firstname" class="form-control-label">Donation Amount </label>
+							<label for="donation_amount" class="form-control-label">Donation Amount </label>
 						</div>
 						<div class="form-group col-lg-7 col-md-7 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" name="firstname" id="firstname">
+							<input type="text" class="form-control" name="donation_amount" id="donation_amount">
 						</div>
 					</div>
 					<div class="donetion_detail">
@@ -67,7 +67,7 @@
 					
 					<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<label for="state_country" class="form-control-label">State/ Province/ County</label>
-						<input type="text" class="form-control" name="state_country" id="state_country">
+						<input type="text" class="form-control" name="state_province_county" id="state_country">
 					</div>
 					
 					<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -82,7 +82,7 @@
 					
 					<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<label for="pan" class="form-control-label">PAN Number</label>
-						<input type="text" class="form-control" name="pan" id="pan">
+						<input type="text" class="form-control" name="pan_number" id="pan_number">
 					</div>
 					
 					<div class="form_heading">
@@ -111,17 +111,68 @@
 					
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" value="PDF" name="pdfcheckbox" id="pdfcheckbox" onchange="valueChanged()">
+							<input type="checkbox" value="<?php echo $fund_type; ?>" name="fund_type" checked>
 							<span class="cr"><i class="cr-icon fa fa-check"></i></span>
-							 I'm contributing this amount towards the Jeevancharya - 1008 Shiva Lingam Fund 
+							 I'm contributing this amount towards the Jeevancharya - <?php echo $fund_type; ?>
 						</label>
             		</div>
 					
 					<div class="form-group col-xs-12">
 						<input type="submit" class="btn btn-default" name="contact_submit" id="contact_submit" value="Continue to Payment Gateway">
 					</div>
-    			</form>
+    			<?php
+				echo form_hidden ( 'action', 'donate' );
+				echo form_close();
+				?>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$("#donation_form").validate({
+	ignore: ".ignore",
+	rules: {
+		donation_amount:{required: true, number: true},
+		firstname:{required: true},
+		address:{required: true},
+		lastname:{required: true},
+		email:{required: true, email: true},
+		mobile:{required: true, number: true},
+		pan:{required: true},
+				
+	},
+	messages: {
+		donation_amount:{required: "Enter your user donation amount"},
+		firstname:{required: "Enter your first name"},
+		lastname:{required: "Enter your last name"},
+		email:{required: "Enter your email address", email: "Invaild email"},
+		mobile:{required: "Enter your mobile number", number: "Invaild number"},
+		pan:{required: "Enter your PAN number"},
+		address:{required: "Enter your Address"},
+		
+	},
+	submitHandler: function (form) {
+		$.ajax({
+			type: 'POST',
+			url: admin_url +'/donation',
+			cache: false,
+			data: $('#donation_form').serialize(),
+			dataType : "json",
+			success: function(data) {
+				if (data.status == "success") {
+					$(".donate_alert").removeClass("alert-danger");
+                    $(".donate_alert").addClass("alert-success");
+					$(".donate_alert").show().html(data.message);
+					$('#donation_form').find("input[type=text],input[type=email], input[type=password], textarea").val("");
+					 $('.donate_alert').scrollView();
+					 
+				}else{
+					$(".donate_alert").removeClass("alert-success");
+                    $(".donate_alert").addClass("alert-danger");
+					$(".donate_alert").show().html(data.message);
+				}
+			}
+		});
+	}
+});
+</script>
